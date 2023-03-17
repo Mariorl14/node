@@ -1,0 +1,70 @@
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+    <link rel="stylesheet" href="resources/css/register.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>Register Page</title>
+</head>
+<body>
+	<div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <p>Registrar usuario.</p>
+            </div>
+            <form action="/register" method="POST">
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="user"> Usuario</label>
+                            <input type="email" name="user" class="form-control" placeholder="Usuario" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre"> Nombre</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol"> Rol</label>
+                            <select name="rol" id="rol" class="select">
+                                <option value="admin" selected>Administracion</option>
+                                <option value="vendedor" selected>Vendedor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"> Contraseña</label>
+                            <input type="password" name="pass" class="form-control" placeholder="Your Password *" value="" required />
+                        </div>
+                    </div>
+                    <!--<div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Password *" value=""/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Confirm Password *" value=""/>
+                        </div>
+                    </div>-->
+                </div>
+                <input type="submit" class="btnSubmit" value="Save"></input>
+            </div>
+        </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <% if(typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: '<%= showConfirmButton %>',
+                timer:'<%= timer %>'  
+            }).then(()=>{
+                window.location='/<%= ruta %>'
+            })
+        </script>
+        <% } %>
+</body>

@@ -1,0 +1,65 @@
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+    <link rel="stylesheet" href="resources/css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+	<title>Login Page</title>
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row d-flex justify-content-center mt-5">
+			<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+				<div class="card py-3 px-2">
+					<p class="text-center mb-3 mt-2">Favtel Administración</p>
+					<div class="text-center">
+						<img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+						  width="200px" alt="profile">
+					  </div>
+					<div class="row mx-auto ">
+					<div class="division">
+						<div class="row">
+							<div class="col-3"><div class="line l"></div></div>
+							<div class="col-6"><span>Email y Contraseña</span></div>
+							<div class="col-3"><div class="line r"></div></div>
+						</div>
+					</div>
+					<form action="/auth" method="POST" class="myform">
+						<div class="form-group">
+							<input width="100px" type="email" name="user" id="user" class="form-control" placeholder="Email" required>
+						  </div>
+						 <div class="form-group">
+							<input width="100px" type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña">
+						  </div>
+						  <div class="row">
+							  <div class="col-md-6 col-12">
+							  </div>
+						  </div>
+						  <div class="form-group mt-3">
+							  <input type="submit" value="Login" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Ingresar</small></input>
+						  </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <% if(typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: '<%= showConfirmButton %>',
+                timer:'<%= timer %>'  
+            }).then(()=>{
+                window.location='/<%= ruta %>'
+            })
+        </script>
+        <% } %>
+</body>
