@@ -1,55 +1,97 @@
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Yinka Enoch Adedokun">
-    <link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-	<title>Login Page</title>
-</head>
-<body>
-	<!-- Main Content -->
-	<div class="container">
-		<div class="row d-flex justify-content-center mt-5">
-			<div class="col-12 col-md-8 col-lg-6 col-xl-5">
-				<div class="card py-3 px-2">
-					<p class="text-center mb-3 mt-2">Favtel Administración</p>
-					<div class="text-center">
-						<img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-						  width="200px" alt="profile">
-					  </div>
-					<div class="row mx-auto ">
-					<div class="division">
-						<div class="row">
-							<div class="col-3"><div class="line l"></div></div>
-							<div class="col-6"><span>Email y Contraseña</span></div>
-							<div class="col-3"><div class="line r"></div></div>
-						</div>
-					</div>
-					<form action="/auth" method="POST" class="myform">
-						<div class="form-group">
-							<input width="100px" type="email" name="user" id="user" class="form-control" placeholder="Email" required>
-						  </div>
-						 <div class="form-group">
-							<input width="100px" type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña">
-						  </div>
-						  <div class="row">
-							  <div class="col-md-6 col-12">
-							  </div>
-						  </div>
-						  <div class="form-group mt-3">
-							  <input type="submit" value="Login" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Ingresar</small></input>
-						  </div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>Favtel Administracion</title>
 
-    <% if(typeof alert != "undefined") { %>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" >
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/sign-in.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin w-100 m-auto shadow p-3 mb-5 bg-body rounded">
+  <form id="formLogin" action="/login" method="POST">
+    <img class="mb-4" src="img/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Registrese para ingresar</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="user" name="user" placeholder="name@example.com">
+      <label for="user">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+      <label for="pass">Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+  </form>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <% if(alert) { %>
         <script>
             Swal.fire({
                 title: '<%= alertTitle %>',
@@ -62,4 +104,6 @@
             })
         </script>
         <% } %>
-</body>
+
+  </body>
+</html>

@@ -1,15 +1,15 @@
 const vistaPrincipal = (req, res)=>{
-    res.render('home')
+    res.render('login')
 }
 const vistaRegister = (req, res)=>{
     res.render('register')
 }
-const vistaLogin = (req, res)=>{
-    res.render('login')
+const vistaHome = (req, res)=>{
+    res.render('home')
 }
 
 module.exports = {
     vistaPrincipal,
-    vistaLogin,
+    vistaHome,
     vistaRegister
 }
