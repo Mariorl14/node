@@ -36,12 +36,13 @@ app.use(cookieParser());
 app.use('/', require('./routes/router')); 
 
 /* PARA ELIMINAR CACHE Y NO HACER BACK DESPUES DE LOGOUT  */
+/*
 app.use(function(req, res, next) {
     if(!req.user)
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     next();
 });
-
+*/
 const port = process.env.port || 3000; 
 app.listen(port, (req, res)=>{
     console.log('Running in http://localhost:3000');
