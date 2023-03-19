@@ -94,6 +94,7 @@ exports.login = async (req, res)=>{
                     icon: 'success',
                     title: 'Conectado',
                     text: 'Conexion exitosa'
+                    kljvnbf
                   }) */
                ///res.redirect('/home', );
             }
