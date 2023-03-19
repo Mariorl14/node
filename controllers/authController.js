@@ -20,6 +20,8 @@ exports.register = async (req, res)=>{
                 console.log(error);
             }
             console.log("eteas")
+            res.redirect('home')
+            /*
             res.render('register',{
                 alert: true,
                 alertTitle: "Registro",
@@ -28,7 +30,7 @@ exports.register = async (req, res)=>{
                 showConfirmButton: false,
                 timer: 1500,
                 ruta: 'home'
-            })
+            })*/
         })
 
     } catch (error) {

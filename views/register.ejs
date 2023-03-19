@@ -1,86 +1,61 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Favtel Administracion</title>
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-7">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+          <form action="/register" method="POST">
 
+            <div class="row">
+              <div class="col-md-6 mb-4">
 
-<link rel="stylesheet" href="css/bootstrap.min.css" >
-
-    
-
-    
-    <!-- Custom styles for this template -->
-    <link href="css/register.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    <section class="vh-100 gradient-custom">
-        <div class="container py-5 h-100">
-          <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-lg-9 col-xl-7">
-              <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                <div class="card-body p-4 p-md-5">
-                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-                  <form action="/register" method="POST">
-      
-                    <div class="row">
-                      <div class="col-md-6 mb-4">
-      
-                        <div class="form-outline">
-                          <input type="email" id="user" name="user" class="form-control form-control-lg" required/>
-                          <label class="form-user" for="user">Correo</label>
-                        </div>
-      
-                      </div>
-                      <div class="col-md-6 mb-4">
-      
-                        <div class="form-outline">
-                          <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" required/>
-                          <label class="form-label" for="nombre">Nombre</label>
-                        </div>
-      
-                      </div>
-                    </div>
-      
-                    <div class="row">
-                      <div class="col-md-6 mb-4 d-flex align-items-center">
-      
-                        <div class="form-outline datepicker w-100">
-                          <input type="password" class="form-control form-control-lg" id="pass" name="pass" required/>
-                          <label for="pass" class="form-label">Contraseña</label>
-                        </div>
-      
-                      </div>
-                      <div class="col-md-6 mb-4">
-      
-                        <select class="select form-control-lg" id="rol" name="rol" required>
-                            <option value="1" disabled>Rol</option>
-                            <option value="admin">Administrador</option>
-                            <option value="vendedor">Vendedor</option>
-                            <option value="backoffice">backOfiice</option>
-                          </select>
-                          
-                      </div>
-                      
-                    </div>
-      
-                   
-      
-                    <div class="mt-4 pt-2">
-                      <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
-                    </div>
-      
-                  </form>
+                <div class="form-outline">
+                  <input type="email" id="user" name="user" class="form-control form-control-lg" required/>
+                  <label class="form-user" for="user">Correo</label>
                 </div>
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                <div class="form-outline">
+                  <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="nombre">Nombre</label>
+                </div>
+
               </div>
             </div>
-          </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                <div class="form-outline datepicker w-100">
+                  <input type="password" class="form-control form-control-lg" id="pass" name="pass" required/>
+                  <label for="pass" class="form-label">Contraseña</label>
+                </div>
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                <select class="select form-control-lg" id="rol" name="rol" required>
+                    <option value="1" disabled>Rol</option>
+                    <option value="admin">Administrador</option>
+                    <option value="vendedor">Vendedor</option>
+                    <option value="backoffice">backOfiice</option>
+                  </select>
+                  
+              </div>
+              
+            </div>
+
+           
+
+            <div class="mt-4 pt-2">
+              <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+            </div>
+
+          </form>
         </div>
-      </section>
-    
-  </body>
-</html>
+      </div>
+    </div>
+  </div>
+</div>

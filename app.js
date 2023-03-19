@@ -7,13 +7,18 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
+/*Seteamos el motor de plantillas*/
 
-/*Seteamos el motor de plantillas*/ 
+
 app.set('view engine', 'ejs');
 
 
 /*archivos estaticos */
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressLayouts);
+app.set("layout login", false);
+
+
 
 /*Datos de envios desde forms */
 app.use(express.urlencoded({extended:false}));
