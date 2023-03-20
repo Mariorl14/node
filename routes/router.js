@@ -12,6 +12,7 @@ router.get('/register', vistaRegister)
 
 const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
+const VentasController = require('../controllers/VentasController')
 
 /*ROUTER PARA VISTAS */
 router.get('/', (req, res)=>{
@@ -33,6 +34,18 @@ router.get('/register', (req, res)=>{
 })
 router.get('/layout', (req, res)=>{
     res.render('layout', {user:req.user})
+})
+router.get('/ventas', (req, res)=>{
+    conexion.query('SELECT * FROM Ventas', (error, results)=>{
+        if(error){
+            throw error
+        }else{
+            res.render('ventas', {results:results,})
+        }
+    })
+})
+router.get('/registrarVenta', (req, res)=>{
+    res.render('registrarVenta')
 })
 
 /*Editar Usuarios */
@@ -64,6 +77,8 @@ router.post('/login', authController.login)
 router.get('/logout', authController.logout)
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
+/*Registrar Ventas */
+router.post('/registrarVenta', VentasController.registrarVenta)
 
 
 module.exports = router

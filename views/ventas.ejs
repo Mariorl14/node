@@ -1,0 +1,103 @@
+<h2>Registro de Ventas</h2>
+  <div  class="table-responsive">
+    
+    <table id="ventas" class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre Del Cliente</th>
+          <th scope="col">Segundo Nombre Del Cliente</th>
+          <th scope="col">Primer Apellido Del Cliente</th>
+          <th scope="col">Segundo Apellido Del Cliente</th>
+          <th scope="col">Tipo De Documento De Identidad</th>
+          <th scope="col">Numero De Documento</th>
+          <th scope="col">Nacionalidad</th>
+          <th scope="col">Numero Celular De Tramite</th>
+          <th scope="col">Tipo De Tramite</th>
+          <th scope="col">Numero De Contacto1</th>
+          <th scope="col">Numero De Contacto 2</th>
+          <th scope="col">En Caso De Portabilidad</th>
+          <th scope="col">Tipo De Plan A Contratar</th>
+          <th scope="col">Valor Del Plan</th>
+          <th scope="col">Direccion Exacta</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Canton</th>
+          <th scope="col">Distrito</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">idVendedor</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach((ventas) => {%>
+          <tr>
+            <td><%= ventas.idVenta %></td>
+            <td><%= ventas.NombreDelCliente %></td>
+            <td><%= ventas.SegundoNombreDelCliente %></td>
+            <td><%=ventas.PrimerApellidoDelCliente %></td>
+            <td><%=ventas.SegundoApellidoDelCliente %></td>
+            <td><%=ventas.TipoDeDocumentoDeIdentidad %></td>
+            <td><%=ventas.NumeroDeDocumento %></td>
+            <td><%=ventas.Nacionalidad %></td>
+            <td><%=ventas.NumeroCelularDeTramite %></td>
+            <td><%=ventas.TipoDeTramite %></td>
+            <td><%=ventas.NumeroDeContacto1 %></td>
+            <td><%=ventas.NumeroDeContacto2 %></td>
+            <td><%=ventas.EnCasoDePortabilidad %></td>
+            <td><%=ventas.TipoDePlanAContratar %></td>
+            <td><%=ventas.ValorDelPlan %></td>
+            <td><%=ventas.DireccionExacta %></td>
+            <td><%=ventas.Provincia %></td>
+            <td><%=ventas.Canton %></td>
+            <td><%=ventas.Distrito %></td>
+            <td><%=ventas.Fecha %></td>
+            <td><%=ventas.idVendedor %></td>
+            <td>
+              <a href="/editarUser/<%= ventas.idVenta %>" class="btn btn-outline-warning">Editar</a>
+              <!-- <a href="/borrarUser/<%= ventas.id %>" class="btn btn-outline-info">Borrar</a> -->
+              <a onclick="confirmar(<%= ventas.idVenta%>)" class="btn btn-outline-danger">Borrar</a>
+              
+            </td>
+          </tr>
+          <% });%> 
+        
+      </tbody>
+      
+    </table>
+  
+  </div>
+  
+  <br>
+  <a href="register" class="btn btn-outline-success">Registrar</a>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+  
+  <script>
+    
+    $(document).ready(function () {
+      $('#ventas').DataTable();
+  });
+  
+    function confirmar(id){
+      Swal.fire({
+    title: 'Seguro que quiere borrar este usuario '+id+'?',
+    text: "No se podra recuperar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Borrado!',
+        'El usuario fue borrado correctamente',
+        'success'
+      )
+      window.location = '/borrarUser/'+id;
+    }
+  })
+    }
+  </script>
