@@ -1,4 +1,6 @@
 const express = require('express');
+const {google} = require("googleapis");
+const {promisify} = require('util');
 ///const {vistaPrincipal, vistaHome, vistaRegister} = require('../controllers/PageControllers')
 const router = express.Router()
 
@@ -44,9 +46,62 @@ router.get('/ventas', (req, res)=>{
         }
     })
 })
-router.get('/registrarVenta', (req, res)=>{
+
+router.get('/listarVentasGoogle', authController.isAuthenticated, async (req, res)=>{
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+    });
+
+/// client instance for auth
+    const client = await auth.getClient();
+
+    /// Instance of google sheets api 
+    const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
+    // Get DATA 
+
+
+
+    const metaData = await googleSheets.spreadsheets.get({
+        auth,
+        spreadsheetId
+    });
+
+    /// rows from spreadsheet
+
+   
+
+    const ventas = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Respuestas_Formulario!A2:U",
+    })
+
+    var user = req.user;
+    const rows = ventas.data.values;
+
+
+    res.render('listarVentasGoogle', {rows, user:user});
+    
+})
+
+router.get('/registrarVenta1', (req, res)=>{
     res.render('registrarVenta')
 })
+
+router.get('/registrarVenta', authController.isAuthenticated,(req, res)=>{
+    conexion.query('SELECT * FROM users', (error, results)=>{
+        if(error){
+            throw error
+        }else{
+            res.render('registrarVenta', {results:results, user:req.user})
+        }
+    })
+})
+
 
 /*Editar Usuarios */
 router.get('/editarUser/:id', (req, res)=>{
@@ -79,6 +134,8 @@ router.get('/logout', authController.logout)
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
 router.post('/registrarVenta', VentasController.registrarVenta)
+
+router.post('/pruebagoogle', VentasController.registrarVentaGoogle)
 
 
 module.exports = router

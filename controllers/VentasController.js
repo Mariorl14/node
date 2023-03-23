@@ -1,9 +1,10 @@
 const conexion = require('../database/db');
+const {google} = require("googleapis");
 const {promisify} = require('util');
 
 exports.registrarVenta = async (req, res)=>{
     try {
-        var date = new Date();
+       // var date = new Date();
     const NombreDelCliente = req.body.nombreDelCliente;
     const SegundoNombreDelCliente = req.body.segundoNombreDelCliente;
     const PrimerApellidoDelCliente = req.body.primerApellidoDelCliente;
@@ -67,4 +68,130 @@ exports.registrarVenta = async (req, res)=>{
     } catch (error) {
         console.log(error)
     }
+}
+
+exports.registrarVentaGoogle = async (req, res) => {
+
+    const {nombreDelCliente, 
+        segundoNombreDelCliente,
+        primerApellidoDelCliente,
+        segundoApellidoDelCliente, 
+        tipoDeDocumentoDeIdentidad, 
+        numeroDeDocumento, 
+        nacionalidad, 
+        numeroCelularDeTramite, 
+        tipoDeTramite,
+        numeroDeContacto1, 
+        numeroDeContacto2, 
+        enCasoDePortabilidad, 
+        tipoDePlanAContratar, 
+        ValorDelPlan, 
+        direccionExacta, 
+        provincia, 
+        canton, 
+        distritp,
+        nombreVendedor, 
+        fecha = new Date()} = req.body;
+
+        var date = new Date();
+        //const {fecha} = req.date;
+
+       /// const {idVendedor} = req.idVendedor;
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+    });
+
+/// client instance for auth
+    const client = await auth.getClient();
+
+    /// Instance of google sheets api 
+    const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
+    // Get DATA 
+
+
+
+    const metaData = await googleSheets.spreadsheets.get({
+        auth,
+        spreadsheetId
+    });
+
+    /// rows from spreadsheet
+
+    const getRows = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Respuestas_Formulario",
+    })
+
+    /// Write rows 
+    await googleSheets.spreadsheets.values.append({
+        auth,
+        spreadsheetId,
+        range: "Respuestas_Formulario",
+        valueInputOption: "USER_ENTERED",
+        resource: {
+         values: [[nombreDelCliente, 
+            segundoNombreDelCliente,
+            primerApellidoDelCliente,
+            segundoApellidoDelCliente, 
+            tipoDeDocumentoDeIdentidad, 
+            numeroDeDocumento, 
+            nacionalidad, 
+            numeroCelularDeTramite, 
+            tipoDeTramite,
+            numeroDeContacto1, 
+            numeroDeContacto2, 
+            enCasoDePortabilidad, 
+            tipoDePlanAContratar, 
+            ValorDelPlan, 
+            direccionExacta, 
+            provincia, 
+            canton, 
+            distritp,
+            nombreVendedor,
+              fecha]]
+        }, 
+    })
+
+    res.redirect("listarVentasGoogle");
+}
+
+exports.listarVentaGoogle = async (req, res) => {
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+    });
+
+/// client instance for auth
+    const client = await auth.getClient();
+
+    /// Instance of google sheets api 
+    const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
+    // Get DATA 
+
+
+
+    const metaData = await googleSheets.spreadsheets.get({
+        auth,
+        spreadsheetId
+    });
+
+    /// rows from spreadsheet
+
+    const ventas = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Respuestas_Formulario",
+    })
+
+    res.render('listarVentasGoogle', {ventas});
+
 }

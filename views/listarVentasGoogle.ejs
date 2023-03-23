@@ -1,0 +1,118 @@
+<h2>Vendedor: 
+    <% if(user) {%>
+        <span class="badge bg-success"> <%= user.nombre %></span>
+        <%}%>
+  </h2>
+
+<h2>Registro de Ventas</h2>
+  <div  class="table-responsive">
+    
+    <table id="ventas" class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Nombre Del Cliente</th>
+          <th scope="col">Segundo Nombre Del Cliente</th>
+          <th scope="col">Primer Apellido Del Cliente</th>
+          <th scope="col">Segundo Apellido Del Cliente</th>
+          <th scope="col">Tipo De Documento De Identidad</th>
+          <th scope="col">Numero De Documento</th>
+          <th scope="col">Nacionalidad</th>
+          <th scope="col">Numero Celular De Tramite</th>
+          <th scope="col">Tipo De Tramite</th>
+          <th scope="col">Numero De Contacto1</th>
+          <th scope="col">Numero De Contacto 2</th>
+          <th scope="col">En Caso De Portabilidad</th>
+          <th scope="col">Tipo De Plan A Contratar</th>
+          <th scope="col">Valor Del Plan</th>
+          <th scope="col">Direccion Exacta</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Canton</th>
+          <th scope="col">Distrito</th>
+          <th scope="col">Nombre del Vendedor</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">estado</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rows.forEach((row) => {%>
+          <tr>
+            <td><%= row[0] %></td>
+            <td><%= row[1] %></td>
+            <td><%=row[2] %></td>
+            <td><%=row[3] %></td>
+            <td><%=row[4] %></td>
+            <td><%=row[5] %></td>
+            <td><%=row[6] %></td>
+            <td><%=row[7] %></td>
+            <td><%=row[8] %></td>
+            <td><%=row[9] %></td>
+            <td><%=row[10] %></td>
+            <td><%=row[11] %></td>
+            <td><%=row[12] %></td>
+            <td><%=row[13] %></td>
+            <td><%=row[14] %></td>
+            <td><%=row[15] %></td>
+            <td><%=row[16] %></td>
+            <td><%=row[17] %></td>
+            <td><%=row[18] %></td>
+            <td><%=row[19] %></td>
+            <td><%=row[20] %></td>
+            <td>
+              <a href="/editarUser/<%= row.idVenta %>" class="btn btn-outline-warning">Editar</a>
+              <!-- <a href="/borrarUser/<%= row.id %>" class="btn btn-outline-info">Borrar</a> -->
+              <a onclick="confirmar(<%= row[0]%>)" class="btn btn-outline-danger">Borrar</a>
+              
+            </td>
+          </tr>
+          <% });%> 
+        
+      </tbody>
+      
+      
+    </table>
+  
+  </div>
+  
+  <br>
+  <a href="register" class="btn btn-outline-success">Registrar</a>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+  
+  <script>
+    $(document).ready(function () {
+        var table = $('#ventas').DataTable({
+            order: [[19, 'asc']],
+        });
+       
+         // Encuentra el índice de la columna "Nombre Vendedor"
+  var columnaNombreVendedor = table.column(18).index();
+
+// Filtra la tabla por el valor de user.name en la columna "Nombre Vendedor"
+table.column(columnaNombreVendedor).search("<%= user.nombre %>").draw();
+     
+  });
+
+    function confirmar(id){
+      Swal.fire({
+    title: 'Seguro que quiere borrar este usuario '+id+'?',
+    text: "No se podra recuperar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Borrado!',
+        'El usuario fue borrado correctamente',
+        'success'
+      )
+      window.location = '/borrarUser/'+id;
+    }
+  })
+    }
+  </script>

@@ -1,17 +1,10 @@
-
-<h2>Vendedor: 
-    <% if(user) {%>
-        <span class="badge bg-success"> <%= user.nombre %></span>
-        <%}%>
-  </h2>
-
 <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-12 col-lg-9 col-xl-12">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form action="/pruebagoogle" method="POST">
+            <form action="/registrarVenta" method="POST">
   
               <div class="row">
                 <div class="col-md-4 mb-4">
@@ -215,15 +208,6 @@
                   </div>
   
                 </div>
-
-                <div class="col-md-4 mb-4">
-  
-                    <div class="form-outline">
-                      <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
-                      <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
-                    </div>
-    
-                  </div>
   
   
               </div>
@@ -239,5 +223,4 @@
         </div>
       </div>
     </div>
-  </div> 
-  
+  </div>
