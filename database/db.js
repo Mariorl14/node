@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     database : 'favtel'
     */
 
-    
+   
     host     : '34.30.89.2',
     user     : 'root',
     password : 'Ganador02',
@@ -19,7 +19,7 @@ const connection = mysql.createConnection({
     user     : 'root',
     password : '',
     database : 'login_node'
-    */
+   */
 
 });
 

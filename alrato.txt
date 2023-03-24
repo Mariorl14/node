@@ -1,0 +1,25 @@
+const chartData = <%= JSON.stringify(chartData) %>;
+    const chartLabels = chartData.map(d => d.label);
+    const chartValues = chartData.map(d => d.value);
+    const chartColors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue'];
+
+
+
+{ label: 'Activas', value: rows[2] },
+        { label: 'Pendientes', value: rows[4] },
+        { label: 'No Entregadas', value: rows[3] },
+        { label: 'Rechazadas', value: rows[5] },
+
+rows[2], rows[4],rows[3], rows[5]]
+
+
+chat tengo una pregunta, tengo informacion desde una hoja de google sheets que la llamo de la siguiente manera en mi aplicacion de node js =                                                                               
+        const ventas = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Gerencial!A:L",
+    })
+
+    const rows = ventas.data.values;   Lo que necesito es pasar esa informacion a una vista que tengo que se llama chartJS.ejs y crear un pie chart de Charts JS, podrias ayudarme?
+
+puedes mostrarme un ejemplo de omo usar ventas.data.values en vez de los valores estativos?
