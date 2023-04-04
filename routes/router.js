@@ -21,18 +21,62 @@ const VentasController = require('../controllers/VentasController')
 router.get('/', (req, res)=>{
     res.render('login', {alert:false, layout: 'login' } )
 })
-router.get('/home', authController.isAuthenticated, (req, res)=>{
+
+router.get('/listarUsuarios', authController.isAuthenticated,authController.authRol,  (req, res)=>{
     
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
             throw error
         }else{
-            res.render('home', {results:results, user:req.user})
+            res.render('listarUsuarios', {results:results, user:req.user})
         }
     })
 
 })
-router.get('/register', (req, res)=>{
+
+
+router.get('/home', authController.isAuthenticated,authController.authRol,  async (req, res)=>{
+    
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+    });
+
+/// client instance for auth
+    const client = await auth.getClient();
+
+    /// Instance of google sheets api 
+    const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
+    // Get DATA 
+
+
+
+    const metaData = await googleSheets.spreadsheets.get({
+        auth,
+        spreadsheetId
+    });
+
+    /// rows from spreadsheet
+
+   
+
+    const ventas = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Respuestas_Formulario!A2:U",
+    })
+
+    var user = req.user;
+    const rows = ventas.data.values;
+
+
+    res.render('home', {rows, user:user});
+
+})
+router.get('/register', authController.isAuthenticated, authController.authRol, (req, res)=>{
     res.render('register')
 })
 router.get('/layout', (req, res)=>{

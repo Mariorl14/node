@@ -1,0 +1,80 @@
+<h2>Bienvenido de vuelta: 
+  <% if(user) {%>
+    <span class="badge bg-success"> <%= user.nombre %></span>
+    <%}%>
+</h2>
+<h2>Su Rol es: 
+  <% if(user) {%>
+    <span class="badge bg-success"> <%= user.rol %></span>
+    <%}%>
+</h2>
+<div  class="table-responsive">
+  
+  <table id="users" class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Contraseña</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% results.forEach((user) => {%>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.user %></td>
+          <td><%= user.nombre %></td>
+          <td><%=user.rol %></td>
+          <td><%=user.pass %></td>
+          <td>
+            <a href="/editarUser/<%= user.id %>" class="btn btn-outline-warning">Editar</a>
+            <!-- <a href="/borrarUser/<%= user.id %>" class="btn btn-outline-info">Borrar</a> -->
+            <a onclick="confirmar(<%= user.id%>)" class="btn btn-outline-danger">Borrar</a>
+            
+          </td>
+        </tr>
+        <% });%> 
+      
+    </tbody>
+    
+  </table>
+
+</div>
+
+<br>
+<a href="register" class="btn btn-outline-success">Registrar</a>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+  
+  $(document).ready(function () {
+    $('#users').DataTable();
+});
+
+  function confirmar(id){
+    Swal.fire({
+  title: 'Seguro que quiere borrar este usuario '+id+'?',
+  text: "No se podra recuperar",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Confirmar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Borrado!',
+      'El usuario fue borrado correctamente',
+      'success'
+    )
+    window.location = '/borrarUser/'+id;
+  }
+})
+  }
+</script>

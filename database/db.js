@@ -7,19 +7,18 @@ const connection = mysql.createConnection({
     database : 'favtel'
     */
 
-   
+   /*
     host     : '34.30.89.2',
     user     : 'root',
     password : 'Ganador02',
     database : 'favtel'
+    */
     
 
-    /*
     host     : 'localhost',
     user     : 'root',
     password : '',
     database : 'login_node'
-   */
 
 });
 

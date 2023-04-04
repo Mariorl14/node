@@ -120,8 +120,24 @@ try {
     return next()
 }
 }else{
-    res.redirect('/')
+    res.redirect('/home')
 }
+}
+
+exports.authRol = async (req, res, next)=>{
+
+    if(req.user.rol !== 'admin'){
+        try {
+            res.status(401)
+            return res.redirect('/listarVentasGoogle')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
 }
 
 exports.logout = async (req, res)=>{

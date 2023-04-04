@@ -1,44 +1,75 @@
-<h2>Bienvenido de vuelta: 
+<link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+<h2>Vendedor: 
   <% if(user) {%>
-    <span class="badge bg-success"> <%= user.nombre %></span>
-    <%}%>
+      <span class="badge bg-success"> <%= user.nombre %></span>
+      <%}%>
 </h2>
-<h2>Su Rol es: 
-  <% if(user) {%>
-    <span class="badge bg-success"> <%= user.rol %></span>
-    <%}%>
-</h2>
+
+<h2>Registro de Ventas</h2>
 <div  class="table-responsive">
   
-  <table id="users" class="table table-bordered">
+  <table id="ventas" class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Correo</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Rol</th>
-        <th scope="col">Contraseña</th>
+        <th scope="col">Nombre Del Cliente</th>
+        <th scope="col">Segundo Nombre Del Cliente</th>
+        <th scope="col">Primer Apellido Del Cliente</th>
+        <th scope="col">Segundo Apellido Del Cliente</th>
+        <th scope="col">Tipo De Documento De Identidad</th>
+        <th scope="col">Numero De Documento</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col">Numero Celular De Tramite</th>
+        <th scope="col">Tipo De Tramite</th>
+        <th scope="col">Numero De Contacto1</th>
+        <th scope="col">Numero De Contacto 2</th>
+        <th scope="col">En Caso De Portabilidad</th>
+        <th scope="col">Tipo De Plan A Contratar</th>
+        <th scope="col">Valor Del Plan</th>
+        <th scope="col">Direccion Exacta</th>
+        <th scope="col">Provincia</th>
+        <th scope="col">Canton</th>
+        <th scope="col">Distrito</th>
+        <th scope="col">Nombre del Vendedor</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">estado</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <% results.forEach((user) => {%>
+      <% rows.forEach((row) => {%>
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.user %></td>
-          <td><%= user.nombre %></td>
-          <td><%=user.rol %></td>
-          <td><%=user.pass %></td>
+          <td><%= row[0] %></td>
+          <td><%= row[1] %></td>
+          <td><%=row[2] %></td>
+          <td><%=row[3] %></td>
+          <td><%=row[4] %></td>
+          <td><%=row[5] %></td>
+          <td><%=row[6] %></td>
+          <td><%=row[7] %></td>
+          <td><%=row[8] %></td>
+          <td><%=row[9] %></td>
+          <td><%=row[10] %></td>
+          <td><%=row[11] %></td>
+          <td><%=row[12] %></td>
+          <td><%=row[13] %></td>
+          <td><%=row[14] %></td>
+          <td><%=row[15] %></td>
+          <td><%=row[16] %></td>
+          <td><%=row[17] %></td>
+          <td><%=row[18] %></td>
+          <td><%=row[19] %></td>
+          <td><%=row[20] %></td>
           <td>
-            <a href="/editarUser/<%= user.id %>" class="btn btn-outline-warning">Editar</a>
-            <!-- <a href="/borrarUser/<%= user.id %>" class="btn btn-outline-info">Borrar</a> -->
-            <a onclick="confirmar(<%= user.id%>)" class="btn btn-outline-danger">Borrar</a>
+            <a href="/editarUser/<%= row.idVenta %>" class="btn btn-outline-warning">Editar</a>
+            <!-- <a href="/borrarUser/<%= row.id %>" class="btn btn-outline-info">Borrar</a> -->
+            <a onclick="confirmar(<%= row[0]%>)" class="btn btn-outline-danger">Borrar</a>
             
           </td>
         </tr>
         <% });%> 
       
     </tbody>
+    
     
   </table>
 
@@ -50,11 +81,32 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
       <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+      <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
+      
 
 <script>
-  
   $(document).ready(function () {
-    $('#users').DataTable();
+      var table = $('#ventas').DataTable({
+          order: [[19, 'asc']],
+          fixedHeader: true 
+      });
+     
+      $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
+
+        $('#ventas thead tr:eq(1) th').each( function (i) {
+         var title = $(this).text(); //es el nombre de la columna
+          $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+
+          $( 'input', this ).on( 'keyup change', function () {
+             if ( table.column(i).search() !== this.value ) {
+                  table
+                     .column(i)
+                     .search( this.value )
+                     .draw();
+        }
+    } );
+} );
+   
 });
 
   function confirmar(id){
