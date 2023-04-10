@@ -107,6 +107,7 @@ exports.login = async (req, res)=>{
 }
 
 exports.isAuthenticated = async (req, res, next)=>{
+    
 if(req.cookies.jwt){
 try {
     const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
@@ -120,8 +121,29 @@ try {
     return next()
 }
 }else{
-    res.redirect('/home')
+    res.redirect('/')
 }
+
+
+/*
+const token = req.cookies.jwt;
+
+if(token){
+    
+    jwt.verify(token, process.env.JWT_SECRETO, (err, decodedToken) => {
+        if(err){
+            console.log(err.message);
+            res.redirect('/');
+        }else{
+            console.log(decodedToken);
+            next();
+        }
+    })
+}else{
+    res.redirect('/');
+}
+*/
+
 }
 
 exports.authRol = async (req, res, next)=>{
@@ -141,6 +163,9 @@ exports.authRol = async (req, res, next)=>{
 }
 
 exports.logout = async (req, res)=>{
-    res.clearCookie('jwt')
+    res.clearCookie('jwt');
+    /*
     return res.redirect('/')
+    */
+   res.redirect('/');
 }

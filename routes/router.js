@@ -15,14 +15,15 @@ router.get('/register', vistaRegister)
 
 const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
-const VentasController = require('../controllers/VentasController')
+const VentasController = require('../controllers/VentasController');
+const NoCache = require('../controllers/noCache');
 
 /*ROUTER PARA VISTAS */
 router.get('/', (req, res)=>{
     res.render('login', {alert:false, layout: 'login' } )
 })
 
-router.get('/listarUsuarios', authController.isAuthenticated,authController.authRol,  (req, res)=>{
+router.get('/listarUsuarios', authController.isAuthenticated,authController.authRol, NoCache.nocache, (req, res)=>{
     
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
@@ -35,7 +36,7 @@ router.get('/listarUsuarios', authController.isAuthenticated,authController.auth
 })
 
 
-router.get('/home', authController.isAuthenticated,authController.authRol,  async (req, res)=>{
+router.get('/home', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
@@ -76,7 +77,7 @@ router.get('/home', authController.isAuthenticated,authController.authRol,  asyn
     res.render('home', {rows, user:user});
 
 })
-router.get('/register', authController.isAuthenticated, authController.authRol, (req, res)=>{
+router.get('/register', authController.isAuthenticated, authController.authRol, NoCache.nocache,(req, res)=>{
     res.render('register')
 })
 router.get('/layout', (req, res)=>{
@@ -92,7 +93,7 @@ router.get('/ventas', (req, res)=>{
     })
 })
 
-router.get('/listarVentasGoogle', authController.isAuthenticated, async (req, res)=>{
+router.get('/listarVentasGoogle', authController.isAuthenticated, NoCache.nocache,async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -133,7 +134,7 @@ router.get('/listarVentasGoogle', authController.isAuthenticated, async (req, re
     
 })
 
-router.get('/misEstadisticas', authController.isAuthenticated, async (req, res)=>{
+router.get('/misEstadisticas', authController.isAuthenticated, NoCache.nocache,async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -179,7 +180,7 @@ router.get('/registrarVenta1', (req, res)=>{
     res.render('registrarVenta')
 })
 
-router.get('/registrarVenta', authController.isAuthenticated,(req, res)=>{
+router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(req, res)=>{
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
             throw error

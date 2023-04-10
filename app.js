@@ -37,13 +37,33 @@ app.use(cookieParser());
 app.use('/', require('./routes/router')); 
 
 /* PARA ELIMINAR CACHE Y NO HACER BACK DESPUES DE LOGOUT  */
+
 /*
 app.use(function(req, res, next) {
     if(!req.user)
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    /*
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Vary', 'Cookie');
+    res.setHeader('Surrogate-Control', 'no-store');
+    
     next();
 });
 */
+
+
+/*
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Vary', 'Cookie');
+    res.setHeader('Surrogate-Control', 'no-store');
+    next();
+  });
+ */
+
 const port = process.env.port || 3000; 
 app.listen(port, (req, res)=>{
     console.log('Running in http://localhost:3000');
