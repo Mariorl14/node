@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'login_node'
+    database : 'ogin_node'
     */
 
 });
