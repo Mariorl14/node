@@ -17,6 +17,7 @@ const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
+const pdfMaker = require('../controllers/pdfMaker');
 
 /*ROUTER PARA VISTAS */
 router.get('/', (req, res)=>{
@@ -233,6 +234,9 @@ router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(re
         }
     })
 })
+router.get('/generatePayslip', (req, res)=>{
+    res.render('generatePayslip', {user:req.user})
+})
 
 
 /*Editar Usuarios */
@@ -258,10 +262,13 @@ router.get('/borrarUser/:id', (req, res)=>{
 });
 
 
+
+
 /*ROUTER PARA METODOS DEL CONTROLLER*/ 
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
+router.post('/generatePayslip', pdfMaker.generatePayslip );
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
