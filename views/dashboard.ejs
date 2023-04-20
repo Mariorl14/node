@@ -1,0 +1,124 @@
+
+<style>
+.chart-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.chart-container .chart {
+  width: calc(50% - 10px);
+  height: 400px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 768px) {
+  .chart-container .chart {
+    width: 100%;
+  }
+}
+
+
+</style>
+
+<h2>Usuario: 
+  <% if(user) {%>
+      <span class="badge bg-success"> <%= user.nombre %></span>
+      <%}%>
+</h2>
+
+<h2>Rol: 
+  <% if(user) {%>
+      <span class="badge bg-success"> <%= user.rol %></span>
+      <%}%>
+</h2>
+
+<br><br><br>
+
+<div class="chart-container">
+  <div id="chart_div" class="chart"></div>
+  <div id="chart_div1" class="chart"></div>
+  <div id="chart_div2" class="chart"></div>
+</div>
+
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Value'],
+      <% for(var i=0; i<rows.length; i++) { %>
+        ['<%= rows[i][0] %>', <%= rows[i][1] %>],
+      <% } %>
+    ]);
+
+    var options = {
+      title: 'Total de Ventas',
+      colors: ['#fcba03', '#9403fc', '#FF9900', '#109618', '#990099', '#3B3EAC']
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Value'],
+      <% for(var i=0; i<rows.length; i++) { %>
+        ['<%= rows[i][0] %>', <%= rows[i][2] %>],
+      <% } %>
+    ]);
+
+    var options = {
+      title: 'Total de activadas',
+      colors: ['#FF9900', '#990099', '#FF9900', '#19403fc', '#990099', '#3B3EAC']
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+    chart.draw(data, options);
+  }
+</script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Value'],
+      <% for(var i=0; i<rows.length; i++) { %>
+        ['<%= rows[i][0] %>', <%= rows[i][1] %>],
+      <% } %>
+    ]);
+
+    var options = {
+      title: 'My Chart',
+      legend: { position: 'none' },
+      chartArea: { width: '80%', height: '80%' },
+      colors: ['fcba03'],
+      hAxis: {
+        title: 'Category'
+      },
+      vAxis: {
+        title: 'Value'
+      }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+    chart.draw(data, options);
+  }
+</script>
+
+

@@ -113,24 +113,4 @@
    
 });
 
-  function confirmar(id){
-    Swal.fire({
-  title: 'Seguro que quiere borrar este usuario '+id+'?',
-  text: "No se podra recuperar",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Confirmar'
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Borrado!',
-      'El usuario fue borrado correctamente',
-      'success'
-    )
-    window.location = '/borrarUser/'+id;
-  }
-})
-  }
 </script>
