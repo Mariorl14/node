@@ -178,7 +178,7 @@ router.get('/misEstadisticas', authController.isAuthenticated, NoCache.nocache,a
     
 })
 
-router.get('/dashboard', authController.isAuthenticated, NoCache.nocache,async (req, res)=>{
+router.get('/dashboard', authController.isAuthenticated,authController.authRol, NoCache.nocache,async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",

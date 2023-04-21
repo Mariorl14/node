@@ -1,15 +1,61 @@
-<form method="POST" action="/generatePayslip">
-  <label for="employeeName">Employee Name:</label>
-  <input type="text" name="employeeName" id="employeeName"><br>
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-7">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+          <form action="/generatePayslip" method="POST">
 
-  <label for="salary">Salary:</label>
-  <input type="text" name="salary" id="salary"><br>
+            <div class="row">
+              <div class="col-md-6 mb-4">
 
-  <label for="tax">Tax:</label>
-  <input type="text" name="tax" id="tax"><br>
+                <div class="form-outline">
+                  <input type="text" id="netSalary" name="netSalary" class="form-control form-control-lg" required/>
+                  <label class="form-user" for="netSalary">netSalary</label>
+                </div>
 
-  <label for="netSalary">Net Salary:</label>
-  <input type="text" name="netSalary" id="netSalary"><br>
+              </div>
+              <div class="col-md-6 mb-4">
 
-  <input type="submit" value="Generate Payslip">
-</form>
+                <div class="form-outline">
+                  <input type="text" id="salary" name="salary" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="salary">salary</label>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                <div class="form-outline datepicker w-100">
+                  <input type="text" class="form-control form-control-lg" id="tax" name="tax" required/>
+                  <label for="tax" class="form-label">tax</label>
+                </div>
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                <select class="select form-control-lg" id="employeeName" name="employeeName" required>
+                    <option value="1" disabled>Rol</option>
+                    <option value="admin">Administrador</option>
+                    <option value="vendedor">Vendedor</option>
+                    <option value="backoffice">backOfiice</option>
+                  </select>
+                  
+              </div>
+              
+            </div>
+
+           
+
+            <div class="mt-4 pt-2">
+              <input class="btn btn-primary btn-lg" type="submit" value="Generar" />
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
