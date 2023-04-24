@@ -3,23 +3,30 @@
     <div class="col-12 col-lg-9 col-xl-7">
       <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
         <div class="card-body p-4 p-md-5">
-          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Generar Reporte de Pago</h3>
           <form action="/generatePayslip" method="POST">
 
             <div class="row">
               <div class="col-md-6 mb-4">
 
-                <div class="form-outline">
-                  <input type="text" id="netSalary" name="netSalary" class="form-control form-control-lg" required/>
-                  <label class="form-user" for="netSalary">netSalary</label>
+                <div class="col-md-6 mb-4">
+
+                  <select class="select form-control-lg" id="employeeName" name="employeeName" required>
+                      <option value="1" disabled>Vendedor</option>
+                      <option value="JeanPierre">JeanPierre</option>
+                      <option value="Brittanny">Brittanny</option>
+                      <option value="Oscar">Oscar</option>
+                    </select>
+                    
                 </div>
 
               </div>
               <div class="col-md-6 mb-4">
 
+                
                 <div class="form-outline">
-                  <input type="text" id="salary" name="salary" class="form-control form-control-lg" required/>
-                  <label class="form-label" for="salary">salary</label>
+                  <input type="text" id="horas" name="horas" class="form-control form-control-lg" required/>
+                  <label class="form-user" for="horas">Horas Trabajadas</label>
                 </div>
 
               </div>
@@ -29,20 +36,10 @@
               <div class="col-md-6 mb-4 d-flex align-items-center">
 
                 <div class="form-outline datepicker w-100">
-                  <input type="text" class="form-control form-control-lg" id="tax" name="tax" required/>
-                  <label for="tax" class="form-label">tax</label>
+                  <input type="text" class="form-control form-control-lg" id="totalVentas" name="totalVentas" required/>
+                  <label for="totalVentas" class="form-label">Total Ventas</label>
                 </div>
 
-              </div>
-              <div class="col-md-6 mb-4">
-
-                <select class="select form-control-lg" id="employeeName" name="employeeName" required>
-                    <option value="1" disabled>Rol</option>
-                    <option value="admin">Administrador</option>
-                    <option value="vendedor">Vendedor</option>
-                    <option value="backoffice">backOfiice</option>
-                  </select>
-                  
               </div>
               
             </div>
