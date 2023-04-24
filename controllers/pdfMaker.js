@@ -23,8 +23,7 @@ function generatePayslip(req, res) {
 
   // Add logo image to the header
   doc.setDocumentHeader({
-    height: '26',
-    margins: {top: 5, left: -10, right: 10, bottom: 30},
+    height: '16'
   }, () => {
     const imageBuffer = fs.readFileSync('public/img/Favtel_isotipo.png');
     const logoWidth = 90;
@@ -33,27 +32,6 @@ function generatePayslip(req, res) {
     const logoY = doc.header.y + 10;
     doc.image(imageBuffer, logoX, logoY, {width: logoWidth, height: logoHeight});  
 
-    doc.fontSize(13);
-
-    doc.text('Cedula: 118050243', {
-      width: 420,
-      align: 'left'
-    });
-    
-    doc.text('Nombre: Mario Rodriguez', {
-      width: 420,
-      align: 'left'
-    });
-    
-    doc.text('Fecha de Ingreso: 04/04/2023', {
-      width: 420,
-      align: 'left'
-    });
-    
-    doc.text('Fecha de Pago: 23/04/2023', {
-      width: 420,
-      align: 'left'
-    });
   });
   
   // Move down after the header image
@@ -67,10 +45,9 @@ function generatePayslip(req, res) {
     }
   ];
 
-
-  /*
+  doc.moveDown(20);
   doc.text("Sales Report", { align: "center", fontSize: 16, bold: true });
-  */
+  doc.moveDown(10);
   doc.addTable(
     [
       {key: 'name', label: 'Vendedor', align: 'center'},
@@ -88,12 +65,6 @@ function generatePayslip(req, res) {
       marginRight: 45,
       headAlign: 'center'
     });
-    doc.text("Table Title", {
-      align: "center",
-      fontSize: 14,
-      bold: true,
-      margin: [0, 10]
-   });
 
 
     
