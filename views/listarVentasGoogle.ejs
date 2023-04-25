@@ -1,3 +1,5 @@
+<link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+<link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
 <h2>Vendedor: 
     <% if(user) {%>
         <span class="badge bg-success"> <%= user.nombre %></span>
@@ -30,8 +32,10 @@
           <th scope="col">Distrito</th>
           <th scope="col">Nombre del Vendedor</th>
           <th scope="col">Fecha</th>
-          <th scope="col">estado</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Activada / No Activada</th>
+        <th scope="col">Entregada / No Entregada</th>
+        <th scope="col">Rechazada / Cliente no Contesta</th>
+        <th scope="col">Detalle</th>
         </tr>
       </thead>
       <tbody>
@@ -58,12 +62,9 @@
             <td><%=row[18] %></td>
             <td><%=row[19] %></td>
             <td><%=row[20] %></td>
-            <td>
-              <a href="/editarUser/<%= row.idVenta %>" class="btn btn-outline-warning">Editar</a>
-              <!-- <a href="/borrarUser/<%= row.id %>" class="btn btn-outline-info">Borrar</a> -->
-              <a onclick="confirmar(<%= row[0]%>)" class="btn btn-outline-danger">Borrar</a>
-              
-            </td>
+            <td><%=row[21] %></td>
+          <td><%=row[22] %></td>
+          <td><%=row[23] %></td>
           </tr>
           <% });%> 
         
@@ -88,6 +89,22 @@
             order: [[19, 'asc']],
             //fixedHeader: true 
         });
+
+        $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
+
+        $('#ventas thead tr:eq(1) th').each( function (i) {
+         var title = $(this).text(); //es el nombre de la columna
+          $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+
+          $( 'input', this ).on( 'keyup change', function () {
+             if ( table.column(i).search() !== this.value ) {
+                  table
+                     .column(i)
+                     .search( this.value )
+                     .draw();
+        }
+    } );
+} );
        
          // Encuentra el índice de la columna "Nombre Vendedor"
   var columnaNombreVendedor = table.column(18).index();

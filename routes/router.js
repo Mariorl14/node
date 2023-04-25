@@ -1,7 +1,6 @@
 const express = require('express');
 const {google} = require("googleapis");
 const {promisify} = require('util');
-const Chart = require('chartjs');
 ///const {vistaPrincipal, vistaHome, vistaRegister} = require('../controllers/PageControllers')
 const router = express.Router()
 
@@ -68,7 +67,7 @@ router.get('/home', authController.isAuthenticated,authController.authRol, NoCac
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Respuestas_Formulario!A2:U",
+        range: "Respuestas_Formulario!A2:X",
     })
 
     var user = req.user;
@@ -78,13 +77,13 @@ router.get('/home', authController.isAuthenticated,authController.authRol, NoCac
     res.render('home', {rows:rows,user:user});
 
 })
-router.get('/register', (req, res)=>{
+router.get('/register', authController.authRol, (req, res)=>{
     res.render('register', {user:req.user})
 })
 router.get('/layout',  (req, res)=>{
     res.render('layout', {user:req.user})
 })
-router.get('/ventas', (req, res)=>{
+router.get('/ventas',authController.isAuthenticated, (req, res)=>{
     conexion.query('SELECT * FROM Ventas', (error, results)=>{
         if(error){
             throw error
@@ -124,7 +123,7 @@ router.get('/listarVentasGoogle', authController.isAuthenticated, NoCache.nocach
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Respuestas_Formulario!A2:U",
+        range: "Respuestas_Formulario!A2:X",
     })
 
     var user = req.user;
@@ -268,7 +267,9 @@ router.get('/borrarUser/:id', (req, res)=>{
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
+/*
 router.post('/generatePayslip', pdfMaker.generatePayslip );
+*/
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */

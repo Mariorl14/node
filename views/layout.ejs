@@ -26,13 +26,11 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
       }
-
       .b-example-divider {
         height: 3rem;
         background-color: rgba(185, 57, 245, 0.1);
@@ -40,18 +38,15 @@
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(245, 69, 230, 0.1), inset 0 .125em .5em rgba(195, 30, 201, 0.15);
       }
-
       .b-example-vr {
         flex-shrink: 0;
         width: 1.5rem;
         height: 100vh;
       }
-
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
       }
-
       .nav-scroller {
         position: relative;
         z-index: 2;
@@ -102,6 +97,9 @@
             <a class="nav-link active" aria-current="page" href="/home">Total de Ventas</a>
           </li>
         </div>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Total de Ventas</a>
+        </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/registrarVenta">Registrar Venta</a>
           </li>
@@ -117,6 +115,9 @@
               <a class="nav-link active" aria-current="page" href="/register">Registrar usuarios</a>
             </li>
           </div>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/register">Registrar usuarios</a>
+          </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -153,8 +154,8 @@
 </html> 
 
 <script>
-
   if (user.rol=="admin"){
  $("div.admin").show();
 }
+console.log(user);
 </script>

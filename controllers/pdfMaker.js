@@ -1,3 +1,4 @@
+/*
 const PDFDocument = require('pdfkit');
 const PdfkitConstruct= require('pdfkit-construct');
 const path = require('path');
@@ -122,3 +123,4 @@ function generatePayslip(req, res) {
 }
 
 module.exports = { generatePayslip };
+*/
