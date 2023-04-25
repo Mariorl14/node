@@ -74,6 +74,9 @@
       .navbar{
         background-color: rgb(91, 104, 192);
       }
+      div.admin{
+        display: none;
+      }
     </style>
 
     
@@ -92,9 +95,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          
+          <div class="admin">
+           
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home">Total de Ventas</a>
           </li>
+        </div>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/registrarVenta">Registrar Venta</a>
           </li>
@@ -104,6 +111,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/misEstadisticas">Mis estadisticas</a>
           </li>
+          <div class="admin">
+           
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/register">Registrar usuarios</a>
+            </li>
+          </div>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -137,4 +150,11 @@
 
       
   </body>
-</html>
+</html> 
+
+<script>
+
+  if (user.rol=="admin"){
+ $("div.admin").show();
+}
+</script>

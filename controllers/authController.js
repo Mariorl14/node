@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const conexion = require('../database/db');
 const {promisify} = require('util');
+const { time } = require('console');
 
 
 exports.register = async (req, res)=>{
@@ -9,12 +10,16 @@ exports.register = async (req, res)=>{
     const user = req.body.user;
     const nombre = req.body.nombre;
     const rol = req.body.rol;
+    const cedula = req.body.cedula;
     const pass = req.body.pass;
+    var fecha_Ingreso = time();
     let passwordHaash = await bcryptjs.hash(pass, 8);
 
     conexion.query('INSERT INTO users SET ?', {user:user,
         nombre:nombre,
         rol:rol,
+        cedula:cedula,
+        fecha_Ingreso:fecha_Ingreso,
         pass:passwordHaash}, async(error, results)=>{
             if(error){
                 console.log(error);
