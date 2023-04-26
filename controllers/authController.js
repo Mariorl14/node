@@ -11,6 +11,7 @@ exports.register = async (req, res)=>{
     const nombre = req.body.nombre;
     const rol = req.body.rol;
     const cedula = req.body.cedula;
+    const telefono = req.body.telefono;
     const pass = req.body.pass;
     var fecha_Ingreso = time();
     let passwordHaash = await bcryptjs.hash(pass, 8);
@@ -19,6 +20,7 @@ exports.register = async (req, res)=>{
         nombre:nombre,
         rol:rol,
         cedula:cedula,
+        telefono:telefono,
         fecha_Ingreso:fecha_Ingreso,
         pass:passwordHaash}, async(error, results)=>{
             if(error){
