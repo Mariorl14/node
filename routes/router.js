@@ -83,6 +83,9 @@ router.get('/register', authController.authRol, (req, res)=>{
 router.get('/layout',  (req, res)=>{
     res.render('layout', {user:req.user})
 })
+router.get('/colilla',  (req, res)=>{
+    res.render('colilla', {user:req.user})
+})
 router.get('/ventas',authController.isAuthenticated, (req, res)=>{
     conexion.query('SELECT * FROM Ventas', (error, results)=>{
         if(error){
@@ -268,6 +271,8 @@ router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
 router.post('/generatePayslip', pdfMaker.generatePayslip );
+
+router.get('/descargarPDF', pdfMaker.descargarPDF );
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
