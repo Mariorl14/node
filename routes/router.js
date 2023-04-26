@@ -267,9 +267,7 @@ router.get('/borrarUser/:id', (req, res)=>{
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
-/*
 router.post('/generatePayslip', pdfMaker.generatePayslip );
-*/
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
