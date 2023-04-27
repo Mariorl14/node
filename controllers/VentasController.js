@@ -90,11 +90,16 @@ exports.registrarVentaGoogle = async (req, res) => {
         provincia, 
         canton, 
         distritp,
-        nombreVendedor, 
-        fecha = new Date()} = req.body;
+        nombreVendedor} = req.body;
 
         var date = new Date();
         //const {fecha} = req.date;
+
+        var today = new Date();
+        var year = today.getFullYear();
+        var mes = today.getMonth()+1;
+        var dia = today.getDate();
+        var fecha =dia+"-"+mes+"-"+year;
 
        /// const {idVendedor} = req.idVendedor;
        
@@ -190,7 +195,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             canton, 
             distritp,
             nombreVendedor,
-              fecha]]
+            fecha]]
         }, 
     })
 

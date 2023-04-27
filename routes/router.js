@@ -130,7 +130,7 @@ router.get('/listarVentasGoogle', authController.isAuthenticated, NoCache.nocach
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Respuestas_Formulario!A2:X",
+        range: "Respuestas_Formulario!A2:Z",
     })
 
     var user = req.user;
@@ -240,7 +240,7 @@ router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(re
         }
     })
 })
-router.get('/generatePayslip', function(req, res, next){
+router.get('/generatePayslip',authController.isAuthenticated, NoCache.nocache, authController.authColillas, function(req, res, next){
 
     conexion.query('SELECT * FROM users', function (error, data) {
         res.render('generatePayslip', {user:req.user, data:data} );

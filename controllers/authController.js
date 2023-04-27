@@ -176,3 +176,20 @@ exports.logout = async (req, res)=>{
     */
    res.redirect('/');
 }
+exports.authColillas = async (req, res, next)=>{
+
+    if(req.user.nombre !== 'Mario Enrique Rodriguez Loria' && 
+    'Monserrat Rodríguez Fernández' &&
+     'Javier Andrés Vargas Vega'){
+        try {
+            res.status(401)
+            return res.redirect('/listarVentasGoogle')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
