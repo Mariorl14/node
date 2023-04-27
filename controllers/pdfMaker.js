@@ -38,7 +38,6 @@ function generatePayslip(req, res) {
   var pagoNeto1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(pagoNeto);
 
 
-console.log(result);
 
   res.render('colilla', {employeeName:employeeName, 
     consecutivo:consecutivo,
