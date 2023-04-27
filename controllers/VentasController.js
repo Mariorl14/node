@@ -86,7 +86,6 @@ exports.registrarVentaGoogle = async (req, res) => {
         numeroDeContacto2, 
         enCasoDePortabilidad, 
         tipoDePlanAContratar, 
-        ValorDelPlan, 
         direccionExacta, 
         provincia, 
         canton, 
@@ -98,6 +97,38 @@ exports.registrarVentaGoogle = async (req, res) => {
         //const {fecha} = req.date;
 
        /// const {idVendedor} = req.idVendedor;
+       
+       if(tipoDePlanAContratar=="@1Plus"){
+
+        var ValorDelPlan = "10300";
+
+       }else if(tipoDePlanAContratar=="@1"){
+
+        var ValorDelPlan = "10700";
+
+       }
+       else if(tipoDePlanAContratar=="@2"){
+
+        var ValorDelPlan = "16000";
+
+       }
+       else if(tipoDePlanAContratar=="@3"){
+
+        var ValorDelPlan = "22000";
+
+       }
+       else if(tipoDePlanAContratar=="@4"){
+
+        var ValorDelPlan = "27200";
+
+       }
+       else if(tipoDePlanAContratar=="@5"){
+
+        var ValorDelPlan = "33200";
+
+       }else{
+        var ValorDelPlan = "42200";
+       }
 
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
@@ -129,6 +160,8 @@ exports.registrarVentaGoogle = async (req, res) => {
         range: "Respuestas_Formulario",
     })
 
+    var numeroContrato = "";
+    var numeroAbonado = "";
     /// Write rows 
     await googleSheets.spreadsheets.values.append({
         auth,
@@ -145,6 +178,8 @@ exports.registrarVentaGoogle = async (req, res) => {
             nacionalidad, 
             numeroCelularDeTramite, 
             tipoDeTramite,
+            numeroContrato,
+            numeroAbonado,
             numeroDeContacto1, 
             numeroDeContacto2, 
             enCasoDePortabilidad, 
