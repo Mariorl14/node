@@ -4,9 +4,9 @@ const conexion = require('../database/db');
 
 function generatePayslip(req, res) {
 
-  const { employeeName, horas, totalVentas, consecutivo, horasExtra, bono, fechaPago  } = req.body;
+  const { employeeName, horas, totalVentas, consecutivo, horasExtra, bono, fechaPago, telefono,email  } = req.body;
 
-  var SalarioBase = horas*9533.33;
+  var SalarioBase = horas*9533.33333;
 
 
   
@@ -44,6 +44,8 @@ function generatePayslip(req, res) {
     fechaPago:fechaPago,
     horas:horas, 
     totalVentas:totalVentas,
+    telefono:telefono,
+    email:email,
      ccss1, 
      aporteTrabajadorBanco1, 
      totalDeducciones1, 
