@@ -1,12 +1,57 @@
 /*const puppeteer = require('puppeteer');*/
 
-
+const conexion = require('../database/db');
 
 function generatePayslip(req, res) {
 
-  const { employeeName, horas, totalVentas } = req.body;
+  const { employeeName, horas, totalVentas, consecutivo, horasExtra, bono, fechaPago  } = req.body;
 
-  res.render('colilla', {employeeName:employeeName, horas:horas, totalVentas:totalVentas})
+  var SalarioBase = horas*9533.33;
+
+
+  
+  if(totalVentas>=30){
+
+    var comision = totalVentas*1000;
+
+  }else{
+    var comision = 0;
+  };
+
+  var totalIngresos = SalarioBase+comision;
+
+
+  var ccss = totalIngresos*0.0967;
+
+  var aporteTrabajadorBanco = totalIngresos*0.01;
+
+  var totalDeducciones = ccss+aporteTrabajadorBanco;
+
+  var pagoNeto = totalIngresos-totalDeducciones;
+
+  var SalarioBase1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(SalarioBase);
+  var comision1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(comision);
+  var totalIngresos1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(totalIngresos);
+  var ccss1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(ccss);
+  var aporteTrabajadorBanco1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(aporteTrabajadorBanco);
+  var totalDeducciones1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(totalDeducciones);
+  var pagoNeto1 = new Intl.NumberFormat('es-CR', { style: 'currency', currency: 'CRC' }).format(pagoNeto);
+
+
+console.log(result);
+
+  res.render('colilla', {employeeName:employeeName, 
+    consecutivo:consecutivo,
+    fechaPago:fechaPago,
+    horas:horas, 
+    totalVentas:totalVentas,
+     ccss1, 
+     aporteTrabajadorBanco1, 
+     totalDeducciones1, 
+     pagoNeto1,
+     SalarioBase1,
+    comision1,
+    totalIngresos1})
   
 }
 

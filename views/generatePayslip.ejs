@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="container py-5 h-100">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-12 col-lg-9 col-xl-7">
@@ -6,42 +7,79 @@
           <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Generar Reporte de Pago</h3>
           <form action="/generatePayslip" method="POST">
 
+
             <div class="row">
               <div class="col-md-6 mb-4">
-
-                <div class="col-md-6 mb-4">
-
-                  <select class="select form-control-lg" id="employeeName" name="employeeName" required>
-                      <option value="1" disabled>Vendedor</option>
-                      <option value="JeanPierre">JeanPierre</option>
-                      <option value="Brittanny">Brittanny</option>
-                      <option value="Oscar">Oscar</option>
-                    </select>
-                    
-                </div>
-
-              </div>
-              <div class="col-md-6 mb-4">
-
-                
                 <div class="form-outline">
-                  <input type="text" id="horas" name="horas" class="form-control form-control-lg" required/>
-                  <label class="form-user" for="horas">Horas Trabajadas</label>
+                <select class="select form-control-lg" id="employeeName" name="employeeName" required>
+                  <option value="" disabled>Vendedor</option>
+                  <% for(var count = 0; count < data.length; count++) { %>
+                  <option value="<%= data[count].nombre %>"><%= data[count].nombre %></option>
+                  <% } %>
+                </select>
                 </div>
 
               </div>
             </div>
 
             <div class="row">
-              <div class="col-md-6 mb-4 d-flex align-items-center">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="consecutivo" name="consecutivo" class="form-control form-control-lg" required/>
+                  <label class="form-user" for="consecutivo">Consecutivo</label>
+                </div>
 
-                <div class="form-outline datepicker w-100">
-                  <input type="text" class="form-control form-control-lg" id="totalVentas" name="totalVentas" required/>
-                  <label for="totalVentas" class="form-label">Total Ventas</label>
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                <div class="form-outline">
+                  <input type="text" id="horas" name="horas" class="form-control form-control-lg" required/>
+                  <label class="form-user" for="horas">Dias Trabajados</label>
                 </div>
 
               </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline datepicker w-100">
+                <input type="text" class="form-control form-control-lg" id="horasExtra" name="horasExtra" required/>
+                <label for="horasExtra" class="form-label">Horas Extra</label>
+              </div>
+
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                
+                <div class="form-outline datepicker w-100">
+                  <input type="text" class="form-control form-control-lg" id="bono" name="bono" required/>
+                  <label for="bono" class="form-label">Bono</label>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-4">
+
+                <div class="form-outline datepicker w-100">
+                <input type="date" class="form-control form-control-lg" id="fechaPago" name="fechaPago" required/>
+                <label for="fechaPago" class="form-label">Fecha De Pago</label>
+                <div class="form-outline datepicker w-100" >
+                  <input type="text" class="form-control form-control-lg" id="totalVentas" name="totalVentas" required/>
+                  <label for="totalVentas" class="form-label">Total Ventas</label>
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  
+  
+                </div>
+              </div>
               
+              </div>
             </div>
 
            
@@ -56,3 +94,5 @@
     </div>
   </div>
 </div>
+
+</script>

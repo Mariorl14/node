@@ -137,7 +137,8 @@ body { margin-left: 0.7in; margin-right: 0.7in;  margin-bottom: 0.75in; }
       <tbody>
         <tr class="row0">
           <td class="column0 style1 null">
-<div style="position: relative;"><img style="position: absolute; z-index: 1; left: 30px; top: 3px; width: 202px; height: 59px;" src="zip:///home/CloudConvertio/tmp/in_work/d32f753a27844484ef6bfc87380ecff5.xlsx#xl/media/image1.png" border="0" /></div></td>
+<div style="position: relative;">
+  <img style="position: absolute; z-index: 1; left: 30px; top: -35px; width: 202px; height: 59px;" src="img/favtelColilla.png" border="0" /></div></td>
           <td class="column1 style2 null"></td>
           <td class="column2 style3 null"></td>
           <td class="column3 style32 s">Colilla de Pago</td>
@@ -155,7 +156,7 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column0 style4 s">Teléfono: + 506 888-888, Email: admin@favtel.com</td>
           <td class="column1 style5 null"></td>
           <td class="column2 style12 s">Consecutivo</td>
-          <td class="column3 style15 n">1/1/1970</td>
+          <td class="column3 style15 n"><%= consecutivo %></td>
         </tr>
         <tr class="row3">
           <td class="column0 style7 null"></td>
@@ -164,16 +165,16 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column3 style9 null"></td>
         </tr>
         <tr class="row4">
-          <td class="column0 style10 s">EMPLOYEE INFORMATION</td>
+          <td class="column0 style10 s">Informacion del Empleado</td>
           <td class="column1 style8 null"></td>
           <td class="column2 style12 s">PAY TYPE</td>
-          <td class="column3 style11 s">PAY DATE</td>
+          <td class="column3 style11 s">Fecha de Pago</td>
         </tr>
         <tr class="row5">
           <td class="column0 style13 s"><%= employeeName %></td>
           <td class="column1 style8 null"></td>
           <td class="column2 style15 s">Quincenal</td>
-          <td class="column3 style14 n">6/10/2019</td>
+          <td class="column3 style14 n"><%= fechaPago %></td>
         </tr>
         <tr class="row6">
           <td class="column0 style16 s">123 Any Court Road</td>
@@ -188,7 +189,7 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column3 style18 null"></td>
         </tr>
         <tr class="row8">
-          <td class="column0 style16 s">Phone: +44 00 0000 0000</td>
+          <td class="column0 style16 s">Phone:</td>
           <td class="column1 style8 null"></td>
           <td class="column2 style18 null"></td>
           <td class="column3 style18 null"></td>
@@ -212,16 +213,16 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column3 style23 s">SUBTOTAL</td>
         </tr>
         <tr class="row12">
-          <td class="column0 style34 s">Salario Base (Horas)</td>
-          <td class="column1 style25 n">36</td>
-          <td class="column2 style35 f">7944.44</td>
-          <td class="column3 style36 f">286,000.00</td>
+          <td class="column0 style34 s">Salario Base (dias)</td>
+          <td class="column1 style25 n"><%= horas %></td>
+          <td class="column2 style35 f">9533.33</td>
+          <td class="column3 style36 f"><%= SalarioBase1 %></td>
         </tr>
         <tr class="row13">
           <td class="column0 style34 s">Comision (Ventas)</td>
-          <td class="column1 style25 n">5</td>
+          <td class="column1 style25 n"><%= totalVentas %></td>
           <td class="column2 style28 null"></td>
-          <td class="column3 style26 f">-</td>
+          <td class="column3 style26 f"><%= comision1 %></td>
         </tr>
         <tr class="row14">
           <td class="column0 style34 s">Horas Extra (Horas)</td>
@@ -233,11 +234,11 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column0 style34 s">Bono</td>
           <td class="column1 style25 n">0</td>
           <td class="column2 style28 null"></td>
-          <td class="column3 style26 null"></td>
+          <td class="column3 style26 null">-</td>
         </tr>
         <tr class="row16">
           <td class="column0 style33 s style33" colspan="3">TOTAL INGRESOS</td>
-          <td class="column3 style29 f">₡286,000.00</td>
+          <td class="column3 style29 f"> <%= totalIngresos1 %></td>
         </tr>
         <tr class="row17">
           <td class="column0">&nbsp;</td>
@@ -255,17 +256,17 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column0 style24 s">CCSS</td>
           <td class="column1 style30 null"></td>
           <td class="column2 style31 n">9.67%</td>
-          <td class="column3 style26 f">-27,656.20</td>
+          <td class="column3 style26 f">- <%= ccss1 %></td>
         </tr>
         <tr class="row20">
           <td class="column0 style24 s">Aporte Trabajador Banco Popular</td>
           <td class="column1 style30 null"></td>
           <td class="column2 style31 n">1.00%</td>
-          <td class="column3 style26 f">-2,860.00</td>
+          <td class="column3 style26 f">- <%= aporteTrabajadorBanco1 %></td>
         </tr>
         <tr class="row21">
           <td class="column0 style33 s style33" colspan="3">TOTAL DEDUCCIONES</td>
-          <td class="column3 style29 f">₡-30,516.20</td>
+          <td class="column3 style29 f">- <%= totalDeducciones1 %></td>
         </tr>
         <tr class="row22">
           <td class="column0">&nbsp;</td>
@@ -276,7 +277,7 @@ Paseo Colón, San José, Costa Rica<br />
         <tr class="row23">
           <td class="column0">&nbsp;</td>
           <td class="column1 style33 s style33" colspan="2">PAGO NETO</td>
-          <td class="column3 style29 f">₡255,483.80</td>
+          <td class="column3 style29 f"> <%= pagoNeto1 %></td>
         </tr>
       </tbody>
   </table>
@@ -293,7 +294,7 @@ const button = document.getElementById('download-button');
 
         var opt = {
                 margin:       1,
-                filename:     'myfile.pdf',
+                filename:     '<%= employeeName %>_<%= fechaPago %>.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 3, letterRendering:true },
                 jsPDF:        { unit: 'in', format: 'a3', orientation: 'portrait' }

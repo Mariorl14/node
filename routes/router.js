@@ -236,8 +236,14 @@ router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(re
         }
     })
 })
-router.get('/generatePayslip', (req, res)=>{
+router.get('/generatePayslip', function(req, res, next){
+
+    conexion.query('SELECT * FROM users WHERE rol = "vendedor"', function (error, data) {
+        res.render('generatePayslip', {user:req.user, data:data} );
+    })
+    /*
     res.render('generatePayslip', {user:req.user})
+    */
 })
 
 
