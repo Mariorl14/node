@@ -1,4 +1,38 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#employeeName").change(function() {
+      var employeeName = $(this).val();
+
+      // Make an AJAX call to fetch the employee number and email and populate the select and input fields
+      $.ajax({
+        type: "POST",
+        url: "/getEmployeeNumberAndEmail",
+        data: { employeeName: employeeName },
+        success: function(data) {
+          var employeeNumberSelect = $("#employeeNumber");
+          var employeeEmailInput = $("#employeeEmail");
+          
+
+          // Populate the select options with the employee numbers and set the email input value
+          $.each(data, function(key, value) {
+            employeeNumberSelect.append("<option value='" + value.telefono + "'>" + value.telefono + "</option>");
+            employeeEmailInput.append("<option value='" + value.user + "'>" + value.user + "</option>");
+          });
+
+          // Automatically select the first option
+          
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    });
+  });
+</script>
+
+
+
 <div class="container py-5 h-100">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-12 col-lg-9 col-xl-7">
@@ -9,32 +43,15 @@
 
 
             <div class="row">
-              <div class="col-md-6 mb-4">
+              <div class="col-md-6 col-sm-12 mb-4">
                 <div class="form-outline">
-                <select class="select form-control-lg" id="employeeName" name="employeeName" required>
-                  <option value="" disabled>Vendedor</option>
-                  <% for(var count = 0; count < data.length; count++) { %>
-                  <option value="<%= data[count].nombre %>"><%= data[count].nombre %></option>
-                  <% } %>
-                </select>
+                  <select class="select form-control-lg" id="employeeName" name="employeeName" required>
+                    <option value="" disabled>Vendedor</option>
+                    <% for(var count = 0; count < data.length; count++) { %>
+                    <option value="<%= data[count].nombre %>"><%= data[count].nombre %></option>
+                    <% } %>
+                  </select>
                 </div>
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-4">
-
-
-                <div class="form-outline">
-                  <input type="text" id="email" name="email" class="form-control form-control-lg" required/>
-                  <label class="form-user" for="email">Email</label>
-                </div>
-
-                <div class="form-outline">
-                  <input type="text" id="telefono" name="telefono" class="form-control form-control-lg" required/>
-                  <label class="form-user" for="telefono">Telefono</label>
-                </div>
-
               </div>
             </div>
 
@@ -78,37 +95,44 @@
             </div>
 
             <div class="row">
-
               <div class="col-md-6 mb-4">
-
                 <div class="form-outline datepicker w-100">
                 <input type="date" class="form-control form-control-lg" id="fechaPago" name="fechaPago" required/>
-                <label for="fechaPago" class="form-label">Fecha De Pago</label>
-                <div class="form-outline datepicker w-100" >
-                  <input type="text" class="form-control form-control-lg" id="totalVentas" name="totalVentas" required/>
-                  <label for="totalVentas" class="form-label">Total Ventas</label>
-                </div>
-                <div class="col-md-6 mb-4">
-
-                  
-  
-                </div>
+                <label for="fechaPago" class="form-label">Fecha de Pago</label>
               </div>
-              
+
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                
+                <div class="form-outline datepicker w-100">
+                  <input type="text" class="form-control form-control-lg" id="totalVentas" name="totalVentas" required/>
+                  <label for="totalVentas" class="form-label">Total de Ventas</label>
+                </div>
+
               </div>
             </div>
 
-           
+            <div class="col-md-6 mb-4">
+              <div class="form-outline">
+                <select class="select form-control-lg" id="employeeNumber" name="employeeNumber" required>
+                  <option value="" disabled>Seleccione un número</option>
+                </select>
+                <label class="form-user" for="horas">Numero Trabajador</label>
+              </div>
+
+              <div class="form-outline">
+                <select class="select form-control-lg" id="employeeEmail" name="employeeEmail" required>
+                  <option value="" disabled>Seleccione un número</option>
+                </select>
+                <label class="form-user" for="horas">Correo Trabajador</label>
+              </div>
+
+            </div>
 
             <div class="mt-4 pt-2">
               <input class="btn btn-primary btn-lg" type="submit" value="Generar" />
             </div>
 
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-</script>
+            <div class="row">

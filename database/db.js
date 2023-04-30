@@ -15,7 +15,8 @@ const connection = mysql.createConnection({
     user     : 'adminFavtel',
     password : 'FAvaRO1202',
     database : 'favtel',
-    port:3306
+    port:3306,
+    ssl: true
     
 
    /*

@@ -240,7 +240,7 @@ router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(re
         }
     })
 })
-router.get('/generatePayslip',authController.isAuthenticated, NoCache.nocache, authController.authColillas, function(req, res, next){
+router.get('/generatePayslip',authController.isAuthenticated,authController.authRol, NoCache.nocache, authController.authColillas, function(req, res, next){
 
     conexion.query('SELECT * FROM users', function (error, data) {
         res.render('generatePayslip', {user:req.user, data:data} );
@@ -249,7 +249,20 @@ router.get('/generatePayslip',authController.isAuthenticated, NoCache.nocache, a
     res.render('generatePayslip', {user:req.user})
     */
 })
-
+router.post("/getEmployeeNumberAndEmail", function (req, res) {
+    var employeeName = req.body.employeeName;
+  
+    // Query the database to fetch the employee number and email
+    // Replace this with your actual database query
+    var query = "SELECT telefono, user FROM users WHERE nombre = ?";
+    conexion.query(query, [employeeName], function (err, results) {
+      if (err) throw err;
+  
+      res.send(results);
+    });
+  });
+  
+  
 
 /*Editar Usuarios */
 router.get('/editarUser/:id', (req, res)=>{
@@ -282,7 +295,6 @@ router.post('/login', authController.login)
 router.get('/logout', authController.logout)
 router.post('/generatePayslip', pdfMaker.generatePayslip );
 
-router.get('/descargarPDF', pdfMaker.descargarPDF );
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
