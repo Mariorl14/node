@@ -85,7 +85,9 @@ router.get('/register',  (req, res)=>{
     res.render('register', {user:req.user})
 })
 router.get('/layout',  (req, res)=>{
-    res.render('layout', {user:req.user})
+    res.render('layout', {
+        user: req.user,
+      })
 })
 router.get('/colilla',  (req, res)=>{
     res.render('colilla', {user:req.user})
@@ -254,7 +256,7 @@ router.post("/getEmployeeNumberAndEmail", function (req, res) {
   
     // Query the database to fetch the employee number and email
     // Replace this with your actual database query
-    var query = "SELECT telefono, user FROM users WHERE nombre = ?";
+    var query = "SELECT telefono, user, salario FROM users WHERE nombre = ?";
     conexion.query(query, [employeeName], function (err, results) {
       if (err) throw err;
   
