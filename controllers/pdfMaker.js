@@ -2,7 +2,7 @@
 
 async function generatePayslip(req, res) {
   try {
-    const { employeeName, horas, totalVentas, consecutivo, horasExtra, bono, fechaPago, employeeNumber, employeeEmail, salary } = req.body;
+    const { employeeName, horas, totalVentas, consecutivo, horasExtra, bono, fechaPago, employeeNumber, employeeEmail, salary, codigoEmpleado } = req.body;
 
     var SalarioBase = (salary / 30) * horas;
 
@@ -38,6 +38,7 @@ async function generatePayslip(req, res) {
         totalVentas,
         employeeNumber,
         employeeEmail,
+        codigoEmpleado,
         ccss1,
         aporteTrabajadorBanco1,
         totalDeducciones1,

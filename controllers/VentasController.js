@@ -105,7 +105,7 @@ exports.registrarVentaGoogle = async (req, res) => {
        
        if(tipoDePlanAContratar=="@1Plus"){
 
-        var ValorDelPlan = "10300";
+        var ValorDelPlan = "13200";
 
        }else if(tipoDePlanAContratar=="@1"){
 

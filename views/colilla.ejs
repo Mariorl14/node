@@ -156,7 +156,7 @@ Paseo Colón, San José, Costa Rica<br />
           <td class="column0 style4 s">Teléfono: + 506 888-888, Email: admin@favtel.com</td>
           <td class="column1 style5 null"></td>
           <td class="column2 style12 s">Consecutivo</td>
-          <td class="column3 style15 n"><%= consecutivo %></td>
+          <td class="column3 style15 n"><%= codigoEmpleado %>-<%= consecutivo %></td>
         </tr>
         <tr class="row3">
           <td class="column0 style7 null"></td>
@@ -280,16 +280,19 @@ const button = document.getElementById('download-button');
 				// Choose the element that your content will be rendered to.
 				const element = document.getElementById('sheet0');
 
-        var opt = {
-                margin:       1,
-                filename:     '<%= employeeName %>_<%= fechaPago %>.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 3, letterRendering:true },
-                jsPDF:        { unit: 'in', format: 'a3', orientation: 'portrait' }
-                };
-        
-				// Choose the element and save the PDF for your user.
-				html2pdf().from(element).set(opt).save();
+        const options = {
+  margin: 1,
+  filename: '<%= codigoEmpleado %>_<%= employeeName %>_<%= fechaPago %>.pdf',
+  image: { type: 'jpeg', quality: 0.98 },
+  html2canvas: {
+    scale: 3,
+    letterRendering: true,
+    scrollY: -window.scrollY + 350 // adjust the value as needed
+  },
+  jsPDF: { unit: 'in', format: 'a3', orientation: 'portrait' }
+};
+
+html2pdf().from(element).set(options).save();
 			}
 
 			button.addEventListener('click', generatePDF);

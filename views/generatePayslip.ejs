@@ -18,6 +18,7 @@
           var employeeNumberSelect = $("#employeeNumber");
           var employeeEmailInput = $("#employeeEmail");
           var employeeSalary = $("#salary");
+          var codigoEmpleado = $("#codigoEmpleado");
           
 
           // Populate the select options with the employee numbers and set the email input value
@@ -25,6 +26,7 @@
             employeeNumberSelect.append("<option value='" + value.telefono + "'>" + value.telefono + "</option>");
             employeeEmailInput.append("<option value='" + value.user + "'>" + value.user + "</option>");
             employeeSalary.append("<option value='" + value.salario + "'>" + value.salario + "</option>");
+            codigoEmpleado.append("<option value='" + value.codigoEmpleado + "'>" + value.codigoEmpleado + "</option>");
           });
 
           // Automatically select the first option
@@ -140,6 +142,13 @@
                   <option value="" disabled>Seleccione un número</option>
                 </select>
                 <label class="form-user"id="salary" for="horas">Salario Trabajador</label>
+              </div>
+
+              <div class="form-outline">
+                <select class="select form-control-lg" id="codigoEmpleado" name="codigoEmpleado" required>
+                  <option value="" disabled>Seleccione un número</option>
+                </select>
+                <label class="form-user"id="salary" for="horas">Codigo Trabajador</label>
               </div>
 
             </div>
