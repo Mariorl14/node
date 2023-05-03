@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/290bc44b-704c-4ae5-992d-7ad4ebbddc2f/resourceGroups/FavtelResourceGroup/providers/Microsoft.Web/sites/favtel",
+    "appService.deploySubpath": "."
+}
