@@ -5,7 +5,6 @@ const {promisify} = require('util');
 
 exports.registrarVenta = async (req, res)=>{
     try {
-       var date = new Date();
     const NombreDelCliente = req.body.nombreDelCliente;
     const SegundoNombreDelCliente = req.body.segundoNombreDelCliente;
     const PrimerApellidoDelCliente = req.body.primerApellidoDelCliente;
@@ -19,12 +18,51 @@ exports.registrarVenta = async (req, res)=>{
     const NumeroDeContacto2 = req.body.numeroDeContacto2;
     const EnCasoDePortabilidad = req.body.enCasoDePortabilidad;
     const TipoDePlanAContratar = req.body.tipoDePlanAContratar;
-    const ValorDelPlan = req.body.ValorDelPlan;
+
+    if(TipoDePlanAContratar=="@1Plus"){
+
+        var ValorDelPlan = "13200";
+
+       }else if(TipoDePlanAContratar=="@1"){
+
+        var ValorDelPlan = "10700";
+
+       }
+       else if(TipoDePlanAContratar=="@2"){
+
+        var ValorDelPlan = "16000";
+
+       }
+       else if(TipoDePlanAContratar=="@3"){
+
+        var ValorDelPlan = "22000";
+
+       }
+       else if(TipoDePlanAContratar=="@4"){
+
+        var ValorDelPlan = "27200";
+
+       }
+       else if(TipoDePlanAContratar=="@5"){
+
+        var ValorDelPlan = "33200";
+
+       }else{
+        var ValorDelPlan = "42200";
+       }
+       var today = new Date();
+       /*
+        var year = today.getFullYear();
+        var mes = today.getMonth()+1;
+        var dia = today.getDate();
+        var fecha =year+"-"+mes+"-"+dia;
+        */
+
     const DireccionExacta = req.body.direccionExacta;
     const Provincia = req.body.provincia;
     const Canton = req.body.canton;
     const Distrito = req.body.distritp;
-    const Fecha = date;
+    const Fecha = fecha;
     const idVendedor = req.body.nombreVendedor;
 
     conexion.query('INSERT INTO Ventas SET ?',
@@ -41,12 +79,12 @@ exports.registrarVenta = async (req, res)=>{
         NumeroDeContacto2:NumeroDeContacto2,
         EnCasoDePortabilidad:EnCasoDePortabilidad,
         TipoDePlanAContratar:TipoDePlanAContratar,
-        ValorDelPlan:ValorDelPlan,
+        ValorDelPlan,
         DireccionExacta:DireccionExacta,
         Provincia:Provincia,
         Canton:Canton,
         Distrito:Distrito,
-        Fecha:Fecha,
+        Fecha:today.toISOString().slice(0,10),
         idVendedor:idVendedor}, async(error, results)=>{
 
             if(error){
@@ -92,7 +130,6 @@ exports.registrarVentaGoogle = async (req, res) => {
         distritp,
         nombreVendedor} = req.body;
 
-        var date = new Date();
         //const {fecha} = req.date;
 
         var today = new Date();

@@ -94,13 +94,21 @@
         
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           
+           
           <div class="admin">
            
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/registrarVenta1">Venta BD</a>
+            </li>
+
+            
+
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home">Total de Ventas</a>
+            <a class="nav-link active" aria-current="page" href="/listaBDVentas">Lista BD</a>
           </li>
+            
+          </div>
           
-        </div>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/home">Total de Ventas</a>
         </li>
@@ -161,8 +169,4 @@
 </html> 
 
 <script>
-  if (user.rol=="admin"){
- $("div.admin").show();
-}
-console.log(user);
 </script>

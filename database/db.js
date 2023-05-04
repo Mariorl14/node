@@ -3,8 +3,7 @@ var fs = require('fs');
 /*const serverCa = [fs.readFileSync("/var/www/html/DigiCertGlobalRootCA.crt.pem", "utf8")];*/
 const connection = mysql.createConnection({
 
-
-    /*
+/*
     host     : 'localhost',
     user     : 'root',
     password : '1234',
@@ -17,7 +16,6 @@ const connection = mysql.createConnection({
     database : 'favtel',
     port:3306,
     ssl: true
-    
 
    /*
     host     : '34.30.89.2',

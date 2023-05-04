@@ -34,6 +34,17 @@ router.get('/listarUsuarios', authController.isAuthenticated,authController.auth
     })
 
 })
+router.get('/listaBDVentas', authController.isAuthenticated,authController.authRol, NoCache.nocache, (req, res)=>{
+    
+    conexion.query('SELECT * FROM Ventas', (error, results)=>{
+        if(error){
+            throw error
+        }else{
+            res.render('listaBDVentas', {results:results, user:req.user})
+        }
+    })
+
+})
 
 
 router.get('/home', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
@@ -235,8 +246,9 @@ router.get('/dashboard', authController.isAuthenticated,authController.authRol, 
     
 })
 
-router.get('/registrarVenta1', (req, res)=>{
-    res.render('registrarVenta')
+router.get('/registrarVenta1', authController.isAuthenticated,NoCache.nocache,(req, res)=>{
+
+    res.render('registrarVenta1', {user:req.user})
 })
 
 router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(req, res)=>{
@@ -307,6 +319,7 @@ router.post('/generatePayslip', pdfMaker.generatePayslip );
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
 router.post('/registrarVenta', VentasController.registrarVenta)
+router.post('/registrarVenta1', VentasController.registrarVenta)
 
 router.post('/pruebagoogle',  VentasController.registrarVentaGoogle, VentasController.registrarVenta)
 

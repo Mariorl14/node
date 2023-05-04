@@ -1,0 +1,148 @@
+<link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+<link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+<link rel="" href="https://cdn.datatables.net/datetime/1.4.1/css/dataTables.dateTime.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<h2>Bienvenido de vuelta: 
+    <% if(user) {%>
+      <span class="badge bg-success"> <%= user.nombre %></span>
+      <%}%>
+  </h2>
+  <h2>Su Rol es: 
+    <% if(user) {%>
+      <span class="badge bg-success"> <%= user.rol %></span>
+      <%}%>
+  </h2>
+
+  <table border="0" cellspacing="5" cellpadding="5">
+
+    <label for="start-date">Start date:</label>
+<input type="date" id="start-date" name="start-date">
+
+<label for="end-date">End date:</label>
+<input type="date" id="end-date" name="end-date">
+
+
+</table>
+
+  <div  class="table-responsive">
+    
+    <table id="ventas" class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Nombre Del Cliente</th>
+            <th scope="col">Segundo Nombre Del Cliente</th>
+            <th scope="col">Primer Apellido Del Cliente</th>
+            <th scope="col">Segundo Apellido Del Cliente</th>
+            <th scope="col">Tipo De Documento De Identidad</th>
+            <th scope="col">Numero De Documento</th>
+            <th scope="col">Nacionalidad</th>
+            <th scope="col">Numero Celular De Tramite</th>
+            <th scope="col">Tipo De Tramite</th>
+            <th scope="col">Numero De Contacto1</th>
+            <th scope="col">Numero De Contacto 2</th>
+            <th scope="col">En Caso De Portabilidad</th>
+            <th scope="col">Tipo De Plan A Contratar</th>
+            <th scope="col">Valor Del Plan</th>
+            <th scope="col">Direccion Exacta</th>
+            <th scope="col">Provincia</th>
+            <th scope="col">Canton</th>
+            <th scope="col">Distrito</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Nombre del Vendedor</th>
+            <th scope="col">Activada / No Activada</th>
+          <th scope="col">Entregada / No Entregada</th>
+          <th scope="col">Rechazada / Cliente no Contesta</th>
+          <th scope="col">Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.forEach((venta) => {%>
+            <tr>
+              <td><%= venta.NombreDelCliente %></td>
+              <td><%= venta.SegundoNombreDelCliente %></td>
+              <td><%= venta.PrimerApellidoDelCliente %></td>
+              <td><%=venta.SegundoApellidoDelCliente %></td>
+              <td><%=venta.TipoDeDocumentoDeIdentidad %></td>
+              <td><%=venta.NumeroDeDocumento %></td>
+              <td><%=venta.Nacionalidad %></td>
+              <td><%=venta.NumeroCelularDeTramite %></td>
+              <td><%=venta.TipoDeTramite %></td>
+              <td><%=venta.NumeroDeContacto1 %></td>
+              <td><%=venta.NumeroDeContacto2 %></td>
+              <td><%=venta.EnCasoDePortabilidad %></td>
+              <td><%=venta.TipoDePlanAContratar %></td>
+              <td><%=venta.ValorDelPlan %></td>
+              <td><%=venta.DireccionExacta %></td>
+              <td><%=venta.Provincia %></td>
+              <td><%=venta.Canton %></td>
+              <td><%=venta.Distrito %></td>
+              <td><%=venta.Fecha %></td>
+              <td><%=venta.idVendedor %></td>
+              <td><%=venta.NombreDelCliente %></td>
+              <td><%=venta.NombreDelCliente %></td>
+            <td><%=venta.NombreDelCliente %></td>
+            <td><%=venta.NombreDelCliente %></td>
+            </tr>
+            <% });%> 
+          
+        </tbody>
+        
+        
+      </table>
+  
+  </div>
+  
+  <br>
+  <a href="register" class="btn btn-outline-success">Registrar</a>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+  
+        <script>
+       $(document).ready(function () {
+                   var table = $('#ventas').DataTable({
+                    order: [[19, 'asc']],
+                   // fixedHeader: true,
+                    dom: 'Bfrtip',
+                    buttons: [
+                       'csv', 'excel', 'pdf', 'print'
+                  ]
+                });
+
+                console.log(table.columns(18));
+
+                $('#start-date, #end-date').on('change', function () {
+  const startDate = moment($('#start-date').val());
+  const endDate = moment($('#end-date').val());
+
+  // Filter the table based on the selected date range
+  table.columns(18).data().filter(function (value, index) {
+    const date = moment(value);
+    if (date >= startDate && date <= endDate) {
+      return true;
+    }
+    return false;
+  }).draw();
+  
+});
+
+                $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
+                  $('#ventas thead tr:eq(1) th').each( function (i) {
+                   var title = $(this).text(); //es el nombre de la columna
+                    $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+                    $( 'input', this ).on( 'keyup change', function () {
+                       if ( table.column(i).search() !== this.value ) {
+                            table
+                               .column(i)
+                               .search( this.value )
+                               .draw();
+                  }
+              } );
+          } );
+          
+          });
+          </script>
