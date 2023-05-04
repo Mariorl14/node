@@ -108,10 +108,19 @@
        
          // Encuentra el índice de la columna "Nombre Vendedor"
   var columnaNombreVendedor = table.column(18).index();
+  console.log(columnaNombreVendedor);
 
+  var nombre = "<%= user.nombre %>";
+console.log(nombre);
+
+
+  table.column(columnaNombreVendedor).search(nombre).draw();
+  console.log("linda");
 // Filtra la tabla por el valor de user.name en la columna "Nombre Vendedor"
-table.column(columnaNombreVendedor).search("<%= user.nombre %>").draw();
-     
+
+
+
+
   });
 
     function confirmar(id){
