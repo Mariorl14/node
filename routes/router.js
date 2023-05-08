@@ -301,7 +301,15 @@ router.post("/getEmployeeNumberAndEmail", function (req, res) {
       res.send(results);
     });
   });
-  
+router.get('/registrarVentaFijo', authController.isAuthenticated,NoCache.nocache,(req, res)=>{
+    conexion.query('SELECT * FROM users', (error, results)=>{
+        if(error){
+            throw error
+        }else{
+            res.render('registrarVentaFijo', {results:results, user:req.user})
+        }
+    })
+})
   
 
 /*Editar Usuarios */
