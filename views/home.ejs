@@ -97,13 +97,14 @@
 <script>
   $(document).ready(function () {
       var table = $('#ventas').DataTable({
-          order: [[19, 'asc']],
+          order: [[21, 'des']],
          // fixedHeader: true,
           dom: 'Bfrtip',
           buttons: [
              'csv', 'excel', 'pdf', 'print'
         ]
       });
+
      
       $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
         $('#ventas thead tr:eq(1) th').each( function (i) {
@@ -118,6 +119,22 @@
         }
     } );
 } );
+
+var tableData = table.data().toArray();
+var currentMonth = new Date().getMonth() + 1;
+
+var filteredData = tableData.filter(function(row) {
+  var dateString = row[21];
+  // Convert the date string to a Date object
+  var dateParts = dateString.split("/");
+  var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+  // Check if the month of the date is the same as the current month
+  return date.getMonth() + 1 === currentMonth;
+});
+
+table.clear().rows.add(filteredData).draw();
+
+
    
 });
 </script>
