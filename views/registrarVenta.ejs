@@ -1,4 +1,9 @@
-
+<style>
+  div.PruebaDvi{
+    display: none;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <h2>Vendedor: 
     <% if(user) {%>
         <span class="badge bg-success"> <%= user.nombre %></span>
@@ -207,8 +212,22 @@
                 <div class="col-md-4 mb-4">
   
                     <div class="form-outline">
+                      <div class="prueba">
                       <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
                       <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
+                      </div>
+                    </div>
+
+                    <div class="form-outline" id="freelance">
+                      <div class="PruebaDvi">
+                      <select class="select form-control-lg" id="nombreVendedorFreelance" name="nombreVendedorFreelance" required>
+                        <option value="" disabled>Vendedor</option>
+                        <% for(var count = 0; count < data.freelancers.length; count++) { %>
+                          <option value="<%= data.freelancers[count].nombre %>"><%= data.freelancers[count].nombre %></option>
+                        <% } %>
+                      </select>
+                      <label class="form-user" for="nombreVendedorFreelance" >Nombre Vendedor Freelance</label>
+                      </div>
                     </div>
     
                   </div>
@@ -228,4 +247,14 @@
       </div>
     </div>
   </div> 
-  
+  <script>
+    var userRol = "<%= user.rol %>";
+    console.log(userRol);
+    if(userRol=="freelance"){
+      console.log("Si")
+      $("div.PruebaDvi").show();
+      $("div.prueba").hide();
+    }else{
+      console.log("No");
+    }
+  </script>

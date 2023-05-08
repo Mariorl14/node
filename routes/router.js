@@ -250,16 +250,36 @@ router.get('/registrarVenta1', authController.isAuthenticated,NoCache.nocache,(r
 
     res.render('registrarVenta1', {user:req.user})
 })
+router.get('/registrarVenta', authController.isAuthenticated, NoCache.nocache, (req, res) => {
+    let query1 = 'SELECT * FROM users';
+    let query2 = 'SELECT nombre FROM users WHERE rol = "freelance"';
+    let results = {};
 
-router.get('/registrarVenta', authController.isAuthenticated,NoCache.nocache,(req, res)=>{
-    conexion.query('SELECT * FROM users', (error, results)=>{
-        if(error){
-            throw error
-        }else{
-            res.render('registrarVenta', {results:results, user:req.user})
+    conexion.query(query1, (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            results.users = data;
+            // check if the second query has also been executed
+            if (results.hasOwnProperty('freelancers')) {
+                res.render('registrarVenta', { data: results, user: req.user });
+            }
         }
-    })
-})
+    });
+
+    conexion.query(query2, (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            results.freelancers = data;
+            // check if the first query has also been executed
+            if (results.hasOwnProperty('users')) {
+                res.render('registrarVenta', { data: results, user: req.user });
+            }
+        }
+    });
+});
+
 router.get('/generatePayslip',authController.isAuthenticated,authController.authRol, NoCache.nocache, authController.authColillas, function(req, res, next){
 
     conexion.query('SELECT * FROM users', function (error, data) {

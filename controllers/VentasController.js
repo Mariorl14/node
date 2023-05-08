@@ -128,7 +128,8 @@ exports.registrarVentaGoogle = async (req, res) => {
         provincia, 
         canton, 
         distritp,
-        nombreVendedor} = req.body;
+        nombreVendedor,
+        nombreVendedorFreelance} = req.body;
 
         //const {fecha} = req.date;
 
@@ -232,7 +233,8 @@ exports.registrarVentaGoogle = async (req, res) => {
             canton, 
             distritp,
             nombreVendedor,
-            fecha]]
+            fecha,
+            nombreVendedorFreelance]]
         }, 
     })
 
