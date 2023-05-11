@@ -237,6 +237,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             nombreVendedorFreelance]]
         }, 
     })
+    /*
 
     try {
         var date = new Date();
@@ -298,13 +299,203 @@ exports.registrarVentaGoogle = async (req, res) => {
                  timer: 1500,
                  ruta: 'home'
              })*/
+             /*
          })
  
      } catch (error) {
          console.log(error)
      }
+     */
 
     res.redirect("misEstadisticas");
+}
+exports.registrarVentaFijo = async (req, res) => {
+    const {nombreDelCliente, 
+        segundoNombreDelCliente,
+        primerApellidoDelCliente,
+        segundoApellidoDelCliente, 
+        tipoDeDocumentoDeIdentidad, 
+        numeroDeDocumento, 
+        nacionalidad, 
+        numeroCelularDeTramite,
+        numeroDeContacto1, 
+        numeroDeContacto2,
+        tipoDeTramite, 
+        tipoDePlanAContratar, 
+        direccionExacta, 
+        provincia, 
+        canton, 
+        distritp,
+        nombreVendedor} = req.body;
+
+        const auth = new google.auth.GoogleAuth({
+            keyFile: "credentials.json",
+            scopes: "https://www.googleapis.com/auth/spreadsheets",
+        });
+    
+    /// client instance for auth
+        const client = await auth.getClient();
+    
+        /// Instance of google sheets api 
+        const googleSheets = google.sheets({ version: "v4", auth: client});
+    
+    
+        const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
+        // Get DATA 
+    
+    
+    
+        const metaData = await googleSheets.spreadsheets.get({
+            auth,
+            spreadsheetId
+        });
+    
+        /// rows from spreadsheet
+    
+        const getRows = await googleSheets.spreadsheets.values.get({
+            auth,
+            spreadsheetId,
+            range: "Registro_Ventas_Fijo",
+        })
+        if(tipoDePlanAContratar=="Mega 30"){
+
+            var ValorDelPlan = "21900";
+    
+           }else if(tipoDePlanAContratar=="Mega 100"){
+    
+            var ValorDelPlan = "24500";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 325"){
+    
+            var ValorDelPlan = "40000";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 450 HBO Max"){
+    
+            var ValorDelPlan = "42500";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 300 HBO Max"){
+    
+            var ValorDelPlan = "30000";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 150 HBO Max"){
+    
+            var ValorDelPlan = "27000";
+    
+           }else if(tipoDePlanAContratar=="Triple Play Mega 30"){
+            var ValorDelPlan = "31500";
+           }
+           else if(tipoDePlanAContratar=="Triple Play Mega 100"){
+            var ValorDelPlan = "33500";
+           }else if(tipoDePlanAContratar=="Triple Play Mega 325"){
+            var ValorDelPlan = "51500";
+           }else if(tipoDePlanAContratar=="Doble Play Mega 30"){
+            var ValorDelPlan = "30000";
+           }
+           else if(tipoDePlanAContratar=="Doble Play Mega 100"){
+            var ValorDelPlan = "32000";
+           }
+           else if(tipoDePlanAContratar=="Doble Play Mega 325"){
+            var ValorDelPlan = "50000";
+           }else if(tipoDePlanAContratar=="75 Mbps + 45 GB SIN TV"){
+            var ValorDelPlan = "46000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 30 GB SIN TV"){
+            var ValorDelPlan = "39000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 18 GB SIN TV"){
+            var ValorDelPlan = "32000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + ILIMITADO SIN TV"){
+            var ValorDelPlan = "49000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 35 GB SIN TV"){
+            var ValorDelPlan = "41000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 25 GB SIN TV"){
+            var ValorDelPlan = "34000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + ILIMITADO SIN TV"){
+            var ValorDelPlan = "53000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + 35 GB SIN TV"){
+            var ValorDelPlan = "45000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + 25 GB SIN TV"){
+            var ValorDelPlan = "38000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 45 GB CON TV"){
+            var ValorDelPlan = "52000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 30 GB CON TV"){
+            var ValorDelPlan = "45000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 18 GB CON TV"){
+            var ValorDelPlan = "38000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + ILIMITADO CON TV"){
+            var ValorDelPlan = "58000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 35 GB CON TV"){
+            var ValorDelPlan = "50000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 25 GB CON TV"){
+            var ValorDelPlan = "43000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + ILIMITADO CON TV"){
+            var ValorDelPlan = "63000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + 35 GB CON TV"){
+            var ValorDelPlan = "55000";
+           }
+           else{
+            var ValorDelPlan = "48000";
+           }
+
+        var today = new Date();
+        var year = today.getFullYear();
+        var mes = today.getMonth()+1;
+        var dia = today.getDate();
+        var fecha =dia+"/"+mes+"/"+year;
+    
+        var numeroContrato = "";
+        var numeroAbonado = "";
+        /// Write rows 
+        await googleSheets.spreadsheets.values.append({
+            auth,
+            spreadsheetId,
+            range: "Registro_Ventas_Fijo",
+            valueInputOption: "USER_ENTERED",
+            resource: {
+             values: [[nombreDelCliente, 
+                segundoNombreDelCliente,
+                primerApellidoDelCliente,
+                segundoApellidoDelCliente, 
+                tipoDeDocumentoDeIdentidad, 
+                numeroDeDocumento, 
+                nacionalidad, 
+                numeroCelularDeTramite, 
+                tipoDeTramite,
+                numeroContrato,
+                numeroAbonado,
+                numeroDeContacto1, 
+                numeroDeContacto2, 
+                tipoDePlanAContratar, 
+                ValorDelPlan, 
+                direccionExacta, 
+                provincia, 
+                canton, 
+                distritp,
+                nombreVendedor,
+                fecha]]
+            }, 
+        })
+
+        res.redirect("misEstadisticas");
+        console.log(tipoDePlanAContratar);
 }
 
 exports.listarVentaGoogle = async (req, res) => {

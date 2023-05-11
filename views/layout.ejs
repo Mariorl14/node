@@ -74,6 +74,34 @@
       div.admin{
         display: none;
       }
+      .dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown:hover .dropdown-content {display: block;}
     </style>
 
     
@@ -108,13 +136,22 @@
           </li>
             
           </div>
-          
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Total de Ventas</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/registrarVenta">Registrar Venta</a>
-          </li>
+          <div class="dropdown" style="float:left;">
+            <a class="nav-link active" aria-current="page" href="#">Total De Ventas</a>
+            <div class="dropdown-content" style="left:0;">
+              <a href="/home">Total de Ventas Movil </a>
+              <a href="/ListarVentasFijo">Total de Ventas Fijo </a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
+          <div class="dropdown" style="float:left;">
+            <a class="nav-link active" aria-current="page" href="#">Registrar Ventas</a>
+            <div class="dropdown-content" style="left:0;">
+              <a href="/registrarVenta">Registrar Venta Movil</a>
+              <a href="/registrarVentaFijo">Registrar Venta Fijo </a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/listarVentasGoogle">Ventas</a>
           </li>
