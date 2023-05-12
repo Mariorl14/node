@@ -205,6 +205,12 @@ exports.registrarVentaGoogle = async (req, res) => {
 
     var numeroContrato = "";
     var numeroAbonado = "";
+
+    if(nombreVendedor!=="Ventas Freelance"){
+        var nombreVendedorFreelance1 = "";
+    }else{
+        var nombreVendedorFreelance1 = nombreVendedorFreelance;
+    }
     /// Write rows 
     await googleSheets.spreadsheets.values.append({
         auth,
@@ -234,7 +240,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             distritp,
             nombreVendedor,
             fecha,
-            nombreVendedorFreelance]]
+            nombreVendedorFreelance1]]
         }, 
     })
     /*
