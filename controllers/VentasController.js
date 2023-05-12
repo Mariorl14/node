@@ -322,11 +322,14 @@ exports.registrarVentaFijo = async (req, res) => {
         numeroDeContacto2,
         tipoDeTramite, 
         tipoDePlanAContratar, 
+        valorPlanDiferente,
+        coordenadas,
         direccionExacta, 
         provincia, 
         canton, 
         distritp,
-        nombreVendedor} = req.body;
+        nombreVendedor,
+        nombreVendedorFreelance} = req.body;
 
         const auth = new google.auth.GoogleAuth({
             keyFile: "credentials.json",
@@ -463,6 +466,12 @@ exports.registrarVentaFijo = async (req, res) => {
     
         var numeroContrato = "";
         var numeroAbonado = "";
+
+        if(nombreVendedor!=="Ventas Freelance"){
+            var nombreVendedorFreelance1 = "";
+        }else{
+            var nombreVendedorFreelance1 = nombreVendedorFreelance;
+        }
         /// Write rows 
         await googleSheets.spreadsheets.values.append({
             auth,
@@ -485,17 +494,21 @@ exports.registrarVentaFijo = async (req, res) => {
                 numeroDeContacto2, 
                 tipoDePlanAContratar, 
                 ValorDelPlan, 
+                valorPlanDiferente,
+                coordenadas,
                 direccionExacta, 
                 provincia, 
                 canton, 
                 distritp,
                 nombreVendedor,
-                fecha]]
+                fecha,
+                nombreVendedorFreelance1]]
             }, 
         })
 
         res.redirect("misEstadisticas");
         console.log(tipoDePlanAContratar);
+        console.log(nombreVendedor);
 }
 
 exports.listarVentaGoogle = async (req, res) => {

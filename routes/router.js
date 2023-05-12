@@ -341,13 +341,33 @@ router.post("/getEmployeeNumberAndEmail", function (req, res) {
     });
   });
 router.get('/registrarVentaFijo', authController.isAuthenticated,NoCache.nocache,(req, res)=>{
-    conexion.query('SELECT * FROM users', (error, results)=>{
-        if(error){
-            throw error
-        }else{
-            res.render('registrarVentaFijo', {results:results, user:req.user})
+    let query1 = 'SELECT * FROM users';
+    let query2 = 'SELECT nombre FROM users WHERE rol = "freelance"';
+    let results = {};
+
+    conexion.query(query1, (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            results.users = data;
+            // check if the second query has also been executed
+            if (results.hasOwnProperty('freelancers')) {
+                res.render('registrarVentaFijo', { data: results, user: req.user });
+            }
         }
-    })
+    });
+
+    conexion.query(query2, (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            results.freelancers = data;
+            // check if the first query has also been executed
+            if (results.hasOwnProperty('users')) {
+                res.render('registrarVentaFijo', { data: results, user: req.user });
+            }
+        }
+    });
 })
   
 

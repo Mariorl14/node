@@ -27,12 +27,15 @@
             <th scope="col">Numero De Contacto 2</th>
             <th scope="col">Tipo De Plan A Contratar</th>
             <th scope="col">Valor Del Plan</th>
+            <th scope="col">Valor Del Plan Diferente</th>
+            <th scope="col">Coordenadas</th>
             <th scope="col">Direccion Exacta</th>
             <th scope="col">Provincia</th>
             <th scope="col">Canton</th>
             <th scope="col">Distrito</th>
             <th scope="col">Nombre del Vendedor</th>
             <th scope="col">Fecha</th>
+            <th scope="col">Vendedor Freelance</th>
             <th scope="col">Activada / No Activada</th>
             <th scope="col">Entregada / No Entregada</th>
             <th scope="col">Rechazada / Cliente no Contesta</th>
@@ -67,6 +70,9 @@
               <td><%=row[22] %></td>
               <td><%=row[23] %></td>
               <td><%=row[24] %></td>
+              <td><%=row[25] %></td>
+              <td><%=row[26] %></td>
+              <td><%=row[27] %></td>
             </tr>
             <% });%> 
           
@@ -110,7 +116,7 @@
 
        var userRol = "<%= user.rol %>"
          if(userRol !== "admin"){
-          var columnaNombreVendedor = table.column(18).index();
+          var columnaNombreVendedor = table.column(21).index();
             console.log(columnaNombreVendedor);
 
           var nombre = "<%= user.nombre %>";
