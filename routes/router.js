@@ -78,7 +78,7 @@ router.get('/home', authController.isAuthenticated,authController.authRol, NoCac
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Respuestas_Formulario!A2:Z",
+        range: "Respuestas_Formulario!A2:AB",
     })
 
     var user = req.user;
@@ -149,7 +149,7 @@ router.get('/listarVentasGoogle', authController.isAuthenticated, NoCache.nocach
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Respuestas_Formulario!A2:Z",
+        range: "Respuestas_Formulario!A2:AB",
     })
 
     var user = req.user;

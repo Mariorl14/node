@@ -211,6 +211,19 @@
 
                 <div class="col-md-4 mb-4">
   
+                  <div class="form-outline">
+                    <select class="form-select form-select-lg" id="tipoLlamada" name="tipoLlamada" required>
+                      <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
+                      <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
+                      <option value="WhatsApp">WhatsApp</option>
+                   </select>
+                    <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
+                  </div>
+  
+                </div>
+
+                <div class="col-md-4 mb-4">
+  
                     <div class="form-outline">
                       <div class="prueba">
                       <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />

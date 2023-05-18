@@ -128,6 +128,7 @@ exports.registrarVentaGoogle = async (req, res) => {
         provincia, 
         canton, 
         distritp,
+        tipoLlamada,
         nombreVendedor,
         nombreVendedorFreelance} = req.body;
 
@@ -238,6 +239,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             provincia, 
             canton, 
             distritp,
+            tipoLlamada,
             nombreVendedor,
             fecha,
             nombreVendedorFreelance1]]
@@ -334,6 +336,7 @@ exports.registrarVentaFijo = async (req, res) => {
         provincia, 
         canton, 
         distritp,
+        tipoLlamada,
         nombreVendedor,
         nombreVendedorFreelance} = req.body;
 
@@ -506,6 +509,7 @@ exports.registrarVentaFijo = async (req, res) => {
                 provincia, 
                 canton, 
                 distritp,
+                tipoLlamada,
                 nombreVendedor,
                 fecha,
                 nombreVendedorFreelance1]]
