@@ -125,11 +125,24 @@
   </head>
 
   <body>
-<style>
-@page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
-body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
-</style>
-    <table border="0" cellpadding="0" cellspacing="0" id="sheet0" style="height: 1000px; margin-right:-15 ; background-color: white;">
+    <style>
+      @page {
+        margin: 0.5in;
+      }
+      
+      body {
+        margin: 0.5in;
+      }
+      
+      #sheet0 {
+        height: 1100px;
+        width: 950px;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      }
+      </style>
+   <table border="0" cellpadding="0" cellspacing="0" id="sheet0">
         <col class="col0">
         <col class="col1">
         <col class="col2">
@@ -292,27 +305,24 @@ Email: admin@favtel.com</td>
 
   <script>
     const button = document.getElementById('download-button');
-
-function generatePDF() {
-  // Choose the element that your content will be rendered to.
-  const element = document.getElementById('sheet0');
-
-  const options = {
-    margin: [0.5, 0.5],
-    filename: '<%= codigoEmpleado %>_<%= employeeName %>_<%= fechaPago %>.pdf',
-    // rest of the options
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
-      scale: 4,
-      letterRendering: true,
-      scrollY: -window.scrollY + 350, // adjust the value as needed
-    },
-    jsPDF: { unit: 'in', format: 'a3', orientation: 'portrait' },
-  };
-
-  html2pdf().from(element).set(options).save();
-}
-
-button.addEventListener('click', generatePDF);
-
-  </script>
+    
+    function generatePDF() {
+      const element = document.getElementById('sheet0');
+    
+      const options = {
+        margin: [-4, 0.25, 0.25, 0.25], // Márgenes en pulgadas: [arriba, derecha, abajo, izquierda]
+        filename: 'nombre_del_archivo.pdf',
+        // Resto de las opciones
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 4,
+          letterRendering: true,
+        },
+        jsPDF: { unit: 'in', format: 'a3', orientation: 'portrait' },
+      };
+    
+      html2pdf().from(element).set(options).save();
+    }
+    
+    button.addEventListener('click', generatePDF);
+    </script>
