@@ -129,7 +129,11 @@ exports.registrarVentaGoogle = async (req, res) => {
         canton, 
         distritp,
         tipoLlamada,
+        correo,
+        comentario,
+        cobro_de_envio,
         nombreVendedor,
+        codigoLiberty,
         nombreVendedorFreelance} = req.body;
 
         //const {fecha} = req.date;
@@ -242,7 +246,8 @@ exports.registrarVentaGoogle = async (req, res) => {
             tipoLlamada,
             nombreVendedor,
             fecha,
-            nombreVendedorFreelance1]]
+            nombreVendedorFreelance1,
+            cobro_de_envio]]
         }, 
     })
     /*
@@ -315,7 +320,29 @@ exports.registrarVentaGoogle = async (req, res) => {
      }
      */
 
+     /*
     res.redirect("misEstadisticas");
+    */
+    res.render('plantilla', {
+        nombreVendedor,
+        nombreDelCliente, 
+            segundoNombreDelCliente,
+            primerApellidoDelCliente,
+            segundoApellidoDelCliente,
+            numeroDeDocumento,
+            numeroCelularDeTramite,
+            enCasoDePortabilidad,
+            numeroDeContacto1,
+            provincia, 
+            canton, 
+            distritp,
+            direccionExacta,
+            tipoDePlanAContratar,
+            codigoLiberty,
+            cobro_de_envio,
+            correo,
+            comentario
+      });
 }
 exports.registrarVentaFijo = async (req, res) => {
     const {nombreDelCliente, 

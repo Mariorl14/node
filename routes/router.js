@@ -109,6 +109,9 @@ router.get('/layout',  (req, res)=>{
 router.get('/colilla',  (req, res)=>{
     res.render('colilla', {user:req.user})
 })
+router.get('/plantilla',  (req, res)=>{
+    res.render('plantilla', {user:req.user})
+})
 router.get('/ventas',authController.isAuthenticated, (req, res)=>{
     conexion.query('SELECT * FROM Ventas', (error, results)=>{
         if(error){

@@ -1,5 +1,5 @@
 <style>
-  div.PruebaDvi{
+  div.prueba12,div.PruebaDvi{
     display: none;
   }
 </style>
@@ -206,6 +206,8 @@
                     <input type="text" id="distritp" name="distritp" class="form-control form-control-lg" required/>
                     <label class="form-user" for="distritp">Distrito</label>
                   </div>
+
+                  
   
                 </div>
 
@@ -216,18 +218,59 @@
                       <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
                       <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
                       <option value="WhatsApp">WhatsApp</option>
+                      <option value="Referido">Referido</option>
+                      <option value="Familiar">Familiar</option>
+                      <option value="Presencial">Presencial</option>
                    </select>
                     <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
                   </div>
   
                 </div>
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="correo" name="correo" class="form-control form-control-lg" required/>
+                      <label class="form-user" for="correo">Correo del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="comentario" name="comentario" class="form-control form-control-lg"/>
+                      <label class="form-user" for="comentario">Comentario</label>
+                    </div>
+
+    
+                  </div>
+
+                  <div class="col-md-4 mb-4">
+                  <div class="form-outline">
+                    <select class="form-select form-select-lg" id="cobro_de_envio" name="cobro_de_envio" required>
+                      <option value="SI - 2000">Si - 2000</option>
+                      <option value="NO">NO</option>
+                   </select>
+                    <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
+                  </div>
+                </div>
+                </div>
 
                 <div class="col-md-4 mb-4">
   
+
+                  <br>
+
                     <div class="form-outline">
                       <div class="prueba">
                       <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
                       <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
+                      </div>
+                    </div>
+                    <div class="form-outline">
+                      <div class="prueba12">
+                      <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
+                      <label class="form-user" for="codigoLiberty" >Nombre Vendedor</label>
                       </div>
                     </div>
 
@@ -245,8 +288,10 @@
     
                   </div>
   
-  
               </div>
+
+
+          </div>
   
              
   
