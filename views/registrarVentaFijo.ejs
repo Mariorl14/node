@@ -1,5 +1,5 @@
 <style>
-  div.PruebaDvi{
+  div.prueba12,div.PruebaDvi{
     display: none;
   }
 </style>
@@ -145,6 +145,14 @@
                    </div>
                       
                   </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="nombrePromocion" name="nombrePromocion" class="form-control form-control-lg" />
+                      <label class="form-user" for="nombrePromocion">Nombre de la Promocion</label>
+                    </div>
+    
+                  </div>
     
     
                   <div class="col-md-4 mb-4">
@@ -190,6 +198,14 @@
                     </div>
     
                   </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="barrio" name="barrio" class="form-control form-control-lg" />
+                      <label class="form-user" for="barrio">Barrio</label>
+                    </div>
+    
+                  </div>
 
                   <div class="col-md-4 mb-4">
   
@@ -222,6 +238,23 @@
                     </div>
     
                   </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="correo" name="correo" class="form-control form-control-lg" required/>
+                      <label class="form-user" for="correo">Correo del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="comentario" name="comentario" class="form-control form-control-lg"/>
+                      <label class="form-user" for="comentario">Comentario</label>
+                    </div>
+
+    
+                  </div>
   
                   <div class="col-md-4 mb-4">
     
@@ -232,6 +265,13 @@
                         </div>
                       </div>
       
+                    </div>
+
+                    <div class="form-outline">
+                      <div class="prueba12">
+                      <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
+                      <label class="form-user" for="codigoLiberty" >Nombre Vendedor</label>
+                      </div>
                     </div>
 
                     <div class="form-outline" id="freelance">
@@ -263,9 +303,9 @@
     </div> 
 
     <script>
-      let StandaloneOptions = ["Mega 30", "Mega 100", "Mega 325", "Mega 450 HBO Max", "Mega 300 HBO Max", "Mega 150 HBO Max"];
-      let TriplePlayOptions = ["Triple Play Mega 30", "Triple Play Mega 100", "Triple Play Mega 325"];
-      let DoblePlayOptions = ["Doble Play Mega 30", "Doble Play Mega 100", "Doble Play Mega 325"];
+      let StandaloneOptions = ["Mega 30","Mega 50", "Mega 100", "Mega 325", "Mega 450 HBO Max", "Mega 300 HBO Max", "Mega 150 HBO Max"];
+      let TriplePlayOptions = ["Triple Play Mega 30", "Triple Play Mega 50", "Triple Play Mega 100", "Triple Play Mega 325"];
+      let DoblePlayOptions = ["Doble Play Mega 30","Doble Play Mega 50", "Doble Play Mega 100", "Doble Play Mega 325"];
       let LibertyTotalSINTV = ["75 Mbps + 45 GB SIN TV", "75 Mbps + 30 GB SIN TV", "75 Mbps + 18 GB SIN TV", "150 Mbps + ILIMITADO SIN TV", "150 Mbps + 35 GB SIN TV", "150 Mbps + 25 GB SIN TV", "350 Mbps + ILIMITADO SIN TV", "350 Mbps + 35 GB SIN TV", "350 Mbps + 25 GB SIN TV"];
       let LibertyTotalCONTV = ["75 Mbps + 45 GB CON TV", "75 Mbps + 30 GB CON TV", "75 Mbps + 18 GB CON TV", "150 Mbps + ILIMITADO CON TV", "150 Mbps + 35 GB CON TV", "150 Mbps + 25 GB CON TV", "350 Mbps + ILIMITADO CON TV", "350 Mbps + 35 GB CON TV", "350 Mbps + 25 GB CON TV"];
       let TipodeTramiteOptions = ["Standalone", "Doble Play", "Triple Play", "Liberty Total (Con television)", "Liberty Total (Sin television)"];

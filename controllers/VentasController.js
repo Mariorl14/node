@@ -351,6 +351,7 @@ exports.registrarVentaFijo = async (req, res) => {
         segundoApellidoDelCliente, 
         tipoDeDocumentoDeIdentidad, 
         numeroDeDocumento, 
+        nombrePromocion,
         nacionalidad, 
         numeroCelularDeTramite,
         numeroDeContacto1, 
@@ -358,11 +359,15 @@ exports.registrarVentaFijo = async (req, res) => {
         tipoDeTramite, 
         tipoDePlanAContratar, 
         valorPlanDiferente,
+        codigoLiberty,
         coordenadas,
+        correo,
+        comentario,
         direccionExacta, 
         provincia, 
         canton, 
         distritp,
+        barrio,
         tipoLlamada,
         nombreVendedor,
         nombreVendedorFreelance} = req.body;
@@ -400,6 +405,10 @@ exports.registrarVentaFijo = async (req, res) => {
 
             var ValorDelPlan = "21900";
     
+           }else if(tipoDePlanAContratar=="Mega 50"){
+    
+            var ValorDelPlan = "22900";
+    
            }else if(tipoDePlanAContratar=="Mega 100"){
     
             var ValorDelPlan = "24500";
@@ -426,6 +435,8 @@ exports.registrarVentaFijo = async (req, res) => {
     
            }else if(tipoDePlanAContratar=="Triple Play Mega 30"){
             var ValorDelPlan = "31500";
+           }else if(tipoDePlanAContratar=="Triple Play Mega 50"){
+            var ValorDelPlan = "32000";
            }
            else if(tipoDePlanAContratar=="Triple Play Mega 100"){
             var ValorDelPlan = "33500";
@@ -433,6 +444,8 @@ exports.registrarVentaFijo = async (req, res) => {
             var ValorDelPlan = "51500";
            }else if(tipoDePlanAContratar=="Doble Play Mega 30"){
             var ValorDelPlan = "30000";
+           }else if(tipoDePlanAContratar=="Doble Play Mega 50"){
+            var ValorDelPlan = "33500";
            }
            else if(tipoDePlanAContratar=="Doble Play Mega 100"){
             var ValorDelPlan = "32000";
@@ -543,9 +556,33 @@ exports.registrarVentaFijo = async (req, res) => {
             }, 
         })
 
+        res.render('colillaFijo', {
+            nombreVendedor,
+            nombreDelCliente, 
+                segundoNombreDelCliente,
+                primerApellidoDelCliente,
+                segundoApellidoDelCliente,
+                numeroDeDocumento,
+                nombrePromocion,
+                ValorDelPlan,
+                numeroDeContacto1,
+                provincia, 
+                canton, 
+                distritp,
+                barrio,
+                direccionExacta,
+                tipoDePlanAContratar,
+                codigoLiberty,
+                correo,
+                comentario,
+                coordenadas
+          });
+
+        /*
         res.redirect("misEstadisticas");
         console.log(tipoDePlanAContratar);
         console.log(nombreVendedor);
+        */
 }
 
 exports.listarVentaGoogle = async (req, res) => {

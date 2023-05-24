@@ -109,6 +109,9 @@ router.get('/layout',  (req, res)=>{
 router.get('/colilla',  (req, res)=>{
     res.render('colilla', {user:req.user})
 })
+router.get('/colillaFijo',  (req, res)=>{
+    res.render('colillaFijo', {user:req.user})
+})
 router.get('/plantilla',  (req, res)=>{
     res.render('plantilla', {user:req.user})
 })

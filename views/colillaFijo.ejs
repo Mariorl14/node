@@ -1,0 +1,104 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-7">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Plantilla de Venta Fijo</h3>
+          <form action="/generatePayslip" method="POST">
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-user" for="Favtel">Favtel</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-user" for="Usuario">Usuario : </label>
+                    </div>
+                  </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Vendedor">Vendedor : <%= nombreVendedor %> (<%= codigoLiberty %>)</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Nombre_de_Promocion">Nombre de la Promocion : <%= nombrePromocion %> </label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="paqueteOfrecido">Paquete Ofrecido : <%= tipoDePlanAContratar %> </label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Precio_Total">Precio Total : <%= ValorDelPlan %> </label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Nombre_del_cliente">Nombre del cliente : <%= nombreDelCliente %> <%= segundoNombreDelCliente %> <%= primerApellidoDelCliente %> <%= segundoApellidoDelCliente %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Numero_de_cedula">Numero de cedula : <%= numeroDeDocumento %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Numero_de_contacto">Numero de contacto : <%= numeroDeContacto1 %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Correo_electrónico">Correo electrónico : <%= correo %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Provincia">Provincia : <%= provincia %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Cantón">Cantón : <%= canton %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Distrito">Distrito : <%= distritp %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="barrio">Barrio : <%= barrio %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Dirección_exacta">Dirección exacta : <%= direccionExacta %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Coordenadas">Coordenadas : <%= coordenadas %></label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="ngESTION">Numero de Gestion :</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-user" for="Comentarios">Comentarios : <%= comentario %></label>
+                </div>
+              </div>
+              
+            </div>
+
