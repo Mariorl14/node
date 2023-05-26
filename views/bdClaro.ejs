@@ -1,0 +1,78 @@
+<link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+<link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+<h1>BD Clientes</h1>
+
+
+<h2>Registro de Ventas Movil</h2>
+  <div  class="table-responsive">
+    
+    <table id="ventas" class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Numero</th>
+          <th scope="col">Cedula</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Asesor</th>
+          <th scope="col">Detalle</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i = 0; i < rows.length; i++) { %>
+          <tr>
+            <td><%= rows[i][0] %></td>
+            <td><%= rows[i][1] %></td>
+            <td><%= rows[i][2] %></td>
+            <td><%= rows[i][3] %></td>
+            <td><%= rows[i][4] %></td>
+            <td>
+              <a href="/edit/<%= i+2 %>">Edit</a>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+      
+      
+    </table>
+  
+  </div>
+  
+  <br>
+  <a href="registrarVenta.ejs" class="btn btn-outline-success">Registrar</a>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
+  
+  <script>
+    $(document).ready(function () {
+        var table = $('#ventas').DataTable({
+            order: [[0, 'des']],
+            //fixedHeader: true 
+        });
+       
+
+  });
+
+    function confirmar(id){
+      Swal.fire({
+    title: 'Seguro que quiere borrar este usuario '+id+'?',
+    text: "No se podra recuperar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Borrado!',
+        'El usuario fue borrado correctamente',
+        'success'
+      )
+      window.location = '/borrarUser/'+id;
+    }
+  })
+    }
+  </script>
