@@ -2,6 +2,11 @@
 <link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
 <h1>BD Clientes</h1>
 
+<h2>Usuario: 
+  <% if(user) {%>
+      <span class="badge bg-success"> <%= user.nombre %></span>
+      <%}%>
+</h2>
 
 <h2>Registro de Ventas Movil</h2>
   <div  class="table-responsive">
@@ -9,6 +14,7 @@
     <table id="ventas" class="table table-bordered">
       <thead>
         <tr>
+          <th scope="col">Consecutivo</th>
           <th scope="col">Numero</th>
           <th scope="col">Cedula</th>
           <th scope="col">Nombre</th>
@@ -25,6 +31,7 @@
             <td><%= rows[i][2] %></td>
             <td><%= rows[i][3] %></td>
             <td><%= rows[i][4] %></td>
+            <td><%= rows[i][5] %></td>
             <td>
               <a href="/edit/<%= i+2 %>">Edit</a>
             </td>
@@ -48,10 +55,23 @@
   <script>
     $(document).ready(function () {
         var table = $('#ventas').DataTable({
-            order: [[0, 'des']],
+          order: [ 0, 'asc' ]
             //fixedHeader: true 
         });
        
+        var userRol = "<%= user.rol %>"
+         if(userRol !== "admin"){
+          var columnaNombreVendedor = table.column(4).index();
+            console.log(columnaNombreVendedor);
+
+          var nombre = "<%= user.nombre %>";
+           console.log(nombre);
+
+
+            table.column(columnaNombreVendedor).search(nombre).draw();
+              console.log("linda");
+// Filtra la tabla por el valor de user.name en la columna "Nombre Vendedor"
+         }
 
   });
 

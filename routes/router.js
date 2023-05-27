@@ -117,7 +117,7 @@ router.get('/colillaFijo',  (req, res)=>{
 router.get('/plantilla',  (req, res)=>{
     res.render('plantilla', {user:req.user})
 })
-router.get('/bdClaro', async  (req, res)=>{
+router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -147,7 +147,7 @@ router.get('/bdClaro', async  (req, res)=>{
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Base Madre!A2:E",
+        range: "Base Madre!A2:F",
     })
 
     var user = req.user;
@@ -460,7 +460,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:E${rowId}`;
+    const range = `Base Madre!A${rowId}:F${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -498,12 +498,13 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column3,
       req.body.column4,
       req.body.column5,
+      req.body.column6,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:E${rowId}`;
+    const range = `Base Madre!A${rowId}:F${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
