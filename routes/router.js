@@ -156,6 +156,45 @@ router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache, async  (r
 
     res.render('bdClaro', {rows, user:user});
 })
+router.get('/bdKolbi',authController.isAuthenticated, NoCache.nocache, async  (req, res)=>{
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+    });
+
+/// client instance for auth
+    const client = await auth.getClient();
+
+    /// Instance of google sheets api 
+    const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+    const spreadsheetId = "1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg";
+    // Get DATA 
+
+
+
+    const metaData = await googleSheets.spreadsheets.get({
+        auth,
+        spreadsheetId
+    });
+
+    /// rows from spreadsheet
+
+   
+
+    const ventas = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Base Madre!A2:F",
+    })
+
+    var user = req.user;
+    const rows = ventas.data.values;
+
+
+    res.render('bdKolbi', {rows, user:user});
+})
 router.get('/ventas',authController.isAuthenticated, (req, res)=>{
     conexion.query('SELECT * FROM Ventas', (error, results)=>{
         if(error){
@@ -528,7 +567,94 @@ router.get('/edit/:rowId', async  (req, res) => {
     });
   });
 
+  router.get('/editKolbi/:rowId', async  (req, res) => {
 
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+      });
+      
+      // Create the client instance for authentication
+      const client = await auth.getClient();
+      
+      // Create an instance of the Google Sheets API
+      const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    // Get DATA 
+    const rowId = req.params.rowId;
+  
+    // Step 2: Retrieve row data from Google Sheets
+    // Set up authentication as mentioned in the previous response
+  
+    const spreadsheetId = '1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg';
+    const range = `Base Madre!A${rowId}:H${rowId}`;
+  
+    googleSheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    }, (err, response) => {
+      if (err) {
+        console.error('The API returned an error:', err);
+        res.send('Error retrieving row data');
+        return;
+      }
+  
+      const rowValues = response.data.values[0];
+  
+      // Step 3: Render the update view with retrieved data
+      res.render('updateViewBDKolbi', { rowId, rowValues }); // Assumes you have an 'update.ejs' view/template
+    });
+  });
+
+  router.post('/editKolbi/:rowId', async (req, res) => {
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+      });
+      
+      // Create the client instance for authentication
+      const client = await auth.getClient();
+      
+      // Create an instance of the Google Sheets API
+      const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    const rowId = req.params.rowId;
+    const updatedValues = [
+      req.body.column1,
+      req.body.column2,
+      req.body.column3,
+      req.body.column4,
+      req.body.column5,
+      req.body.column6,
+      req.body.column7,
+      req.body.column8,
+    ];
+  
+    // Set up authentication as mentioned in the previous response
+  
+    const spreadsheetId = '1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg';
+    const range = `Base Madre!A${rowId}:H${rowId}`;
+  
+    const requestBody = {
+      values: [updatedValues],
+    };
+  
+    googleSheets.spreadsheets.values.update({
+      spreadsheetId,
+      range,
+      valueInputOption: 'RAW',
+      resource: requestBody,
+    }, (err, response) => {
+      if (err) {
+        console.error('The API returned an error:', err);
+        res.send('Error updating row');
+        return;
+      }
+  
+      res.redirect('/bdKolbi'); // Redirect to the main page or any other desired location
+    });
+  });
 
 /*ROUTER PARA METODOS DEL CONTROLLER*/ 
 router.post('/register', authController.register)
