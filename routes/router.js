@@ -94,7 +94,7 @@ router.get('/home', authController.isAuthenticated,authController.authRol, NoCac
     res.render('home', {rows:rows,user:user});
 
 })
-router.get('/register',  (req, res)=>{
+router.get('/register', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     res.render('register', {user:req.user})
 })
 router.get('/layout',  (req, res)=>{
