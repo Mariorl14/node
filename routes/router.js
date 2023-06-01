@@ -80,7 +80,7 @@ router.get('/home', authController.isAuthenticated,authController.authRol, NoCac
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Respuestas_Formulario!A2:AB",
+        range: "Respuestas_Formulario!A2:AC",
     })
 
     var user = req.user;
@@ -460,7 +460,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:F${rowId}`;
+    const range = `Base Madre!A${rowId}:H${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -499,12 +499,14 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column4,
       req.body.column5,
       req.body.column6,
+      req.body.column7,
+      req.body.column8,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:F${rowId}`;
+    const range = `Base Madre!A${rowId}:H${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

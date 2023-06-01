@@ -1,3 +1,8 @@
+    <style>
+      #column7D,#column8H{
+        display: none;
+      }
+    </style>
     <div class="container py-5 h-100">
         <div class="row justify-content-center align-items-center h-100">
           <div class="col-12 col-lg-9 col-xl-7">
@@ -111,6 +116,22 @@
                       </div>
       
                     </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline" id="column7D">
+                        <label class="form-user"  for="column7">Dia:</label>
+                        <input type="date" id="column7" name="column7" class="form-control form-control-lg" >
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline"id="column8H">
+                        <label class="form-user" for="column8">Hora:</label>
+                        <input type="time" id="column8" name="column8" class="form-control form-control-lg" >
+                      </div>
+      
+                    </div>
                   </div>
       
                   <div class="mt-4 pt-2">
@@ -123,3 +144,22 @@
           </div>
         </div>
       </div>
+      <script>
+        // Get the current time
+        var currentTime = new Date();
+        var currentDate = new Date();
+  
+        // Format the time in 'HH:mm' format
+        var year = currentDate.getFullYear();
+      var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      var day = String(currentDate.getDate()).padStart(2, '0');
+      var formattedDate = `${year}-${month}-${day}`;
+        var hours = String(currentTime.getHours()).padStart(2, '0');
+        var minutes = String(currentTime.getMinutes()).padStart(2, '0');
+        var formattedTime = `${hours}:${minutes}`;
+  
+        // Set the value of the time input field to the current time
+        document.getElementById('column7').value = formattedDate;
+        document.getElementById('column8').value = formattedTime;
+        console.log(formattedDate)
+      </script>
