@@ -147,7 +147,7 @@ router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache, async  (r
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Base Madre!A2:F",
+        range: "Base Madre!A2:I",
     })
 
     var user = req.user;
@@ -186,7 +186,7 @@ router.get('/bdKolbi',authController.isAuthenticated, NoCache.nocache, async  (r
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Base Madre!A2:F",
+        range: "Base Madre!A2:I",
     })
 
     var user = req.user;
@@ -499,7 +499,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:H${rowId}`;
+    const range = `Base Madre!A${rowId}:I${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -540,12 +540,13 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column6,
       req.body.column7,
       req.body.column8,
+      req.body.column9,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:H${rowId}`;
+    const range = `Base Madre!A${rowId}:I${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
@@ -587,7 +588,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg';
-    const range = `Base Madre!A${rowId}:H${rowId}`;
+    const range = `Base Madre!A${rowId}:I${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -629,12 +630,13 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column6,
       req.body.column7,
       req.body.column8,
+      req.body.column9,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg';
-    const range = `Base Madre!A${rowId}:H${rowId}`;
+    const range = `Base Madre!A${rowId}:I${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
