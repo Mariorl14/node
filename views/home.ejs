@@ -1,17 +1,31 @@
 <link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
 <link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
-<h2>Usuario: 
-  <% if(user) {%>
-      <span class="badge bg-success"> <%= user.nombre %></span>
-      <%}%>
-</h2>
+<style>
+  table {
+    }
+    body{
+      margin-top: -30px;
+    }
+</style>
 
 <h2>Registro de Ventas</h2>
+<div id="position" style="font-size: 24px;">
+  <input type="checkbox" name="pos" value="Activada">Activada
+  <input type="checkbox" name="pos" value="No Activada">No Activada
+  <input type="checkbox" name="pos3" value="Pendiente" checked>Pendiente Activar
+  <input type="checkbox" name="pos2" value="Entregada">Entregada
+  <input type="checkbox" name="pos2" value="No Entregada">No Entregada
+  <input type="checkbox" name="pos4" value="Pendiente" >Pendiente Entrega 
+</div>
 <div  class="table-responsive">
+  
+  <hr>
   
   <table id="ventas" class="table table-bordered">
     <thead>
       <tr>
+        <th scope="col">Acciones</th>
+        <th scope="col">Numero Celular De Tramite</th>
         <th scope="col">Nombre Del Cliente</th>
         <th scope="col">Segundo Nombre Del Cliente</th>
         <th scope="col">Primer Apellido Del Cliente</th>
@@ -19,7 +33,6 @@
         <th scope="col">Tipo De Documento De Identidad</th>
         <th scope="col">Numero De Documento</th>
         <th scope="col">Nacionalidad</th>
-        <th scope="col">Numero Celular De Tramite</th>
         <th scope="col">Tipo De Tramite</th>
         <th scope="col">Numero de Contrato</th>
         <th scope="col">Numero de Abonado</th>
@@ -28,53 +41,62 @@
         <th scope="col">En Caso De Portabilidad</th>
         <th scope="col">Tipo De Plan A Contratar</th>
         <th scope="col">Valor Del Plan</th>
-        <th scope="col">Direccion Exacta</th>
         <th scope="col">Provincia</th>
         <th scope="col">Canton</th>
         <th scope="col">Distrito</th>
-        <th scope="col">Nombre del Vendedor</th>
+        <th scope="col" style="display: none;">Nombre del Vendedor</th>
         <th scope="col">Fecha</th>
         <th scope="col">Vendedor Freelance</th>
+        <th scope="col">¿Cobro Envio?</th>
         <th scope="col">Activada / No Activada</th>
         <th scope="col">Entregada / No Entregada</th>
         <th scope="col">Rechazada / Cliente no Contesta</th>
         <th scope="col">Detalle</th>
+        <th scope="col">Entregador</th>
+        <th scope="col">Llamada de Activacion </th>
+        <th scope="col">Fecha de Activacion</th>
       </tr>
     </thead>
     <tbody>
-      <% rows.forEach((row) => {%>
+      <% for (let i = 0; i < rows.length; i++) { %>
         <tr>
-          <td><%= row[0] %></td>
-          <td><%= row[1] %></td>
-          <td><%=row[2] %></td>
-          <td><%=row[3] %></td>
-          <td><%=row[4] %></td>
-          <td><%=row[5] %></td>
-          <td><%=row[6] %></td>
-          <td><%=row[7] %></td>
-          <td><%=row[8] %></td>
-          <td><%=row[9] %></td>
-          <td><%=row[10] %></td>
-          <td><%=row[11] %></td>
-          <td><%=row[12] %></td>
-          <td><%=row[13] %></td>
-          <td><%=row[14] %></td>
-          <td><%=row[15] %></td>
-          <td><%=row[16] %></td>
-          <td><%=row[17] %></td>
-          <td><%=row[18] %></td>
-          <td><%=row[19] %></td>
-          <td><%=row[21] %></td>
-          <td><%=row[22] %></td>
-          <td><%=row[23] %></td>
-          <td><%=row[25] %></td>
-          <td><%=row[26] %></td>
-          <td><%=row[27] %></td>
-          <td><%=row[28] %></td>
+          <td>
+            <a href="/editHOME/<%= i+2 %>">Edit</a>
+          </td>
+          <td><%= rows[i][7] %></td>
+          <td><%= rows[i][0] %></td>
+          <td><%= rows[i][1] %></td>
+          <td><%= rows[i][2] %></td>
+          <td><%= rows[i][3] %></td>
+          <td><%= rows[i][4] %></td>
+          <td><%= rows[i][5] %></td>
+          <td><%= rows[i][6] %></td>
+          <td><%= rows[i][8] %></td>
+          <td><%= rows[i][9] %></td>
+          <td><%= rows[i][10] %></td>
+          <td><%= rows[i][11] %></td>
+          <td><%= rows[i][12] %></td>
+          <td><%= rows[i][13] %></td>
+          <td><%= rows[i][14] %></td>
+          <td><%= rows[i][15] %></td>
+          <td><%= rows[i][17] %></td>
+          <td><%= rows[i][18] %></td>
+          <td><%= rows[i][19] %></td>
+          <td style="display: none;"><%= rows[i][21] %></td>
+          <td><%= rows[i][22] %></td>
+          <td><%= rows[i][23] %></td>
+          <td><%= rows[i][24] %></td>
+          <td><%= rows[i][25] %></td>
+          <td><%= rows[i][26] %></td>
+          <td><%= rows[i][27] %></td>
+          <td><%= rows[i][28] %></td>
+          <td><%= rows[i][29] %></td>
+          <td><%= rows[i][30] %></td>
+          <td><%= rows[i][31] %></td>
         </tr>
-        <% });%> 
-      
+      <% } %>
     </tbody>
+
     
     
   </table>
@@ -98,16 +120,92 @@
 
 <script>
   $(document).ready(function () {
-      var table = $('#ventas').DataTable({
+    $.fn.dataTable.ext.search.push(
+    function( settings, searchData, index, rowData, counter ) {
+      var positions = $('input:checkbox[name="pos"]:checked').map(function() {
+        return this.value;
+      }).get();
+   
+      if (positions.length === 0) {
+        return true;
+      }
+      
+      if (positions.indexOf(searchData[24]) !== -1) {
+        return true;
+      }
+      
+      return false;
+    }
+  );
+  $.fn.dataTable.ext.search.push(
+    function( settings, searchData, index, rowData, counter ) {
+      var positions = $('input:checkbox[name="pos2"]:checked').map(function() {
+        return this.value;
+      }).get();
+   
+      if (positions.length === 0) {
+        return true;
+      }
+      
+      if (positions.indexOf(searchData[25]) !== -1) {
+        return true;
+      }
+      
+      return false;
+    }
+  );
+  $.fn.dataTable.ext.search.push(
+    function( settings, searchData, index, rowData, counter ) {
+      var positions = $('input:checkbox[name="pos3"]:checked').map(function() {
+        return this.value;
+      }).get();
+   
+      if (positions.length === 0) {
+        return true;
+      }
+      
+      if (positions.indexOf(searchData[24]) !== -1) {
+        return true;
+      }
+      
+      return false;
+    }
+  );
+  $.fn.dataTable.ext.search.push(
+    function( settings, searchData, index, rowData, counter ) {
+      var positions = $('input:checkbox[name="pos4"]:checked').map(function() {
+        return this.value;
+      }).get();
+   
+      if (positions.length === 0) {
+        return true;
+      }
+      
+      if (positions.indexOf(searchData[25]) !== -1) {
+        return true;
+      }
+      
+      return false;
+    }
+  );
+  
+  var table = $('#ventas').DataTable({
           order: [[22, 'des']],
          // fixedHeader: true,
           dom: 'Bfrtip',
           buttons: [
              'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        columnDefs: [
+    { "width": "100%", "targets": 19 }
+  ]
       });
+  
+ $('input:checkbox').on('change', function () {
+    table.draw();
+ });
+      
 
-     
       $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
         $('#ventas thead tr:eq(1) th').each( function (i) {
          var title = $(this).text(); //es el nombre de la columna
@@ -122,11 +220,12 @@
     } );
 } );
 
+/*
 var tableData = table.data().toArray();
 var currentMonth = new Date().getMonth() + 1;
 
 var filteredData = tableData.filter(function(row) {
-  var dateString = row[21];
+  var dateString = row[8];
   // Convert the date string to a Date object
   var dateParts = dateString.split("/");
   var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
@@ -135,6 +234,7 @@ var filteredData = tableData.filter(function(row) {
 });
 
 table.clear().rows.add(filteredData).draw();
+*/
 
 
    
