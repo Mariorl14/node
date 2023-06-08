@@ -89,9 +89,20 @@ router.get('/home', authController.isAuthenticated,authController.authRol, NoCac
     if(rows==undefined){
         rows="";
     }
+    let query1 = 'SELECT * FROM users';
+    let results = {};
     
+    conexion.query(query1, (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            results.users = data;
+            // check if the second query has also been executed
+                res.render('home', {rows:rows, data: results, user: req.user });
+        }
+    });
 
-    res.render('home', {rows:rows,user:user});
+    
 
 })
 router.get('/register', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{

@@ -1,108 +1,148 @@
 <link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
 <link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
 <style>
-    body{
-      margin-top: -30px;
-    }
+  #div1{
+    width: 75%;
+    float: left;
+    margin-left: -100px;
+  }
+  #div2{
+    width: 25%;
+    float: right;
+    display: block;
+    border-style: solid; 
+    border-color: aqua;
+  }
+  #div3{
+    width: 16%;
+    float: right;
+    display: block;
+    border-style: solid; 
+    border-color: aqua;
+  }
+  #title{
+    margin-left: -100px;
+  }
 </style>
 
-<h2>Registro de Ventas</h2>
-<div id="position" style="font-size: 24px;">
-  <input type="checkbox" name="pos" value="Activada">Activada
-  <input type="checkbox" name="pos" value="No Activada">No Activada
-  <input type="checkbox" name="pos3" value="Pendiente" checked>Pendiente Activar
-  <input type="checkbox" name="pos2" value="Entregada">Entregada
-  <input type="checkbox" name="pos2" value="No Entregada">No Entregada
-  <input type="checkbox" name="pos4" value="Pendiente" >Pendiente Entrega 
-</div>
-<div  class="table-responsive">
+<h2 id="title">Registro de Ventas</h2>
+
+
+
+<div id="div1">
+  <div class="centered">
+    <div  class="table-responsive">
   
-  <hr>
-  
-  <table id="ventas" class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Acciones</th>
-        <th scope="col">Numero Celular De Tramite</th>
-        <th scope="col">Nombre Del Cliente</th>
-        <th scope="col">Segundo Nombre Del Cliente</th>
-        <th scope="col">Primer Apellido Del Cliente</th>
-        <th scope="col">Segundo Apellido Del Cliente</th>
-        <th scope="col">Tipo De Documento De Identidad</th>
-        <th scope="col">Numero De Documento</th>
-        <th scope="col">Nacionalidad</th>
-        <th scope="col">Tipo De Tramite</th>
-        <th scope="col">Numero de Contrato</th>
-        <th scope="col">Numero de Abonado</th>
-        <th scope="col">Numero De Contacto1</th>
-        <th scope="col">Numero De Contacto 2</th>
-        <th scope="col">En Caso De Portabilidad</th>
-        <th scope="col">Tipo De Plan A Contratar</th>
-        <th scope="col">Valor Del Plan</th>
-        <th scope="col">Provincia</th>
-        <th scope="col">Canton</th>
-        <th scope="col">Distrito</th>
-        <th scope="col" style="display: none;">Nombre del Vendedor</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Vendedor Freelance</th>
-        <th scope="col">¿Cobro Envio?</th>
-        <th scope="col">Activada / No Activada</th>
-        <th scope="col">Entregada / No Entregada</th>
-        <th scope="col">Rechazada / Cliente no Contesta</th>
-        <th scope="col">Detalle</th>
-        <th scope="col">Entregador</th>
-        <th scope="col">Llamada de Activacion </th>
-        <th scope="col">Fecha de Activacion</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (let i = 0; i < rows.length; i++) { %>
-        <tr>
-          <td>
-            <a href="/editHOME/<%= i+2 %>">Edit</a>
-          </td>
-          <td><%= rows[i][7] %></td>
-          <td><%= rows[i][0] %></td>
-          <td><%= rows[i][1] %></td>
-          <td><%= rows[i][2] %></td>
-          <td><%= rows[i][3] %></td>
-          <td><%= rows[i][4] %></td>
-          <td><%= rows[i][5] %></td>
-          <td><%= rows[i][6] %></td>
-          <td><%= rows[i][8] %></td>
-          <td><%= rows[i][9] %></td>
-          <td><%= rows[i][10] %></td>
-          <td><%= rows[i][11] %></td>
-          <td><%= rows[i][12] %></td>
-          <td><%= rows[i][13] %></td>
-          <td><%= rows[i][14] %></td>
-          <td><%= rows[i][15] %></td>
-          <td><%= rows[i][17] %></td>
-          <td><%= rows[i][18] %></td>
-          <td><%= rows[i][19] %></td>
-          <td style="display: none;"><%= rows[i][21] %></td>
-          <td><%= rows[i][22] %></td>
-          <td><%= rows[i][23] %></td>
-          <td><%= rows[i][24] %></td>
-          <td><%= rows[i][25] %></td>
-          <td><%= rows[i][26] %></td>
-          <td><%= rows[i][27] %></td>
-          <td><%= rows[i][28] %></td>
-          <td><%= rows[i][29] %></td>
-          <td><%= rows[i][30] %></td>
-          <td><%= rows[i][31] %></td>
-        </tr>
-      <% } %>
-    </tbody>
-
+      <hr>
+      
+      <table id="ventas" class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Acciones</th>
+            <th scope="col">Numero Celular De Tramite</th>
+            <th scope="col">Nombre Del Cliente</th>
+            <th scope="col">Segundo Nombre Del Cliente</th>
+            <th scope="col">Primer Apellido Del Cliente</th>
+            <th scope="col">Segundo Apellido Del Cliente</th>
+            <th scope="col">Tipo De Documento De Identidad</th>
+            <th scope="col">Numero De Documento</th>
+            <th scope="col">Nacionalidad</th>
+            <th scope="col">Tipo De Tramite</th>
+            <th scope="col">Numero de Contrato</th>
+            <th scope="col">Numero de Abonado</th>
+            <th scope="col">Numero De Contacto1</th>
+            <th scope="col">Numero De Contacto 2</th>
+            <th scope="col">En Caso De Portabilidad</th>
+            <th scope="col">Tipo De Plan A Contratar</th>
+            <th scope="col">Valor Del Plan</th>
+            <th scope="col">Provincia</th>
+            <th scope="col">Canton</th>
+            <th scope="col">Distrito</th>
+            <th scope="col">Nombre del Vendedor</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Vendedor Freelance</th>
+            <th scope="col">¿Cobro Envio?</th>
+            <th scope="col">Activada / No Activada</th>
+            <th scope="col">Entregada / No Entregada</th>
+            <th scope="col">Rechazada / Cliente no Contesta</th>
+            <th scope="col">Detalle</th>
+            <th scope="col">Entregador</th>
+            <th scope="col">Llamada de Activacion </th>
+            <th scope="col">Fecha de Activacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i < rows.length; i++) { %>
+            <tr>
+              <td>
+                <a href="/editHOME/<%= i+2 %>">Edit</a>
+              </td>
+              <td><%= rows[i][7] %></td>
+              <td><%= rows[i][0] %></td>
+              <td><%= rows[i][1] %></td>
+              <td><%= rows[i][2] %></td>
+              <td><%= rows[i][3] %></td>
+              <td><%= rows[i][4] %></td>
+              <td><%= rows[i][5] %></td>
+              <td><%= rows[i][6] %></td>
+              <td><%= rows[i][8] %></td>
+              <td><%= rows[i][9] %></td>
+              <td><%= rows[i][10] %></td>
+              <td><%= rows[i][11] %></td>
+              <td><%= rows[i][12] %></td>
+              <td><%= rows[i][13] %></td>
+              <td><%= rows[i][14] %></td>
+              <td><%= rows[i][15] %></td>
+              <td><%= rows[i][17] %></td>
+              <td><%= rows[i][18] %></td>
+              <td><%= rows[i][19] %></td>
+              <td><%= rows[i][21] %></td>
+              <td><%= rows[i][22] %></td>
+              <td><%= rows[i][23] %></td>
+              <td><%= rows[i][24] %></td>
+              <td><%= rows[i][25] %></td>
+              <td><%= rows[i][26] %></td>
+              <td><%= rows[i][27] %></td>
+              <td><%= rows[i][28] %></td>
+              <td><%= rows[i][29] %></td>
+              <td><%= rows[i][30] %></td>
+              <td><%= rows[i][31] %></td>
+            </tr>
+          <% } %>
+        </tbody>
     
+        
+        
+      </table>
     
-  </table>
-
+    </div>
+  </div>
 </div>
 
-<br>
-<a href="registrarVenta" class="btn btn-outline-success">Registrar</a>
+<br><br><br><br><br><br><br><br><br>
+
+<div id="div2">
+  <div class="centered">
+    <h6 style="text-align: center;">Estado:</h6>
+    <div id="position" style="font-size: 24px;">
+      <input type="checkbox" id="pos" name="pos3" value="Activada">
+        <label for="vehicle1">Activada</label><br>
+        <input type="checkbox" id="pos" name="pos3" value="No Activada">
+        <label for="vehicle1">No Activada</label><br>
+        <input type="checkbox" id="pos3"  name="pos3" value="Pendiente" checked>
+        <label for="vehicle1">Pendiente Act</label><br>
+        <input type="checkbox" id="pos2" name="pos2" value="Entregada">
+        <label for="vehicle1">Entregada</label><br>
+        <input type="checkbox" id="pos2" name="pos2" value="No Entregada">
+        <label for="vehicle1">No Entregada</label><br>
+        <input type="checkbox" id="pos4" name="pos4" value="Pendiente">
+        <label for="vehicle1">Pendiente Ent</label><br>
+    </div>
+  </div>
+</div>
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -186,18 +226,23 @@
       return false;
     }
   );
-  
   var table = $('#ventas').DataTable({
-          order: [[22, 'des']],
+    order: [[22, 'desc']],
          // fixedHeader: true,
           dom: 'Bfrtip',
+          /*
           buttons: [
              'csv', 'excel', 'pdf', 'print'
         ],
+        */
         columnDefs: [
     { "width": "100%", "targets": 19 }
   ]
+
+
       });
+
+
   
  $('input:checkbox').on('change', function () {
     table.draw();
