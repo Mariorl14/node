@@ -210,6 +210,8 @@ exports.registrarVentaGoogle = async (req, res) => {
 
     var numeroContrato = "";
     var numeroAbonado = "";
+    var activada = "Pendiente";
+    var entregada = "Pendiente";
 
     if(nombreVendedor!=="Ventas Freelance"){
         var nombreVendedorFreelance1 = "";
@@ -247,7 +249,9 @@ exports.registrarVentaGoogle = async (req, res) => {
             nombreVendedor,
             fecha,
             nombreVendedorFreelance1,
-            cobro_de_envio]]
+            cobro_de_envio,
+            activada,
+            entregada]]
         }, 
     })
     /*
