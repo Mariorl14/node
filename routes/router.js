@@ -511,7 +511,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:I${rowId}`;
+    const range = `Base Madre!A${rowId}:L${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -553,12 +553,15 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column7,
       req.body.column8,
       req.body.column9,
+      req.body.column10,
+      req.body.column11,
+      req.body.column12,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:I${rowId}`;
+    const range = `Base Madre!A${rowId}:L${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
@@ -600,7 +603,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg';
-    const range = `Base Madre!A${rowId}:I${rowId}`;
+    const range = `Base Madre!A${rowId}:L${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -643,12 +646,15 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column7,
       req.body.column8,
       req.body.column9,
+      req.body.column10,
+      req.body.column11,
+      req.body.column12,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1UabxXfeqYaGg9vV4vTDaVj8ZwNyjdFw9wIJ-BZVpqgg';
-    const range = `Base Madre!A${rowId}:I${rowId}`;
+    const range = `Base Madre!A${rowId}:L${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

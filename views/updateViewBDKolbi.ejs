@@ -52,6 +52,45 @@
                     <div class="col-md-6 mb-4">
       
                       <div class="form-outline">
+                        <label class="form-user" for="column10">¿Pre pago o Post pago?:</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column10" name="column10" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[5] %>" ><%= rowValues[9] %></option>
+                          <option value="Pre pago">Pre pago</option>
+                          <option value="Post pago">Post pago</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column11">¿Fijo?</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column11" name="column11" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[10] %>" ><%= rowValues[10] %></option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column12">Operador Fijo :</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column12" name="column12" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[11] %>" ><%= rowValues[11] %></option>
+                          <option value="Kolbi">Kolbi</option>
+                          <option value="Claro">Claro</option>
+                          <option value="Telecable">Telecable</option>
+                          <option value="Tigo">Tigo</option>
+                          <option value="Liberty">Liberty</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
                         <label class="form-user" for="column3">asesor:</label>
                          <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= rowValues[4] %>" disabled>
                       </div>
