@@ -39,6 +39,7 @@
         <thead>
           <tr>
             <th scope="col">Acciones</th>
+            <th scope="col">NIP</th>
             <th scope="col">Numero Celular De Tramite</th>
             <th scope="col">Nombre Del Cliente</th>
             <th scope="col">Segundo Nombre Del Cliente</th>
@@ -78,6 +79,7 @@
               <td>
                 <a href="/editHOME/<%= i+2 %>">Edit</a>
               </td>
+              <td><%= rows[i][35] %></td>
               <td><%= rows[i][7] %></td>
               <td><%= rows[i][0] %></td>
               <td><%= rows[i][1] %></td>
@@ -170,7 +172,7 @@
         return true;
       }
       
-      if (positions.indexOf(searchData[24]) !== -1) {
+      if (positions.indexOf(searchData[25]) !== -1) {
         return true;
       }
       
@@ -187,7 +189,7 @@
         return true;
       }
       
-      if (positions.indexOf(searchData[25]) !== -1) {
+      if (positions.indexOf(searchData[26]) !== -1) {
         return true;
       }
       
@@ -204,7 +206,7 @@
         return true;
       }
       
-      if (positions.indexOf(searchData[24]) !== -1) {
+      if (positions.indexOf(searchData[25]) !== -1) {
         return true;
       }
       
@@ -221,7 +223,7 @@
         return true;
       }
       
-      if (positions.indexOf(searchData[25]) !== -1) {
+      if (positions.indexOf(searchData[26]) !== -1) {
         return true;
       }
       
