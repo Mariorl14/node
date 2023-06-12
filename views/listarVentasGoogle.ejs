@@ -12,6 +12,7 @@
     <table id="ventas" class="table table-bordered">
       <thead>
         <tr>
+          <th scope="col">Acciones</th>
           <th scope="col">Nombre Del Cliente</th>
           <th scope="col">Segundo Nombre Del Cliente</th>
           <th scope="col">Primer Apellido Del Cliente</th>
@@ -26,7 +27,6 @@
           <th scope="col">En Caso De Portabilidad</th>
           <th scope="col">Tipo De Plan A Contratar</th>
           <th scope="col">Valor Del Plan</th>
-          <th scope="col">Direccion Exacta</th>
           <th scope="col">Provincia</th>
           <th scope="col">Canton</th>
           <th scope="col">Distrito</th>
@@ -36,38 +36,41 @@
         <th scope="col">Entregada / No Entregada</th>
         <th scope="col">Rechazada / Cliente no Contesta</th>
         <th scope="col">Detalle</th>
+        <th scope="col">NIP</th>
         </tr>
       </thead>
       <tbody>
-        <% rows.forEach((row) => {%>
+        <% for (let i = 0; i < rows.length; i++) { %>
           <tr>
-            <td><%= row[0] %></td>
-            <td><%= row[1] %></td>
-            <td><%=row[2] %></td>
-            <td><%=row[3] %></td>
-            <td><%=row[4] %></td>
-            <td><%=row[5] %></td>
-            <td><%=row[6] %></td>
-            <td><%=row[7] %></td>
-            <td><%=row[8] %></td>
-            <td><%=row[11] %></td>
-            <td><%=row[12] %></td>
-            <td><%=row[13] %></td>
-            <td><%=row[14] %></td>
-            <td><%=row[15] %></td>
-            <td><%=row[16] %></td>
-            <td><%=row[17] %></td>
-            <td><%=row[18] %></td>
-            <td><%=row[19] %></td>
-            <td><%=row[21] %></td>
-            <td><%=row[22] %></td>
-            <td><%=row[25] %></td>
-          <td><%=row[26] %></td>
-          <td><%=row[27] %></td>
-          <td><%=row[28] %></td>
+            <td>
+              <a href="/editVentas/<%= i+2 %>">Edit</a>
+            </td>
+            <td><%= rows[i][0] %></td>
+            <td><%= rows[i][1] %></td>
+            <td><%= rows[i][2] %></td>
+            <td><%= rows[i][3] %></td>
+            <td><%= rows[i][4] %></td>
+            <td><%= rows[i][5] %></td>
+            <td><%= rows[i][6] %></td>
+            <td><%= rows[i][7] %></td>
+            <td><%= rows[i][8] %></td>
+            <td><%= rows[i][11] %></td>
+            <td><%= rows[i][12] %></td>
+            <td><%= rows[i][13] %></td>
+            <td><%= rows[i][14] %></td>
+            <td><%= rows[i][15] %></td>
+            <td><%= rows[i][17] %></td>
+            <td><%= rows[i][18] %></td>
+            <td><%= rows[i][19] %></td>
+            <td><%= rows[i][21] %></td>
+            <td><%= rows[i][22] %></td>
+            <td><%= rows[i][25] %></td>
+            <td><%= rows[i][26] %></td>
+            <td><%= rows[i][27] %></td>
+            <td><%= rows[i][28] %></td>
+            <td><%= rows[i][35] %></td>
           </tr>
-          <% });%> 
-        
+        <% } %>
       </tbody>
       
       

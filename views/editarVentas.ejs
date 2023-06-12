@@ -1,0 +1,369 @@
+<style>
+    div.prueba12,div.PruebaDvi{
+      display: none;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+ 
+  
+  <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-12">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Editar Form</h3>
+              <form action="/editVentasGoogle/<%= rowId %>" method="POST">
+    
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column1" name="column1" class="form-control form-control-lg" value="<%= rowValues[0] %>" disabled/>
+                      <label class="form-user" for="nombreDelCliente">Nombre del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column2" name="column2" class="form-control form-control-lg" value="<%= rowValues[1] %>" disabled/>
+                      <label class="form-user" for="segundoNombreDelCliente">Segundo Nombre del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column3" name="column3" class="form-control form-control-lg" value="<%= rowValues[2] %>" disabled/>
+                      <label class="form-user" for="primerApellidoDelCliente">Primer Apellido del Cliente</label>
+                    </div>
+    
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column4" name="column4" class="form-control form-control-lg" value="<%= rowValues[3] %>" disabled/>
+                      <label class="form-user" for="segundoApellidoDelCliente">Segundo Apellido del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= rowValues[4] %>" disabled/>
+                      <label class="form-label" for="nombre">Tipo De Documento De Identidad</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column6" name="column6" class="form-control form-control-lg" value="<%= rowValues[5] %>" disabled/>
+                      <label class="form-user" for="numeroDeDocumento">Numero De Documento</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column7" name="column7" class="form-control form-control-lg" value="<%= rowValues[6] %>" disabled/>
+                      <label class="form-label" for="nombre">Nacionalidad</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column8" name="column8" class="form-control form-control-lg" value="<%= rowValues[7] %>" disabled/>
+                      <label class="form-user" for="numeroCelularDeTramite">Numero Celular De Tramite</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column9" name="column9" class="form-control form-control-lg" value="<%= rowValues[8] %>" disabled/>
+                      <label class="form-label" for="nombre">Tipo De Tramite</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column10" name="column10" class="form-control form-control-lg" value="<%= rowValues[9] %>" disabled/>
+                      <label class="form-user" for="numeroDeContacto1">Numero de Contrato</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column11" name="column11" class="form-control form-control-lg" value="<%= rowValues[10] %>" disabled/>
+                      <label class="form-user" for="numeroDeContacto2">Numero de Abonado</label>
+                    </div>
+    
+                  </div>
+                  
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column12" name="column12" class="form-control form-control-lg" value="<%= rowValues[11] %>" disabled/>
+                      <label class="form-label" for="nombre">Numero de Contacto 1</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column13" name="column13" class="form-control form-control-lg" value="<%= rowValues[12] %>" disabled/>
+                      <label class="form-label" for="nombre">Numero de Contacto 2</label>
+                   </div>
+                      
+                  </div>
+    
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column14" name="column14" class="form-control form-control-lg" value="<%= rowValues[13] %>" disabled/>
+                      <label class="form-user" for="direccionExacta">En caso de Portabilidad</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column15" name="column15" class="form-control form-control-lg" value="<%= rowValues[14] %>" disabled/>
+                      <label class="form-label" for="nombre">Tipo de Plan a Contratar</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column16" name="column16" class="form-control form-control-lg" value="<%= rowValues[15] %>" disabled/>
+                      <label class="form-user" for="canton">Valor del Plan</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column17" name="column17" class="form-control form-control-lg" value="<%= rowValues[16] %>" disabled/>
+                      <label class="form-user" for="distritp">Direccion Exacta</label>
+                    </div>
+  
+                    
+    
+                  </div>
+  
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column18" name="column18" class="form-control form-control-lg" value="<%= rowValues[17] %>" disabled/>
+                      <label class="form-user" for="tipoLlamada">Provincia</label>
+                    </div>
+    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 mb-4">
+      
+                      <div class="form-outline">
+                        <input type="text" id="column19" name="column19" class="form-control form-control-lg" value="<%= rowValues[18] %>" disabled/>
+                        <label class="form-user" for="correo">Canton</label>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-4 mb-4">
+      
+                      <div class="form-outline">
+                        <input type="text" id="column20" name="column20" class="form-control form-control-lg" value="<%= rowValues[19] %>" disabled/>
+                        <label class="form-user" for="comentario">Distrito</label>
+                      </div>
+  
+      
+                    </div>
+  
+                    <div class="col-md-4 mb-4">
+                    <div class="form-outline">
+                        <input type="text" id="column21" name="column21" class="form-control form-control-lg" value="<%= rowValues[20] %>" disabled/>
+                      <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
+                    </div>
+                  </div>
+                  </div>
+  
+                  <div class="col-md-4 mb-4">
+    
+  
+  
+                      <div class="form-outline">
+                        <div class="prueba">
+                            <input type="text" id="column22" name="column22" class="form-control form-control-lg" value="<%= rowValues[21] %>" disabled/>
+                        <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
+                        </div>
+                      </div>
+                      <div class="form-outline">
+                        <div class="prueba12">
+                            <input type="text" id="column23" name="column23" class="form-control form-control-lg" value="<%= rowValues[22] %>" disabled/>
+                        <label class="form-user" for="codigoLiberty" >Fecha</label>
+                        </div>
+                      </div>
+  
+                      <div class="form-outline" >
+                        <div class="PruebaDvi">
+                            <input type="text" id="column24" name="column24" class="form-control form-control-lg" value="<%= rowValues[23] %>" disabled/>
+                        <label class="form-user" for="nombreVendedorFreelance" >Vendedor Freelance</label>
+                        </div>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <input type="text" id="column25" name="column25" class="form-control form-control-lg" value="<%= rowValues[24] %>" disabled/>
+                          <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column26" name="column26" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[25] %>" ><%= rowValues[25] %></option>
+                                <option value="Activada">Activada</option>
+                                <option value="No Activada">No Activada</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Activada / No Activada</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column27" name="column27" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[26] %>" ><%= rowValues[26] %></option>
+                                <option value="No Entregada">No Entregada</option>
+                                <option value="Entregada">Entregada</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Entregada / No Entregada</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column28" name="column28" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[27] %>" ><%= rowValues[27] %></option>
+                                <option value="Cliente no Contesta">Cliente no Contesta</option>
+                                <option value="Rechazada">Rechazada</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Rechazada / Cliente no Contesta</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <input type="text" id="column29" name="column29" class="form-control form-control-lg" value="<%= rowValues[28] %>" disabled/>
+                          <label class="form-user" for="tipoLlamada">Detalle</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column630" name="column30" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[29] %>" ><%= rowValues[29] %></option>
+                                <option value="Rapi Entregas">Rapi Entregas</option>
+                                <option value="Almatelecom">Almatelecom</option>
+                                <option value="Ronal SJ">Ronal SJ</option>
+                                <option value="Jose Guanacaste">Jose Guanacaste</option>
+                                <option value="Correos">Correos</option>
+                                <option value="Ventas Oficina ">Ventas Oficina </option>
+                                <option value="Allan Porras">Allan Porras</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Entregador</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column31" name="column31" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[30] %>" ><%= rowValues[30] %></option>
+                                <option value="AAA">AAA</option>
+                                <option value="BAA">BAA</option>
+                                <option value="ATP">ATP</option>
+                                <option value="SUSP">SUSP</option>
+                                <option value="PP">PP</option>
+                                <option value="NA">NA</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Estados</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column32" name="column32" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[31] %>" ><%= rowValues[31] %></option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Llamada de Activacion </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <input type="date" id="column33" name="column33" class="form-control form-control-lg" value="<%= rowValues[32] %>" disabled/>
+                          <label class="form-user" for="tipoLlamada">Fecha de Activacion</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column34" name="column34" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[35] %>" ><%= rowValues[33] %></option>
+                                <option value="Alta">Alta</option>
+                                <option value="Baja">Baja</option>
+                                <option value="No Portada">No Portada</option>
+                                <option value="Suspendida">Suspendida</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Primera Revision </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column35" name="column35" class="form-control form-control-lg" disabled>
+                                <option value="<%= rowValues[35] %>" ><%= rowValues[34] %></option>
+                                <option value="Alta">Alta</option>
+                                <option value="Baja">Baja</option>
+                                <option value="No Portada">No Portada</option>
+                                <option value="Suspendida">Suspendida</option>
+                              </select>
+                          <label class="form-user" for="tipoLlamada">Segunda Revision </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="column36" name="column36" class="form-control form-control-lg" value="<%= rowValues[35] %>" />
+                        <label class="form-user" for="tipoLlamada">NIP</label>
+                      </div>
+                      </div>
+
+    
+                </div>
+  
+  
+            </div>
+    
+               
+    
+                <div class="mt-4 pt-2">
+                  <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
+                </div>
+    
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
