@@ -66,11 +66,12 @@
             <th scope="col">Activada / No Activada</th>
             <th scope="col">Entregada / No Entregada</th>
             <th scope="col">Rechazada / Cliente no Contesta</th>
-            <th scope="col">Detalle</th>
+            <th scope="col">Detalle de Entrega</th>
             <th scope="col">Entregador</th>
             <th scope="col">Estado</th>
             <th scope="col">Llamada de Activacion </th>
             <th scope="col">Fecha de Activacion</th>
+            <th scope="col">Detalle de Activacion</th>
           </tr>
         </thead>
         <tbody>
@@ -79,7 +80,7 @@
               <td>
                 <a href="/editHOME/<%= i+2 %>">Edit</a>
               </td>
-              <td><%= rows[i][35] %></td>
+              <td><%= rows[i][33] %></td>
               <td><%= rows[i][7] %></td>
               <td><%= rows[i][0] %></td>
               <td><%= rows[i][1] %></td>
@@ -111,6 +112,7 @@
               <td><%= rows[i][30] %></td>
               <td><%= rows[i][31] %></td>
               <td><%= rows[i][32] %></td>
+              <td><%= rows[i][36] %></td>
             </tr>
           <% } %>
         </tbody>
