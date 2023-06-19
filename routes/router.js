@@ -167,7 +167,7 @@ router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache, async  (r
 
     res.render('bdClaro', {rows, user:user});
 })
-router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authController.bdFijo, async  (req, res)=>{
+router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache,  async  (req, res)=>{
   const auth = new google.auth.GoogleAuth({
       keyFile: "credentials.json",
       scopes: "https://www.googleapis.com/auth/spreadsheets",

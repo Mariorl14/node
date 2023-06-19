@@ -201,8 +201,7 @@ exports.bdFijo = async (req, res, next)=>{
 
     if(req.user.nombre !== 'Mario Enrique Rodriguez Loria' && 
     'Monserrat Rodríguez Fernández' &&
-     'Javier Andrés Vargas Vega'&&
-     'Norlin López Villagra'){
+     'Javier Andrés Vargas Vega'&& 'Norlin López Villagra'){
         try {
             res.status(401)
             return res.redirect('/bdClaro')
