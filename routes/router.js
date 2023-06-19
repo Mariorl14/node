@@ -180,7 +180,7 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
   const googleSheets = google.sheets({ version: "v4", auth: client});
 
 
-  const spreadsheetId = "1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8";
+  const spreadsheetId = "1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI";
   // Get DATA 
 
 
@@ -197,7 +197,7 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
   const ventas = await googleSheets.spreadsheets.values.get({
       auth,
       spreadsheetId,
-      range: "Base Madre!A2:I",
+      range: "Base Madre!A2:S",
   })
 
   var user = req.user;
@@ -681,8 +681,8 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Step 2: Retrieve row data from Google Sheets
     // Set up authentication as mentioned in the previous response
   
-    const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const spreadsheetId = '1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI';
+    const range = `Base Madre!A${rowId}:S${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -727,12 +727,16 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column10,
       req.body.column11,
       req.body.column12,
+      req.body.column13,
+      req.body.column14,
+      req.body.column15,
+      req.body.column16,
     ];
   
     // Set up authentication as mentioned in the previous response
   
-    const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const spreadsheetId = '1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI';
+    const range = `Base Madre!A${rowId}:S${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

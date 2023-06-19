@@ -10,12 +10,13 @@
 
 <h2>Registro de Ventas Fijo</h2> 
 <div id="position" style="font-size: 24px;">
-  <input type="checkbox" name="pos" value="No Localizado 1">No localizado 1
-  <input type="checkbox" name="pos" value="No Localizado 2">No localizado 2
-  <input type="checkbox" name="pos" value="No Localizado 3">No localizado 3
-  <input type="checkbox" name="pos" value="Seguimiento">Seguimiento
-  <input type="checkbox" name="pos" value="Llamar Luego/ Interesado">Llamar Luego/ Interesado
-  <input type="checkbox" name="pos" value="-" checked>Vacio
+  <input type="checkbox" name="pos" value="SAN JOSE">SAN JOSE
+  <input type="checkbox" name="pos" value="CARTAGO">CARTAGO
+  <input type="checkbox" name="pos" value="ALAJUELA">ALAJUELA
+  <input type="checkbox" name="pos" value="HEREDIA">HEREDIA
+  <input type="checkbox" name="pos" value="PUNTARENAS">PUNTARENAS
+  <input type="checkbox" name="pos" value="GUANACASTE">GUANACASTE
+  <input type="checkbox" name="pos" value="LIMON">LIMON
 </div>
 <hr>
     
@@ -24,29 +25,33 @@
     <table id="ventas" class="table table-bordered">
       <thead>
         <tr>
+          <th scope="col">Acciones</th>
           <th scope="col">Consecutivo</th>
-          <th scope="col">Numero</th>
           <th scope="col">Cedula</th>
           <th scope="col">Nombre</th>
+          <th scope="col">Telefono 1</th>
+          <th scope="col">Telefono 2</th>
           <th scope="col">Asesor</th>
           <th scope="col">Detalle</th>
           <th scope="col">Comentario</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Provincia</th>
         </tr>
       </thead>
       <tbody>
         <% for (let i = 0; i < rows.length; i++) { %>
           <tr>
-            <td><%= rows[i][0] %></td>
-            <td><%= rows[i][1] %></td>
-            <td><%= rows[i][2] %></td>
-            <td><%= rows[i][3] %></td>
-            <td><%= rows[i][4] %></td>
-            <td><%= rows[i][5] %></td>
-            <td><%= rows[i][8] %></td>
             <td>
               <a href="/editBDFijo/<%= i+2 %>">Edit</a>
             </td>
+            <td><%= rows[i][0] %></td>
+            <td><%= rows[i][1] %></td>
+            <td><%= rows[i][2] %></td>
+            <td><%= rows[i][9] %></td>
+            <td><%= rows[i][10] %></td>
+            <td><%= rows[i][11] %></td>
+            <td><%= rows[i][12] %></td>
+            <td><%= rows[i][15] %></td>
+            <td><%= rows[i][3] %></td>
           </tr>
         <% } %>
       </tbody>
@@ -77,7 +82,7 @@
         return true;
       }
       
-      if (positions.indexOf(searchData[5]) !== -1) {
+      if (positions.indexOf(searchData[9]) !== -1) {
         return true;
       }
       
@@ -94,7 +99,7 @@
 
         var userRol = "<%= user.rol %>"
          if(userRol !== "admin"){
-          var columnaNombreVendedor = table.column(4).index();
+          var columnaNombreVendedor = table.column(6).index();
             console.log(columnaNombreVendedor);
 
           var nombre = "<%= user.nombre %>";
