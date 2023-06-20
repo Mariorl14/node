@@ -17,6 +17,7 @@
   <input type="checkbox" name="pos" value="PUNTARENAS">PUNTARENAS
   <input type="checkbox" name="pos" value="GUANACASTE">GUANACASTE
   <input type="checkbox" name="pos" value="LIMON">LIMON
+  <input type="checkbox" name="pos1" value="-" checked>Vacio
 </div>
 <hr>
     
@@ -83,6 +84,23 @@
       }
       
       if (positions.indexOf(searchData[9]) !== -1) {
+        return true;
+      }
+      
+      return false;
+    }
+  );
+  $.fn.dataTable.ext.search.push(
+    function( settings, searchData, index, rowData, counter ) {
+      var positions = $('input:checkbox[name="pos1"]:checked').map(function() {
+        return this.value;
+      }).get();
+   
+      if (positions.length === 0) {
+        return true;
+      }
+      
+      if (positions.indexOf(searchData[7]) !== -1) {
         return true;
       }
       
