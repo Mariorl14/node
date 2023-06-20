@@ -2,6 +2,8 @@ const conexion = require('../database/db');
 const {google} = require("googleapis");
 const { userInfo } = require('os');
 const {promisify} = require('util');
+const nodemailer = require('nodemailer');
+
 
 exports.registrarVenta = async (req, res)=>{
     try {
@@ -346,6 +348,29 @@ exports.registrarVentaGoogle = async (req, res) => {
             cobro_de_envio,
             correo,
             comentario
+      });
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mariorl040301@gmail.com',
+          pass: 'zhpixgqlgyoussrx'
+        }
+      });
+
+      const mailOptions = {
+        from: 'mariorl040301@gmail.com',
+        to: 'mariorl040301@gmail.com',
+        subject: 'Venta Generada',
+        text: 'Venta generada por: ' + nombreVendedor
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
       });
 }
 exports.registrarVentaFijo = async (req, res) => {
