@@ -13,16 +13,17 @@
     border-style: solid; 
     border-color: aqua;
   }
-  #div3{
-    width: 16%;
-    float: right;
-    display: block;
-    border-style: solid; 
-    border-color: aqua;
+  @media screen and (max-width: 500px) {
+  
+    #div1 {
+      margin-left: 10px;
+      width: 100%;
+      float: inline-start;
   }
-  #title{
-    margin-left: -100px;
+  #div2 {
+    width: 100%;
   }
+}
 </style>
 
 <h2 id="title">Registro de Ventas</h2>
