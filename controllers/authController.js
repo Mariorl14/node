@@ -197,11 +197,10 @@ exports.authColillas = async (req, res, next)=>{
     }
 
 }
+/*
 exports.bdFijo = async (req, res, next)=>{
 
-    if(req.user.nombre !== 'Mario Enrique Rodriguez Loria' && 
-    'Monserrat Rodríguez Fernández' &&
-     'Javier Andrés Vargas Vega'&& 'Norlin López Villagra'){
+    if(req.user.rol !== 'admin' || req.user.rol !== 'ventasFijo'){
         try {
             res.status(401)
             return res.redirect('/bdClaro')
@@ -214,3 +213,4 @@ exports.bdFijo = async (req, res, next)=>{
     }
 
 }
+*/
