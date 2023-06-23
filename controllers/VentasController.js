@@ -362,7 +362,7 @@ exports.registrarVentaGoogle = async (req, res) => {
         from: 'mariorl040301@gmail.com',
         to: 'mariorl040301@gmail.com',
         subject: 'Venta Generada',
-        text: 'Venta generada por: ' + nombreVendedor
+        text: 'Venta generada por: ' + nombreVendedor + tipoDePlanAContratar
       };
       
       transporter.sendMail(mailOptions, function(error, info){
@@ -616,6 +616,29 @@ exports.registrarVentaFijo = async (req, res) => {
         console.log(tipoDePlanAContratar);
         console.log(nombreVendedor);
         */
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'mariorl040301@gmail.com',
+              pass: 'zhpixgqlgyoussrx'
+            }
+          });
+    
+          const mailOptions = {
+            from: 'mariorl040301@gmail.com',
+            to: 'mariorl040301@gmail.com',
+            subject: 'Venta Generada Fijo',
+            text: 'Venta generada por: ' + nombreVendedor + tipoDePlanAContratar
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
 }
 
 exports.listarVentaGoogle = async (req, res) => {
