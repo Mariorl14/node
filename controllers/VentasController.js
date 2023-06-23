@@ -544,6 +544,8 @@ exports.registrarVentaFijo = async (req, res) => {
     
         var numeroContrato = "";
         var numeroAbonado = "";
+        var activada = "Pendiente";
+        var entregada = "Pendiente";
 
         if(nombreVendedor!=="Ventas Freelance"){
             var nombreVendedorFreelance1 = "";
@@ -581,7 +583,9 @@ exports.registrarVentaFijo = async (req, res) => {
                 tipoLlamada,
                 nombreVendedor,
                 fecha,
-                nombreVendedorFreelance1]]
+                nombreVendedorFreelance1,
+                activada,
+                entregada]]
             }, 
         })
 
