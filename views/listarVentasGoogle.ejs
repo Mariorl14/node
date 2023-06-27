@@ -6,6 +6,14 @@
         <%}%>
   </h2>
 
+  <h2>Validacion: 
+    <form id="number-form" action="/trigger-puppeteer" method="POST">
+      <input type="number" id="number" name="number" class="" style="width: 300px;"/>
+      <button id="#submit-button" class=" btn-primary" type="submit" style="width: 300px;">Validar</button>
+    </form>
+  </h2>
+  <div id="result-container"></div>
+
 <h2>Registro de Ventas Movil</h2>
   <div  class="table-responsive">
     
@@ -128,24 +136,28 @@
 
   });
 
-    function confirmar(id){
-      Swal.fire({
-    title: 'Seguro que quiere borrar este usuario '+id+'?',
-    text: "No se podra recuperar",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Confirmar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Borrado!',
-        'El usuario fue borrado correctamente',
-        'success'
-      )
-      window.location = '/borrarUser/'+id;
-    }
-  })
-    }
+
+  $('#number-form').on('submit', async (event) => {
+  event.preventDefault(); // Prevent form submission
+
+  const phoneNumber = $('#number').val();
+
+  try {
+    const response = await $.ajax({
+      url: '/trigger-puppeteer',
+      method: 'POST',
+      data: { number: phoneNumber },
+    });
+
+    // Extract the result value from the response
+    const result = response.result;
+
+    // Update the view with the result
+    $('#result-container').text(result);
+    $('#result-container').css('font-size', '24px'); 
+  } catch (error) {
+    console.error('Error triggering Puppeteer:', error);
+    // Handle the error if necessary
+  }
+});
   </script>
