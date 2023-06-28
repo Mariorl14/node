@@ -1365,7 +1365,7 @@ router.post('/trigger-puppeteer', async (req, res) => {
   var cedula = req.body.number;
   try {
     // Launch Puppeteer and open a new page
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     // Set navigation timeout to 60 seconds (or adjust as needed)
