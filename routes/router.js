@@ -1360,43 +1360,44 @@ router.post('/editFacturas/:rowId', async (req, res) => {
   });
 
   /* VALIDACION DE CEDULAS */
-  router.post('/trigger-puppeteer', async (req, res) => {
-    var cedula = req.body.number;
-    try {
-      // Launch Puppeteer and open a new page
-      const browser = await puppeteer.launch();
-      const page = await browser.newPage();
   
-      // Set navigation timeout to 60 seconds (or adjust as needed)
-      page.setDefaultNavigationTimeout(60000);
-  
-      // Navigate to the web page
-      await page.goto('https://libertycr.com/web/validacion');
-  
-      // Enter the phone number and submit the form
-      await page.type('#id-number', cedula);
-      await page.click('#validate-btn');
-  
-      // Wait for the result to be loaded on the page
-      await page.waitForSelector('.result-false');
-  
-      // Retrieve the result text
-      const result = await page.$eval('.result-false', (element) => element.textContent);
-  
-      // Close the browser
-      await browser.close();
+router.post('/trigger-puppeteer', async (req, res) => {
+  var cedula = req.body.number;
+  try {
+    // Launch Puppeteer and open a new page
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
 
-      // Return the result as the response
-      res.json({ result });
-      
+    // Set navigation timeout to 60 seconds (or adjust as needed)
+    page.setDefaultNavigationTimeout(60000);
+
+    // Navigate to the web page
+    await page.goto('https://libertycr.com/web/validacion');
+
+    // Enter the phone number and submit the form
+    await page.type('#id-number', cedula);
+    await page.click('#validate-btn');
+
+    // Wait for the result to be loaded on the page
+    await page.waitForSelector('.result-false');
+
+    // Retrieve the result text
+    const result = await page.$eval('.result-false', (element) => element.textContent);
+
+    // Close the browser
+    await browser.close();
+
+    // Return the result as the response
+    res.json({ result });
+    
 
 
-    } catch (error) {
-      // Handle any errors
-      console.error('Puppeteer error:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
+  } catch (error) {
+    // Handle any errors
+    console.error('Puppeteer error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
   
 
 
