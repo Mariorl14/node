@@ -3,6 +3,10 @@ const {google} = require("googleapis");
 const apiKey = 'AIzaSyDelxqh4i74UrJ1Rpdbxv91a8ksOgUGOEI';
 const {promisify} = require('util');
 const puppeteer = require('puppeteer');
+const multer = require('multer');
+const xlsx = require('xlsx');
+const fs = require('fs');
+const upload = multer({ dest: 'uploads/' });
 ///const {vistaPrincipal, vistaHome, vistaRegister} = require('../controllers/PageControllers')
 const router = express.Router()
 
@@ -24,6 +28,9 @@ const pdfMaker = require('../controllers/pdfMaker');
 /*ROUTER PARA VISTAS */
 router.get('/', (req, res)=>{
     res.render('login', {alert:false, layout: 'login' } )
+})
+router.get('/prueba', (req, res)=>{
+  res.render('prueba' )
 })
 
 router.get('/listarUsuarios', authController.isAuthenticated,authController.authRol, NoCache.nocache, (req, res)=>{
@@ -1399,6 +1406,67 @@ router.post('/trigger-puppeteer', async (req, res) => {
   }
 });
   
+/* Excel loop */
+
+// Endpoint for file upload
+/*
+router.post('/upload-excel', upload.single('file'), async (req, res) => {
+  try {
+    // Read the uploaded Excel file
+    const workbook = xlsx.readFile(req.file.path);
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+
+    // Extract the list of numbers from the Excel file
+    const numbers = xlsx.utils.sheet_to_json(worksheet, { header: 1 })[0];
+
+    // Perform web scraping for each number
+    for (const number of numbers) {
+      try {
+        // Launch Puppeteer and open a new page
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        // Set navigation timeout to 60 seconds (or adjust as needed)
+        page.setDefaultNavigationTimeout(60000);
+
+        // Navigate to the web page
+        await page.goto('https://libertycr.com/web/validacion');
+
+        // Insert the number into the relevant field
+        console.log('Number:', number);
+        await page.type('#id-number', number);
+
+        // Click the validation button
+        await page.click('#validate-btn');
+
+        // Wait for the result to be loaded on the page
+        await page.waitForSelector('.result-false');
+
+        // Retrieve the result text
+const resultElement = await page.$('.result-false');
+const result = await resultElement.evaluate(element => element.textContent.trim());
+console.log('Result:', result);
+
+
+
+        // Close the browser
+        await browser.close();
+      } catch (error) {
+        console.error('Puppeteer error:', error);
+      }
+    }
+
+    // Send the response
+    res.json({ message: 'Web scraping completed.' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+*/
 
 
 /*ROUTER PARA METODOS DEL CONTROLLER*/ 
