@@ -598,7 +598,7 @@ exports.registrarVentaFijo = async (req, res) => {
                 segundoApellidoDelCliente,
                 numeroDeDocumento,
                 nombrePromocion,
-                ValorDelPlan,
+                valorPlanDiferente,
                 numeroDeContacto1,
                 provincia, 
                 canton, 
