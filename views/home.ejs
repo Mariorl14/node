@@ -28,7 +28,7 @@
 
 <h2 id="title">Registro de Ventas</h2>
 
-
+<div id="row-count" style="font-size: 26px;"></div>
 
 <div id="div1">
   <div class="centered">
@@ -254,7 +254,31 @@
  $('input:checkbox').on('change', function () {
     table.draw();
  });
-      
+
+var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  var formattedDate = dd + '/' + mm + '/' + yyyy;
+
+  // Perform the filtering and count the rows
+  var rowCount = table
+    .columns(22) // Replace '2' with the index of the 'Fecha' column (zero-based)
+    .data()
+    .eq(0)
+    .filter(function(value) {
+      var rowDateParts = value.split('/');
+      var rowDate = rowDateParts[0].padStart(2, '0') + '/' + rowDateParts[1] + '/' + rowDateParts[2];
+      return rowDate === formattedDate;
+    })
+    .length;
+    console.log(formattedDate);
+
+  // Display the row count
+  console.log("Number of rows with today's date:", rowCount);
+
+      // Display the row count in the div with id 'row-count'
+      $('#row-count').text('Total de Ventas hoy: ' + rowCount);
 
       $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
         $('#ventas thead tr:eq(1) th').each( function (i) {
