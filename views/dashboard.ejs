@@ -53,10 +53,8 @@
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
-      ['Category', 'Value'],
-      <% for(var i=0; i<rows.length; i++) { %>
-        ['<%= rows[i][0] %>', <%= rows[i][1] %>],
-      <% } %>
+      ['Category', 'Value', 'prueba'],
+        ['<%= rows[0][0] %>', <%= rows[0][1] %>, <%= rows[0][2] %>],
     ]);
 
     var options = {
@@ -67,7 +65,8 @@
     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     chart.draw(data, options);
   }
-</script>
+</script> 
+
 
 <script type="text/javascript">
   google.charts.load('current', {'packages':['corechart']});

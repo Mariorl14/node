@@ -6,48 +6,399 @@
       <span class="badge bg-success"> <%= user.nombre %></span>
       <%}%>
 </h2>
-
-<div  class="table-responsive">
-  
-  <table id="ventas" class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col" >Nombre del Vendedor</th>
-        <th scope="col">Total de Ventas</th>
-        <th scope="col">Total de Activas</th>
-        <th scope="col">Total de No Entregadas</th>
-        <th scope="col">Total de Pendientes</th>
-        <th scope="col">Total de Rechazadas</th>
-        <th scope="col">Proyeccion</th>
-        <th scope="col">% de NO Activas</th>
-        <th scope="col">% de Caidas</th>
-        <th scope="col">% de Activacion</th>
-        <th scope="col">Dias Transcurridos</th>
-        <th scope="col">Dias Habiles</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% rows.forEach((row) => {%>
-        <tr>
-          <td ><%= row[0] %></td>
-          <td><%= row[1] %></td>
-          <td><%= row[2] %></td>
-          <td><%=row[3] %></td>
-          <td><%=row[4] %></td>
-          <td><%=row[5] %></td>
-          <td><%=row[6] %></td>
-          <td><%=row[7] %></td>
-          <td><%=row[8] %></td>
-          <td><%=row[9] %></td>
-          <td><%=row[10] %></td>
-          <td><%=row[11] %></td>
-        </tr>
-        <% });%> 
-      
-    </tbody>
-    
-    
-  </table>
+<br>
+<div id="position" style="font-size: 24px;">
+  <input type="checkbox" id="pos1" value="No Localizado 1">Enero
+  <input type="checkbox" id="pos2" value="No Localizado 1">Febrero
+  <input type="checkbox" id="pos3" value="No Localizado 1">Marzo
+  <input type="checkbox" id="pos4" value="No Localizado 1">Abril
+  <input type="checkbox" id="pos5" value="No Localizado 1">Mayo
+  <input type="checkbox" id="pos6" value="No Localizado 1" checked >Junio
+  <input type="checkbox" id="pos7" value="No Localizado 1">Julio
+  <input type="checkbox" id="pos8" value="No Localizado 1">Agosto
+  <input type="checkbox" id="pos9" value="No Localizado 1">Septiembre
+  <input type="checkbox" id="pos10" value="No Localizado 1">Octubre
+  <input type="checkbox" id="pos11" value="No Localizado 1">Noviembre
+  <input type="checkbox" id="pos12" value="No Localizado 1">Diciembre
+</div>
+<br>
+<div id="total">
+  <h1 style="align-text: center;">Ventas Totales</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][1] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][2] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][3] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="enero">
+  <h1 style="align-text: center;">Ventas Enero</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][6] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][7] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][8] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="febrero">
+  <h1 style="align-text: center;">Ventas Febrero</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][9] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][10] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][11] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="marzo">
+  <h1 style="align-text: center;">Ventas Marzo</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][12] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][13] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][14] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="abril">
+  <h1 style="align-text: center;">Ventas Abril</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][15] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][16] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][17] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="mayo">
+  <h1 style="align-text: center;">Ventas Mayo</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][18] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][19] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][20] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="junio">
+  <h1 style="align-text: center;">Ventas junio</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][21] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][22] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][23] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="julio">
+  <h1 style="align-text: center;">Ventas Julio</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][24] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][25] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][26] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="agosto">
+  <h1 style="align-text: center;">Ventas Agosto</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][27] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][28] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][29] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="septiembre">
+  <h1 style="align-text: center;">Ventas Septiembre</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][30] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][31] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][32] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="octubre">
+  <h1 style="align-text: center;">Ventas Octubre</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][33] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][34] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][35] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="noviembre">
+  <h1 style="align-text: center;">Ventas Noviembre</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][36] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][37] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][38] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="diciembre">
+  <h1 style="align-text: center;">Ventas Diciembre</h1>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][39] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas Activadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][40] %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas NO Entregadas</h5>
+                <p class="card-text" style="font-size: px;"><%= rows[0][41] %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 </div>
 
@@ -70,6 +421,212 @@ var columnaNombreVendedor = table.column(0).index();
 table.column(columnaNombreVendedor).search("<%= user.nombre %>").draw();
    
 });
+var checkboxEnero = document.getElementById("pos1");
+  var checkboxfebrero = document.getElementById("pos2");
+  var checkboxmarzo = document.getElementById("pos3");
+  var checkboxabril = document.getElementById("pos4");
+  var checkboxmayo = document.getElementById("pos5");
+  var checkboxjunio = document.getElementById("pos6");
+  var checkboxjulio = document.getElementById("pos7");
+  var checkboxagosto = document.getElementById("pos8");
+  var checkboxseptiembre = document.getElementById("pos9");
+  var checkboxoctubre = document.getElementById("pos10");
+  var checkboxnoviembre = document.getElementById("pos11");
+  var checkboxdiciembre = document.getElementById("pos12");
+
+  var Enero = document.getElementById("enero");
+  var febrero = document.getElementById("febrero");
+  var marzo = document.getElementById("marzo");
+  var abril = document.getElementById("abril");
+  var mayo = document.getElementById("mayo");
+  var junio = document.getElementById("junio");
+  var julio = document.getElementById("julio");
+  var agosto = document.getElementById("agosto");
+  var septiembre = document.getElementById("septiembre");
+  var octubre = document.getElementById("octubre");
+  var noviembre = document.getElementById("noviembre");
+  var diciembre = document.getElementById("diciembre");
+
+  if (checkboxEnero.checked == true) {
+    Enero.style.display = 'block';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  } else if(checkboxfebrero.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'block';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxmarzo.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'block';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxabril.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'block';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxmayo.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'block';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxjunio.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'block';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxjulio.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'block';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxagosto.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'block';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxseptiembre.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'block';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxoctubre.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'block';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxnoviembre.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'block';
+    diciembre.style.display = 'none';
+  }
+  else if(checkboxdiciembre.checked == true) {
+    Enero.style.display = 'none';
+    febrero.style.display = 'none';
+    marzo.style.display = 'none';
+    abril.style.display = 'none';
+    mayo.style.display = 'none';
+    junio.style.display = 'none';
+    julio.style.display = 'none';
+    agosto.style.display = 'none';
+    septiembre.style.display = 'none';
+    octubre.style.display = 'none';
+    noviembre.style.display = 'none';
+    diciembre.style.display = 'block';
+  }else {
+    Enero.style.display = 'block';
+    febrero.style.display = 'block';
+    marzo.style.display = 'block';
+    abril.style.display = 'block';
+    mayo.style.display = 'block';
+    junio.style.display = 'block';
+    julio.style.display = 'block';
+    agosto.style.display = 'block';
+    septiembre.style.display = 'block';
+    octubre.style.display = 'block';
+    noviembre.style.display = 'block';
+    diciembre.style.display = 'block';
+  }
 
   function confirmar(id){
     Swal.fire({
@@ -92,3 +649,77 @@ table.column(columnaNombreVendedor).search("<%= user.nombre %>").draw();
 })
   }
 </script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Value', 'prueba'],
+        ['<%= rows[0][0] %>', <%= rows[0][1] %>, <%= rows[0][2] %>],
+    ]);
+
+    var options = {
+      title: 'Total de Ventas',
+      colors: ['#fcba03', '#9403fc', '#FF9900', '#109618', '#990099', '#3B3EAC']
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script> 
+
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Value'],
+      <% for(var i=0; i<rows.length; i++) { %>
+        ['<%= rows[i][0] %>', <%= rows[i][2] %>],
+      <% } %>
+    ]);
+
+    var options = {
+      title: 'Total de activadas',
+      colors: ['#fcba03', '#9403fc', '#FF9900', '#109618', '#990099', '#3B3EAC']
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+    chart.draw(data, options);
+  }
+</script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Value'],
+      <% for(var i=0; i<rows.length; i++) { %>
+        ['<%= rows[i][0] %>', <%= rows[i][1] %>],
+      <% } %>
+    ]);
+
+    var options = {
+      title: 'My Chart',
+      legend: { position: 'none' },
+      chartArea: { width: '80%', height: '80%' },
+      colors: ['fcba03'],
+      hAxis: {
+        title: 'Category'
+      },
+      vAxis: {
+        title: 'Value'
+      }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+    chart.draw(data, options);
+  }
+</script>
+

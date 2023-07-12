@@ -522,16 +522,21 @@ router.get('/misEstadisticas', authController.isAuthenticated, NoCache.nocache,a
 
    
 
-    const ventas = await googleSheets.spreadsheets.values.get({
+    const ventasResponse  = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Gerencial!A2:L",
+        range: "Gerencial!A2:AP",
     })
 
     var user = req.user;
-    const rows = ventas.data.values;
+    const userName = req.user.nombre; // Name of the user to filter by
 
-    console.log(rows);
+
+    const ventas = ventasResponse.data.values || [];
+const filteredData = ventas.filter((row) => row[0] === userName);
+
+const rows = filteredData;
+
 
     res.render('misEstadisticas', {rows:rows,  user:user});
 
@@ -574,7 +579,6 @@ router.get('/dashboard', authController.isAuthenticated,authController.authRol, 
     var user = req.user;
     const rows = ventas.data.values;
 
-    console.log(rows);
 
     res.render('dashboard', {rows:rows,  user:user});
 
