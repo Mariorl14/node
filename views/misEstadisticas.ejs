@@ -8,18 +8,18 @@
 </h2>
 <br>
 <div id="position" style="font-size: 24px;">
-  <input type="checkbox" id="pos1" value="No Localizado 1">Enero
-  <input type="checkbox" id="pos2" value="No Localizado 1">Febrero
-  <input type="checkbox" id="pos3" value="No Localizado 1">Marzo
-  <input type="checkbox" id="pos4" value="No Localizado 1">Abril
-  <input type="checkbox" id="pos5" value="No Localizado 1">Mayo
-  <input type="checkbox" id="pos6" value="No Localizado 1" checked >Junio
-  <input type="checkbox" id="pos7" value="No Localizado 1">Julio
-  <input type="checkbox" id="pos8" value="No Localizado 1">Agosto
-  <input type="checkbox" id="pos9" value="No Localizado 1">Septiembre
-  <input type="checkbox" id="pos10" value="No Localizado 1">Octubre
-  <input type="checkbox" id="pos11" value="No Localizado 1">Noviembre
-  <input type="checkbox" id="pos12" value="No Localizado 1">Diciembre
+  <input type="checkbox" id="pos1" value="No Localizado 1" onclick="myFunctionEnero()">Enero
+  <input type="checkbox" id="pos2" value="No Localizado 1" onclick="myFunctionFebrero()">Febrero
+  <input type="checkbox" id="pos3" value="No Localizado 1" onclick="myFunctionMarzo()">Marzo
+  <input type="checkbox" id="pos4" value="No Localizado 1" onclick="myFunctionAbril()">Abril
+  <input type="checkbox" id="pos5" value="No Localizado 1" onclick="myFunctionMayo()">Mayo
+  <input type="checkbox" id="pos6" value="No Localizado 1" onclick="myFunctionJunio()" >Junio
+  <input type="checkbox" id="pos7" value="No Localizado 1" onclick="myFunctionJulio()">Julio
+  <input type="checkbox" id="pos8" value="No Localizado 1" onclick="myFunctionAgosto()">Agosto
+  <input type="checkbox" id="pos9" value="No Localizado 1" onclick="myFunctionSeptiembre()">Septiembre
+  <input type="checkbox" id="pos10" value="No Localizado 1" onclick="myFunctionOctubre()">Octubre
+  <input type="checkbox" id="pos11" value="No Localizado 1" onclick="myFunctionNoviembre()">Noviembre
+  <input type="checkbox" id="pos12" value="No Localizado 1" onclick="myFunctionDiciembre()">Diciembre
 </div>
 <br>
 <div id="total">
@@ -421,212 +421,6 @@ var columnaNombreVendedor = table.column(0).index();
 table.column(columnaNombreVendedor).search("<%= user.nombre %>").draw();
    
 });
-var checkboxEnero = document.getElementById("pos1");
-  var checkboxfebrero = document.getElementById("pos2");
-  var checkboxmarzo = document.getElementById("pos3");
-  var checkboxabril = document.getElementById("pos4");
-  var checkboxmayo = document.getElementById("pos5");
-  var checkboxjunio = document.getElementById("pos6");
-  var checkboxjulio = document.getElementById("pos7");
-  var checkboxagosto = document.getElementById("pos8");
-  var checkboxseptiembre = document.getElementById("pos9");
-  var checkboxoctubre = document.getElementById("pos10");
-  var checkboxnoviembre = document.getElementById("pos11");
-  var checkboxdiciembre = document.getElementById("pos12");
-
-  var Enero = document.getElementById("enero");
-  var febrero = document.getElementById("febrero");
-  var marzo = document.getElementById("marzo");
-  var abril = document.getElementById("abril");
-  var mayo = document.getElementById("mayo");
-  var junio = document.getElementById("junio");
-  var julio = document.getElementById("julio");
-  var agosto = document.getElementById("agosto");
-  var septiembre = document.getElementById("septiembre");
-  var octubre = document.getElementById("octubre");
-  var noviembre = document.getElementById("noviembre");
-  var diciembre = document.getElementById("diciembre");
-
-  if (checkboxEnero.checked == true) {
-    Enero.style.display = 'block';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  } else if(checkboxfebrero.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'block';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxmarzo.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'block';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxabril.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'block';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxmayo.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'block';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxjunio.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'block';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxjulio.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'block';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxagosto.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'block';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxseptiembre.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'block';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxoctubre.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'block';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxnoviembre.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'block';
-    diciembre.style.display = 'none';
-  }
-  else if(checkboxdiciembre.checked == true) {
-    Enero.style.display = 'none';
-    febrero.style.display = 'none';
-    marzo.style.display = 'none';
-    abril.style.display = 'none';
-    mayo.style.display = 'none';
-    junio.style.display = 'none';
-    julio.style.display = 'none';
-    agosto.style.display = 'none';
-    septiembre.style.display = 'none';
-    octubre.style.display = 'none';
-    noviembre.style.display = 'none';
-    diciembre.style.display = 'block';
-  }else {
-    Enero.style.display = 'block';
-    febrero.style.display = 'block';
-    marzo.style.display = 'block';
-    abril.style.display = 'block';
-    mayo.style.display = 'block';
-    junio.style.display = 'block';
-    julio.style.display = 'block';
-    agosto.style.display = 'block';
-    septiembre.style.display = 'block';
-    octubre.style.display = 'block';
-    noviembre.style.display = 'block';
-    diciembre.style.display = 'block';
-  }
 
   function confirmar(id){
     Swal.fire({
@@ -648,6 +442,108 @@ var checkboxEnero = document.getElementById("pos1");
   }
 })
   }
+</script>
+
+<script>
+    
+document.getElementById("enero").hidden=true;
+    document.getElementById("febrero").hidden=true;
+    document.getElementById("marzo").hidden=true;
+    document.getElementById("abril").hidden=true;
+    document.getElementById("mayo").hidden=true;
+    document.getElementById("junio").hidden=true;
+    document.getElementById("julio").hidden=true;
+    document.getElementById("agosto").hidden=true;
+    document.getElementById("septiembre").hidden=true;
+    document.getElementById("octubre").hidden=true;
+    document.getElementById("noviembre").hidden=true;
+    document.getElementById("diciembre").hidden=true;
+
+    function myFunctionEnero () {
+      if (document.getElementById("enero").hidden=true) {
+          document.getElementById("enero").hidden=false;
+        } else {
+          document.getElementById("enero").hidden=true;
+        }
+     }
+     function myFunctionFebrero () {
+      if (document.getElementById("febrero").hidden=true) {
+          document.getElementById("febrero").hidden=false;
+        } else {
+          document.getElementById("febrero").hidden=true;
+        }
+     }
+     function myFunctionMarzo () {
+      if (document.getElementById("marzo").checked=true) {
+          document.getElementById("marzo").hidden=false;
+        } else {
+          document.getElementById("marzo").hidden=true;
+        }
+     }
+     function myFunctionAbril () {
+      if (document.getElementById("abril").hidden=true) {
+          document.getElementById("abril").hidden=false;
+        } else {
+          document.getElementById("abril").hidden=true;
+        }
+     }
+     function myFunctionMayo () {
+      if (document.getElementById("mayo").hidden=true) {
+          document.getElementById("mayo").hidden=false;
+        } else {
+          document.getElementById("mayo").hidden=true;
+        }
+     }
+     function myFunctionJunio () {
+      if (document.getElementById("junio").hidden=true) {
+          document.getElementById("junio").hidden=false;
+        } else {
+          document.getElementById("junio").hidden=true;
+        }
+     }
+     function myFunctionJulio () {
+      if (document.getElementById("julio").hidden=true) {
+          document.getElementById("julio").hidden=false;
+        } else {
+          document.getElementById("julio").hidden=true;
+        }
+     }
+     function myFunctionAgosto () {
+      if (document.getElementById("agosto").hidden=true) {
+          document.getElementById("agosto").hidden=false;
+        } else {
+          document.getElementById("agosto").hidden=true;
+        }
+     }
+     function myFunctionSeptiembre () {
+      if (document.getElementById("septiembre").hidden=true) {
+          document.getElementById("septiembre").hidden=false;
+        } else {
+          document.getElementById("septiembre").hidden=true;
+        }
+     }
+     function myFunctionOctubre () {
+      if (document.getElementById("octubre").hidden=true) {
+          document.getElementById("octubre").hidden=false;
+        } else {
+          document.getElementById("octubre").hidden=true;
+        }
+     }
+     function myFunctionNoviembre () {
+      if (document.getElementById("noviembre").hidden=true) {
+          document.getElementById("noviembre").hidden=false;
+        } else {
+          document.getElementById("noviembre").hidden=true;
+        }
+     }
+     function myFunctionDiciembre () {
+      if (document.getElementById("diciembre").hidden=true) {
+          document.getElementById("diciembre").hidden=false;
+        } else {
+          document.getElementById("diciembre").hidden=true;
+        }
+     }
+
 </script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
