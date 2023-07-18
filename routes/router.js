@@ -528,17 +528,22 @@ router.get('/misEstadisticas', authController.isAuthenticated, NoCache.nocache,a
         range: "Gerencial!A2:AP",
     })
 
+    const ventasResponse2  = await googleSheets.spreadsheets.values.get({
+      auth,
+      spreadsheetId,
+      range: "Respuestas_Formulario!A2:AK",
+  })
     var user = req.user;
     const userName = req.user.nombre; // Name of the user to filter by
-
 
     const ventas = ventasResponse.data.values || [];
 const filteredData = ventas.filter((row) => row[0] === userName);
 
 const rows = filteredData;
+const rows2 = ventasResponse2.data.values;
 
 
-    res.render('misEstadisticas', {rows:rows,  user:user});
+    res.render('misEstadisticas', {rows:rows, rows2,  user:user});
 
     
 })
