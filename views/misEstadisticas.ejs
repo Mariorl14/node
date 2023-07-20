@@ -22,6 +22,7 @@
   <input type="checkbox" id="pos11" value="No Localizado 1" onclick="myFunctionNoviembre()">Noviembre
   <input type="checkbox" id="pos12" value="No Localizado 1" onclick="myFunctionDiciembre()">Diciembre
 </div>
+<div id="borrar"> <button type="button" class="btn btn-success"><a id="borrar" class="nav-link px-0" onclick="Limpiar();">Limpiar</a></button> </div>
 <br>
 <div id="total">
   <h1 style="align-text: center;">Ventas Totales</h1>
@@ -409,7 +410,7 @@
       <div id="position" style="font-size: 24px;">
         <input type="checkbox" id="pos" name="pos" value="Activada">Activada
         <input type="checkbox" id="pos" name="pos" value="No Activada">No Activada
-        <input type="checkbox" id="pos3"  name="pos3" value="Pendiente" >Pendiente
+        <input type="checkbox" id="pos3"  name="pos3" value="Pendiente" >Pendiente Activacion
         <input type="checkbox" id="pos2" name="pos2" value="Entregada">Entregada
         <input type="checkbox" id="pos2" name="pos2" value="No Entregada">No Entregada
         <input type="checkbox" id="pos4" name="pos4" value="Pendiente">Pendiente Entrega
@@ -569,7 +570,6 @@ $(document).ready(function () {
   );
 
         var table = $('#ventas').DataTable({
-            order: [[19, 'asc']],
             //fixedHeader: true 
         });
 
@@ -623,6 +623,22 @@ table.column(columnaNombreVendedor).search("<%= user.nombre %>").draw();
 
 <script>
     
+  function Limpiar(){
+    document.getElementById("enero").hidden=true;
+    document.getElementById("febrero").hidden=true;
+    document.getElementById("marzo").hidden=true;
+    document.getElementById("abril").hidden=true;
+    document.getElementById("mayo").hidden=true;
+    document.getElementById("junio").hidden=true;
+    document.getElementById("julio").hidden=true;
+    document.getElementById("agosto").hidden=true;
+    document.getElementById("septiembre").hidden=true;
+    document.getElementById("octubre").hidden=true;
+    document.getElementById("noviembre").hidden=true;
+    document.getElementById("diciembre").hidden=true;
+
+    console.log("Entramos");
+  }
 document.getElementById("enero").hidden=true;
     document.getElementById("febrero").hidden=true;
     document.getElementById("marzo").hidden=true;
