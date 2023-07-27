@@ -149,16 +149,16 @@ exports.registrarVentaGoogle = async (req, res) => {
        /// const {idVendedor} = req.idVendedor;
        
        if(tipoDePlanAContratar=="@1Plus"){
-
+        var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
         var ValorDelPlan = "13200";
 
        }else if(tipoDePlanAContratar=="@1"){
-
+        var tipoDePlanAContratar1 = "(CGS) Plan Con Dep @1 LTE PRO ST";
         var ValorDelPlan = "10700";
 
        }
        else if(tipoDePlanAContratar=="@2"){
-
+        var tipoDePlanAContratar1 = "(CHS) Plan Con Dep @2 LTE PRO ST";
         var ValorDelPlan = "16000";
 
        }
@@ -347,7 +347,8 @@ exports.registrarVentaGoogle = async (req, res) => {
             codigoLiberty,
             cobro_de_envio,
             correo,
-            comentario
+            comentario,
+            tipoDePlanAContratar1
       });
 
       const transporter = nodemailer.createTransport({

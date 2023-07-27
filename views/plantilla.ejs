@@ -70,11 +70,19 @@
                   <label class="form-user" for="Dirección_exacta">Dirección exacta : <%= direccionExacta %></label>
                 </div>
               </div>
+              <% if (tipoDePlanAContratar === "@1Plus"||tipoDePlanAContratar ==="@2"||tipoDePlanAContratar ==="@1") { %>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Tipo_de_plan">Tipo de plan : <%= tipoDePlanAContratar %></label>
+                  <label class="form-user" for="Tipo_de_plan">Tipo de plan : <%= tipoDePlanAContratar1 %></label>
                 </div>
               </div>
+              <% } else { %>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-user" for="Tipo_de_plan">Tipo de plan : <%= tipoDePlanAContratar %></label>
+                  </div>
+                </div>
+                <% } %>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
                   <label class="form-user" for="Cobro_de_envió">Cobro de envió : <%= cobro_de_envio %></label>
