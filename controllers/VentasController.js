@@ -642,6 +642,275 @@ exports.registrarVentaFijo = async (req, res) => {
             }
           });
 }
+/*REGISTRO DE VENTAS TICOCEL */
+exports.registrarVentaFijoTicocel = async (req, res) => {
+    const {nombreDelCliente, 
+        segundoNombreDelCliente,
+        primerApellidoDelCliente,
+        segundoApellidoDelCliente, 
+        tipoDeDocumentoDeIdentidad, 
+        numeroDeDocumento, 
+        nombrePromocion,
+        nacionalidad, 
+        numeroCelularDeTramite,
+        numeroDeContacto1, 
+        numeroDeContacto2,
+        tipoDeTramite, 
+        tipoDePlanAContratar, 
+        valorPlanDiferente,
+        Financiamiento,
+        codigoLiberty,
+        coordenadas,
+        correo,
+        comentario,
+        direccionExacta, 
+        provincia, 
+        canton, 
+        distritp,
+        barrio,
+        tipoLlamada,
+        nombreVendedor,
+        nombreVendedorFreelance} = req.body;
+
+        const auth = new google.auth.GoogleAuth({
+            keyFile: "credentials.json",
+            scopes: "https://www.googleapis.com/auth/spreadsheets",
+        });
+    
+    /// client instance for auth
+        const client = await auth.getClient();
+    
+        /// Instance of google sheets api 
+        const googleSheets = google.sheets({ version: "v4", auth: client});
+    
+    
+        const spreadsheetId = "14_KcaSpPh6wl13u8WvXnihr1czzu52TD9_JP9YVitRc";
+        // Get DATA 
+    
+    
+    
+        const metaData = await googleSheets.spreadsheets.get({
+            auth,
+            spreadsheetId
+        });
+    
+        /// rows from spreadsheet
+    
+        const getRows = await googleSheets.spreadsheets.values.get({
+            auth,
+            spreadsheetId,
+            range: "Registro_Ventas_Fijo_NIC",
+        })
+        if(tipoDePlanAContratar=="Mega 30"){
+
+            var ValorDelPlan = "21900";
+    
+           }else if(tipoDePlanAContratar=="Mega 50"){
+    
+            var ValorDelPlan = "22900";
+    
+           }else if(tipoDePlanAContratar=="Mega 100"){
+    
+            var ValorDelPlan = "24500";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 325"){
+    
+            var ValorDelPlan = "40000";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 450 HBO Max"){
+    
+            var ValorDelPlan = "42500";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 300 HBO Max"){
+    
+            var ValorDelPlan = "30000";
+    
+           }
+           else if(tipoDePlanAContratar=="Mega 150 HBO Max"){
+    
+            var ValorDelPlan = "27000";
+    
+           }else if(tipoDePlanAContratar=="Triple Play Mega 30"){
+            var ValorDelPlan = "31500";
+           }else if(tipoDePlanAContratar=="Triple Play Mega 50"){
+            var ValorDelPlan = "32000";
+           }
+           else if(tipoDePlanAContratar=="Triple Play Mega 100"){
+            var ValorDelPlan = "33500";
+           }else if(tipoDePlanAContratar=="Triple Play Mega 325"){
+            var ValorDelPlan = "51500";
+           }else if(tipoDePlanAContratar=="Doble Play Mega 30"){
+            var ValorDelPlan = "30000";
+           }else if(tipoDePlanAContratar=="Doble Play Mega 50"){
+            var ValorDelPlan = "33500";
+           }
+           else if(tipoDePlanAContratar=="Doble Play Mega 100"){
+            var ValorDelPlan = "32000";
+           }
+           else if(tipoDePlanAContratar=="Doble Play Mega 325"){
+            var ValorDelPlan = "50000";
+           }else if(tipoDePlanAContratar=="75 Mbps + 45 GB SIN TV"){
+            var ValorDelPlan = "46000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 30 GB SIN TV"){
+            var ValorDelPlan = "39000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 18 GB SIN TV"){
+            var ValorDelPlan = "32000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + ILIMITADO SIN TV"){
+            var ValorDelPlan = "49000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 35 GB SIN TV"){
+            var ValorDelPlan = "41000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 25 GB SIN TV"){
+            var ValorDelPlan = "34000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + ILIMITADO SIN TV"){
+            var ValorDelPlan = "53000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + 35 GB SIN TV"){
+            var ValorDelPlan = "45000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + 25 GB SIN TV"){
+            var ValorDelPlan = "38000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 45 GB CON TV"){
+            var ValorDelPlan = "52000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 30 GB CON TV"){
+            var ValorDelPlan = "45000";
+           }
+           else if(tipoDePlanAContratar=="75 Mbps + 18 GB CON TV"){
+            var ValorDelPlan = "38000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + ILIMITADO CON TV"){
+            var ValorDelPlan = "58000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 35 GB CON TV"){
+            var ValorDelPlan = "50000";
+           }
+           else if(tipoDePlanAContratar=="150 Mbps + 25 GB CON TV"){
+            var ValorDelPlan = "43000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + ILIMITADO CON TV"){
+            var ValorDelPlan = "63000";
+           }
+           else if(tipoDePlanAContratar=="350 Mbps + 35 GB CON TV"){
+            var ValorDelPlan = "55000";
+           }
+           else{
+            var ValorDelPlan = "48000";
+           }
+
+        var today = new Date();
+        var year = today.getFullYear();
+        var mes = today.getMonth()+1;
+        var dia = today.getDate();
+        var fecha =dia+"/"+mes+"/"+year;
+    
+        var numeroContrato = "";
+        var numeroAbonado = "";
+        var activada = "Pendiente";
+        var entregada = "Pendiente";
+
+        if(nombreVendedor!=="Ventas Freelance"){
+            var nombreVendedorFreelance1 = "";
+        }else{
+            var nombreVendedorFreelance1 = nombreVendedorFreelance;
+        }
+        /// Write rows 
+        await googleSheets.spreadsheets.values.append({
+            auth,
+            spreadsheetId,
+            range: "Registro_Ventas_Fijo_NIC",
+            valueInputOption: "USER_ENTERED",
+            resource: {
+             values: [[nombreDelCliente, 
+                segundoNombreDelCliente,
+                primerApellidoDelCliente,
+                segundoApellidoDelCliente, 
+                tipoDeDocumentoDeIdentidad, 
+                numeroDeDocumento, 
+                nacionalidad, 
+                numeroCelularDeTramite, 
+                tipoDeTramite,
+                numeroContrato,
+                numeroAbonado,
+                numeroDeContacto1, 
+                numeroDeContacto2, 
+                tipoDePlanAContratar, 
+                Financiamiento, 
+                valorPlanDiferente,
+                coordenadas,
+                direccionExacta, 
+                provincia, 
+                canton, 
+                distritp,
+                tipoLlamada,
+                nombreVendedor,
+                fecha,
+                nombreVendedorFreelance1,
+                activada,
+                entregada]]
+            }, 
+        })
+
+        res.render('colillaFijo', {
+            nombreVendedor,
+            nombreDelCliente, 
+                segundoNombreDelCliente,
+                primerApellidoDelCliente,
+                segundoApellidoDelCliente,
+                numeroDeDocumento,
+                nombrePromocion,
+                valorPlanDiferente,
+                numeroDeContacto1,
+                provincia, 
+                canton, 
+                distritp,
+                barrio,
+                direccionExacta,
+                tipoDePlanAContratar,
+                codigoLiberty,
+                correo,
+                comentario,
+                coordenadas
+          });
+
+        /*
+        res.redirect("misEstadisticas");
+        console.log(tipoDePlanAContratar);
+        console.log(nombreVendedor);
+        */
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'mariorl040301@gmail.com',
+              pass: 'zhpixgqlgyoussrx'
+            }
+          });
+    
+          const mailOptions = {
+            from: 'mariorl040301@gmail.com',
+            to: 'mariorl040301@gmail.com',
+            subject: 'Venta Generada Fijo',
+            text: 'Venta generada por: ' + nombreVendedor + tipoDePlanAContratar
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+}
 
 exports.listarVentaGoogle = async (req, res) => {
     const auth = new google.auth.GoogleAuth({

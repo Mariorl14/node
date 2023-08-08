@@ -1,0 +1,373 @@
+<style>
+  div.prueba12,div.PruebaDvi{
+    display: none;
+  }
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <h2>Vendedor: 
+      <% if(user) {%>
+          <span class="badge bg-success"> <%= user.nombre %></span>
+          <%}%>
+    </h2>
+  
+  <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-12">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrar Ventas Fijo</h3>
+              <form action="/pruebagoogle2" method="POST">
+    
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="nombreDelCliente" name="nombreDelCliente" class="form-control form-control-lg" />
+                      <label class="form-user" for="nombreDelCliente">Nombre del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="segundoNombreDelCliente" name="segundoNombreDelCliente" class="form-control form-control-lg"/>
+                      <label class="form-user" for="segundoNombreDelCliente">Segundo Nombre del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="primerApellidoDelCliente" name="primerApellidoDelCliente" class="form-control form-control-lg"/>
+                      <label class="form-user" for="primerApellidoDelCliente">Primer Apellido del Cliente</label>
+                    </div>
+    
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="segundoApellidoDelCliente" name="segundoApellidoDelCliente" class="form-control form-control-lg"/>
+                      <label class="form-user" for="segundoApellidoDelCliente">Segundo Apellido del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="tipoDeDocumentoDeIdentidad" name="tipoDeDocumentoDeIdentidad" >
+                         <option value="Identidad">Identidad</option>
+                         <option value="DIMEX">DIMEX</option>
+                         <option value="Pasaporte">Pasaporte</option>
+                         <option value="Carnet_de_Refugio">Carnet de Refugio</option>
+                         <option value="Permiso_Laboral">Permiso Laboral</option>
+                      </select>
+                      <label class="form-label" for="nombre">Tipo De Documento De Identidad</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="number" id="numeroDeDocumento" name="numeroDeDocumento" class="form-control form-control-lg"/>
+                      <label class="form-user" for="numeroDeDocumento">Numero De Documento</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="nacionalidad" name="nacionalidad" >
+                         <option value="Costarricense">Costarricense</option>
+                         <option value="Nicaraguense">Nicaraguense</option>
+                         <option value="Venezolano">Venezolano</option>
+                         <option value="Colombiano">Colombiano</option>
+                         <option value="Otro">Otro</option>
+                      </select>
+                      <label class="form-label" for="nacionalidad">Nacionalidad </label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="number" id="numeroCelularDeTramite" name="numeroCelularDeTramite" class="form-control form-control-lg"/>
+                      <label class="form-user" for="numeroCelularDeTramite">Numero Celular De Tramite</label>
+                    </div>
+    
+                  </div>
+    
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="number" id="numeroDeContacto1" name="numeroDeContacto1" class="form-control form-control-lg" />
+                      <label class="form-user" for="numeroDeContacto1">Numero De Contacto 1</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="number" id="numeroDeContacto2" name="numeroDeContacto2" class="form-control form-control-lg" />
+                      <label class="form-user" for="numeroDeContacto2">Numero De Contacto 2</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="tipoDeTramite" name="tipoDeTramite" >
+                        <option value="">Seleccionar Tipo de Tramite</option>
+                      </select>
+                      <label class="form-label" for="nombre">Tipo De Tramite</label>
+                   </div>
+                      
+                  </div>
+
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <div id="StandaloneSelect">
+
+                        <select class="form-select form-select-lg" id="tipoDePlanAContratar" name="tipoDePlanAContratar" >
+                        
+                       </select>
+                       <label class="form-label" for="nombre">Tipo De Plan A Contratar</label>
+
+                      </div>
+                   </div>
+                      
+                  </div>
+
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="number" id="valorPlanDiferente" name="valorPlanDiferente" class="form-control form-control-lg" />
+                      <label class="form-user" for="valorPlanDiferente">Valor Del Plan</label>
+                    </div>
+    
+                  </div>
+
+                  <div class="col-md-4 mb-4">
+  
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="Financiamiento" name="Financiamiento" required>
+                        <option value="Con Financiamiento">Con Financiamiento</option>
+                        <option value="Sin Financiamiento">Sin Financiamiento</option>
+                     </select>
+                      <label class="form-user" for="tipoLlamada">Financiamiento</label>
+                    </div>
+    
+                  </div>
+
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="nombrePromocion" name="nombrePromocion" class="form-control form-control-lg" />
+                      <label class="form-user" for="nombrePromocion">Nombre de la Promocion</label>
+                    </div>
+    
+                  </div>
+    
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="direccionExacta" name="direccionExacta" class="form-control form-control-lg" />
+                      <label class="form-user" for="direccionExacta">Direccion Exacta</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="provincia" name="provincia" >
+                         <option value="San_Jose">San Jose</option>
+                         <option value="Heredia">Heredia</option>
+                         <option value="Alajuela">Alajuela</option>
+                         <option value="Cartago">Cartago</option>
+                         <option value="Limon">Limon</option>
+                         <option value="Guanacaste">Guanacaste</option>
+                         <option value="Puntarenas">Puntarenas</option>
+                      </select>
+                      <label class="form-label" for="nombre">Provincia</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="canton" name="canton" class="form-control form-control-lg" />
+                      <label class="form-user" for="canton">Canton</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="distritp" name="distritp" class="form-control form-control-lg" />
+                      <label class="form-user" for="distritp">Distrito</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="barrio" name="barrio" class="form-control form-control-lg" />
+                      <label class="form-user" for="barrio">Barrio</label>
+                    </div>
+    
+                  </div>
+
+                  <div class="col-md-4 mb-4">
+  
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="tipoLlamada" name="tipoLlamada" required>
+                        <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
+                        <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                     </select>
+                      <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
+                    </div>
+    
+                  </div>
+
+
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="coordenadas" name="coordenadas" class="form-control form-control-lg" />
+                      <label class="form-user" for="coordenadas">Coordenadas</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="correo" name="correo" class="form-control form-control-lg" required/>
+                      <label class="form-user" for="correo">Correo del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="comentario" name="comentario" class="form-control form-control-lg"/>
+                      <label class="form-user" for="comentario">Comentario</label>
+                    </div>
+
+    
+                  </div>
+  
+                  <div class="col-md-4 mb-4">
+    
+                      <div class="form-outline">
+                        <div class="prueba">
+                        <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
+                        <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
+                        </div>
+                      </div>
+      
+                    </div>
+
+                    <div class="form-outline">
+                      <div class="prueba12">
+                      <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
+                      <label class="form-user" for="codigoLiberty" >Nombre Vendedor</label>
+                      </div>
+                    </div>
+
+                    <div class="form-outline" id="freelance">
+                      <div class="PruebaDvi">
+                      <select class="select form-control-lg" id="nombreVendedorFreelance" name="nombreVendedorFreelance" required>
+                        <option value="" disabled>Vendedor</option>
+                        <% for(var count = 0; count < data.freelancers.length; count++) { %>
+                          <option value="<%= data.freelancers[count].nombre %>"><%= data.freelancers[count].nombre %></option>
+                        <% } %>
+                      </select>
+                      <label class="form-user" for="nombreVendedorFreelance" >Nombre Vendedor Freelance</label>
+                      </div>
+                    </div>
+    
+    
+                </div>
+    
+               
+    
+                <div class="mt-4 pt-2">
+                  <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
+                </div>
+    
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <script>
+      let StandaloneOptions = ["Mega 30","Mega 50", "Mega 100", "Mega 325", "Mega 450 HBO Max", "Mega 300 HBO Max", "Mega 150 HBO Max"];
+      let TriplePlayOptions = ["Triple Play Mega 30", "Triple Play Mega 50", "Triple Play Mega 100", "Triple Play Mega 325"];
+      let DoblePlayOptions = ["Doble Play Mega 30","Doble Play Mega 50", "Doble Play Mega 100", "Doble Play Mega 325"];
+      let LibertyTotalSINTV = ["75 Mbps + 45 GB SIN TV", "75 Mbps + 30 GB SIN TV", "75 Mbps + 18 GB SIN TV", "150 Mbps + ILIMITADO SIN TV", "150 Mbps + 35 GB SIN TV", "150 Mbps + 25 GB SIN TV", "350 Mbps + ILIMITADO SIN TV", "350 Mbps + 35 GB SIN TV", "350 Mbps + 25 GB SIN TV"];
+      let LibertyTotalCONTV = ["75 Mbps + 45 GB CON TV", "75 Mbps + 30 GB CON TV", "75 Mbps + 18 GB CON TV", "150 Mbps + ILIMITADO CON TV", "150 Mbps + 35 GB CON TV", "150 Mbps + 25 GB CON TV", "350 Mbps + ILIMITADO CON TV", "350 Mbps + 35 GB CON TV", "350 Mbps + 25 GB CON TV"];
+      let TipodeTramiteOptions = ["Standalone", "Doble Play", "Triple Play", "Liberty Total (Con television)", "Liberty Total (Sin television)"];
+
+
+      let tipoDeTramite = document.getElementById("tipoDeTramite");
+      let tipoDePlanAContratar = document.getElementById("tipoDePlanAContratar");
+
+      TipodeTramiteOptions.forEach(function addElements(item){
+        let option = document.createElement("option");
+        option.text = item;
+        option.value = item;
+        tipoDeTramite.appendChild(option);
+      });
+
+      tipoDeTramite.onchange = function () {
+        tipoDePlanAContratar.innerHTML = "<option></option>";
+        if (this.value == "Standalone"){
+          addTotipoDePlanAContratar(StandaloneOptions);
+        }else if(this.value == "Triple Play"){
+          addTotipoDePlanAContratar(TriplePlayOptions);
+        }else if(this.value == "Doble Play"){
+          addTotipoDePlanAContratar(DoblePlayOptions);
+        }else if(this.value == "Liberty Total (Con television)"){
+          addTotipoDePlanAContratar(LibertyTotalCONTV);
+        }else if(this.value == "Liberty Total (Sin television)"){
+          addTotipoDePlanAContratar(LibertyTotalSINTV);
+        }else{
+          console.log("error");
+        }
+      }
+
+      function addTotipoDePlanAContratar(arr) {
+        arr.forEach(function (item) {
+          let option = document.createElement("option");
+        option.text = item;
+        option.value = item;
+        tipoDePlanAContratar.appendChild(option);
+        })
+      }
+
+      var userRol = "<%= user.rol %>";
+    console.log(userRol);
+    if(userRol=="freelance"){
+      console.log("Si")
+      $("div.PruebaDvi").show();
+      $("div.prueba").hide();
+    }else{
+      console.log("No");
+    }
+
+    </script>

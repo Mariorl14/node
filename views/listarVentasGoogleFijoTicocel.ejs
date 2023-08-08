@@ -1,0 +1,171 @@
+<link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+<link rel="" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+<h2>Vendedor: 
+    <% if(user) {%>
+        <span class="badge bg-success"> <%= user.nombre %></span>
+        <%}%>
+  </h2>
+
+<h2>Registro de Ventas Fijo</h2>
+  <div  class="table-responsive">
+    
+    <table id="ventas" class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Acciones</th>
+          <th scope="col">Nombre Del Cliente</th>
+          <th scope="col">Segundo Nombre Del Cliente</th>
+          <th scope="col">Primer Apellido Del Cliente</th>
+          <th scope="col">Segundo Apellido Del Cliente</th>
+          <th scope="col">Tipo De Documento De Identidad</th>
+          <th scope="col">Numero De Documento</th>
+          <th scope="col">Nacionalidad</th>
+          <th scope="col">Numero Celular De Tramite</th>
+          <th scope="col">Tipo De Tramite</th>
+          <th scope="col">Numero De Contrato</th>
+          <th scope="col">Numero De Abonado</th>
+          <th scope="col">Numero De Comntacto 1</th>
+          <th scope="col">Numero De Contacto 2</th>
+          <th scope="col">Tipo De Plan A Contratar</th>
+          <th scope="col">Valor Del Plan</th>
+          <th scope="col">Valor Del Plan Diferente</th>
+          <th scope="col">Coordenadas</th>
+          <th scope="col">Direccion Exacta</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Canton</th>
+          <th scope="col">Distrito</th>
+          <th scope="col">Tipo de Llamada</th>
+          <th scope="col">Nombre del Vendedor</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Vendedor Freelance</th>
+          <th scope="col">Activada / No Activada</th>
+          <th scope="col">Entregada / No Entregada</th>
+          <th scope="col">Rechazada / Cliente no Contesta</th>
+          <th scope="col">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i = 0; i < rows.length; i++) { %>
+          <tr>
+            <td>
+              <a href="/editVentasFijo/<%= i+2 %>">Edit</a>
+            </td>
+            <td><%= rows[i][0] %></td>
+            <td><%= rows[i][1] %></td>
+            <td><%= rows[i][2] %></td>
+            <td><%= rows[i][3] %></td>
+            <td><%= rows[i][4] %></td>
+            <td><%= rows[i][5] %></td>
+            <td><%= rows[i][6] %></td>
+            <td><%= rows[i][7] %></td>
+            <td><%= rows[i][8] %></td>
+            <td><%= rows[i][9] %></td>
+            <td><%= rows[i][10] %></td>
+            <td><%= rows[i][11] %></td>
+            <td><%= rows[i][12] %></td>
+            <td><%= rows[i][13] %></td>
+            <td><%= rows[i][14] %></td>
+            <td><%= rows[i][15] %></td>
+            <td><%= rows[i][16] %></td>
+            <td><%= rows[i][17] %></td>
+            <td><%= rows[i][18] %></td>
+            <td><%= rows[i][19] %></td>
+            <td><%= rows[i][20] %></td>
+            <td><%= rows[i][21] %></td>
+            <td><%= rows[i][22] %></td>
+            <td><%= rows[i][23] %></td>
+            <td><%= rows[i][24] %></td>
+            <td><%= rows[i][25] %></td>
+            <td><%= rows[i][26] %></td>
+            <td><%= rows[i][27] %></td>
+            <td><%= rows[i][28] %></td>
+          </tr>
+        <% } %>
+      </tbody>
+      
+      
+    </table>
+  
+  </div>
+  
+  <br>
+  <a href="registrarVenta.ejs" class="btn btn-outline-success">Registrar</a>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
+        <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+      <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+      <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+      
+  
+  <script>
+    $(document).ready(function () {
+        var table = $('#ventas').DataTable({
+            dom: 'Bfrtip',
+            //fixedHeader: true
+            buttons: [
+             'csv', 'excel', 'pdf', 'print'
+        ] 
+        });
+
+        $('#ventas thead tr').clone(true).appendTo( '#ventas thead' );
+
+        $('#ventas thead tr:eq(1) th').each( function (i) {
+         var title = $(this).text(); //es el nombre de la columna
+          $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+
+          $( 'input', this ).on( 'keyup change', function () {
+             if ( table.column(i).search() !== this.value ) {
+                  table
+                     .column(i)
+                     .search( this.value )
+                     .draw();
+        }
+    } );
+} );
+       
+         // Encuentra el índice de la columna "Nombre Vendedor"
+         var userRol = "<%= user.rol %>"
+         if(userRol !== "admin"){
+          var columnaNombreVendedor = table.column(23).index();
+            console.log(columnaNombreVendedor);
+
+          var nombre = "<%= user.nombre %>";
+           console.log(nombre);
+
+
+            table.column(columnaNombreVendedor).search(nombre).draw();
+              console.log("linda");
+// Filtra la tabla por el valor de user.name en la columna "Nombre Vendedor"
+         }
+
+         
+
+  });
+
+    function confirmar(id){
+      Swal.fire({
+    title: 'Seguro que quiere borrar este usuario '+id+'?',
+    text: "No se podra recuperar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Borrado!',
+        'El usuario fue borrado correctamente',
+        'success'
+      )
+      window.location = '/borrarUser/'+id;
+    }
+  })
+    }
+  </script>

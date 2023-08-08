@@ -172,6 +172,145 @@ exports.authRol = async (req, res, next)=>{
     }
 
 }
+exports.authRolTicocel = async (req, res, next)=>{
+
+    if(req.user.rol !== 'admin' && req.user.empresa == 'Ticocel'){
+        try {
+            res.status(401)
+            return res.redirect('/listarVentasGoogleFijoTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+
+/** }
+exports.TicocelRVM = async (req, res, next)=>{
+
+    if(req.user.empresa !== 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/registrarVentaTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.TicocelRVF = async (req, res, next)=>{
+
+    if(req.user.empresa !== 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/registrarVentaTicocelFijo')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.TicocelBDK = async (req, res, next)=>{
+
+    if(req.user.empresa !== 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/BDKolbiTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.TicocelBDC = async (req, res, next)=>{
+
+    if(req.user.empresa !== 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/BDClaroTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.TicocelBDF = async (req, res, next)=>{
+
+    if(req.user.empresa !== 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/BDFijoTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+*/
+
+exports.TicocelBDF = async (req, res, next)=>{
+
+    if(req.user.empresa == 'Ticocel'){
+        try {
+            res.status(401)
+            return res.redirect('/BDFijoTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.TicocelRVF = async (req, res, next)=>{
+
+    if(req.user.empresa == 'Ticocel'){
+        try {
+            res.status(401)
+            return res.redirect('/registrarVentaTicocelFijo')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.TicocelLVFTIC = async (req, res, next)=>{
+
+    if(req.user.empresa == 'Ticocel'){
+        try {
+            res.status(401)
+            return res.redirect('/listarVentasGoogleFijoTicocel')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
 
 exports.logout = async (req, res)=>{
     res.clearCookie('jwt');
