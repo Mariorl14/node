@@ -187,6 +187,36 @@ exports.authRolTicocel = async (req, res, next)=>{
     }
 
 }
+exports.authRolFavtelNIC = async (req, res, next)=>{
+
+    if(req.user.rol !== 'admin' && req.user.empresa == 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/BDFijoNICFAV')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+exports.authRolNICFAVFijo = async (req, res, next)=>{
+
+    if(req.user.rol !== 'admin' && req.user.empresa == 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/listarVentasGoogleFijo')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
 
 /** }
 exports.TicocelRVM = async (req, res, next)=>{
