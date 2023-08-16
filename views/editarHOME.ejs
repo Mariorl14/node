@@ -233,7 +233,11 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="form-outline">
-                            <input type="text" id="column25" name="column25" class="form-control form-control-lg" value="<%= rowValues[24] %>" disabled/>
+                          <select class="select form-control-lg" style="width: 300px;" id="column2" name="column25" class="form-control form-control-lg" >
+                            <option value="<%= rowValues[24] %>" ><%= rowValues[24] %></option>
+                            <option value="SI - 2000">Si - 2000</option>
+                            <option value="NO">NO</option>
+                          </select>
                           <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
                         </div>
                       </div>
@@ -319,6 +323,12 @@
                         <div class="form-outline">
                             <input type="date" id="column33" name="column33" class="form-control form-control-lg" value="<%= rowValues[32] %>" />
                           <label class="form-user" for="tipoLlamada">Fecha de Activacion</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <input type="date" id="column39" name="column39" class="form-control form-control-lg" value="<%= rowValues[38] %>" />
+                          <label class="form-user" for="tipoLlamada">Fecha de Entrega</label>
                         </div>
                       </div>
                       <div class="col-md-4 mb-4">
