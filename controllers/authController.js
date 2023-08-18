@@ -311,6 +311,39 @@ exports.TicocelBDF = async (req, res, next)=>{
     }
 
 }
+
+exports.FavtelNicaraguaKolbi = async (req, res, next)=>{
+
+    if(req.user.rol == 'vendedor' && req.user.empresa == 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/bdKolbiNicaragua')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+
+exports.FavtelNicaraguaClaro = async (req, res, next)=>{
+
+    if(req.user.rol == 'vendedor' && req.user.empresa == 'Favtel'){
+        try {
+            res.status(401)
+            return res.redirect('/bdClaroNicaragua')
+        } catch (error) {
+            console.log(error)
+             return next()
+        }
+    }else{
+        next()
+    }
+
+}
+
 exports.TicocelRVF = async (req, res, next)=>{
 
     if(req.user.empresa == 'Ticocel'){

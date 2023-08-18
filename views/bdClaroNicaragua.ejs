@@ -8,14 +8,14 @@
       <%}%>
 </h2>
 
-<h2>Registro de Numeros Fijo</h2> 
+<h2>Registro de Ventas Movil</h2> 
 <div id="position" style="font-size: 24px;">
   <input type="checkbox" name="pos" value="No Localizado 1">No localizado 1
   <input type="checkbox" name="pos" value="No Localizado 2">No localizado 2
   <input type="checkbox" name="pos" value="No Localizado 3">No localizado 3
-  <input type="checkbox" name="pos" value="Llamar Luego/ Interesado">Llamar Luego/ Interesado
   <input type="checkbox" name="pos" value="Seguimiento">Seguimiento
-  <input type="checkbox" name="pos1" value="-" checked>Vacio
+  <input type="checkbox" name="pos" value="Llamar Luego/ Interesado">Llamar Luego/ Interesado
+  <input type="checkbox" name="pos" value="-" checked>Vacio
 </div>
 <hr>
     
@@ -24,22 +24,19 @@
     <table id="ventas" class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">Acciones</th>
           <th scope="col">Consecutivo</th>
           <th scope="col">Cedula</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Telefono 1</th>
+          <th scope="col">Numero</th>
           <th scope="col">Asesor</th>
           <th scope="col">Detalle</th>
           <th scope="col">Comentario</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <% for (let i = 0; i < rows.length; i++) { %>
           <tr>
-            <td>
-              <a href="/editBDFijoTicocel/<%= i+2 %>">Edit</a>
-            </td>
             <td><%= rows[i][0] %></td>
             <td><%= rows[i][1] %></td>
             <td><%= rows[i][2] %></td>
@@ -47,6 +44,9 @@
             <td><%= rows[i][4] %></td>
             <td><%= rows[i][5] %></td>
             <td><%= rows[i][8] %></td>
+            <td>
+              <a href="/editClaroNIC/<%= i+2 %>">Edit</a>
+            </td>
           </tr>
         <% } %>
       </tbody>
@@ -69,7 +69,7 @@
     $(document).ready(function () {
       $.fn.dataTable.ext.search.push(
     function( settings, searchData, index, rowData, counter ) {
-      var positions = $('input:checkbox[name="pos1"]:checked').map(function() {
+      var positions = $('input:checkbox[name="pos"]:checked').map(function() {
         return this.value;
       }).get();
    
@@ -77,13 +77,15 @@
         return true;
       }
       
-      if (positions.indexOf(searchData[6]) !== -1) {
+      if (positions.indexOf(searchData[5]) !== -1) {
         return true;
       }
       
       return false;
     }
   );
+
+
   var table = $('#ventas').DataTable();
   
  $('input:checkbox').on('change', function () {
@@ -92,7 +94,7 @@
 
         var userRol = "<%= user.rol %>"
          if(userRol !== "admin"){
-          var columnaNombreVendedor = table.column(5).index();
+          var columnaNombreVendedor = table.column(4).index();
             console.log(columnaNombreVendedor);
 
           var nombre = "<%= user.nombre %>";

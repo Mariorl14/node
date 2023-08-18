@@ -3,10 +3,8 @@ const {google} = require("googleapis");
 const apiKey = 'AIzaSyDelxqh4i74UrJ1Rpdbxv91a8ksOgUGOEI';
 const {promisify} = require('util');
 const puppeteer = require('puppeteer');
-const multer = require('multer');
 const xlsx = require('xlsx');
 const fs = require('fs');
-const upload = multer({ dest: 'uploads/' });
 ///const {vistaPrincipal, vistaHome, vistaRegister} = require('../controllers/PageControllers')
 const router = express.Router()
 
@@ -248,7 +246,7 @@ router.get('/colillaFijo',  (req, res)=>{
 router.get('/plantilla',  (req, res)=>{
     res.render('plantilla', {user:req.user})
 })
-router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF,authController.authRolFavtelNIC, async  (req, res)=>{
+router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF,authController.FavtelNicaraguaClaro, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -286,6 +284,45 @@ router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache,authContro
 
 
     res.render('bdClaro', {rows, user:user});
+})
+router.get('/bdClaroNicaragua',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF, async  (req, res)=>{
+  const auth = new google.auth.GoogleAuth({
+      keyFile: "credentials.json",
+      scopes: "https://www.googleapis.com/auth/spreadsheets",
+  });
+
+/// client instance for auth
+  const client = await auth.getClient();
+
+  /// Instance of google sheets api 
+  const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+  const spreadsheetId = "1cobOEWeLGzbtKoktUbjJl0FJaTszSjUv7Tj2dCWqXl4";
+  // Get DATA 
+
+
+
+  const metaData = await googleSheets.spreadsheets.get({
+      auth,
+      spreadsheetId
+  });
+
+  /// rows from spreadsheet
+
+ 
+
+  const ventas = await googleSheets.spreadsheets.values.get({
+      auth,
+      spreadsheetId,
+      range: "Base Madre!A2:J",
+  })
+
+  var user = req.user;
+  const rows = ventas.data.values;
+
+
+  res.render('bdClaroNicaragua', {rows, user:user});
 })
 router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authController.TicocelBDF, authController.authRolFavtelNIC,  async  (req, res)=>{
   const auth = new google.auth.GoogleAuth({
@@ -407,7 +444,7 @@ router.get('/BDFijoNICFAV',authController.isAuthenticated, NoCache.nocache,  asy
   res.render('BDFijoNICFAV', {rows, user:user});
 })
 
-router.get('/bdKolbi',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF,authController.authRolFavtelNIC, async  (req, res)=>{
+router.get('/bdKolbi',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF, authController.FavtelNicaraguaKolbi, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -446,6 +483,45 @@ router.get('/bdKolbi',authController.isAuthenticated, NoCache.nocache,authContro
 
     res.render('bdKolbi', {rows, user:user});
 })
+router.get('/bdKolbiNicaragua',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF,  async  (req, res)=>{
+  const auth = new google.auth.GoogleAuth({
+      keyFile: "credentials.json",
+      scopes: "https://www.googleapis.com/auth/spreadsheets",
+  });
+
+/// client instance for auth
+  const client = await auth.getClient();
+
+  /// Instance of google sheets api 
+  const googleSheets = google.sheets({ version: "v4", auth: client});
+
+
+  const spreadsheetId = "1L44gg5wrBzAsI-QXLaByZncwtXDKD_HHVj4zyTo5IXk";
+  // Get DATA 
+
+
+
+  const metaData = await googleSheets.spreadsheets.get({
+      auth,
+      spreadsheetId
+  });
+
+  /// rows from spreadsheet
+
+ 
+
+  const ventas = await googleSheets.spreadsheets.values.get({
+      auth,
+      spreadsheetId,
+      range: "Base Madre!A2:J",
+  })
+
+  var user = req.user;
+  const rows = ventas.data.values;
+
+
+  res.render('bdKolbiNicaragua', {rows, user:user});
+})
 router.get('/ventas',authController.isAuthenticated, (req, res)=>{
     conexion.query('SELECT * FROM Ventas', (error, results)=>{
         if(error){
@@ -456,7 +532,7 @@ router.get('/ventas',authController.isAuthenticated, (req, res)=>{
     })
 })
 
-router.get('/listarVentasGoogle', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC, authController.authRolNICFAVFijo, async (req, res)=>{
+router.get('/listarVentasGoogle', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,  async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -1314,6 +1390,191 @@ router.get('/edit/:rowId', async  (req, res) => {
       res.redirect('/bdKolbi'); // Redirect to the main page or any other desired location
     });
   });
+
+  /*eDITAR BASE KOLBIII NICARAGUA FAVTEL */
+  router.get('/editKolbiNIC/:rowId', async  (req, res) => {
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+      });
+      
+      // Create the client instance for authentication
+      const client = await auth.getClient();
+      
+      // Create an instance of the Google Sheets API
+      const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    // Get DATA 
+    const rowId = req.params.rowId;
+  
+    // Step 2: Retrieve row data from Google Sheets
+    // Set up authentication as mentioned in the previous response
+  
+    const spreadsheetId = '1L44gg5wrBzAsI-QXLaByZncwtXDKD_HHVj4zyTo5IXk';
+    const range = `Base Madre!A${rowId}:J${rowId}`;
+  
+    googleSheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    }, (err, response) => {
+      if (err) {
+        console.error('The API returned an error:', err);
+        res.send('Error retrieving row data');
+        return;
+      }
+  
+      const rowValues = response.data.values[0];
+  
+      // Step 3: Render the update view with retrieved data
+      res.render('updateViewBDKolbiNIC', { rowId, rowValues }); // Assumes you have an 'update.ejs' view/template
+    });
+  });
+
+  router.post('/editKolbiNIC/:rowId', async (req, res) => {
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+      });
+      
+      // Create the client instance for authentication
+      const client = await auth.getClient();
+      
+      // Create an instance of the Google Sheets API
+      const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    const rowId = req.params.rowId;
+    const updatedValues = [
+      req.body.column1,
+      req.body.column2,
+      req.body.column3,
+      req.body.column4,
+      req.body.column5,
+      req.body.column6,
+      req.body.column7,
+      req.body.column8,
+      req.body.column9,
+      req.body.column12,
+    ];
+  
+    // Set up authentication as mentioned in the previous response
+  
+    const spreadsheetId = '1L44gg5wrBzAsI-QXLaByZncwtXDKD_HHVj4zyTo5IXk';
+    const range = `Base Madre!A${rowId}:J${rowId}`;
+  
+    const requestBody = {
+      values: [updatedValues],
+    };
+  
+    googleSheets.spreadsheets.values.update({
+      spreadsheetId,
+      range,
+      valueInputOption: 'RAW',
+      resource: requestBody,
+    }, (err, response) => {
+      if (err) {
+        console.error('The API returned an error:', err);
+        res.send('Error updating row');
+        return;
+      }
+  
+      res.redirect('/bdKolbiNicaragua'); // Redirect to the main page or any other desired location
+    });
+  });
+
+  /*eDITAR BASE CLARO NICARAGUA FAVTEL */
+  router.get('/editClaroNIC/:rowId', async  (req, res) => {
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+      });
+      
+      // Create the client instance for authentication
+      const client = await auth.getClient();
+      
+      // Create an instance of the Google Sheets API
+      const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    // Get DATA 
+    const rowId = req.params.rowId;
+  
+    // Step 2: Retrieve row data from Google Sheets
+    // Set up authentication as mentioned in the previous response
+  
+    const spreadsheetId = '1cobOEWeLGzbtKoktUbjJl0FJaTszSjUv7Tj2dCWqXl4';
+    const range = `Base Madre!A${rowId}:J${rowId}`;
+  
+    googleSheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    }, (err, response) => {
+      if (err) {
+        console.error('The API returned an error:', err);
+        res.send('Error retrieving row data');
+        return;
+      }
+  
+      const rowValues = response.data.values[0];
+  
+      // Step 3: Render the update view with retrieved data
+      res.render('updateViewBDClaroNIC', { rowId, rowValues }); // Assumes you have an 'update.ejs' view/template
+    });
+  });
+
+  router.post('/editClaroNIC/:rowId', async (req, res) => {
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets",
+      });
+      
+      // Create the client instance for authentication
+      const client = await auth.getClient();
+      
+      // Create an instance of the Google Sheets API
+      const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    const rowId = req.params.rowId;
+    const updatedValues = [
+      req.body.column1,
+      req.body.column2,
+      req.body.column3,
+      req.body.column4,
+      req.body.column5,
+      req.body.column6,
+      req.body.column7,
+      req.body.column8,
+      req.body.column9,
+      req.body.column12,
+    ];
+  
+    // Set up authentication as mentioned in the previous response
+  
+    const spreadsheetId = '1cobOEWeLGzbtKoktUbjJl0FJaTszSjUv7Tj2dCWqXl4';
+    const range = `Base Madre!A${rowId}:J${rowId}`;
+  
+    const requestBody = {
+      values: [updatedValues],
+    };
+  
+    googleSheets.spreadsheets.values.update({
+      spreadsheetId,
+      range,
+      valueInputOption: 'RAW',
+      resource: requestBody,
+    }, (err, response) => {
+      if (err) {
+        console.error('The API returned an error:', err);
+        res.send('Error updating row');
+        return;
+      }
+  
+      res.redirect('/bdClaroNicaragua'); // Redirect to the main page or any other desired location
+    });
+  });
+
   /*eDITAR BASE FIJO */
   router.get('/editVentasFijo/:rowId', async  (req, res) => {
 
