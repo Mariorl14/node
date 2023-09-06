@@ -445,6 +445,11 @@ exports.registrarVentaFijo = async (req, res) => {
             var ValorDelPlan = "24500";
     
            }
+           else if(tipoDePlanAContratar=="Mega 200"){
+    
+            var ValorDelPlan = "27500";
+    
+           }
            else if(tipoDePlanAContratar=="Mega 325"){
     
             var ValorDelPlan = "40000";
@@ -471,7 +476,10 @@ exports.registrarVentaFijo = async (req, res) => {
            }
            else if(tipoDePlanAContratar=="Triple Play Mega 100"){
             var ValorDelPlan = "33500";
-           }else if(tipoDePlanAContratar=="Triple Play Mega 325"){
+           }else if(tipoDePlanAContratar=="Triple Play Mega 200"){
+            var ValorDelPlan = "40500";
+           }
+           else if(tipoDePlanAContratar=="Triple Play Mega 325"){
             var ValorDelPlan = "51500";
            }else if(tipoDePlanAContratar=="Doble Play Mega 30"){
             var ValorDelPlan = "30000";
@@ -480,6 +488,8 @@ exports.registrarVentaFijo = async (req, res) => {
            }
            else if(tipoDePlanAContratar=="Doble Play Mega 100"){
             var ValorDelPlan = "32000";
+           }else if(tipoDePlanAContratar=="Doble Play Mega 200"){
+            var ValorDelPlan = "39000";
            }
            else if(tipoDePlanAContratar=="Doble Play Mega 325"){
             var ValorDelPlan = "50000";
