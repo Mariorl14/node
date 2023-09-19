@@ -399,6 +399,7 @@ exports.authColillas = async (req, res, next)=>{
     }
 
 }
+/*PRUEBA MARIOOOOO */
 /*
 exports.bdFijo = async (req, res, next)=>{
 
