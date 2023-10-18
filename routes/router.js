@@ -2446,7 +2446,7 @@ router.get('/editFacturasAgosto/:rowId', async  (req, res) => {
   // Set up authentication as mentioned in the previous response
 
   const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-  const range = `Revenue Agosto 2023!A${rowId}:Y${rowId}`;
+  const range = `Revenue Agosto 2023!A${rowId}:Z${rowId}`;
 
   googleSheets.spreadsheets.values.get({
     spreadsheetId,
@@ -2503,13 +2503,14 @@ router.post('/editFacturasAgosto/:rowId', async (req, res) => {
     req.body.column22,
     req.body.column23,
     req.body.column24,
-    req.body.column25
+    req.body.column25,
+    req.body.column26
   ];
 
   // Set up authentication as mentioned in the previous response
 
   const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-  const range = `Revenue Agosto 2023!A${rowId}:Y${rowId}`;
+  const range = `Revenue Agosto 2023!A${rowId}:Z${rowId}`;
 
   const requestBody = {
     values: [updatedValues],
@@ -2551,7 +2552,7 @@ router.get('/editFacturasSeptiembre/:rowId', async  (req, res) => {
   // Set up authentication as mentioned in the previous response
 
   const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-  const range = `Revenue Septiembre 2023!A${rowId}:Y${rowId}`;
+  const range = `Revenue Septiembre 2023!A${rowId}:Z${rowId}`;
 
   googleSheets.spreadsheets.values.get({
     spreadsheetId,
@@ -2608,13 +2609,14 @@ router.post('/editFacturasSeptiembre/:rowId', async (req, res) => {
     req.body.column22,
     req.body.column23,
     req.body.column24,
-    req.body.column25
+    req.body.column25,
+    req.body.column26
   ];
 
   // Set up authentication as mentioned in the previous response
 
   const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-  const range = `Revenue Septiembre 2023!A${rowId}:Y${rowId}`;
+  const range = `Revenue Septiembre 2023!A${rowId}:Z${rowId}`;
 
   const requestBody = {
     values: [updatedValues],

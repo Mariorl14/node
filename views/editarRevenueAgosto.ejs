@@ -15,33 +15,33 @@
               <form action="/editFacturasAgosto/<%= rowId %>" method="POST">
     
                 <div class="row" >
-                  <div class="col-md-4 mb-4"id="desaparece">
+                  <div class="col-md-4 mb-4"id="">
     
-                    <div class="form-outline" id="desaparece">
+                    <div class="form-outline" id="">
                       <input type="text" id="column1" name="column1" class="form-control form-control-lg" value="<%= rowValues[0] %>" disabled/>
-                      <label class="form-user" for="nombreDelCliente">Numero Celular de Tramite</label>
+                      <label class="form-user" for="nombreDelCliente">Nombre del cliente</label>
                     </div>
     
                   </div>
-                  <div class="col-md-4 mb-4"id="desaparece">
+                  <div class="col-md-4 mb-4"id="">
     
-                    <div class="form-outline" id="desaparece"> 
+                    <div class="form-outline" id=""> 
                       <input type="text" id="column2" name="column2" class="form-control form-control-lg" value="<%= rowValues[1] %>" disabled/>
-                      <label class="form-user" for="segundoNombreDelCliente">Numero de Abonado</label>
+                      <label class="form-user" for="segundoNombreDelCliente">Segundo Nombre del Cliente</label>
                     </div>
     
                   </div>
-                  <div class="col-md-4 mb-4"id="desaparece">
+                  <div class="col-md-4 mb-4"id="">
     
-                    <div class="form-outline"id="desaparece">
+                    <div class="form-outline"id="">
                       <input type="text" id="column3" name="column3" class="form-control form-control-lg" value="<%= rowValues[2] %>" disabled/>
-                      <label class="form-user" for="primerApellidoDelCliente">Fecha</label>
+                      <label class="form-user" for="primerApellidoDelCliente">Primer Apellido del Cliente</label>
                     </div>
                     <div class="col-md-4 mb-4"id="desaparece">
     
-                      <div class="form-outline"id="desaparece">
+                      <div class="form-outline"id="">
                         <input type="text" id="column4" name="column4" class="form-control form-control-lg" value="<%= rowValues[3] %>" disabled/>
-                        <label class="form-user" for="primerApellidoDelCliente">Fecha</label>
+                        <label class="form-user" for="primerApellidoDelCliente">Segundo Apellido del Cliente</label>
                       </div>
 
                   </div>
@@ -72,12 +72,22 @@
     
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column8" name="column8" class="form-control form-control-lg" value="<%= rowValues[7] %>" disabled/>
+                      <label class="form-user" for="primerApellidoDelCliente">Nombre del Vendedor</label>
+                    </div>
+    
+                  </div>
+                </div>
     
                 <div class="row">
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                      <input type="text" id="column8" name="column8" class="form-control form-control-lg" value="<%= rowValues[7] %>" />
+                      <input type="text" id="column9" name="column9" class="form-control form-control-lg" value="<%= rowValues[8] %>" />
                       <label class="form-user" for="segundoApellidoDelCliente">Factura 1 </label>
                     </div>
     
@@ -85,7 +95,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column9" name="column9" class="form-control form-control-lg" value="<%= rowValues[8] %>" />
+                        <input type="text" id="column10" name="column10" class="form-control form-control-lg" value="<%= rowValues[9] %>" />
                       <label class="form-label" for="nombre">Monto 1</label>
                    </div>
                       
@@ -94,7 +104,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="date" id="column10" name="column10" class="form-control form-control-lg" value="<%= rowValues[9] %>" />
+                        <input type="date" id="column11" name="column11" class="form-control form-control-lg" value="<%= rowValues[10] %>" />
                       <label class="form-user" for="numeroDeDocumento">Fecha de Pago 1</label>
                     </div>
     
@@ -103,7 +113,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column11" name="column11" class="form-control form-control-lg" value="<%= rowValues[10] %>" />
+                        <input type="text" id="column12" name="column12" class="form-control form-control-lg" value="<%= rowValues[11] %>" />
                       <label class="form-label" for="nombre">Factura 2</label>
                    </div>
                       
@@ -112,7 +122,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column12" name="column12" class="form-control form-control-lg" value="<%= rowValues[11] %>" />
+                        <input type="text" id="column13" name="column13" class="form-control form-control-lg" value="<%= rowValues[12] %>" />
                       <label class="form-user" for="numeroCelularDeTramite">Monto 2</label>
                     </div>
     
@@ -121,7 +131,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="date" id="column13" name="column13" class="form-control form-control-lg" value="<%= rowValues[12] %>" />
+                        <input type="date" id="column14" name="column14" class="form-control form-control-lg" value="<%= rowValues[13] %>" />
                       <label class="form-label" for="nombre">Fecha de Pago 2</label>
                    </div>
                       
@@ -130,7 +140,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column14" name="column14" class="form-control form-control-lg" value="<%= rowValues[13] %>" />
+                        <input type="text" id="column15" name="column15" class="form-control form-control-lg" value="<%= rowValues[14] %>" />
                       <label class="form-user" for="numeroDeContacto1">Factura 3</label>
                     </div>
     
@@ -139,7 +149,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column15" name="column15" class="form-control form-control-lg" value="<%= rowValues[14] %>" />
+                        <input type="text" id="column16" name="column16" class="form-control form-control-lg" value="<%= rowValues[15] %>" />
                       <label class="form-user" for="numeroDeContacto2">Monto 3</label>
                     </div>
     
@@ -149,7 +159,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="date" id="column16" name="column16" class="form-control form-control-lg" value="<%= rowValues[15] %>" />
+                        <input type="date" id="column17" name="column17" class="form-control form-control-lg" value="<%= rowValues[16] %>" />
                       <label class="form-label" for="nombre">Fecha de Pago 3</label>
                    </div>
                       
@@ -158,7 +168,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column17" name="column17" class="form-control form-control-lg" value="<%= rowValues[16] %>" />
+                        <input type="text" id="column18" name="column18" class="form-control form-control-lg" value="<%= rowValues[17] %>" />
                       <label class="form-label" for="nombre">Factura 4</label>
                    </div>
                       
@@ -168,7 +178,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column18" name="column18" class="form-control form-control-lg" value="<%= rowValues[17] %>" />
+                        <input type="text" id="column19" name="column19" class="form-control form-control-lg" value="<%= rowValues[18] %>" />
                       <label class="form-user" for="direccionExacta">Monto 4</label>
                     </div>
     
@@ -177,7 +187,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="date" id="column19" name="column19" class="form-control form-control-lg" value="<%= rowValues[18] %>" />
+                        <input type="date" id="column20" name="column20" class="form-control form-control-lg" value="<%= rowValues[19] %>" />
                       <label class="form-label" for="nombre">Fecha de Pago 4</label>
                    </div>
                       
@@ -186,7 +196,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column20" name="column20" class="form-control form-control-lg" value="<%= rowValues[19] %>" />
+                        <input type="text" id="column21" name="column21" class="form-control form-control-lg" value="<%= rowValues[20] %>" />
                       <label class="form-user" for="canton">Factura 5</label>
                     </div>
     
@@ -195,7 +205,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column21" name="column21" class="form-control form-control-lg" value="<%= rowValues[20] %>" />
+                        <input type="text" id="column22" name="column22" class="form-control form-control-lg" value="<%= rowValues[21] %>" />
                       <label class="form-user" for="distritp">Monto 5</label>
                     </div>
   
@@ -206,7 +216,7 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="date" id="column22" name="column22" class="form-control form-control-lg" value="<%= rowValues[21] %>" />
+                        <input type="date" id="column23" name="column23" class="form-control form-control-lg" value="<%= rowValues[22] %>" />
                       <label class="form-user" for="tipoLlamada">Fecha de Pago 5</label>
                     </div>
     
@@ -215,7 +225,7 @@
                     <div class="col-md-4 mb-4">
       
                       <div class="form-outline">
-                        <input type="text" id="column23" name="column23" class="form-control form-control-lg" value="<%= rowValues[22] %>" />
+                        <input type="text" id="column24" name="column24" class="form-control form-control-lg" value="<%= rowValues[23] %>" />
                         <label class="form-user" for="correo">Factura 6</label>
                       </div>
       
@@ -223,7 +233,7 @@
                     <div class="col-md-4 mb-4">
       
                       <div class="form-outline">
-                        <input type="text" id="column24" name="column24" class="form-control form-control-lg" value="<%= rowValues[23] %>" />
+                        <input type="text" id="column25" name="column25" class="form-control form-control-lg" value="<%= rowValues[24] %>" />
                         <label class="form-user" for="comentario">Monto 6</label>
                       </div>
   
@@ -232,7 +242,7 @@
   
                     <div class="col-md-4 mb-4">
                     <div class="form-outline">
-                        <input type="date" id="column25" name="column25" class="form-control form-control-lg" value="<%= rowValues[24] %>" />
+                        <input type="date" id="column26" name="column26" class="form-control form-control-lg" value="<%= rowValues[25] %>" />
                       <label class="form-user" for="tipoLlamada">Fecha de Pago 6</label>
                     </div>
                   </div>

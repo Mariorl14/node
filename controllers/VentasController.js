@@ -351,6 +351,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             tipoDePlanAContratar1
       });
 
+      /*
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -373,6 +374,7 @@ exports.registrarVentaGoogle = async (req, res) => {
           console.log('Email sent: ' + info.response);
         }
       });
+      */
 }
 exports.registrarVentaFijo = async (req, res) => {
     const {nombreDelCliente, 
@@ -611,6 +613,7 @@ exports.registrarVentaFijo = async (req, res) => {
                 nombrePromocion,
                 valorPlanDiferente,
                 numeroDeContacto1,
+                numeroDeContacto2,
                 provincia, 
                 canton, 
                 distritp,
@@ -629,6 +632,7 @@ exports.registrarVentaFijo = async (req, res) => {
         console.log(nombreVendedor);
         */
 
+        /*
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -651,6 +655,7 @@ exports.registrarVentaFijo = async (req, res) => {
               console.log('Email sent: ' + info.response);
             }
           });
+          */
 }
 /*REGISTRO DE VENTAS TICOCEL */
 exports.registrarVentaFijoTicocel = async (req, res) => {
