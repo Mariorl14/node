@@ -614,6 +614,7 @@ exports.registrarVentaFijo = async (req, res) => {
                 valorPlanDiferente,
                 numeroDeContacto1,
                 numeroDeContacto2,
+                Financiamiento,
                 provincia, 
                 canton, 
                 distritp,
