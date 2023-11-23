@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.0",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.12",
     "cookie": "^0.5.0",
@@ -23,12 +23,12 @@
     "express-session": "^1.17.3",
     "googleapis": "^113.0.0",
     "html2pdf.js": "^0.10.1",
-    "jsonwebtoken": "^9.0.1",
+    "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
-    "node-fetch": "^3.3.1",
-    "nodemailer": "^6.9.3",
-    "puppeteer": "^20.7.3",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.7",
+    "puppeteer": "^20.9.0",
     "xlsx": "^0.18.5"
   }
 }
