@@ -444,6 +444,8 @@ router.get('/revenueOctubre', authController.isAuthenticated,authController.auth
       }
   });
 
+})
+
     router.get('/revenueNoviembre', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
   const auth = new google.auth.GoogleAuth({
