@@ -1,0 +1,245 @@
+<style>
+     #column7D,#column8H{
+        display: none;
+      }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+ 
+  
+  <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-12">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Editar Form</h3>
+              
+              <form action="/editPostVentaMovil/<%= rowId %>" method="POST">
+    
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column1" name="column1" class="form-control form-control-lg" value="<%= rowValues[0] %>" disabled/>
+                      <label class="form-user" for="Nombre Vendedor">Nombre Vendedor</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column2" name="column2" class="form-control form-control-lg" value="<%= rowValues[1] %>" disabled/>
+                      <label class="form-user" for="Tipo de Tramite">Tipo de Tramite</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column3" name="column3" class="form-control form-control-lg" value="<%= rowValues[2] %>" disabled/>
+                      <label class="form-user" for="Fecha de Activacion">Fecha de Activacion</label>
+                    </div>
+    
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <input type="text" id="column4" name="column4" class="form-control form-control-lg" value="<%= rowValues[3] %>" disabled/>
+                      <label class="form-user" for="Numero Celular de Tramite">Numero Celular de Tramite</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= rowValues[4] %>" disabled/>
+                      <label class="form-label" for="Numero de Contacto 1">Numero de Contacto 1</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column6" name="column6" class="form-control form-control-lg" value="<%= rowValues[5] %>" disabled/>
+                      <label class="form-user" for="Numero de Contacto 2">Numero de Contacto 2</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column7" name="column7" class="form-control form-control-lg" value="<%= rowValues[6] %>" disabled/>
+                      <label class="form-label" for="Nombre de cliente">Nombre de cliente</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column8" name="column8" class="form-control form-control-lg" value="<%= rowValues[7] %>" disabled/>
+                      <label class="form-user" for="Segundo Nombre Cliente">Segundo Nombre Cliente</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column9" name="column9" class="form-control form-control-lg" value="<%= rowValues[8] %>" disabled/>
+                      <label class="form-label" for="Primer Apellido Cliente">Primer Apellido Cliente</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column10" name="column10" class="form-control form-control-lg" value="<%= rowValues[9] %>" disabled/>
+                      <label class="form-user" for="Segundo Apellido Cliente">Segundo Apellido Cliente</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column11" name="column11" class="form-control form-control-lg" value="<%= rowValues[10] %>" disabled/>
+                      <label class="form-user" for="Tipo de Documento de Identidad">Tipo de Documento de Identidad</label>
+                    </div>
+    
+                  </div>
+                  
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column12" name="column12" class="form-control form-control-lg" value="<%= rowValues[11] %>" disabled/>
+                      <label class="form-label" for="Numero de Documento">Numero de Documento</label>
+                   </div>
+                      
+                  </div>
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column13" name="column13" class="form-control form-control-lg" value="<%= rowValues[12] %>" disabled/>
+                      <label class="form-label" for="Tipo de Plan a Contratar">Tipo de Plan a Contratar</label>
+                   </div>
+                      
+                  </div>
+    
+    
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                        <input type="text" id="column14" name="column14" class="form-control form-control-lg" value="<%= rowValues[13] %>" disabled/>
+                      <label class="form-user" for="Valor del Plan">Valor del Plan</label>
+                    </div>
+    
+                  </div>
+    
+                  <div class="col-md-6 mb-4">
+      
+                    <div class="form-outline" id="column7D">
+                      <label class="form-user"  for="column15">Dia:</label>
+                      <input type="date" id="column15" name="column15" class="form-control form-control-lg" >
+                    </div>
+    
+                  </div>
+
+                  <div class="col-md-6 mb-4">
+      
+                    <div class="form-outline"id="column8H">
+                      <label class="form-user" for="column16">Hora:</label>
+                      <input type="time" id="column16" name="column16" class="form-control form-control-lg" >
+                    </div>
+    
+                  </div>
+  
+                  <div class="col-md-4 mb-4">
+                    <div class="form-outline">
+                        <select class="select form-control-lg" style="width: 300px;" id="column17" name="column17" class="form-control form-control-lg" >
+                            <option value="<%= rowValues[16] %>" ><%= rowValues[16] %></option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
+                          </select>
+                      <label class="form-user" for="¿Le hicieron llegar su contrato de manera digital?">¿Le hicieron llegar su contrato de manera digital?</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column18" name="column18" class="form-control form-control-lg" >
+                                <option value="<%= rowValues[17] %>" ><%= rowValues[17] %></option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                              </select>
+                          <label class="form-user" for="¿Le hicieron llegar su contrato de manera digital?">¿Le especificaron sus fechas de pago?</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column19" name="column19" class="form-control form-control-lg" >
+                                <option value="<%= rowValues[18] %>" ><%= rowValues[18] %></option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                              </select>
+                          <label class="form-user" for="¿Le hicieron llegar su contrato de manera digital?">¿Tiene claro su monto de pago para la primer factura?</label>
+                        </div>
+                      </div>
+  
+                    <div class="col-md-4 mb-4">
+                    <div class="form-outline">
+                        <input type="text" id="column20" name="column20" class="form-control form-control-lg" value="<%= rowValues[19] %>" />
+                      <label class="form-user" for="Comentarios">Comentarios</label>
+                    </div>
+                  </div>
+                  </div>
+  
+                  
+  
+  
+            </div>
+    
+               
+    
+                <div class="mt-4 pt-2">
+                  <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
+                </div>
+    
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <script>
+        // Get the current time
+        var currentTime = new Date();
+        var currentDate = new Date();
+  
+        // Format the time in 'HH:mm' format
+        var year = currentDate.getFullYear();
+      var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      var day = String(currentDate.getDate()).padStart(2, '0');
+      var formattedDate = `${year}-${month}-${day}`;
+        var hours = String(currentTime.getHours()).padStart(2, '0');
+        var minutes = String(currentTime.getMinutes()).padStart(2, '0');
+        var formattedTime = `${hours}:${minutes}`;
+  
+        // Set the value of the time input field to the current time
+        document.getElementById('column15').value = formattedDate;
+        document.getElementById('column16').value = formattedTime;
+        console.log(formattedDate)
+
+
+      
+
+
+      </script>
