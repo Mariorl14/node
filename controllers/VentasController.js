@@ -214,6 +214,19 @@ exports.registrarVentaGoogle = async (req, res) => {
     var numeroAbonado = "";
     var activada = "Pendiente";
     var entregada = "Pendiente";
+    var Rech = "";
+    var Detalle = "";
+    var Entregador = "";
+    var Estados = "";
+    var LActivacion = "";
+    var FActivacion = "";
+    var NIP = "";
+    var DetalleA = "";
+    var PR = "";
+    var SR = "";
+    var NumeroActivacion = "";
+    var FechaE = "";
+    var Bloqueo = "Bloqueada";
 
     if(nombreVendedor!=="Ventas Freelance"){
         var nombreVendedorFreelance1 = "";
@@ -253,7 +266,20 @@ exports.registrarVentaGoogle = async (req, res) => {
             nombreVendedorFreelance1,
             cobro_de_envio,
             activada,
-            entregada]]
+            entregada,
+            Rech,
+            Detalle,
+            Entregador,
+            Estados,
+            LActivacion,
+            FActivacion,
+            NIP,
+            DetalleA,
+            PR,
+            SR,
+            NumeroActivacion,
+            FechaE,
+            Bloqueo]]
         }, 
     })
     /*
