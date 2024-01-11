@@ -2079,7 +2079,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-    const range = `Registro_Ventas_Fijo!A${rowId}:AH${rowId}`;
+    const range = `Registro_Ventas_Fijo!A${rowId}:AL${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -2147,12 +2147,16 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column32,
       req.body.column33,
       req.body.column34,
+      req.body.column35,
+      req.body.column36,
+      req.body.column37,
+      req.body.column38
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-    const range = `Registro_Ventas_Fijo!A${rowId}:AH${rowId}`;
+    const range = `Registro_Ventas_Fijo!A${rowId}:AL${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
@@ -2195,7 +2199,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-    const range = `Respuestas_Formulario!A${rowId}:AO${rowId}`;
+    const range = `Respuestas_Formulario!A${rowId}:AR${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -2268,13 +2272,16 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column38,
       req.body.column39,
       req.body.column40,
-      req.body.column41
+      req.body.column41,
+      req.body.column42,
+      req.body.column43,
+      req.body.column44
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-    const range = `Respuestas_Formulario!A${rowId}:AO${rowId}`;
+    const range = `Respuestas_Formulario!A${rowId}:AR${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

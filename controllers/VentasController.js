@@ -136,7 +136,8 @@ exports.registrarVentaGoogle = async (req, res) => {
         cobro_de_envio,
         nombreVendedor,
         codigoLiberty,
-        nombreVendedorFreelance} = req.body;
+        nombreVendedorFreelance,
+        terminal} = req.body;
 
         //const {fecha} = req.date;
 
@@ -227,6 +228,9 @@ exports.registrarVentaGoogle = async (req, res) => {
     var NumeroActivacion = "";
     var FechaE = "";
     var Bloqueo = "Bloqueada";
+    var MesTrabajada = "ENERO";
+    var Activadora = "";
+    var Comision = "";
 
     if(nombreVendedor!=="Ventas Freelance"){
         var nombreVendedorFreelance1 = "";
@@ -279,7 +283,11 @@ exports.registrarVentaGoogle = async (req, res) => {
             SR,
             NumeroActivacion,
             FechaE,
-            Bloqueo]]
+            Bloqueo,
+            Activadora,
+            MesTrabajada,
+            terminal,
+        Comision]]
         }, 
     })
     /*
@@ -365,6 +373,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             numeroCelularDeTramite,
             enCasoDePortabilidad,
             numeroDeContacto1,
+            tipoDeTramite,
             provincia, 
             canton, 
             distritp,
@@ -429,7 +438,9 @@ exports.registrarVentaFijo = async (req, res) => {
         barrio,
         tipoLlamada,
         nombreVendedor,
-        nombreVendedorFreelance} = req.body;
+        nombreVendedorFreelance,
+        UsuarioLiberty,
+        red} = req.body;
 
         const auth = new google.auth.GoogleAuth({
             keyFile: "credentials.json",
@@ -592,6 +603,19 @@ exports.registrarVentaFijo = async (req, res) => {
         }else{
             var nombreVendedorFreelance1 = nombreVendedorFreelance;
         }
+
+        var Rechazada = "";
+    var Detalle = "";
+    var Entregador = "";
+    var Estados = "";
+    var LlamadaACT = "";
+    var FechaACT = "";
+    var NumeroOrden = "";
+    var MesTrabajada = "ENERO";
+    var InstalacionPrograda = "";
+    var Comision = "";
+
+
         /// Write rows 
         await googleSheets.spreadsheets.values.append({
             auth,
@@ -625,7 +649,18 @@ exports.registrarVentaFijo = async (req, res) => {
                 fecha,
                 nombreVendedorFreelance1,
                 activada,
-                entregada]]
+                entregada,
+                Rechazada,
+                Detalle,
+                Entregador,
+                Estados,
+                LlamadaACT,
+                FechaACT,
+                NumeroOrden,
+                MesTrabajada,
+                InstalacionPrograda,
+                red,
+            Comision]]
             }, 
         })
 
@@ -650,7 +685,8 @@ exports.registrarVentaFijo = async (req, res) => {
                 codigoLiberty,
                 correo,
                 comentario,
-                coordenadas
+                coordenadas,
+                UsuarioLiberty
           });
 
         /*

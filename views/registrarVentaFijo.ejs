@@ -160,7 +160,6 @@
                     <div class="form-outline">
                       <select class="form-select form-select-lg" id="Financiamiento" name="Financiamiento" required>
                         <option value="Con Financiamiento">Con Financiamiento</option>
-                        <option value="Sin Financiamiento">Sin Financiamiento</option>
                      </select>
                       <label class="form-user" for="tipoLlamada">Financiamiento</label>
                     </div>
@@ -171,8 +170,7 @@
     
                     <div class="form-outline">
                       <select class="form-select form-select-lg" id="nombrePromocion" name="nombrePromocion" required>
-                        <option value="Oferta Regular">Oferta Regular</option>
-                        <option value="Obtene mas megas">Obtene mas megas</option>
+                        <option value="Tactica Financiamiento">Tactica Financiamiento</option>
                      </select>
                       <label class="form-user" for="nombrePromocion">Nombre de la Promocion</label>
                     </div>
@@ -241,6 +239,10 @@
                         <option value="WhatsApp">WhatsApp</option>
                         <option value="Redes Sociales (Inbound)">Redes Sociales (Inbound)</option>
                       <option value="Redes Sociales (Outbound)">Redes Sociales (Outbound)</option>
+                      <option value="WhatsApp">WhatsApp</option>
+                      <option value="Referido">Referido</option>
+                      <option value="Familiar">Familiar</option>
+                      <option value="Presencial">Presencial</option>
                      </select>
                       <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
                     </div>
@@ -275,6 +277,15 @@
                   </div>
   
                   <div class="col-md-4 mb-4">
+
+                    <div class="form-outline">
+                      <select class="form-select form-select-lg" id="red" name="red" required>
+                        <option value="FTTH">FTTH</option>
+                        <option value="HFC">HFC</option>
+                        <option value="JASEC">JASEC</option>
+                     </select>
+                      <label class="form-user" for="red">red</label>
+                    </div>
     
                       <div class="form-outline">
                         <div class="prueba">
@@ -289,6 +300,13 @@
                       <div class="prueba12">
                       <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
                       <label class="form-user" for="codigoLiberty" >Nombre Vendedor</label>
+                      </div>
+                    </div>
+
+                    <div class="form-outline">
+                      <div class="prueba12">
+                      <input type="text" id="codigoLiberty" name="UsuarioLiberty" value="<%= user.UsuarioLiberty %>" readonly class="form-control form-control-lg" />
+                      <label class="form-user" for="UsuarioLiberty" >Usuario Liberty</label>
                       </div>
                     </div>
 
@@ -321,11 +339,11 @@
     </div> 
 
     <script>
-      let StandaloneOptions = ["Mega 30","Mega 50", "Mega 100","Mega 200", "Mega 325", "Mega 450 HBO Max", "Mega 300 HBO Max", "Mega 150 HBO Max"];
-      let TriplePlayOptions = ["Triple Play Mega 30", "Triple Play Mega 50", "Triple Play Mega 100","Triple Play Mega 200", "Triple Play Mega 325"];
-      let DoblePlayOptions = ["Doble Play Mega 30","Doble Play Mega 50", "Doble Play Mega 100","Doble Play Mega 200", "Doble Play Mega 325"];
-      let LibertyTotalSINTV = ["75 Mbps + 45 GB SIN TV", "75 Mbps + 30 GB SIN TV", "75 Mbps + 18 GB SIN TV", "150 Mbps + ILIMITADO SIN TV", "150 Mbps + 35 GB SIN TV", "150 Mbps + 25 GB SIN TV", "350 Mbps + ILIMITADO SIN TV", "350 Mbps + 35 GB SIN TV", "350 Mbps + 25 GB SIN TV"];
-      let LibertyTotalCONTV = ["75 Mbps + 45 GB CON TV", "75 Mbps + 30 GB CON TV", "75 Mbps + 18 GB CON TV", "150 Mbps + ILIMITADO CON TV", "150 Mbps + 35 GB CON TV", "150 Mbps + 25 GB CON TV", "350 Mbps + ILIMITADO CON TV", "350 Mbps + 35 GB CON TV", "350 Mbps + 25 GB CON TV"];
+      let StandaloneOptions = ["45 Mbps","150 Mbps", "300 Mbps","500 Mbps", "1000 Mbps"];
+      let TriplePlayOptions = ["45 Mbps","150 Mbps", "300 Mbps","500 Mbps", "1000 Mbps"];
+      let DoblePlayOptions = ["45 Mbps","150 Mbps", "300 Mbps","500 Mbps", "1000 Mbps"];
+      let LibertyTotalSINTV = ["CONECTATE 150 Mbps + 18 SIN TV", "CONECTATE 150 Mbps + 30 GB SIN TV", "CONECTATE 150 Mbps + 45 GB SIN TV", "LIBERATE 300 Mbps + 25 GB SIN TV", "LIBERATE 300 Mbps + 35 GB SIN TV", "LIBERATE 300 Mbps + ILIMITADO GB SIN TV", "EXPRESATE 500 Mbps + 25 GB SIN TV", "EXPRESATE 500 Mbps + 35 GB SIN TV", "EXPRESATE 500 Mbps + ILIMITADO GB SIN TV", "VOLA 1000 Mbps + 25 GB SIN TV", "VOLA 1000 Mbps + 35 GB SIN TV", "VOLA 1000 Mbps + ILIMITADO GB SIN TV"];
+      let LibertyTotalCONTV = ["CONECTATE 150 Mbps + 18 GB CON TV", "CONECTATE 150 Mbps + 30 GB CON TV", "CONECTATE 150 Mbps + 45 GB CON TV", "LIBERATE 300 Mbps + 25 GB CON TV", "LIBERATE 300 Mbps + 35 GB CON TV", "LIBERATE 300 Mbps + ILIMITADO GB CON TV", "EXPRESATE 500 Mbps + 25 GB CON TV", "EXPRESATE 500 Mbps + 35 GB CON TV", "EXPRESATE 500 Mbps + ILIMITADO GB CON TV", "VOLA 1000 Mbps + 25 GB CON TV", "VOLA 1000 Mbps + 35 GB CON TV", "VOLA 1000 Mbps + ILIMITADO GB CON TV"];
       let TipodeTramiteOptions = ["Standalone", "Doble Play", "Triple Play", "Liberty Total (Con television)", "Liberty Total (Sin television)"];
 
 

@@ -322,9 +322,42 @@
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
-                            <input type="text" id="column33" name="column34" class="form-control form-control-lg" value="<%= rowValues[33] %>" />
+                            <input type="text" id="column34" name="column34" class="form-control form-control-lg" value="<%= rowValues[33] %>" />
                           <label class="form-user" for="tipoLlamada">Numero de Orden</label>
                         </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline" id="prueba12">
+                            <input type="text" id="column35" name="column35" class="form-control form-control-lg" value="<%= rowValues[34] %>" disabled/>
+                          <label class="form-user" for="tipoLlamada">Mes</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <input type="date" id="column36" name="column36" class="form-control form-control-lg" value="<%= rowValues[35] %>" />
+                          <label class="form-user" for="tipoLlamada">Instalacion Programada</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="column37" name="column37" class="form-control form-control-lg" >
+                                <option value="<%= rowValues[36] %>" ><%= rowValues[36] %></option>
+                                <option value="FTTH">FTTH</option>
+                        <option value="HFC">HFC</option>
+                        <option value="JASEC">JASEC</option>
+                              </select>
+                          <label class="form-user" for="Instalacion">RED </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <select class="select form-control-lg" style="width: 300px;" id="column38" name="column38" class="form-control form-control-lg" >
+                              <option value="<%= rowValues[37] %>" ><%= rowValues[37] %></option>
+                              <option value="PAGO">PAGO</option>
+                              <option value="NO PAGO">NO PAGO</option>
+                            </select>
+                        <label class="form-user" for="Pago Comision">Pago Comision</label>
+                      </div>
                       </div>
   
   
