@@ -373,6 +373,7 @@ exports.registrarVentaGoogle = async (req, res) => {
             numeroCelularDeTramite,
             enCasoDePortabilidad,
             numeroDeContacto1,
+            numeroDeContacto2,
             tipoDeTramite,
             provincia, 
             canton, 
@@ -671,6 +672,7 @@ exports.registrarVentaFijo = async (req, res) => {
                 primerApellidoDelCliente,
                 segundoApellidoDelCliente,
                 numeroDeDocumento,
+                tipoDeTramite,
                 nombrePromocion,
                 valorPlanDiferente,
                 numeroDeContacto1,
@@ -686,6 +688,7 @@ exports.registrarVentaFijo = async (req, res) => {
                 correo,
                 comentario,
                 coordenadas,
+                red,
                 UsuarioLiberty
           });
 
