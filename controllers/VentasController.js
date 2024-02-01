@@ -228,7 +228,7 @@ exports.registrarVentaGoogle = async (req, res) => {
     var NumeroActivacion = "";
     var FechaE = "";
     var Bloqueo = "Bloqueada";
-    var MesTrabajada = "ENERO";
+    var MesTrabajada = "FEBRERO";
     var Activadora = "";
     var Comision = "";
 
@@ -612,7 +612,7 @@ exports.registrarVentaFijo = async (req, res) => {
     var LlamadaACT = "";
     var FechaACT = "";
     var NumeroOrden = "";
-    var MesTrabajada = "ENERO";
+    var MesTrabajada = "FEBRERO";
     var InstalacionPrograda = "";
     var Comision = "";
 
