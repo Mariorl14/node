@@ -1,0 +1,206 @@
+    <style>
+      #column7D,#column8H{
+        display: none;
+      }
+    </style>
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Detalle BD</h3>
+                <form action="/editBdTelefonos/<%= rowId %>" method="POST">
+      
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column1">Consecutivo:</label>
+                         <input type="text" id="column1" name="column1" class="form-control form-control-lg" value="<%= rowValues[0] %>" disabled>
+                      </div>
+      
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column2">Numero:</label>
+                         <input type="text" id="column2" class="form-control form-control-lg" name="column2" value="<%= rowValues[1] %>" disabled>
+                      </div>
+      
+                    </div>
+                  </div>
+      
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column3">Cedula:</label>
+                         <input type="text" id="column3" class="form-control form-control-lg" name="column3" value="<%= rowValues[2] %>" >
+                      </div>
+      
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column3">nombre:</label>
+                         <input type="text" id="column4" name="column4" class="form-control form-control-lg" value="<%= rowValues[3] %>" >
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column10">¿Pre pago o Post pago?:</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column10" name="column10" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[5] %>" ><%= rowValues[9] %></option>
+                          <option value="Pre pago">Pre pago</option>
+                          <option value="Post pago">Post pago</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column11">¿Fijo?</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column11" name="column11" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[10] %>" ><%= rowValues[10] %></option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column12">Operador Fijo :</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column12" name="column12" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[11] %>" ><%= rowValues[11] %></option>
+                          <option value="Kolbi">Kolbi</option>
+                          <option value="Claro">Claro</option>
+                          <option value="Telecable">Telecable</option>
+                          <option value="Tigo">Tigo</option>
+                          <option value="Liberty">Liberty</option>
+                          <option value="Metrocom">Metrocom</option>
+                          <option value="Coope">Coope</option>
+                          <option value="Otro">Otro</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column3">asesor:</label>
+                         <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= rowValues[4] %>" disabled>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column6" >Detalle:</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column6" name="column6" class="form-control form-control-lg" required>
+                          <option value="<%= rowValues[5] %>" ><%= rowValues[5] %></option>
+                          <option value="Consulta Lista Negra">Consulta Lista Negra</option>
+                          <option value="Mensaje en visto">Mensaje en visto</option>
+                          <option value="Estudio Pendiente Documentos">Estudio Pendiente Documentos</option>
+                          <option value="Llamar Luego/ Interesado">Llamar Luego/ Interesado</option>
+                          <option value="Llamar Luego/ No se le dio la informacion">Llamar Luego/ No se le dio la informacion</option>
+                          <option value="Mensaje Con Tercero">Mensaje Con Tercero</option>
+                          <option value="No Aplica / Cobertura">No Aplica / Cobertura</option>
+                          <option value="No Aplica / Documentos">No Aplica / Documentos</option>
+                          <option value="No aplica / Gestiono otro DTS">No aplica / Gestiono otro DTS</option>
+                          <option value="No Aplica / Lista Negra">No Aplica / Lista Negra</option>
+                          <option value="No Aplica / Plan Empresarial">No Aplica / Plan Empresarial</option>
+                          <option value="No Aplica / Rural">No Aplica / Rural</option>
+                          <option value="No Aplica / Tiene Contrato Permanencia">No Aplica / Tiene Contrato Permanencia</option>
+                          <option value="No Aplica / mancha">No Aplica / mancha</option>
+                          <option value="No Aplica/ Alquila con el servicio">No Aplica/ Alquila con el servicio</option>
+                          <option value="No Aplica/ Hogares conectados">No Aplica/ Hogares conectados</option>
+                          <option value="No Aplica/ Menor de edad">No Aplica/ Menor de edad</option>
+                          <option value="No Aplica/ Tiene Plan con Liberty">No Aplica/ Tiene Plan con Liberty</option>
+                          <option value="No interesa / Desea Prepago">No interesa / Desea Prepago</option>
+                          <option value="No Interesa / Motivos Economicos">No Interesa / Motivos Economicos</option>
+                          <option value="No Interesa / Sin Equipo">No Interesa / Sin Equipo</option>
+                          <option value="No Interesa /Cliente desea Terminal">No Interesa /Cliente desea Terminal</option>
+                          <option value="No Interesa /Desea Renovacion">No Interesa /Desea Renovacion</option>
+                          <option value="No Interesa/ Cliente Desconfiado">No Interesa/ Cliente Desconfiado</option>
+                          <option value="No Interesa/ Cliente Molesto">No Interesa/ Cliente Molesto</option>
+                          <option value="No Interesa/ Conforme con Operador Actual">No Interesa/ Conforme con Operador Actual</option>
+                          <option value="No Interesa/ Corta Llamada">No Interesa/ Corta Llamada</option>
+                          <option value="No Interesa/ Fibra optica">No Interesa/ Fibra optica</option>
+                          <option value="No Interesa/ Mala Experiencia">No Interesa/ Mala Experiencia</option>
+                          <option value="No interesado / No Detalla">No interesado / No Detalla</option>
+                          <option value="No Localizado 1">No Localizado 1</option>
+                          <option value="No Localizado 2">No Localizado 2</option>
+                          <option value="No Localizado 3">No Localizado 3</option>
+                          <option value="Numero Equivocado">Numero Equivocado</option>
+                          <option value="Numero no existe">Numero no existe</option>
+                          <option value="Numero Suspendido">Numero Suspendido</option>
+                          <option value="Seguimiento">Seguimiento</option>
+                          <option value="Seguimiento / Pendiente Terminal">Seguimiento / Pendiente Terminal</option>
+                          <option value="Solicitud Estudio">Solicitud Estudio</option>
+                          <option value="Venta Efectiva">Venta Efectiva</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column9">Comentario:</label>
+                         <input type="text" id="column9" name="column9" class="form-control form-control-lg" value="<%= rowValues[8] %>" >
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline" id="column7D">
+                        <label class="form-user"  for="column7">Dia:</label>
+                        <input type="date" id="column7" name="column7" class="form-control form-control-lg" >
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline"id="column8H">
+                        <label class="form-user" for="column8">Hora:</label>
+                        <input type="time" id="column8" name="column8" class="form-control form-control-lg" >
+                      </div>
+      
+                    </div>
+                  </div>
+      
+                  <div class="mt-4 pt-2">
+                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                  </div>
+      
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        // Get the current time
+        var currentTime = new Date();
+        var currentDate = new Date();
+  
+        // Format the time in 'HH:mm' format
+        var year = currentDate.getFullYear();
+      var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      var day = String(currentDate.getDate()).padStart(2, '0');
+      var formattedDate = `${year}-${month}-${day}`;
+        var hours = String(currentTime.getHours()).padStart(2, '0');
+        var minutes = String(currentTime.getMinutes()).padStart(2, '0');
+        var formattedTime = `${hours}:${minutes}`;
+  
+        // Set the value of the time input field to the current time
+        document.getElementById('column7').value = formattedDate;
+        document.getElementById('column8').value = formattedTime;
+        console.log(formattedDate)
+      </script>
