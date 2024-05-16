@@ -811,13 +811,13 @@ router.get('/revenueMayo2024', authController.isAuthenticated,authController.aut
   })
 
   var user = req.user;
-  const rows = ventas.data.values;
+  var rows = ventas.data.values;
 
   if(rows==undefined){
-      rows="";
-  }
-  let query1 = 'SELECT * FROM users';
-  let results = {};
+    rows="";
+}
+let query1 = 'SELECT * FROM users';
+let results = {};
   
   conexion.query(query1, (error, data) => {
       if (error) {
