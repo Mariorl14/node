@@ -2690,6 +2690,7 @@ router.get('/edit/:rowId', async  (req, res) => {
 /*EDITAR HOMEE */
   router.get('/editHOME/:rowId', async  (req, res) => {
 
+
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -2723,7 +2724,7 @@ router.get('/edit/:rowId', async  (req, res) => {
       const rowValues = response.data.values[0];
   
       // Step 3: Render the update view with retrieved data
-      res.render('editarHOME', { rowId, rowValues }); // Assumes you have an 'update.ejs' view/template
+      res.render('editarHOME', { rowId, rowValues}); // Assumes you have an 'update.ejs' view/template
     });
   });
  router.post('/editHOME/:rowId', async (req, res) => {
