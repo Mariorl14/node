@@ -4,13 +4,9 @@ const path = require('path');
 const dotenv = require('dotenv');
 const expressLayouts = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
-
-
 const app = express();
 
 /*Seteamos el motor de plantillas*/
-
-
 app.set('view engine', 'ejs');
 
 
@@ -18,8 +14,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 app.set("layout login", false);
-
-
 
 /*Datos de envios desde forms */
 app.use(express.urlencoded({extended:false}));
@@ -29,12 +23,59 @@ app.use(express.json());
 ///const dotenv = require('dotenv');
 dotenv.config({path:'./env/.env'});
 
-
 /*Cookie parser */
 app.use(cookieParser());
 
 /*Lamar al router*/
 app.use('/', require('./routes/router')); 
+
+/* Users */
+const UsersRoute = require("./routes/Users");
+app.use('/',UsersRoute);
+
+/* Movil */
+const MovilRoute = require("./routes/Movil");
+app.use('/',MovilRoute);
+
+/* Fijo */
+const FijoRoute = require("./routes/Fijo");
+app.use('/',FijoRoute);
+
+/* BD Claro */
+const ClaroRoute = require("./routes/BDClaro");
+app.use('/',ClaroRoute);
+
+/* BD Kolbi */
+const KolbiRoute = require("./routes/BDKolbi");
+app.use('/',KolbiRoute);
+
+/* BD Fijo */
+const BDFijoRoute = require("./routes/BDFijo");
+app.use('/',BDFijoRoute);
+
+/* BD ITX */
+const BDITXRoute = require("./routes/BDITX");
+app.use('/',BDITXRoute);
+
+/* BD Migraciones */
+const BDMigracionesRoute = require("./routes/BDMigraciones");
+app.use('/',BDMigracionesRoute);
+
+/* BD Telefonos */
+const BDTelefonosRoute = require("./routes/BDTelefonos");
+app.use('/',BDTelefonosRoute);
+
+/* Revenues 2024 Edit */
+const EditRev2024Route = require("./routes/EditRevenues2024");
+app.use('/',EditRev2024Route);
+
+/* Revenues 2024 VIS */
+const VisRev2024Route = require("./routes/VISRevenues2024");
+app.use('/',VisRev2024Route);
+
+/* Ticocel */
+const TicocelRoute = require("./routes/Ticocel");
+app.use('/',TicocelRoute);
 
 /* PARA ELIMINAR CACHE Y NO HACER BACK DESPUES DE LOGOUT  */
 

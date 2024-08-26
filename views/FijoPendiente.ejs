@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="css/rwd-table.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
+<h2>Bienvenido de vuelta: 
+  <% if(user) {%>
+    <span class="badge bg-success"> <%= user.nombre %></span>
+    <%}%>
+</h2>
+<h2>Su Rol es: 
+  <% if(user) {%>
+    <span class="badge bg-success"> <%= user.rol %></span>
+    <%}%>
+</h2>
+
+<h2>
+    Lista de Ventas Fijo Pendientes
+</h2>
+
+              <div class="container">
+
+                <table id="example" class="table table-striped nowrap" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th scope="col">Acciones</th>
+                      <th scope="col">Numero De Documento</th>
+                      <th scope="col">Numero Celular De Tramite</th>
+                      <th scope="col">Nombre Del Cliente</th>
+                      <th scope="col">Segundo Nombre Del Cliente</th>
+                      <th scope="col">Primer Apellido Del Cliente</th>
+                      <th scope="col">Segundo Apellido Del Cliente</th>
+                      <th scope="col">Nacionalidad</th>
+                      <th scope="col">Tipo De Tramite</th>
+                      <th scope="col">Numero de Contrato</th>
+                      <th scope="col">Numero de Abonado</th>
+                      <th scope="col">Numero de Orden</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Plan a Contratar</th>
+                       <th scope="col">Financiamiento</th>
+                      <th scope="col">Valor del Plan</th>
+                      <th scope="col">Instalada</th>
+                      <th scope="col">Rechazada</th>
+                      <th scope="col">Nombre Vendedor</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    <% results.forEach((sale)=> { %>
+                      <tr>
+                        <td>
+                          <a href="/editFijoPendiente/<%= sale.SaleId %>">Editar</a>
+                        </td>
+                        <td><%= sale.Numero_Documento %></td>
+                        <td><%= sale.Celular_Tramite %></td>
+                        <td><%= sale.Nombre_Cliente %></td>
+                        <td><%= sale.Segundo_Nombre_Cliente %></td>
+                        <td><%= sale.Primer_Apellido_Cliente %></td>
+                        <td><%= sale.Segundo_Apellido_Cliente %></td>
+                        <td><%= sale.Nacionalidad %></td>
+                        <td><%= sale.Tipo_Tramite %></td>
+                        <td><%= sale.Numero_Contrato %></td>
+                        <td><%= sale.Numero_Abonado %></td>
+                        <td><%= sale.Numero_Orden %></td>
+                        <td><%= sale.Fecha %></td>
+                        <td><%= sale.Plan_Contratar %></td>
+                        <td><%= sale.Financiamiento %></td>
+                        <td><%= sale.Valor_Plan_Diferente %></td>
+                        <td><%= sale.Entregada %></td>
+                        <td><%= sale.Rechazada %></td>
+                        <td><%= sale.Nombre_Vendedor %></td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+              </table>
+
+              </div>
+
+                
+                <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+                <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
+                <script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap5.js"></script>
+                <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+                <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
+
+                <script>
+                  new DataTable('#example', {
+                  responsive: true
+              });
+                </script>
+
+
+<script type="text/javascript" src="js/rwd-table.js"></script>
