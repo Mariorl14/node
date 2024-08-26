@@ -650,7 +650,7 @@ router.get('/editPendientesEntrega/:SaleId', async (req, res) => {
       saleData.formattedFechaEntrega = formattedDate2;
   
       // Render the template with the formatted dates
-      res.render('PendientesEntrega', { SaleId: saleData, user: req.user });
+      res.render('editarPendientesEntrega', { SaleId: saleData, user: req.user });
     }
 })
 
