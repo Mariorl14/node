@@ -347,9 +347,9 @@ router.post('/generatePayslip', pdfMaker.generatePayslip );
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
 router.post('/registrarVenta', VentasController.registrarVenta)
-router.post('/registrarVenta1', VentasController.registrarVenta)
+router.post('/registrarVenta1', VentasController.registrarVentaGoogle)
 
-router.post('/pruebagoogle',   VentasController.registrarVenta)
+router.post('/pruebagoogle',   VentasController.registrarVentaGoogle)
 router.post('/pruebagoogle1',  VentasController.registrarVentaFijo)
 router.post('/pruebagoogle2',  VentasController.registrarVentaFijoTicocel)
 

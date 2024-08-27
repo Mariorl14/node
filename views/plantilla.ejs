@@ -16,42 +16,42 @@
                   </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Vendedor">Vendedor : <%= Nombre_Vendedor %> (<%= codigoLiberty %>)</label>
+                  <label class="form-user" for="Vendedor">Vendedor : <%= nombreVendedor %> (<%= codigoLiberty %>)</label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Nombre_del_cliente">Nombre del cliente : <%= Nombre_Cliente %> <%= Segundo_Nombre_Cliente %> <%= Primer_Apellido_Cliente %> <%= Segundo_Apellido_Cliente %></label>
+                  <label class="form-user" for="Nombre_del_cliente">Nombre del cliente : <%= nombreDelCliente %> <%= segundoNombreDelCliente %> <%= primerApellidoDelCliente %> <%= segundoApellidoDelCliente %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Numero_de_cedula">Numero de cedula : <%= Numero_Documento %></label>
+                  <label class="form-user" for="Numero_de_cedula">Numero de cedula : <%= numeroDeDocumento %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Numero_a_portar">Numero de tramite : <%= Celular_Tramite %></label>
+                  <label class="form-user" for="Numero_a_portar">Numero de tramite : <%= numeroCelularDeTramite %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="tipo_tramite">Tipo de Tramite : <%= Tipo_Tramite %> </label>
+                  <label class="form-user" for="tipo_tramite">Tipo de Tramite : <%= tipoDeTramite %> </label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Operdador">Operador : <%= Portabilidad %></label>
+                  <label class="form-user" for="Operdador">Operador : <%= enCasoDePortabilidad %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Numero_de_contacto">Numero de contacto : <%= Numero_Contacto_1 %></label>
+                  <label class="form-user" for="Numero_de_contacto">Numero de contacto : <%= numeroDeContacto1 %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Numero_de_contacto">Numero de contacto 2 : <%= Numero_Contacto_2 %></label>
+                  <label class="form-user" for="Numero_de_contacto">Numero de contacto 2 : <%= numeroDeContacto2 %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
@@ -61,26 +61,26 @@
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Provincia">Provincia : <%= Provincia %></label>
+                  <label class="form-user" for="Provincia">Provincia : <%= provincia %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Cantón">Cantón : <%= Canton %></label>
+                  <label class="form-user" for="Cantón">Cantón : <%= canton %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Distrito">Distrito : <%= Distrito %></label>
+                  <label class="form-user" for="Distrito">Distrito : <%= distritp %></label>
                 </div>
               </div>
 
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Dirección_exacta">Dirección exacta : <%= Direccion_Exacta %></label>
+                  <label class="form-user" for="Dirección_exacta">Dirección exacta : <%= direccionExacta %></label>
                 </div>
               </div>
-              <% if (Plan_Contratar === "@1Plus"||Plan_Contratar ==="@2"||Plan_Contratar ==="@1") { %>
+              <% if (tipoDePlanAContratar === "@1Plus"||tipoDePlanAContratar ==="@2"||tipoDePlanAContratar ==="@1") { %>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
                   <label class="form-user" for="Tipo_de_plan">Tipo de plan : <%= tipoDePlanAContratar1 %></label>
@@ -89,13 +89,13 @@
               <% } else { %>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <label class="form-user" for="Tipo_de_plan">Tipo de plan : <%= Plan_Contratar %></label>
+                    <label class="form-user" for="Tipo_de_plan">Tipo de plan : <%= tipoDePlanAContratar %></label>
                   </div>
                 </div>
                 <% } %>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <label class="form-user" for="Cobro_de_envió">Cobro de envió : <%= Cobro_Envío %></label>
+                  <label class="form-user" for="Cobro_de_envió">Cobro de envió : <%= cobro_de_envio %></label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
