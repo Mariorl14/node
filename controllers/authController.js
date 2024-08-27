@@ -98,7 +98,7 @@ exports.login = async (req, res)=>{
                     alertIcon: 'success',
                     showConfirmButton: false,
                     timer: 800,
-                    ruta: 'homeTest',
+                    ruta: 'home',
                 })
                 
                /*Swal.fire({
