@@ -174,6 +174,7 @@ exports.registrarVentaGoogle = async (req, res) => {
         segundoNombreDelCliente,
         primerApellidoDelCliente,
         segundoApellidoDelCliente, 
+        genero,
         tipoDeDocumentoDeIdentidad, 
         numeroDeDocumento, 
         nacionalidad, 
@@ -288,6 +289,7 @@ exports.registrarVentaGoogle = async (req, res) => {
     var MesTrabajada = "AGOSTO";
     var Activadora = "";
     var Comision = "";
+    var NumeroProvisional = "";
 
     if(nombreVendedor!=="Ventas Freelance"){
         var nombreVendedorFreelance1 = "";
@@ -344,7 +346,10 @@ exports.registrarVentaGoogle = async (req, res) => {
             Activadora,
             MesTrabajada,
             terminal,
-        Comision]]
+            Comision,
+            NumeroProvisional,
+            genero,
+            correo]]
         }, 
     })
     /*
@@ -474,6 +479,7 @@ exports.registrarVentaFijo = async (req, res) => {
         segundoNombreDelCliente,
         primerApellidoDelCliente,
         segundoApellidoDelCliente, 
+        genero,
         tipoDeDocumentoDeIdentidad, 
         numeroDeDocumento, 
         nombrePromocion,
@@ -672,6 +678,7 @@ exports.registrarVentaFijo = async (req, res) => {
     var MesTrabajada = "AGOSTO";
     var InstalacionPrograda = "";
     var Comision = "";
+    var Activadora = "";
 
 
         /// Write rows 
@@ -718,7 +725,10 @@ exports.registrarVentaFijo = async (req, res) => {
                 MesTrabajada,
                 InstalacionPrograda,
                 red,
-            Comision]]
+                Comision,
+                genero,
+                Activadora,
+                correo]]
             }, 
         })
 
