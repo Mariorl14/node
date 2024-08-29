@@ -32,7 +32,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI';
-    const range = `Base Madre!A${rowId}:Q${rowId}`;
+    const range = `Base Madre!A${rowId}:S${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -82,12 +82,14 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
       req.body.column15,
       req.body.column16,
       req.body.column17,
+      req.body.column18,
+      req.body.column19
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI';
-    const range = `Base Madre!A${rowId}:Q${rowId}`;
+    const range = `Base Madre!A${rowId}:S${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

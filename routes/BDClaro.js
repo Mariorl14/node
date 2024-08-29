@@ -74,7 +74,7 @@ router.get('/edit/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:N${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -119,12 +119,14 @@ router.get('/edit/:rowId', async  (req, res) => {
       req.body.column10,
       req.body.column11,
       req.body.column12,
+      req.body.column13,
+      req.body.column14,
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1JsoU_l8-T_KUuNs-7xyMxFE41mipBPo6OReUJ-VTFt8';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:N${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
