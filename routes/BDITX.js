@@ -73,7 +73,7 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -119,12 +119,15 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
       req.body.column10,
       req.body.column11,
       req.body.column12,
+      req.body.column13,
+      req.body.column14,
+      req.body.column15
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

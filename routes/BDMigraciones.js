@@ -73,7 +73,7 @@ router.get('/bdMigraciones',authController.isAuthenticated, NoCache.nocache,auth
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -88,7 +88,7 @@ router.get('/bdMigraciones',authController.isAuthenticated, NoCache.nocache,auth
       const rowValues = response.data.values[0];
   
       // Step 3: Render the update view with retrieved data
-      res.render('updateViewBDITX', { rowId, rowValues }); // Assumes you have an 'update.ejs' view/template
+      res.render('updateViewBDMigraciones', { rowId, rowValues }); // Assumes you have an 'update.ejs' view/template
     });
   });
 
@@ -119,12 +119,15 @@ router.get('/bdMigraciones',authController.isAuthenticated, NoCache.nocache,auth
       req.body.column10,
       req.body.column11,
       req.body.column12,
+      req.body.column13,
+      req.body.column14,
+      req.body.column15
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
@@ -142,7 +145,7 @@ router.get('/bdMigraciones',authController.isAuthenticated, NoCache.nocache,auth
         return;
       }
   
-      res.redirect('/bdITX'); // Redirect to the main page or any other desired location
+      res.redirect('/bdMigraciones'); // Redirect to the main page or any other desired location
     });
   });
 
