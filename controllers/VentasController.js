@@ -91,7 +91,9 @@ exports.registrarVenta = async (req, res)=>{
     var MES_TRABAJADA = "AGOSTO";
     const Terminal = req.body.terminal;
     const correo = req.body.correo;
+    const Genero = req.body.genero;
     var Pago_Comision = "";
+    var Numero_Provisional = "";
 
     if(idVendedor !=="Ventas Freelance"){
          var Vendedor_Freelance = "";
@@ -99,7 +101,7 @@ exports.registrarVenta = async (req, res)=>{
         Vendedor_Freelance = Vendedor_Freelance1;
     }
 
-    conexion.query('INSERT INTO TempMovil SET ?',
+    conexion.query('INSERT INTO MovilTemporal SET ?',
      {Nombre_Cliente:NombreDelCliente,
         Segundo_Nombre_Cliente:SegundoNombreDelCliente,
         Primer_Apellido_Cliente:PrimerApellidoDelCliente,
@@ -132,7 +134,7 @@ exports.registrarVenta = async (req, res)=>{
         Entregador,
         Estados, 
         Llamada_Activacion, 
-        Fecha_Activacion,NIP,Detalle_Activacion,Primera_Revision,Segunda_Revision,MOVICHECK,Fecha_Entrega,Bloqueo_Desbloqueo,Activadora,MES_TRABAJADA,Terminal:Terminal,Pago_Comision}, async(error, results)=>{
+        Fecha_Activacion,NIP,Detalle_Activacion,Primera_Revision,Segunda_Revision,MOVICHECK,Fecha_Entrega,Bloqueo_Desbloqueo,Activadora,MES_TRABAJADA,Terminal:Terminal,Pago_Comision,Numero_Provisional,Genero:Genero,Correo_Cliente:correo}, async(error, results)=>{
 
             if(error){
                 console.log(error);

@@ -54,6 +54,26 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
+                      <input type="text" id="Correo" name="Correo" class="form-control form-control-lg" value="<%= SaleId.Correo_Cliente%>" />
+                      <label class="form-user" for="segundoApellidoDelCliente">Correo del Cliente</label>
+                    </div>
+    
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
+                      <select class="select form-control-lg" style="width: 300px;" id="Genero" name="Genero" class="form-control form-control-lg" >
+                        <option value="<%= SaleId.Tipo_Tramite %>"></option>
+                        <option <%= SaleId.Genero == 'Masculino' ? "selected" : '' %> value="Masculino">Masculino</option>
+                       <option <%= SaleId.Genero == 'Femenino' ? "selected" : '' %> value="Femenino">Femenino</option>
+                      </select>
+                      <label class="form-user" for="tipoLlamada">Tramite</label>
+                    </div>
+                      
+                  </div>
+                  <div class="col-md-4 mb-4">
+    
+                    <div class="form-outline">
                         <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= SaleId.Documento_Identidad%>" />
                       <label class="form-label" for="nombre">Tipo De Documento De Identidad</label>
                    </div>
