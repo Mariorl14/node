@@ -143,8 +143,38 @@
                     <div class="col-md-6 mb-4">
       
                       <div class="form-outline">
-                        <label class="form-user" for="column3">asesor:</label>
-                         <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= rowValues[4] %>" disabled>
+                        <label class="form-user" for="column12">Operador Movil :</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column13" name="column13" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[12] %>" ><%= rowValues[12] %></option>
+                          <option value="Kolbi">Kolbi</option>
+                          <option value="Claro">Claro</option>
+                          <option value="Otro">Otro</option>
+                        </select>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column12">Genero :</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column14" name="column14" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[13] %>" ><%= rowValues[13] %></option>
+                          <option value="Masculino">Masculino</option>
+                          <option value="Femenino">Femenino</option>
+                        </select>
+                      </div>
+      
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+      
+                      <div class="form-outline">
+                        <label class="form-user" for="column12">¿Se le envio informacion por WhatsApp?</label>
+                        <select class="select form-control-lg" style="width: 300px;" id="column15" name="column15" class="form-control form-control-lg" >
+                          <option value="<%= rowValues[14] %>" ><%= rowValues[14] %></option>
+                          <option value="Si">Si</option>
+                          <option value="No">No</option>
+                        </select>
                       </div>
       
                     </div>

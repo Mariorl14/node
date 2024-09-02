@@ -2,7 +2,6 @@ const express = require('express');
 const {google} = require("googleapis");
 const apiKey = 'AIzaSyDelxqh4i74UrJ1Rpdbxv91a8ksOgUGOEI';
 const {promisify} = require('util');
-const puppeteer = require('puppeteer');
 const xlsx = require('xlsx');
 const fs = require('fs');
 ///const {vistaPrincipal, vistaHome, vistaRegister} = require('../controllers/PageControllers')

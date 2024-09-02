@@ -74,7 +74,7 @@ router.get('/bdTelefonos',authController.isAuthenticated, NoCache.nocache,authCo
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1ewvh5iI-xF9n6j1VNYdeYwY8DrJW-j7z-XV2J3RpdNc';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -120,12 +120,15 @@ router.get('/bdTelefonos',authController.isAuthenticated, NoCache.nocache,authCo
       req.body.column10,
       req.body.column11,
       req.body.column12,
+      req.body.column13,
+      req.body.column14,
+      req.body.column15
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1ewvh5iI-xF9n6j1VNYdeYwY8DrJW-j7z-XV2J3RpdNc';
-    const range = `Base Madre!A${rowId}:L${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

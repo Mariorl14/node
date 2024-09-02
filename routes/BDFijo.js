@@ -72,7 +72,7 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-    const range = `Registro_Ventas_Fijo!A${rowId}:AL${rowId}`;
+    const range = `Registro_Ventas_Fijo!A${rowId}:AO${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -143,13 +143,16 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
       req.body.column35,
       req.body.column36,
       req.body.column37,
-      req.body.column38
+      req.body.column38,
+      req.body.column39,
+      req.body.column40,
+      req.body.column41
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-    const range = `Registro_Ventas_Fijo!A${rowId}:AL${rowId}`;
+    const range = `Registro_Ventas_Fijo!A${rowId}:AO${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

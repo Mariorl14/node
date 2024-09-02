@@ -32,7 +32,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI';
-    const range = `Base Madre!A${rowId}:Q${rowId}`;
+    const range = `Base Madre!A${rowId}:T${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -52,7 +52,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
   });
  router.post('/editBDFijo/:rowId', async (req, res) => {
 
-    const auth = new google.auth.GoogleAuth({
+  const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
       });
@@ -82,12 +82,15 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
       req.body.column15,
       req.body.column16,
       req.body.column17,
+      req.body.column18,
+      req.body.column19,
+      req.body.column20
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1TknOQx2VYSYUPBoCIOiK-wFCh9vHXPnlbLUv2FH1RdI';
-    const range = `Base Madre!A${rowId}:Q${rowId}`;
+    const range = `Base Madre!A${rowId}:T${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

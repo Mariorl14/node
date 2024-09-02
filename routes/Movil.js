@@ -25,7 +25,7 @@ router.get('/editHOME/:rowId', async (req, res) => {
   
       const rowId = req.params.rowId;
       const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-      const range = `Respuestas_Formulario!A${rowId}:AR${rowId}`;
+      const range = `Respuestas_Formulario!A${rowId}:AU${rowId}`;
   
       const response = await googleSheets.spreadsheets.values.get({
         spreadsheetId,
@@ -103,13 +103,15 @@ router.post('/editHOME/:rowId', async (req, res) => {
         req.body.column41,
         req.body.column42,
         req.body.column43,
-        req.body.column44
+        req.body.column44,
+        req.body.column45,
+        req.body.column46
       ];
     
       // Set up authentication as mentioned in the previous response
     
       const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-      const range = `Respuestas_Formulario!A${rowId}:AR${rowId}`;
+      const range = `Respuestas_Formulario!A${rowId}:AU${rowId}`;
     
       const requestBody = {
         values: [updatedValues],
@@ -192,7 +194,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
   /*HOME BD  No activadas*/
   router.get('/homeTest', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-    conexion.query('SELECT * FROM TempMovil where Activada = "No Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+    conexion.query('SELECT * FROM MovilTemporal where Activada = "No Activada";', (error, results)=>{
       if(error){
           throw error
       }else{
@@ -207,7 +209,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
   const user = req.user;
   
-  conexion.query('select * from TempMovil temp join users us on temp.Nombre_Vendedor = us.nombre where temp.Nombre_Vendedor = ? AND temp.Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND temp.Fecha <= CURDATE() ;', [user.nombre], (error, results)=>{
+  conexion.query('select * from MovilTemporal temp join users us on temp.Nombre_Vendedor = us.nombre where temp.Nombre_Vendedor = ? AND temp.Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND temp.Fecha <= CURDATE() ;', [user.nombre], (error, results)=>{
     if(error){
         throw error
     }else{
@@ -221,7 +223,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
  /*HOME BD Activadas */
  router.get('/Activadas', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-  conexion.query('SELECT * FROM TempMovil where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+  conexion.query('SELECT * FROM MovilTemporal where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -234,7 +236,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
 /*HOME BD Pendientes Activacion */
 router.get('/PendientesActivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
-  conexion.query('SELECT * FROM TempMovil WHERE Activada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
+  conexion.query('SELECT * FROM MovilTemporal WHERE Activada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
     if (error) {
       throw error;
     } else {
@@ -248,7 +250,7 @@ router.get('/PendientesActivacion', authController.isAuthenticated, authControll
 /*HOME BD Pendientes Entrega */
 router.get('/PendientesEntrega', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-  conexion.query('SELECT * FROM TempMovil where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+  conexion.query('SELECT * FROM MovilTemporal where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -263,7 +265,7 @@ router.get('/editHOME1/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempMovil where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -360,10 +362,14 @@ router.post('/editNOActivadas', (req, res) => {
     MES_TRABAJADA: req.body.column42,
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
-    Numero_Provisional: req.body.column45
+    Numero_Provisional: req.body.column45,
+    Genero: req.body.column45,
+    Numero_Provisional: req.body.column45,
+    Genero: req.body.Genero,
+    Correo_Cliente: req.body.Correo
   };
 
-  conexion.query('UPDATE TempMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -379,7 +385,7 @@ router.get('/editActivadas/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempMovil where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -477,10 +483,12 @@ router.post('/editActivadas', (req, res) => {
     MES_TRABAJADA: req.body.column42,
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
-    Numero_Provisional: req.body.column45
+    Numero_Provisional: req.body.column45,
+    Genero: req.body.Genero,
+    Correo_Cliente: req.body.Correo
   };
 
-  conexion.query('UPDATE TempMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -496,7 +504,7 @@ router.get('/editPendientesActivacion/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempMovil where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -594,10 +602,12 @@ router.post('/editPendientesActivacion', (req, res) => {
     MES_TRABAJADA: req.body.column42,
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
-    Numero_Provisional: req.body.column45
+    Numero_Provisional: req.body.column45,
+    Genero: req.body.Genero,
+    Correo_Cliente: req.body.Correo
   };
 
-  conexion.query('UPDATE TempMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -613,7 +623,7 @@ router.get('/editPendientesEntrega/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempMovil where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -711,10 +721,12 @@ router.post('/editPendientesEntrega', (req, res) => {
     MES_TRABAJADA: req.body.column42,
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
-    Numero_Provisional: req.body.column45
+    Numero_Provisional: req.body.column45,
+    Genero: req.body.Genero,
+    Correo_Cliente: req.body.Correo
   };
 
-  conexion.query('UPDATE TempMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
