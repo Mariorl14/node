@@ -677,7 +677,7 @@ exports.registrarVentaFijo = async (req, res) => {
     var LlamadaACT = "";
     var FechaACT = "";
     var NumeroOrden = "";
-    var MesTrabajada = "AGOSTO";
+    var MesTrabajada = "SETIEMBRE";
     var InstalacionPrograda = "";
     var Comision = "";
     var Activadora = "";
