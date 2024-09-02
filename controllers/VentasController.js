@@ -285,7 +285,7 @@ exports.registrarVentaGoogle = async (req, res) => {
     var NumeroActivacion = "";
     var FechaE = "";
     var Bloqueo = "Bloqueada";
-    var MesTrabajada = "AGOSTO";
+    var MesTrabajada = "SETIEMBRE";
     var Activadora = "";
     var Comision = "";
 
@@ -519,7 +519,7 @@ exports.registrarVentaFijo = async (req, res) => {
     var Llamada_Activacion = "";
     var Fecha_Activacion = "";
     var Numero_Orden = "";
-    var MES_TRABAJADA = "AGOSTO";
+    var MES_TRABAJADA = "SETIEMBRE";
     var Fecha_Instalacion = "";
     var Pago_Comision = "";
     var Activadora = "";
