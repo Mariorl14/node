@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Pie Chart Example</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Safely parse the embedded JSON data
+      var dataFromServer = <%- results %>;
+
+      // Check the data in the console
+      console.log('Data from server:', dataFromServer);
+
+      // Ensure data is parsed correctly
+      var parsedData;
+      try {
+        // Use eval safely to parse JSON if it’s being sent as a string
+        parsedData = JSON.parse(dataFromServer);
+      } catch (e) {
+        console.error('Error parsing JSON:', e);
+        return;
+      }
+
+      // Check parsed data
+      console.log('Parsed data:', parsedData);
+
+      // Prepare the data for Google Charts
+      var chartData = [['Vendedor', 'Sales Count']];
+      parsedData.forEach(row => {
+        chartData.push([row.Nombre_Vendedor, row.salesCount]);
+      });
+
+      var dataTable = google.visualization.arrayToDataTable(chartData);
+
+      var options = {
+        title: 'Sales by Salesperson',
+        pieSliceText: 'label', // Show labels on pie slices
+        slices: {
+          0: {offset: 0.1},
+          1: {offset: 0.2}
+        },
+        pieStartAngle: 100,
+        legend: { position: 'labeled' },
+        backgroundColor: '#f1f1f1'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(dataTable, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="piechart" style="width: 900px; height: 500px;"></div>
+</body>
+</html>

@@ -49,6 +49,10 @@ app.use('/',ClaroRoute);
 const KolbiRoute = require("./routes/BDKolbi");
 app.use('/',KolbiRoute);
 
+/* Dashboard */
+const Dashboard = require("./routes/Dashboard");
+app.use('/',Dashboard);
+
 /* BD Fijo */
 const BDFijoRoute = require("./routes/BDFijo");
 app.use('/',BDFijoRoute);
