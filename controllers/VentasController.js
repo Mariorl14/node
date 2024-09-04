@@ -477,7 +477,10 @@ exports.registrarVentaGoogle = async (req, res) => {
       */
 }
 exports.registrarVentaFijo = async (req, res) => {
-    const {nombreDelCliente, 
+    
+
+
+const {nombreDelCliente, 
         segundoNombreDelCliente,
         primerApellidoDelCliente,
         segundoApellidoDelCliente, 
@@ -761,41 +764,12 @@ exports.registrarVentaFijo = async (req, res) => {
                 UsuarioLiberty
           });
 
-        /*
-        res.redirect("misEstadisticas");
-        console.log(tipoDePlanAContratar);
-        console.log(nombreVendedor);
-        */
-
-        /*
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: 'mariorl040301@gmail.com',
-              pass: 'zhpixgqlgyoussrx'
-            }
-          });
-    
-          const mailOptions = {
-            from: 'mariorl040301@gmail.com',
-            to: 'mariorl040301@gmail.com',
-            subject: 'Venta Generada Fijo',
-            text: 'Venta generada por: ' + nombreVendedor + tipoDePlanAContratar
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-            }
-          });
-          */
 
 
           
  /* BD CODE */
-    /* 
+   
+    /*
     
     try {
     const NombreDelCliente = req.body.nombreDelCliente;
@@ -822,6 +796,7 @@ exports.registrarVentaFijo = async (req, res) => {
     const Red = req.body.red;
     const NombreVendedor = req.body.nombreVendedor;
     const VendedorFreelance1 = req.body.nombreVendedorFreelance;
+    const Genero = req.body.genero;
         var today = new Date();
         var year = today.getFullYear();
         var mes = today.getMonth()+1;
@@ -891,7 +866,7 @@ exports.registrarVentaFijo = async (req, res) => {
            Entregador,
            Estados, 
            Llamada_Activacion, 
-           Fecha_Activacion,Numero_Orden,MES_TRABAJADA,Fecha_Instalacion,Red:Red,Pago_Comision,Activadora}, async(error, results)=>{
+           Fecha_Activacion,Numero_Orden,MES_TRABAJADA,Fecha_Instalacion,Red:Red,Pago_Comision,Activadora,Genero:Genero}, async(error, results)=>{
    
                if(error){
                    console.log(error);
@@ -929,7 +904,11 @@ exports.registrarVentaFijo = async (req, res) => {
            console.log(error)
        }
 
+
+
     */
+    
+  
 
 
 }

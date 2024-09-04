@@ -348,7 +348,7 @@ router.post('/editarUser', UsuarioController.editarUser)
 router.post('/registrarVenta', VentasController.registrarVenta)
 router.post('/registrarVenta1', VentasController.registrarVentaGoogle)
 
-router.post('/pruebagoogle',   VentasController.registrarVentaGoogle)
+router.post('/pruebagoogle',   VentasController.registrarVenta)
 router.post('/pruebagoogle1',  VentasController.registrarVentaFijo)
 router.post('/pruebagoogle2',  VentasController.registrarVentaFijoTicocel)
 

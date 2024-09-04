@@ -194,7 +194,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
   /*HOME BD  No activadas*/
   router.get('/homeTest', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-    conexion.query('SELECT * FROM MovilTemporal where Activada = "No Activada";', (error, results)=>{
+    conexion.query('SELECT * FROM MovilTemporal where Activada = "No Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
       if(error){
           throw error
       }else{
@@ -222,12 +222,13 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
  /*HOME BD Activadas */
  router.get('/Activadas', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
+
+  /* AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ; */
     
-  conexion.query('SELECT * FROM MovilTemporal where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+  conexion.query('SELECT * FROM MovilTemporal where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
     if(error){
         throw error
     }else{
-      console.log(results);
         res.render('Activadas', {results:results, user:req.user})
     }
 })
@@ -236,11 +237,12 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
 /*HOME BD Pendientes Activacion */
 router.get('/PendientesActivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
+
+  /*AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE(); */
   conexion.query('SELECT * FROM MovilTemporal WHERE Activada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
     if (error) {
       throw error;
     } else {
-      console.log(results);
       res.render('PendientesActivacion', { results: results, user: req.user }); // Ensure results is passed here
     }
   });
@@ -249,8 +251,10 @@ router.get('/PendientesActivacion', authController.isAuthenticated, authControll
 
 /*HOME BD Pendientes Entrega */
 router.get('/PendientesEntrega', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
-    
-  conexion.query('SELECT * FROM MovilTemporal where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+  
+  /* AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ; */
+
+  conexion.query('SELECT * FROM MovilTemporal where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -258,6 +262,19 @@ router.get('/PendientesEntrega', authController.isAuthenticated,authController.a
     }
 })
 
+});
+
+/*HOME BD Pendientes Activacion */
+router.get('/PendientesEntregaYactivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
+
+  /*AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE(); */
+  conexion.query('SELECT * FROM MovilTemporal WHERE Activada = "Pendiente" AND Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.render('PendientesEntregaYactivacion', { results: results, user: req.user }); // Ensure results is passed here
+    }
+  });
 });
 
 /* Editar Ventas NO Activadas*/

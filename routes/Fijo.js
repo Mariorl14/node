@@ -230,6 +230,7 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Primer_Apellido_Cliente: req.body.column3,
     Segundo_Apellido_Cliente: req.body.column4,
     Correo: req.body.columnC,
+    Genero: req.body.column39,
     Documento_Identidad: req.body.column5,
     Numero_Documento: req.body.column6,
     Nacionalidad: req.body.column7,
@@ -264,7 +265,7 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Fecha_Instalacion: FechaInstalacion,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
-    Activadora: req.body.column41
+    Activadora: req.body.column40
   };
 
   conexion.query('UPDATE TempFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -340,6 +341,7 @@ router.post('/editFijoInstalada', (req, res) => {
     Primer_Apellido_Cliente: req.body.column3,
     Segundo_Apellido_Cliente: req.body.column4,
     Correo: req.body.columnC,
+    Genero: req.body.column39,
     Documento_Identidad: req.body.column5,
     Numero_Documento: req.body.column6,
     Nacionalidad: req.body.column7,
@@ -374,7 +376,7 @@ router.post('/editFijoInstalada', (req, res) => {
     Fecha_Instalacion: FechaInstalacion,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
-    Activadora: req.body.column41
+    Activadora: req.body.column40
   };
 
   conexion.query('UPDATE TempFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -388,9 +390,10 @@ router.post('/editFijoInstalada', (req, res) => {
   });
 });
 
-/* Editar Ventas Instaladas*/
+/* Editar Ventas Pendiente Instalacion */
 router.get('/editFijoPendiente/:SaleId', async (req, res) => {
 
+ 
   const SaleId = req.params.SaleId
 
   conexion.query('Select * from TempFijo where SaleId = ?', [SaleId], (error, results)=>{
@@ -450,6 +453,7 @@ router.post('/editFijoPendiente', (req, res) => {
     Primer_Apellido_Cliente: req.body.column3,
     Segundo_Apellido_Cliente: req.body.column4,
     Correo: req.body.columnC,
+    Genero: req.body.column39,
     Documento_Identidad: req.body.column5,
     Numero_Documento: req.body.column6,
     Nacionalidad: req.body.column7,
@@ -484,7 +488,7 @@ router.post('/editFijoPendiente', (req, res) => {
     Fecha_Instalacion: FechaInstalacion,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
-    Activadora: req.body.column41
+    Activadora: req.body.column40
   };
 
   conexion.query('UPDATE TempFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {

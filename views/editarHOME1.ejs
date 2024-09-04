@@ -67,8 +67,8 @@
                         <option <%= SaleId.Genero == 'Masculino' ? "selected" : '' %> value="Masculino">Masculino</option>
                        <option <%= SaleId.Genero == 'Femenino' ? "selected" : '' %> value="Femenino">Femenino</option>
                       </select>
-                      <label class="form-user" for="tipoLlamada">Tramite</label>
                     </div>
+                    <label class="form-user" for="tipoLlamada">Genero</label>
                       
                   </div>
                   <div class="col-md-4 mb-4">
@@ -121,9 +121,8 @@
                        <option <%= SaleId.Tipo_Tramite == 'Migracion LDS' ? "selected" : '' %> value="Migracion LDS">Migracion LDS</option>
                        <option <%= SaleId.Tipo_Tramite == 'Linea nueva LDS' ? "selected" : '' %> value="Linea nueva LDS">Linea nueva LDS</option>
                       </select>
-                      <label class="form-user" for="tipoLlamada">Tramite</label>
                     </div>
-                      
+                    <label class="form-user" for="tipoLlamada">Tramite</label>
                   </div>
     
                   <div class="col-md-4 mb-4">
@@ -269,8 +268,8 @@
                             <option <%= SaleId.Cobro_Envío == "SI - 2000" ? "selected" : "" %> value="SI - 2000">Si - 2000</option>
                             <option <%= SaleId.Cobro_Envío == "NO" ? "selected" : "" %>  value="NO">NO</option>
                           </select>
-                          <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
                         </div>
+                        <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
@@ -280,8 +279,8 @@
                                 <option <%= SaleId.Activada == "No Activada" ? "selected" : "" %> value="No Activada">No Activada</option>
                                 <option <%= SaleId.Activada == "Pendiente" ? "selected" : "" %> value="Pendiente">Pendiente</option>
                               </select>
-                          <label class="form-user" for="tipoLlamada">Activada / No Activada</label>
                         </div>
+                        <label class="form-user" for="tipoLlamada">Activada / No Activada</label>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
@@ -291,8 +290,8 @@
                                 <option <%= SaleId.Entregada == "Entregada" ? "selected" : "" %> value="Entregada">Entregada</option>
                                 <option <%= SaleId.Entregada == "Pendiente" ? "selected" : "" %> value="Pendiente">Pendiente</option>
                               </select>
-                          <label class="form-user" for="tipoLlamada">Entregada / No Entregada</label>
                         </div>
+                        <label class="form-user" for="tipoLlamada">Entregada / No Entregada</label>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
@@ -301,8 +300,8 @@
                                 <option <%= SaleId.Rechazada == "Cliente no Contesta" ? "selected" : "" %> value="Cliente no Contesta">Cliente no Contesta</option>
                                 <option <%= SaleId.Rechazada == "Rechazada" ? "selected" : "" %> value="Rechazada">Rechazada</option>
                               </select>
-                          <label class="form-user" for="tipoLlamada">Rechazada / Cliente no Contesta</label>
                         </div>
+                        <label class="form-user" for="tipoLlamada">Rechazada / Cliente no Contesta</label>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
@@ -324,8 +323,8 @@
                                 <option <%= SaleId.Entregador == "Diego Mendoza" ? "selected" : "" %> value="Diego Mendoza">Diego Mendoza</option>
                                 <option <%= SaleId.Entregador == "Harold Barrido" ? "selected" : "" %> value="Harold Barrido">Harold Barrido</option>
                               </select>
-                          <label class="form-user" for="tipoLlamada">Entregador</label>
                         </div>
+                        <label class="form-user" for="tipoLlamada">Entregador</label>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
@@ -339,8 +338,8 @@
                                 <option <%= SaleId.Estados == "NA" ? "selected" : "" %> value="NA">NA</option>
                               </select>
                         </div>
-                        <label class="form-user" for="tipoLlamada">Estados</label>
                       </div>
+                      <label class="form-user" for="tipoLlamada">Estados</label>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
                             <select class="select form-control-lg" style="width: 300px;" id="column32" name="column32" class="form-control form-control-lg" >
@@ -348,8 +347,8 @@
                                 <option <%= SaleId.Llamada_Activacion == 'SI' ? "selected" : '' %> value="SI">SI</option>
                                 <option <%= SaleId.Llamada_Activacion == 'NO' ? "selected" : '' %> value="NO">NO</option>
                               </select>
-                          <label class="form-user" for="tipoLlamada">Llamada de Activacion </label>
                         </div>
+                        <label class="form-user" for="tipoLlamada">Llamada de Activacion </label>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
@@ -443,8 +442,8 @@
                             <option <%= SaleId.Terminal == "SIN terminal" ? "selected" : "" %> value="SIN terminal">SIN terminal</option> 
                             <option <%= SaleId.Terminal == "CON terminal" ? "selected" : "" %> value="CON terminal">CON terminal</option>
                           </select>
-                      <label class="form-user" for="tipoLlamada">Terminal </label>
                     </div>
+                    <label class="form-user" for="tipoLlamada">Terminal </label>
                   </div>
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">

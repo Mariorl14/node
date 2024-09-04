@@ -13,7 +13,7 @@
 </h2>
 
 <h2>
-    Lista de Ventas Fijo Pendientes de Instalacion
+    Lista de Ventas Movil Pendientes Activacion
 </h2>
 
               <div class="container">
@@ -22,52 +22,50 @@
                   <thead>
                     <tr>
                       <th scope="col">Acciones</th>
+                      <th scope="col">NIP</th>
+                      <th scope="col">Numero Gestion Movicheck</th>
                       <th scope="col">Numero Celular De Tramite</th>
-                      <th scope="col">Numero de Orden</th>
-                      <th scope="col">Detalle Entrega</th>
-                      <th scope="col">Fecha de Instalacion</th>
-                      <th scope="col">Nombre Vendedor</th>
+                      <th scope="col">Fecha</th>
                       <th scope="col">Nombre Del Cliente</th>
                       <th scope="col">Segundo Nombre Del Cliente</th>
                       <th scope="col">Primer Apellido Del Cliente</th>
                       <th scope="col">Segundo Apellido Del Cliente</th>
-                      <th scope="col">Nacionalidad</th>
+                      <th scope="col">Numero De Documento</th>
                       <th scope="col">Tipo De Tramite</th>
                       <th scope="col">Numero de Contrato</th>
                       <th scope="col">Numero de Abonado</th>
-                      <th scope="col">Fecha</th>
-                      <th scope="col">Plan a Contratar</th>
-                       <th scope="col">Financiamiento</th>
-                      <th scope="col">Valor del Plan</th>
-                      <th scope="col">Instalada</th>
-                      <th scope="col">Rechazada</th>
+                      <th scope="col">Nombre del Vendedor</th>
+                       <th scope="col">Activada / No Activada</th>
+                      <th scope="col">Entregada / No Entregada</th>
+                      <th scope="col">Rechazada / Cliente no Contesta</th>
+                      <th scope="col">Entregador</th>
+                      <th scope="col">Estado</th>
                     </tr>
                 </thead>
                   <tbody>
                     <% results.forEach((sale)=> { %>
                       <tr>
                         <td>
-                          <a href="/editFijoPendiente/<%= sale.SaleId %>">Editar</a>
+                          <a href="/editPendientesEntrega/<%= sale.SaleId %>">Editar</a>
                         </td>
+                        <td><%= sale.NIP %></td>
+                        <td><%= sale.MOVICHECK %></td>
                         <td><%= sale.Celular_Tramite %></td>
-                        <td><%= sale.Numero_Orden %></td>
-                        <td><%= sale.Detalle %></td>
-                        <td><%= sale.Fecha_Instalacion %></td>
-                        <td><%= sale.Nombre_Vendedor %></td>
+                        <td><%= sale.Fecha %></td>
                         <td><%= sale.Nombre_Cliente %></td>
                         <td><%= sale.Segundo_Nombre_Cliente %></td>
                         <td><%= sale.Primer_Apellido_Cliente %></td>
                         <td><%= sale.Segundo_Apellido_Cliente %></td>
-                        <td><%= sale.Nacionalidad %></td>
+                        <td><%= sale.Numero_Documento %></td>
                         <td><%= sale.Tipo_Tramite %></td>
                         <td><%= sale.Numero_Contrato %></td>
                         <td><%= sale.Numero_Abonado %></td>
-                        <td><%= sale.Fecha %></td>
-                        <td><%= sale.Plan_Contratar %></td>
-                        <td><%= sale.Financiamiento %></td>
-                        <td><%= sale.Valor_Plan_Diferente %></td>
+                        <td><%= sale.Nombre_Vendedor %></td>
+                        <td><%= sale.Activada %></td>
                         <td><%= sale.Entregada %></td>
                         <td><%= sale.Rechazada %></td>
+                        <td><%= sale.Entregador %></td>
+                        <td><%= sale.Estados%></td>
                       </tr>
                     <% }) %>
                   </tbody>
