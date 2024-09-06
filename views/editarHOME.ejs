@@ -109,9 +109,19 @@
                   <div class="col-md-4 mb-4">
     
                     <div class="form-outline">
-                        <input type="text" id="column9" name="column9" class="form-control form-control-lg" value="<%= rowValues[8] %>" />
-                      <label class="form-label" for="nombre">Tipo De Tramite</label>
-                   </div>
+                      <select class="select form-control-lg" style="width: 300px;" id="column9" name="column9" class="form-control form-control-lg" >
+                        <option value="<%= rowValues[8] %>" ><%= rowValues[8] %></option>
+                        <option value="Portabilidad">Portabilidad</option>
+                       <option value="Linea_Nueva">Linea Nueva</option>
+                       <option value="Migracion">Migracion</option>
+                       <option value="Linea_Regalia">Linea Regalia (LT)</option>
+                       <option value="Linea_Principal">Linea Principal (LT)</option>
+                       <option value="Portabilidad LDS">Portabilidad LDS</option>
+                       <option value="Migracion LDS">Migracion LDS</option>
+                       <option value="Linea nueva LDS">Linea nueva LDS</option>
+                      </select>
+                      <label class="form-user" for="tipoLlamada">Tipo de Tramite</label>
+                    </div>
                       
                   </div>
     
