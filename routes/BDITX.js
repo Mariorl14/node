@@ -41,7 +41,7 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
     const ventas = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "Base Madre!A2:J",
+        range: "Base Madre!A2:Q",
     })
   
     var user = req.user;
@@ -73,7 +73,7 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg';
-    const range = `Base Madre!A${rowId}:O${rowId}`;
+    const range = `Base Madre!A${rowId}:Q${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -121,13 +121,15 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
       req.body.column12,
       req.body.column13,
       req.body.column14,
-      req.body.column15
+      req.body.column15,
+      req.body.column16,
+      req.body.column17
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg';
-    const range = `Base Madre!A${rowId}:O${rowId}`;
+    const range = `Base Madre!A${rowId}:Q${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
