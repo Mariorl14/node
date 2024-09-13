@@ -25,7 +25,7 @@ router.get('/editHOME/:rowId', async (req, res) => {
   
       const rowId = req.params.rowId;
       const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-      const range = `Respuestas_Formulario!A${rowId}:AU${rowId}`;
+      const range = `Respuestas_Formulario!A${rowId}:AV${rowId}`;
   
       const response = await googleSheets.spreadsheets.values.get({
         spreadsheetId,
@@ -105,13 +105,15 @@ router.post('/editHOME/:rowId', async (req, res) => {
         req.body.column43,
         req.body.column44,
         req.body.column45,
-        req.body.column46
+        req.body.column46,
+        req.body.column47,
+        req.body.column48
       ];
     
       // Set up authentication as mentioned in the previous response
     
       const spreadsheetId = '1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY';
-      const range = `Respuestas_Formulario!A${rowId}:AU${rowId}`;
+      const range = `Respuestas_Formulario!A${rowId}:AV${rowId}`;
     
       const requestBody = {
         values: [updatedValues],
