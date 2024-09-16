@@ -117,7 +117,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
   /*Fijo BD  No Instaladas*/
   router.get('/FijoNoInstalada', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-    conexion.query('SELECT * FROM TempFijo where Entregada = "No Instalada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+    conexion.query('SELECT * FROM VentasFijo where Instalada = "No Instalada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
       if(error){
           throw error
       }else{
@@ -129,7 +129,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
  /*Fijo BD  Instaladas*/
  router.get('/FijoInstalada', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-  conexion.query('SELECT * FROM TempFijo where Entregada = "Instalada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+  conexion.query('SELECT * FROM VentasFijo where Instalada = "Instalada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -142,7 +142,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
 /*Fijo BD  Instaladas*/
 router.get('/FijoPendiente', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-  conexion.query('SELECT * FROM TempFijo where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
+  conexion.query('SELECT * FROM VentasFijo where Instalada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -157,7 +157,7 @@ router.get('/FijoVendedor', authController.isAuthenticated, NoCache.nocache, aut
 
   const user = req.user;
   
-  conexion.query('select * from TempFijo temp join users us on temp.Nombre_Vendedor = us.nombre where temp.Nombre_Vendedor = ? AND temp.Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND temp.Fecha <= CURDATE() ;', [user.nombre], (error, results)=>{
+  conexion.query('select * from VentasFijo temp join users us on temp.Nombre_Vendedor = us.nombre where temp.Nombre_Vendedor = ? AND temp.Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND temp.Fecha <= CURDATE() ;', [user.nombre], (error, results)=>{
     if(error){
         throw error
     }else{
@@ -175,7 +175,7 @@ router.get('/editFijoNoInstalada/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempFijo where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasFijo where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -184,6 +184,7 @@ router.get('/editFijoNoInstalada/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Instalacion; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -206,10 +207,12 @@ router.get('/editFijoNoInstalada/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
-      saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaInstalacion = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editFijoNoInstalada', { SaleId: saleData, user: req.user });
@@ -224,6 +227,7 @@ router.post('/editFijoNoInstalada', (req, res) => {
   const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -231,8 +235,6 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Segundo_Nombre_Cliente: req.body.column2,
     Primer_Apellido_Cliente: req.body.column3,
     Segundo_Apellido_Cliente: req.body.column4,
-    Correo: req.body.columnC,
-    Genero: req.body.column39,
     Documento_Identidad: req.body.column5,
     Numero_Documento: req.body.column6,
     Nacionalidad: req.body.column7,
@@ -244,7 +246,7 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Numero_Contacto_2: req.body.column13,
     Plan_Contratar: req.body.column14,
     Financiamiento: req.body.column15,
-    Valor_Plan_Diferente: req.body.column16,
+    Valor_Plan: req.body.column16,
     Coordenadas: req.body.column17,
     Direccion_Exacta: req.body.column18,
     Provincia: req.body.column19,
@@ -255,7 +257,7 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Fecha: Fecha,
     Vendedor_Freelance: req.body.column25,
     Activada: req.body.column26,
-    Entregada: req.body.column27,
+    Instalada: req.body.column27,
     Rechazada: req.body.column28,
     Detalle: req.body.column29,
     Entregador: req.body.column30,
@@ -267,10 +269,13 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Fecha_Instalacion: FechaInstalacion,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
-    Activadora: req.body.column40
+    Genero: req.body.column39,
+    Activadora: req.body.column40,
+    Correo_Cliente: req.body.columnC,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE TempFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -286,7 +291,7 @@ router.get('/editFijoInstalada/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempFijo where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasFijo where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -295,6 +300,7 @@ router.get('/editFijoInstalada/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Instalacion; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -317,10 +323,12 @@ router.get('/editFijoInstalada/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
-      saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaInstalacion = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editFijoInstalada', { SaleId: saleData, user: req.user });
@@ -335,6 +343,7 @@ router.post('/editFijoInstalada', (req, res) => {
   const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -342,8 +351,6 @@ router.post('/editFijoInstalada', (req, res) => {
     Segundo_Nombre_Cliente: req.body.column2,
     Primer_Apellido_Cliente: req.body.column3,
     Segundo_Apellido_Cliente: req.body.column4,
-    Correo: req.body.columnC,
-    Genero: req.body.column39,
     Documento_Identidad: req.body.column5,
     Numero_Documento: req.body.column6,
     Nacionalidad: req.body.column7,
@@ -355,7 +362,7 @@ router.post('/editFijoInstalada', (req, res) => {
     Numero_Contacto_2: req.body.column13,
     Plan_Contratar: req.body.column14,
     Financiamiento: req.body.column15,
-    Valor_Plan_Diferente: req.body.column16,
+    Valor_Plan: req.body.column16,
     Coordenadas: req.body.column17,
     Direccion_Exacta: req.body.column18,
     Provincia: req.body.column19,
@@ -366,7 +373,7 @@ router.post('/editFijoInstalada', (req, res) => {
     Fecha: Fecha,
     Vendedor_Freelance: req.body.column25,
     Activada: req.body.column26,
-    Entregada: req.body.column27,
+    Instalada: req.body.column27,
     Rechazada: req.body.column28,
     Detalle: req.body.column29,
     Entregador: req.body.column30,
@@ -378,10 +385,13 @@ router.post('/editFijoInstalada', (req, res) => {
     Fecha_Instalacion: FechaInstalacion,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
-    Activadora: req.body.column40
+    Genero: req.body.column39,
+    Activadora: req.body.column40,
+    Correo_Cliente: req.body.columnC,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE TempFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -398,7 +408,7 @@ router.get('/editFijoPendiente/:SaleId', async (req, res) => {
  
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from TempFijo where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasFijo where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -407,6 +417,7 @@ router.get('/editFijoPendiente/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Instalacion; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -429,10 +440,12 @@ router.get('/editFijoPendiente/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
-      saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaInstalacion = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editFijoPendiente', { SaleId: saleData, user: req.user });
@@ -447,6 +460,7 @@ router.post('/editFijoPendiente', (req, res) => {
   const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -454,8 +468,6 @@ router.post('/editFijoPendiente', (req, res) => {
     Segundo_Nombre_Cliente: req.body.column2,
     Primer_Apellido_Cliente: req.body.column3,
     Segundo_Apellido_Cliente: req.body.column4,
-    Correo: req.body.columnC,
-    Genero: req.body.column39,
     Documento_Identidad: req.body.column5,
     Numero_Documento: req.body.column6,
     Nacionalidad: req.body.column7,
@@ -467,7 +479,7 @@ router.post('/editFijoPendiente', (req, res) => {
     Numero_Contacto_2: req.body.column13,
     Plan_Contratar: req.body.column14,
     Financiamiento: req.body.column15,
-    Valor_Plan_Diferente: req.body.column16,
+    Valor_Plan: req.body.column16,
     Coordenadas: req.body.column17,
     Direccion_Exacta: req.body.column18,
     Provincia: req.body.column19,
@@ -478,7 +490,7 @@ router.post('/editFijoPendiente', (req, res) => {
     Fecha: Fecha,
     Vendedor_Freelance: req.body.column25,
     Activada: req.body.column26,
-    Entregada: req.body.column27,
+    Instalada: req.body.column27,
     Rechazada: req.body.column28,
     Detalle: req.body.column29,
     Entregador: req.body.column30,
@@ -490,10 +502,13 @@ router.post('/editFijoPendiente', (req, res) => {
     Fecha_Instalacion: FechaInstalacion,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
-    Activadora: req.body.column40
+    Genero: req.body.column39,
+    Activadora: req.body.column40,
+    Correo_Cliente: req.body.columnC,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE TempFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly

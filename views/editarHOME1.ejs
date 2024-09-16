@@ -364,6 +364,12 @@
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
+                            <input type="date" id="FechaUA" name="FechaUA" class="form-control form-control-lg" value="<%= SaleId.formattedFechaUltimaActualizacion%>" />
+                          <label class="form-user" for="tipoLlamada">Fecha Ultima Actualizacion</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
                             <select class="select form-control-lg" style="width: 300px;" id="column35" name="column35" class="form-control form-control-lg" >
                               <option value="<%= SaleId.Primera_Revision %>"></option>
                                 <option <%= SaleId.Primera_Revision == "Alta" ? "selected" : "" %> value="Alta">Alta</option>

@@ -53,7 +53,7 @@
 
                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="columnC" name="columnC" class="form-control form-control-lg" value="<%= SaleId.Correo %>" />
+                    <input type="text" id="columnC" name="columnC" class="form-control form-control-lg" value="<%= SaleId.Correo_Cliente %>" />
                     <label class="form-user" for="tipoLlamada">Correo del Cliente</label>
                   </div>
                 </div>
@@ -175,8 +175,8 @@
                 <div class="col-md-4 mb-4">
   
                   <div class="form-outline">
-                      <input type="text" id="column16" name="column16" class="form-control form-control-lg" value="<%= SaleId.Valor_Plan_Diferente %>" />
-                    <label class="form-user" for="canton">Valor del Plan Diferente</label>
+                      <input type="text" id="column16" name="column16" class="form-control form-control-lg" value="<%= SaleId.Valor_Plan %>" />
+                    <label class="form-user" for="canton">Valor del Plan</label>
                   </div>
   
                 </div>
@@ -274,10 +274,10 @@
                     <div class="col-md-4 mb-4">
                       <div class="form-outline">
                         <select class="select form-control-lg" style="width: 300px;" id="column27" name="column27" class="form-control form-control-lg" >
-                          <option value="<%= SaleId.Entregada %>"></option>
-                            <option <%= SaleId.Entregada == "No Instalada" ? "selected" : "" %> value="No Instalada">No Instalada</option>
-                            <option <%= SaleId.Entregada == "Instalada" ? "selected" : "" %> value="Instalada">Instalada</option>
-                            <option <%= SaleId.Entregada == "Pendiente" ? "selected" : "" %> value="Pendiente">Pendiente</option>
+                          <option value="<%= SaleId.Instalada %>"></option>
+                            <option <%= SaleId.Instalada == "No Instalada" ? "selected" : "" %> value="No Instalada">No Instalada</option>
+                            <option <%= SaleId.Instalada == "Instalada" ? "selected" : "" %> value="Instalada">Instalada</option>
+                            <option <%= SaleId.Instalada == "Pendiente" ? "selected" : "" %> value="Pendiente">Pendiente</option>
                           </select>
                         <label class="form-user" for="tipoLlamada">Instalada / No Instalada</label>
                       </div>
@@ -367,8 +367,14 @@
                     </div>
                     <div class="col-md-4 mb-4">
                       <div class="form-outline">
-                        <input type="date" id="column36" name="column36" class="form-control form-control-lg" value="<%= SaleId.formattedFechaEntrega %>" />
+                        <input type="date" id="column36" name="column36" class="form-control form-control-lg" value="<%= SaleId.formattedFechaInstalacion %>" />
                         <label class="form-user" for="tipoLlamada">Instalacion Programada</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                      <div class="form-outline">
+                          <input type="date" id="FechaUA" name="FechaUA" class="form-control form-control-lg" value="<%= SaleId.formattedFechaUltimaActualizacion%>" />
+                        <label class="form-user" for="tipoLlamada">Fecha Ultima Actualizacion</label>
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">

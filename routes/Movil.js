@@ -196,7 +196,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
   /*HOME BD  No activadas*/
   router.get('/homeTest', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
     
-    conexion.query('SELECT * FROM MovilTemporal where Activada = "No Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
+    conexion.query('SELECT * FROM VentasMovil where Activada = "No Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
       if(error){
           throw error
       }else{
@@ -211,7 +211,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
   const user = req.user;
   
-  conexion.query('select * from MovilTemporal temp join users us on temp.Nombre_Vendedor = us.nombre where temp.Nombre_Vendedor = ? AND temp.Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND temp.Fecha <= CURDATE() ;', [user.nombre], (error, results)=>{
+  conexion.query('select * from VentasMovil temp join users us on temp.Nombre_Vendedor = us.nombre where temp.Nombre_Vendedor = ? AND temp.Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND temp.Fecha <= CURDATE() ;', [user.nombre], (error, results)=>{
     if(error){
         throw error
     }else{
@@ -227,7 +227,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
   /* AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ; */
     
-  conexion.query('SELECT * FROM MovilTemporal where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
+  conexion.query('SELECT * FROM VentasMovil where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -241,7 +241,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
 router.get('/PendientesActivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
 
   /*AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE(); */
-  conexion.query('SELECT * FROM MovilTemporal WHERE Activada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
+  conexion.query('SELECT * FROM VentasMovil WHERE Activada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results) => {
     if (error) {
       throw error;
     } else {
@@ -256,7 +256,7 @@ router.get('/PendientesEntrega', authController.isAuthenticated,authController.a
   
   /* AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ; */
 
-  conexion.query('SELECT * FROM MovilTemporal where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
+  conexion.query('SELECT * FROM VentasMovil where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
     if(error){
         throw error
     }else{
@@ -270,7 +270,7 @@ router.get('/PendientesEntrega', authController.isAuthenticated,authController.a
 router.get('/PendientesEntregaYactivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
 
   /*AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE(); */
-  conexion.query('SELECT * FROM MovilTemporal WHERE Activada = "Pendiente" AND Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
+  conexion.query('SELECT * FROM VentasMovil WHERE Activada = "Pendiente" AND Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
     if (error) {
       throw error;
     } else {
@@ -284,7 +284,7 @@ router.get('/editHOME1/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasMovil where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -293,6 +293,7 @@ router.get('/editHOME1/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Entrega; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -315,10 +316,12 @@ router.get('/editHOME1/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
       saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editarHOME1', { SaleId: saleData, user: req.user });
@@ -333,6 +336,7 @@ router.post('/editNOActivadas', (req, res) => {
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -385,10 +389,11 @@ router.post('/editNOActivadas', (req, res) => {
     Genero: req.body.column45,
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
-    Correo_Cliente: req.body.Correo
+    Correo_Cliente: req.body.Correo,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -404,7 +409,7 @@ router.get('/editActivadas/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasMovil where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -413,6 +418,7 @@ router.get('/editActivadas/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Entrega; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -435,10 +441,12 @@ router.get('/editActivadas/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
       saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editarActivadas', { SaleId: saleData, user: req.user });
@@ -454,6 +462,7 @@ router.post('/editActivadas', (req, res) => {
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -503,11 +512,14 @@ router.post('/editActivadas', (req, res) => {
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
     Numero_Provisional: req.body.column45,
+    Genero: req.body.column45,
+    Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
-    Correo_Cliente: req.body.Correo
+    Correo_Cliente: req.body.Correo,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -523,7 +535,7 @@ router.get('/editPendientesActivacion/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasMovil where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -532,6 +544,7 @@ router.get('/editPendientesActivacion/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Entrega; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -554,10 +567,12 @@ router.get('/editPendientesActivacion/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
       saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editarPendientesActivacion', { SaleId: saleData, user: req.user });
@@ -573,6 +588,7 @@ router.post('/editPendientesActivacion', (req, res) => {
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -622,11 +638,14 @@ router.post('/editPendientesActivacion', (req, res) => {
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
     Numero_Provisional: req.body.column45,
+    Genero: req.body.column45,
+    Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
-    Correo_Cliente: req.body.Correo
+    Correo_Cliente: req.body.Correo,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
@@ -642,7 +661,7 @@ router.get('/editPendientesEntrega/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
-  conexion.query('Select * from MovilTemporal where SaleId = ?', [SaleId], (error, results)=>{
+  conexion.query('Select * from VentasMovil where SaleId = ?', [SaleId], (error, results)=>{
     if (error) {
       throw error;
     } else {
@@ -651,6 +670,7 @@ router.get('/editPendientesEntrega/:SaleId', async (req, res) => {
       // Assuming the two date fields are `Fecha_Activacion` and `Fecha_Entrega`
       let dbDate1 = saleData.Fecha_Activacion; // Replace `Fecha_Activacion` with your actual date field name
       let dbDate2 = saleData.Fecha_Entrega; // Replace `Fecha_Entrega` with your actual date field name
+      let dbDate3 = saleData.Fecha_Ultima_Actualizacion; // Replace `Fecha_Entrega` with your actual date field name
   
       // Helper function to handle date formatting
       function processDate(date) {
@@ -673,10 +693,12 @@ router.get('/editPendientesEntrega/:SaleId', async (req, res) => {
       // Format both dates
       const formattedDate1 = processDate(dbDate1);
       const formattedDate2 = processDate(dbDate2);
+      const formattedDate3 = processDate(dbDate3);
   
       // Add the formatted dates back to the results object or as new fields
       saleData.formattedFechaActivacion = formattedDate1;
       saleData.formattedFechaEntrega = formattedDate2;
+      saleData.formattedFechaUltimaActualizacion = formattedDate3;
   
       // Render the template with the formatted dates
       res.render('editarPendientesEntrega', { SaleId: saleData, user: req.user });
@@ -692,6 +714,7 @@ router.post('/editPendientesEntrega', (req, res) => {
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
   const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
   const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   // Rest of the fields
   const data = {
@@ -741,11 +764,14 @@ router.post('/editPendientesEntrega', (req, res) => {
     Terminal: req.body.column43,
     Pago_Comision: req.body.column44,
     Numero_Provisional: req.body.column45,
+    Genero: req.body.column45,
+    Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
-    Correo_Cliente: req.body.Correo
+    Correo_Cliente: req.body.Correo,
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
   };
 
-  conexion.query('UPDATE MovilTemporal SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
+  conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
       res.status(500).send("An error occurred while updating the database."); // Handle the error properly
