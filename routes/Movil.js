@@ -339,19 +339,19 @@ router.post('/editNOActivadas', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-   var FechaActivacion1 = "-"
+   var FechaActivacion1 = null
   }else{
     FechaActivacion1 = FechaActivacion
   }
 
   if(FechaEntrega == "Invalid date"){
-    var FechaEntrega1 = "-"
+    var FechaEntrega1 = null
    }else{
     FechaEntrega1 = FechaEntrega
    }
 
    if(FechaUltimaActualizacion == "Invalid date"){
-    var FechaUltimaActualizacion1 = "-"
+    var FechaUltimaActualizacion1 = null
    }else{
     FechaUltimaActualizacion1 = FechaUltimaActualizacion
    }
@@ -483,19 +483,19 @@ router.post('/editActivadas', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-   var FechaActivacion1 = "-"
+   var FechaActivacion1 = NULL
   }else{
     FechaActivacion1 = FechaActivacion
   }
 
   if(FechaEntrega == "Invalid date"){
-    var FechaEntrega1 = "-"
+    var FechaEntrega1 = NULL
    }else{
     FechaEntrega1 = FechaEntrega
    }
 
    if(FechaUltimaActualizacion == "Invalid date"){
-    var FechaUltimaActualizacion1 = "-"
+    var FechaUltimaActualizacion1 = NULL
    }else{
     FechaUltimaActualizacion1 = FechaUltimaActualizacion
    }
@@ -627,19 +627,19 @@ router.post('/editPendientesActivacion', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-   var FechaActivacion1 = "-"
+   var FechaActivacion1 = null
   }else{
     FechaActivacion1 = FechaActivacion
   }
 
   if(FechaEntrega == "Invalid date"){
-    var FechaEntrega1 = "-"
+    var FechaEntrega1 = null
    }else{
     FechaEntrega1 = FechaEntrega
    }
 
    if(FechaUltimaActualizacion == "Invalid date"){
-    var FechaUltimaActualizacion1 = "-"
+    var FechaUltimaActualizacion1 = null
    }else{
     FechaUltimaActualizacion1 = FechaUltimaActualizacion
    }
@@ -771,19 +771,19 @@ router.post('/editPendientesEntrega', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-   var FechaActivacion1 = "-"
+   var FechaActivacion1 = NULL
   }else{
     FechaActivacion1 = FechaActivacion
   }
 
   if(FechaEntrega == "Invalid date"){
-    var FechaEntrega1 = "-"
+    var FechaEntrega1 = NULL
    }else{
     FechaEntrega1 = FechaEntrega
    }
 
    if(FechaUltimaActualizacion == "Invalid date"){
-    var FechaUltimaActualizacion1 = "-"
+    var FechaUltimaActualizacion1 = NULL
    }else{
     FechaUltimaActualizacion1 = FechaUltimaActualizacion
    }

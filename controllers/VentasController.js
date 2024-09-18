@@ -21,7 +21,6 @@ exports.registrarVenta = async (req, res)=>{
     const EnCasoDePortabilidad = req.body.enCasoDePortabilidad;
     const TipoDePlanAContratar = req.body.tipoDePlanAContratar;
     const Vendedor_Freelance1 = req.body.nombreVendedorFreelance;
-    const Detalle = req.body.comentario;
 
     if(TipoDePlanAContratar=="@1Plus"){
         var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
@@ -77,6 +76,7 @@ exports.registrarVenta = async (req, res)=>{
     const idVendedor = req.body.nombreVendedor;
 
     var Entregador = "";
+    var Detalle = "";
     var Estados = "";
     var Llamada_Activacion = "";
     var Fecha_Activacion = "";

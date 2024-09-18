@@ -230,19 +230,19 @@ router.post('/editFijoNoInstalada', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-    var FechaActivacion1 = "-"
+    var FechaActivacion1 = null
    }else{
      FechaActivacion1 = FechaActivacion
    }
  
    if(FechaInstalacion == "Invalid date"){
-     var FechaInstalacion1 = "-"
+     var FechaInstalacion1 = null
     }else{
       FechaInstalacion1 = FechaInstalacion
     }
  
     if(FechaUltimaActualizacion == "Invalid date"){
-     var FechaUltimaActualizacion1 = "-"
+     var FechaUltimaActualizacion1 = null
     }else{
      FechaUltimaActualizacion1 = FechaUltimaActualizacion
     }
@@ -364,19 +364,19 @@ router.post('/editFijoInstalada', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-    var FechaActivacion1 = "-"
+    var FechaActivacion1 = null
    }else{
      FechaActivacion1 = FechaActivacion
    }
  
    if(FechaInstalacion == "Invalid date"){
-     var FechaInstalacion1 = "-"
+     var FechaInstalacion1 = null
     }else{
       FechaInstalacion1 = FechaInstalacion
     }
  
     if(FechaUltimaActualizacion == "Invalid date"){
-     var FechaUltimaActualizacion1 = "-"
+     var FechaUltimaActualizacion1 = null
     }else{
      FechaUltimaActualizacion1 = FechaUltimaActualizacion
     }
@@ -499,19 +499,19 @@ router.post('/editFijoPendiente', (req, res) => {
   var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
 
   if(FechaActivacion == "Invalid date"){
-    var FechaActivacion1 = "-"
+    var FechaActivacion1 = null
    }else{
      FechaActivacion1 = FechaActivacion
    }
  
    if(FechaInstalacion == "Invalid date"){
-     var FechaInstalacion1 = "-"
+     var FechaInstalacion1 =  null
     }else{
       FechaInstalacion1 = FechaInstalacion
     }
  
     if(FechaUltimaActualizacion == "Invalid date"){
-     var FechaUltimaActualizacion1 = "-"
+     var FechaUltimaActualizacion1 = null
     }else{
      FechaUltimaActualizacion1 = FechaUltimaActualizacion
     }
