@@ -334,9 +334,27 @@ router.post('/editNOActivadas', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+   var FechaActivacion1 = "-"
+  }else{
+    FechaActivacion1 = FechaActivacion
+  }
+
+  if(FechaEntrega == "Invalid date"){
+    var FechaEntrega1 = "-"
+   }else{
+    FechaEntrega1 = FechaEntrega
+   }
+
+   if(FechaUltimaActualizacion == "Invalid date"){
+    var FechaUltimaActualizacion1 = "-"
+   }else{
+    FechaUltimaActualizacion1 = FechaUltimaActualizacion
+   }
 
   // Rest of the fields
   const data = {
@@ -372,14 +390,14 @@ router.post('/editNOActivadas', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Fecha_Entrega: req.body.column34,
     Primera_Revision: req.body.column35,
     Segunda_Revision: req.body.column36,
     NIP: req.body.column37,
     Detalle_Activacion: req.body.column38,
     MOVICHECK: req.body.column39,
-    Fecha_Entrega: FechaEntrega,
+    Fecha_Entrega: FechaEntrega1,
     Bloqueo_Desbloqueo: req.body.column40,
     Activadora: req.body.column41,
     MES_TRABAJADA: req.body.column42,
@@ -390,9 +408,9 @@ router.post('/editNOActivadas', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
-
+console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
@@ -460,9 +478,27 @@ router.post('/editActivadas', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+   var FechaActivacion1 = "-"
+  }else{
+    FechaActivacion1 = FechaActivacion
+  }
+
+  if(FechaEntrega == "Invalid date"){
+    var FechaEntrega1 = "-"
+   }else{
+    FechaEntrega1 = FechaEntrega
+   }
+
+   if(FechaUltimaActualizacion == "Invalid date"){
+    var FechaUltimaActualizacion1 = "-"
+   }else{
+    FechaUltimaActualizacion1 = FechaUltimaActualizacion
+   }
 
   // Rest of the fields
   const data = {
@@ -498,14 +534,14 @@ router.post('/editActivadas', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Fecha_Entrega: req.body.column34,
     Primera_Revision: req.body.column35,
     Segunda_Revision: req.body.column36,
     NIP: req.body.column37,
     Detalle_Activacion: req.body.column38,
     MOVICHECK: req.body.column39,
-    Fecha_Entrega: FechaEntrega,
+    Fecha_Entrega: FechaEntrega1,
     Bloqueo_Desbloqueo: req.body.column40,
     Activadora: req.body.column41,
     MES_TRABAJADA: req.body.column42,
@@ -516,9 +552,9 @@ router.post('/editActivadas', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
-
+console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
@@ -586,9 +622,27 @@ router.post('/editPendientesActivacion', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+   var FechaActivacion1 = "-"
+  }else{
+    FechaActivacion1 = FechaActivacion
+  }
+
+  if(FechaEntrega == "Invalid date"){
+    var FechaEntrega1 = "-"
+   }else{
+    FechaEntrega1 = FechaEntrega
+   }
+
+   if(FechaUltimaActualizacion == "Invalid date"){
+    var FechaUltimaActualizacion1 = "-"
+   }else{
+    FechaUltimaActualizacion1 = FechaUltimaActualizacion
+   }
 
   // Rest of the fields
   const data = {
@@ -624,14 +678,14 @@ router.post('/editPendientesActivacion', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Fecha_Entrega: req.body.column34,
     Primera_Revision: req.body.column35,
     Segunda_Revision: req.body.column36,
     NIP: req.body.column37,
     Detalle_Activacion: req.body.column38,
     MOVICHECK: req.body.column39,
-    Fecha_Entrega: FechaEntrega,
+    Fecha_Entrega: FechaEntrega1,
     Bloqueo_Desbloqueo: req.body.column40,
     Activadora: req.body.column41,
     MES_TRABAJADA: req.body.column42,
@@ -642,9 +696,9 @@ router.post('/editPendientesActivacion', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
-
+console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);
@@ -712,9 +766,27 @@ router.post('/editPendientesEntrega', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column23).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaEntrega = moment(req.body.column34).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+   var FechaActivacion1 = "-"
+  }else{
+    FechaActivacion1 = FechaActivacion
+  }
+
+  if(FechaEntrega == "Invalid date"){
+    var FechaEntrega1 = "-"
+   }else{
+    FechaEntrega1 = FechaEntrega
+   }
+
+   if(FechaUltimaActualizacion == "Invalid date"){
+    var FechaUltimaActualizacion1 = "-"
+   }else{
+    FechaUltimaActualizacion1 = FechaUltimaActualizacion
+   }
 
   // Rest of the fields
   const data = {
@@ -750,14 +822,14 @@ router.post('/editPendientesEntrega', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Fecha_Entrega: req.body.column34,
     Primera_Revision: req.body.column35,
     Segunda_Revision: req.body.column36,
     NIP: req.body.column37,
     Detalle_Activacion: req.body.column38,
     MOVICHECK: req.body.column39,
-    Fecha_Entrega: FechaEntrega,
+    Fecha_Entrega: FechaEntrega1,
     Bloqueo_Desbloqueo: req.body.column40,
     Activadora: req.body.column41,
     MES_TRABAJADA: req.body.column42,
@@ -768,9 +840,9 @@ router.post('/editPendientesEntrega', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
-
+console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
     if (error) {
       console.error("Error updating the database:", error);

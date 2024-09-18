@@ -225,9 +225,27 @@ router.post('/editFijoNoInstalada', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+    var FechaActivacion1 = "-"
+   }else{
+     FechaActivacion1 = FechaActivacion
+   }
+ 
+   if(FechaInstalacion == "Invalid date"){
+     var FechaInstalacion1 = "-"
+    }else{
+      FechaInstalacion1 = FechaInstalacion
+    }
+ 
+    if(FechaUltimaActualizacion == "Invalid date"){
+     var FechaUltimaActualizacion1 = "-"
+    }else{
+     FechaUltimaActualizacion1 = FechaUltimaActualizacion
+    }
 
   // Rest of the fields
   const data = {
@@ -263,16 +281,16 @@ router.post('/editFijoNoInstalada', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Numero_Orden: req.body.column34,
     MES_TRABAJADA: req.body.column35,
-    Fecha_Instalacion: FechaInstalacion,
+    Fecha_Instalacion: FechaInstalacion1,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
     Genero: req.body.column39,
     Activadora: req.body.column40,
     Correo_Cliente: req.body.columnC,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
 
   conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -341,9 +359,27 @@ router.post('/editFijoInstalada', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+    var FechaActivacion1 = "-"
+   }else{
+     FechaActivacion1 = FechaActivacion
+   }
+ 
+   if(FechaInstalacion == "Invalid date"){
+     var FechaInstalacion1 = "-"
+    }else{
+      FechaInstalacion1 = FechaInstalacion
+    }
+ 
+    if(FechaUltimaActualizacion == "Invalid date"){
+     var FechaUltimaActualizacion1 = "-"
+    }else{
+     FechaUltimaActualizacion1 = FechaUltimaActualizacion
+    }
 
   // Rest of the fields
   const data = {
@@ -379,16 +415,16 @@ router.post('/editFijoInstalada', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Numero_Orden: req.body.column34,
     MES_TRABAJADA: req.body.column35,
-    Fecha_Instalacion: FechaInstalacion,
+    Fecha_Instalacion: FechaInstalacion1,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
     Genero: req.body.column39,
     Activadora: req.body.column40,
     Correo_Cliente: req.body.columnC,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
 
   conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -458,9 +494,27 @@ router.post('/editFijoPendiente', (req, res) => {
 
   // Format the date fields as "YYYY/MM/DD"
   const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
-  const FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
-  const FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
-  const FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+  var FechaActivacion = moment(req.body.column33).format('YYYY/MM/DD');
+  var FechaInstalacion = moment(req.body.column36).format('YYYY/MM/DD');
+  var FechaUltimaActualizacion = moment(req.body.FechaUA).format('YYYY/MM/DD');
+
+  if(FechaActivacion == "Invalid date"){
+    var FechaActivacion1 = "-"
+   }else{
+     FechaActivacion1 = FechaActivacion
+   }
+ 
+   if(FechaInstalacion == "Invalid date"){
+     var FechaInstalacion1 = "-"
+    }else{
+      FechaInstalacion1 = FechaInstalacion
+    }
+ 
+    if(FechaUltimaActualizacion == "Invalid date"){
+     var FechaUltimaActualizacion1 = "-"
+    }else{
+     FechaUltimaActualizacion1 = FechaUltimaActualizacion
+    }
 
   // Rest of the fields
   const data = {
@@ -496,16 +550,16 @@ router.post('/editFijoPendiente', (req, res) => {
     Entregador: req.body.column30,
     Estados: req.body.column31,
     Llamada_Activacion: req.body.column32,
-    Fecha_Activacion: FechaActivacion,
+    Fecha_Activacion: FechaActivacion1,
     Numero_Orden: req.body.column34,
     MES_TRABAJADA: req.body.column35,
-    Fecha_Instalacion: FechaInstalacion,
+    Fecha_Instalacion: FechaInstalacion1,
     Red: req.body.column37,
     Pago_Comision: req.body.column38,
     Genero: req.body.column39,
     Activadora: req.body.column40,
     Correo_Cliente: req.body.columnC,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
   };
 
   conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
