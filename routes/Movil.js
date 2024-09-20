@@ -408,7 +408,8 @@ router.post('/editNOActivadas', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
+    Modelo_Terminal: req.body.Modelo_Terminal
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -552,7 +553,8 @@ router.post('/editActivadas', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
+    Modelo_Terminal: req.body.Modelo_Terminal
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -696,7 +698,8 @@ router.post('/editPendientesActivacion', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
+    Modelo_Terminal: req.body.Modelo_Terminal
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -840,7 +843,8 @@ router.post('/editPendientesEntrega', (req, res) => {
     Numero_Provisional: req.body.column45,
     Genero: req.body.Genero,
     Correo_Cliente: req.body.Correo,
-    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
+    Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
+    Modelo_Terminal: req.body.Modelo_Terminal
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
