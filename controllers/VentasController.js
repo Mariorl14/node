@@ -94,7 +94,7 @@ exports.registrarVenta = async (req, res)=>{
     const Terminal = req.body.terminal;
     const correo = req.body.correo;
     const Genero = req.body.genero;
-    var Pago_Comision = "";
+    var Pago_Comision = "No Actualizado";
     var Numero_Provisional = "";
     var Modelo_Terminal = "";
 
