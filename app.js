@@ -36,6 +36,10 @@ app.use('/',UsersRoute);
 /* Movil */
 const MovilRoute = require("./routes/Movil");
 app.use('/',MovilRoute);
+/* Movil */
+
+const Revenues = require("./routes/Revenues");
+app.use('/',Revenues);
 
 /* Fijo */
 const FijoRoute = require("./routes/Fijo");
