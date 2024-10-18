@@ -212,7 +212,7 @@ router.get('/editKolbi/:rowId', async  (req, res) => {
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1L44gg5wrBzAsI-QXLaByZncwtXDKD_HHVj4zyTo5IXk';
-    const range = `Base Madre!A${rowId}:J${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -256,12 +256,17 @@ router.get('/editKolbi/:rowId', async  (req, res) => {
       req.body.column8,
       req.body.column9,
       req.body.column12,
+      req.body.column13,
+      req.body.column14,
+      req.body.column15,
+      req.body.column16,
+      req.body.column17
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1L44gg5wrBzAsI-QXLaByZncwtXDKD_HHVj4zyTo5IXk';
-    const range = `Base Madre!A${rowId}:J${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     const requestBody = {
       values: [updatedValues],

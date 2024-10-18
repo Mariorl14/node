@@ -810,7 +810,7 @@ router.get('/colillaFijo',  (req, res)=>{
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1ZcRCzhaHT_DwVUPBVM9p8IqVAePFJjM5VkvPRmw_Cq8';
-    const range = `Base Madre!A${rowId}:J${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     googleSheets.spreadsheets.values.get({
       spreadsheetId,
@@ -853,12 +853,17 @@ router.get('/colillaFijo',  (req, res)=>{
       req.body.column8,
       req.body.column9,
       req.body.column10,
+      req.body.column11,
+      req.body.column12,
+      req.body.column13,
+      req.body.column14,
+      req.body.column15
     ];
   
     // Set up authentication as mentioned in the previous response
   
     const spreadsheetId = '1ZcRCzhaHT_DwVUPBVM9p8IqVAePFJjM5VkvPRmw_Cq8';
-    const range = `Base Madre!A${rowId}:J${rowId}`;
+    const range = `Base Madre!A${rowId}:O${rowId}`;
   
     const requestBody = {
       values: [updatedValues],
