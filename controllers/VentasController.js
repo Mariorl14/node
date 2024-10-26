@@ -22,6 +22,7 @@ exports.registrarVenta = async (req, res)=>{
     const TipoDePlanAContratar = req.body.tipoDePlanAContratar;
     const Vendedor_Freelance1 = req.body.nombreVendedorFreelance;
     const comentario = req.body.comentario;
+    const tipoCliente = req.body.tipoCliente;
 
     if(TipoDePlanAContratar=="@1Plus"){
         var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
@@ -137,7 +138,7 @@ exports.registrarVenta = async (req, res)=>{
         Entregador,
         Estados, 
         Llamada_Activacion, 
-        Fecha_Activacion,NIP,Detalle_Activacion,Primera_Revision,Segunda_Revision,MOVICHECK,Fecha_Entrega,Bloqueo_Desbloqueo,Activadora,MES_TRABAJADA,Terminal:Terminal,Pago_Comision,Numero_Provisional,Genero:Genero,Correo_Cliente:correo,Fecha_Ultima_Actualizacion,Modelo_Terminal}, async(error, results)=>{
+        Fecha_Activacion,NIP,Detalle_Activacion,Primera_Revision,Segunda_Revision,MOVICHECK,Fecha_Entrega,Bloqueo_Desbloqueo,Activadora,MES_TRABAJADA,Terminal:Terminal,Pago_Comision,Numero_Provisional,Genero:Genero,Correo_Cliente:correo,Fecha_Ultima_Actualizacion,Modelo_Terminal,Tipo_Cliente:tipoCliente}, async(error, results)=>{
 
             if(error){
                 console.log(error);
