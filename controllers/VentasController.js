@@ -165,7 +165,8 @@ exports.registrarVenta = async (req, res)=>{
                 Cobro_Envío:Cobro_Envío,
                     correo:correo,
                     comentario:comentario,
-                    tipoDePlanAContratar1
+                    tipoDePlanAContratar1,
+                    Tipo_Cliente:tipoCliente
               });
         })
 
