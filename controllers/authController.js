@@ -162,7 +162,7 @@ exports.authRol = async (req, res, next)=>{
     if(req.user.rol !== 'admin'){
         try {
             res.status(401)
-            return res.redirect('/listarVentasGoogle')
+            return res.redirect('/MovilVendedor')
         } catch (error) {
             console.log(error)
              return next()

@@ -52,6 +52,30 @@ exports.registrarVenta = async (req, res)=>{
 
         var Valor_Plan = "33200";
 
+       }else if(TipoDePlanAContratar=="5CA	 Plan LY5G @1 Portate Control ST"){
+
+        var Valor_Plan = "11000";
+
+       }else if(TipoDePlanAContratar=="5CB	 Plan LY5G @2 Portate Control ST"){
+
+        var Valor_Plan = "15000";
+
+       }else if(TipoDePlanAContratar=="5CC Plan LY5G @3 Portate Control ST"){
+
+        var Valor_Plan = "20000";
+
+       }else if(TipoDePlanAContratar=="5CD Plan LY5G @1 Portate Control CT"){
+
+        var Valor_Plan = "11000";
+
+       }else if(TipoDePlanAContratar=="5CE	Plan LY5G @2 Portate Control CT"){
+
+        var Valor_Plan = "15000";
+
+       }else if(TipoDePlanAContratar=="5CF	Plan LY5G @3 Portate Control CT"){
+
+        var Valor_Plan = "20000";
+
        }else{
         var Valor_Plan = "42200";
        }
