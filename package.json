@@ -13,14 +13,14 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.0.0",
     "cookie": "^0.5.0",
-    "cookie-parser": "^1.4.6",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "express-ejs-layouts": "^2.5.1",
-    "express-session": "^1.18.0",
+    "express-session": "^1.18.1",
     "gaxios": "^6.7.1",
     "googleapis": "^113.0.0",
     "html2pdf.js": "^0.10.2",
@@ -29,7 +29,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "node-fetch": "^3.3.2",
-    "nodemailer": "^6.9.14",
+    "nodemailer": "^6.9.16",
     "xlsx": "^0.18.5"
   }
 }

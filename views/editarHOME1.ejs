@@ -176,9 +176,9 @@
                     <div class="form-outline">
                       <select class="select form-control-lg" style="width: 300px;" id="tipoCliente" name="tipoCliente" class="form-control form-control-lg" >
                         <option value="<%= SaleId.Tipo_Cliente %>"></option>
-                        <option <%= SaleId.Tipo_Cliente == "0 - Linea Nueva" ? "selected" : "" %> value="0 - Linea Nueva">0 - Linea Nueva</option>
-                        <option <%= SaleId.Tipo_Cliente == "1 - Fact < 6m (Pospago/Prepago)" ? "selected" : "" %>  value="1 - Fact < 6m (Pospago/Prepago)">1 - Fact < 6m (Pospago/Prepago)</option>
-                        <option <%= SaleId.Tipo_Cliente == "2 - Fact >6m - <11m (Pospago)" ? "selected" : "" %> value="2 - Fact >6m - <11m (Pospago)">2 - Fact >6m - <11m (Pospago)</option>
+                        <option <%= SaleId.Tipo_Cliente == "0 - Linea Nueva/Migracion" ? "selected" : "" %> value="0 - Linea Nueva/Migracion">0 - Linea Nueva/Migracion</option>
+                        <option <%= SaleId.Tipo_Cliente == "1 - Fact < 3m (Pospago/Prepago)" ? "selected" : "" %>  value="1 - Fact < 3m (Pospago/Prepago)">1 - Fact < 3m (Pospago/Prepago)</option>
+                        <option <%= SaleId.Tipo_Cliente == "2 - Fact >3m - <11m (Pospago)" ? "selected" : "" %> value="2 - Fact >3m - <11m (Pospago)">2 - Fact >3m - <11m (Pospago)</option>
                         <option <%= SaleId.Tipo_Cliente == "3 - Fact >12m+ (Pospago/Terminal)" ? "selected" : "" %> value="3 - Fact >12m+ (Pospago/Terminal)">3 - Fact >12m+ (Pospago/Terminal)</option>
                       </select>
                     </div>
