@@ -1618,7 +1618,7 @@ router.get('/RevenueNOVIEMBRE', authController.isAuthenticated,authController.au
 
 });
  /* Editar Rev Octubre*/
- router.get('/editReNov/:SaleId', async (req, res) => {
+ router.get('/editRevNov/:SaleId', async (req, res) => {
 
   const SaleId = req.params.SaleId
 
