@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:     # set this to the path to your web app project, defaults to the repository root
+  workflow_dispatch:
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app-${{ matrix.runs-on }}
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
