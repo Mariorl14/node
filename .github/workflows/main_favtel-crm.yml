@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
@@ -53,4 +53,4 @@ jobs:
           app-name: 'favtel-crm'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C8A01CD1EDFE4A569C89CCC56D34C6C3 }}
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
