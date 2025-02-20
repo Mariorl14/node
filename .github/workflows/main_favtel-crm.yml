@@ -7,10 +7,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
-  env:   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  workflow_dispatch:     # set this to the path to your web app project, defaults to the repository root
 
 jobs:
   build:
