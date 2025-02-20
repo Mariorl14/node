@@ -64,7 +64,7 @@ jobs:
         with:
           app-name: favtel-crm
           slot-name: 'production'
-          publish-profile: AZUREAPPSERVICE_PUBLISHPROFILE_C8A01CD1EDFE4A569C89CCC56D34C6C3
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '.'
   
   # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
