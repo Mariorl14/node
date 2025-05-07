@@ -61,6 +61,10 @@ app.use('/',Dashboard);
 const BDFijoRoute = require("./routes/BDFijo");
 app.use('/',BDFijoRoute);
 
+/* UploadExcel */
+const UploadExcel = require("./routes/UploadExcel");
+app.use('/',UploadExcel);
+
 /* BD ITX */
 const BDITXRoute = require("./routes/BDITX");
 app.use('/',BDITXRoute);

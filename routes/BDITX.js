@@ -1,7 +1,7 @@
 const express = require('express');
 const {google} = require("googleapis");
 const router = express.Router()
-
+const moment = require('moment');
 const conexion = require('../database/db');
 
 const authController = require('../controllers/authController')
@@ -51,6 +51,82 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
     res.render('bdITX', {rows, user:user});
   })
 
+  router.get('/baseITX', authController.isAuthenticated, NoCache.nocache,  async (req, res)=>{
+
+    const userName = req.user.nombre;
+  const userRole = req.user.rol;
+
+  let sql = 'SELECT * FROM baseITX';
+  if (userRole !== 'admin') {
+    sql += ' WHERE asesor = ?';
+  }
+
+  conexion.query(sql, userRole !== 'admin' ? [userName] : [], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.render('baseITX', { results: results, user: req.user });
+    }
+  });
+  });
+
+  /* Editar Ventas Activadas*/
+  router.get('/editBaseITX/:consecutivo', authController.isAuthenticated, (req, res) => {
+    const consecutivo = req.params.consecutivo;
+  
+    conexion.query('SELECT * FROM baseITX WHERE consecutivo = ?', [consecutivo], (error, results) => {
+      if (error) {
+        throw error;
+      } else if (results.length === 0) {
+        return res.status(404).send("Registro no encontrado");
+      }
+  
+      let saleData = results[0];
+  
+      // Format date and time fields for HTML inputs
+      saleData.formattedDia = saleData.dia ? moment(saleData.dia).format('YYYY-MM-DD') : '';
+      saleData.formattedHora = saleData.hora ? moment(saleData.hora, 'HH:mm:ss').format('HH:mm') : '';
+  
+      res.render('EditarBaseITX', { SaleId: saleData, user: req.user });
+    });
+  });
+
+  router.post('/editBaseITX', authController.isAuthenticated, (req, res) => {
+    const consecutivo = req.body.consecutivo;
+  
+    // Parse and format date/time
+    const dia = req.body.dia ? moment(req.body.dia).format('YYYY-MM-DD') : null;
+    const hora = req.body.hora ? moment(req.body.hora, 'HH:mm').format('HH:mm:ss') : null;
+  
+    const data = {
+      numero: req.body.numero,
+      cedula: req.body.cedula,
+      nombre: req.body.nombre,
+      asesor: req.body.asesor,
+      detalle: req.body.detalle,
+      dia: dia,
+      hora: hora,
+      comentario: req.body.comentario,
+      pre_post_pago: req.body.pre_post_pago,
+      fijo: req.body.fijo,
+      operador_fijo: req.body.operador_fijo,
+      operador_movil: req.body.operador_movil,
+      genero: req.body.genero,
+      whatsapp: req.body.whatsapp,
+      cobertura_fijo: req.body.cobertura_fijo,
+      coordenadas: req.body.coordenadas
+    };
+  
+    conexion.query('UPDATE baseITX SET ? WHERE consecutivo = ?', [data, consecutivo], (error, results) => {
+      if (error) {
+        console.error("Error updating:", error);
+        res.status(500).send("Error updating data.");
+      } else {
+        console.log("Updated record consecutivo:", consecutivo);
+        res.redirect('/baseITX');
+      }
+    });
+  });
 
   /*EDITAR BASE ITX */
   router.get('/editITX/:rowId', async  (req, res) => {

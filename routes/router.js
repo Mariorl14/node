@@ -63,6 +63,9 @@ router.get('/layout',  (req, res)=>{
 router.get('/plantilla',  (req, res)=>{
     res.render('plantilla', {user:req.user})
 })
+router.get('/Upload',  (req, res)=>{
+    res.render('Upload', {user:req.user})
+})
 router.get('/listarVentasFijo', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",

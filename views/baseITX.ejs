@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>BD Clientes</title>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+</head>
+<body>
+
+<h1>BD Clientes</h1>
+
+<h2>Usuario: 
+  <% if(user) { %>
+    <span class="badge bg-success"><%= user.nombre %></span>
+  <% } %>
+</h2>
+
+<h2>Registro de Ventas Movil</h2> 
+
+<div id="position" style="font-size: 16px; margin-bottom: 10px;">
+  <label><input type="checkbox" name="pos" value="No Localizado 1"> No localizado 1</label>
+  <label><input type="checkbox" name="pos" value="No Localizado 2"> No localizado 2</label>
+  <label><input type="checkbox" name="pos" value="No Localizado 3"> No localizado 3</label>
+  <label><input type="checkbox" name="pos" value="Seguimiento"> Seguimiento</label>
+  <label><input type="checkbox" name="pos" value="Llamar Luego/ Interesado"> Llamar Luego/ Interesado</label>
+  <label><input type="checkbox" name="pos" value="-" checked> Vacío</label>
+</div>
+
+<hr>
+
+<div class="table-responsive">
+  <table id="ventas" class="display nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th>Consecutivo</th>
+        <th>Numero</th>
+        <th>Cedula</th>
+        <th>Nombre</th>
+        <th>Asesor</th>
+        <th>Detalle</th>
+        <th>Comentario</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% results.forEach((sale)=> { %>
+          <tr>
+            <td><%= sale.consecutivo %></td>
+            <td><%= sale.numero %></td>
+            <td><%= sale.cedula %></td>
+            <td><%= sale.nombre %></td>
+            <td><%= sale.asesor %></td>
+            <td><%= sale.detalle %></td>
+            <td><%= sale.comentario %></td>
+            <td>
+                <a href="/editBaseITX/<%= sale.consecutivo %>">Editar</a>
+              </td>
+          </tr>
+        <% }) %>
+      </tbody>
+  </table>
+</div>
+
+<br>
+<a href="registrarVenta.ejs" class="btn btn-outline-success">Registrar</a>
+
+<!-- jQuery and DataTables Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    // Filter by checkbox
+    $.fn.dataTable.ext.search.push(function (settings, data) {
+      const selected = $('input[name="pos"]:checked').map(function () {
+        return this.value;
+      }).get();
+
+      const detalle = data[5]; // index of 'Detalle' column
+
+      if (selected.length === 0 || selected.includes(detalle)) {
+        return true;
+      }
+      return false;
+    });
+
+    const table = $('#ventas').DataTable({
+      dom: 'Bfrtip',
+      scrollX: true,
+      fixedHeader: true,
+      buttons: ['copy', 'excel', 'csv', 'pdf', 'print'],
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+      }
+    });
+
+    // Redraw on checkbox change
+    $('input:checkbox').on('change', function () {
+      table.draw();
+    });
+
+    // Role-based filtering
+    const userRol = "<%= user.rol %>";
+    if (userRol !== "admin") {
+      const nombre = "<%= user.nombre %>";
+      table.column(4).search(nombre).draw(); // column 4 is Asesor
+    }
+
+  });
+</script>
+
+</body>
+</html>
