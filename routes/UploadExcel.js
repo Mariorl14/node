@@ -62,6 +62,73 @@ router.post('/upload', upload.single('excelFile'), async (req, res) => {
   }
 });
 
+router.post('/uploadFijo', upload.single('excelFile'), async (req, res) => {
+  try {
+    const filePath = req.file.path;
+
+    const workbook = xlsx.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+    for (let row of data) {
+      // Remove 'consecutivo' if it's present in the Excel row
+      delete row.consecutivo;
+
+      // Fix 'dia' if it's an Excel date serial number
+      if (row.dia && typeof row.dia === 'number') {
+        row.dia = excelDateToJSDate(row.dia);
+      }
+
+      // Fix 'hora' if it's an Excel decimal time
+      if (row.hora && typeof row.hora === 'number') {
+        row.hora = excelTimeToString(row.hora);
+      }
+
+      // Insert into the database
+      await query('INSERT INTO baseFijo SET ?', row);
+    }
+
+    fs.unlinkSync(filePath);
+    res.send('Excel file uploaded and data inserted successfully.');
+  } catch (err) {
+    console.error('Error uploading file:', err);
+    res.status(500).send('Failed to upload Excel file.');
+  }
+});
+
+router.post('/uploadTelefonos', upload.single('excelFile'), async (req, res) => {
+  try {
+    const filePath = req.file.path;
+
+    const workbook = xlsx.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+    for (let row of data) {
+      // Remove 'consecutivo' if it's present in the Excel row
+      delete row.consecutivo;
+
+      // Fix 'dia' if it's an Excel date serial number
+      if (row.dia && typeof row.dia === 'number') {
+        row.dia = excelDateToJSDate(row.dia);
+      }
+
+      // Fix 'hora' if it's an Excel decimal time
+      if (row.hora && typeof row.hora === 'number') {
+        row.hora = excelTimeToString(row.hora);
+      }
+
+      // Insert into the database
+      await query('INSERT INTO baseTelefonos SET ?', row);
+    }
+
+    fs.unlinkSync(filePath);
+    res.send('Excel file uploaded and data inserted successfully.');
+  } catch (err) {
+    console.error('Error uploading file:', err);
+    res.status(500).send('Failed to upload Excel file.');
+  }
+});
 
 router.get('/download-excel', async (req, res) => {
     try {
