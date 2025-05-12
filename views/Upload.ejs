@@ -5,6 +5,14 @@
 
   <button id="downloadExcel">Download Excel</button>
 
+  <form action="/delete-database" method="POST" onsubmit="return confirm('Are you sure you want to delete the entire database?');">
+    <button type="submit">Delete Database</button>
+  </form>
+  
+  <form action="/create-table" method="POST" onsubmit="return confirm('Create the baseITX table?');">
+    <button type="submit">Create baseITX Table</button>
+  </form>
+
 <script>
   document.getElementById('downloadExcel').addEventListener('click', () => {
     // This will trigger the browser to download the file

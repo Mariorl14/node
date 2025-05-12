@@ -37,6 +37,9 @@ router.post('/upload', upload.single('excelFile'), async (req, res) => {
     const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
     for (let row of data) {
+      // Remove 'consecutivo' if it's present in the Excel row
+      delete row.consecutivo;
+
       // Fix 'dia' if it's an Excel date serial number
       if (row.dia && typeof row.dia === 'number') {
         row.dia = excelDateToJSDate(row.dia);
@@ -46,9 +49,6 @@ router.post('/upload', upload.single('excelFile'), async (req, res) => {
       if (row.hora && typeof row.hora === 'number') {
         row.hora = excelTimeToString(row.hora);
       }
-
-      // Optional: check values before inserting
-      // console.log(row);
 
       // Insert into the database
       await query('INSERT INTO baseITX SET ?', row);
@@ -61,6 +61,7 @@ router.post('/upload', upload.single('excelFile'), async (req, res) => {
     res.status(500).send('Failed to upload Excel file.');
   }
 });
+
 
 router.get('/download-excel', async (req, res) => {
     try {

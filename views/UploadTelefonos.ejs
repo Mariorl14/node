@@ -1,0 +1,22 @@
+<H2>BASE Telefonos</H2>
+<form action="/uploadTelefonos" method="POST" enctype="multipart/form-data">
+    <input type="file" name="excelFile" accept=".xlsx, .xls" required />
+    <button type="submit">Upload Excel</button>
+  </form>
+
+  <button id="downloadExcel">Download Excel</button>
+
+  <form action="/delete-databaseTelefonos" method="POST" onsubmit="return confirm('Are you sure you want to delete the entire database?');">
+    <button type="submit">Delete Database</button>
+  </form>
+  
+  <form action="/create-tableTelefonos" method="POST" onsubmit="return confirm('Create the baseTelefonos table?');">
+    <button type="submit">Create baseTelefonos Table</button>
+  </form>
+
+<script>
+  document.getElementById('downloadExcel').addEventListener('click', () => {
+    // This will trigger the browser to download the file
+    window.location.href = '/download-excelTelefonos';
+  });
+</script>

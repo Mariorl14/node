@@ -152,6 +152,128 @@ router.get('/bdTelefonos',authController.isAuthenticated, NoCache.nocache,authCo
     });
   });
 
+  router.get('/baseTelefonos', authController.isAuthenticated, NoCache.nocache,  async (req, res)=>{
+
+    const userName = req.user.nombre;
+  const userRole = req.user.rol;
+
+  let sql = 'SELECT * FROM baseTelefonos';
+  if (userRole !== 'admin') {
+    sql += ' WHERE asesor = ?';
+  }
+
+  conexion.query(sql, userRole !== 'admin' ? [userName] : [], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.render('baseTelefonos', { results: results, user: req.user });
+    }
+  });
+  });
+
+  /* Editar Ventas Activadas*/
+  router.get('/editBaseTelefonos/:consecutivo', authController.isAuthenticated, (req, res) => {
+    const consecutivo = req.params.consecutivo;
+  
+    conexion.query('SELECT * FROM baseTelefonos WHERE consecutivo = ?', [consecutivo], (error, results) => {
+      if (error) {
+        throw error;
+      } else if (results.length === 0) {
+        return res.status(404).send("Registro no encontrado");
+      }
+  
+      let saleData = results[0];
+  
+      // Format date and time fields for HTML inputs
+      saleData.formattedDia = saleData.dia ? moment(saleData.dia).format('YYYY-MM-DD') : '';
+      saleData.formattedHora = saleData.hora ? moment(saleData.hora, 'HH:mm:ss').format('HH:mm') : '';
+  
+      res.render('EditarBaseTelefonos', { SaleId: saleData, user: req.user });
+    });
+  });
+
+  router.post('/editBaseTelefonos', authController.isAuthenticated, (req, res) => {
+    const consecutivo = req.body.consecutivo;
+  
+    // Parse and format date/time
+    const dia = req.body.dia ? moment(req.body.dia).format('YYYY-MM-DD') : null;
+    const hora = req.body.hora ? moment(req.body.hora, 'HH:mm').format('HH:mm:ss') : null;
+  
+    const data = {
+      numero: req.body.numero,
+      cedula: req.body.cedula,
+      nombre: req.body.nombre,
+      asesor: req.body.asesor,
+      detalle: req.body.detalle,
+      dia: dia,
+      hora: hora,
+      comentario: req.body.comentario,
+      pre_post_pago: req.body.pre_post_pago,
+      fijo: req.body.fijo,
+      operador_fijo: req.body.operador_fijo,
+      operador_movil: req.body.operador_movil,
+      genero: req.body.genero,
+      whatsapp: req.body.whatsapp,
+      cobertura_fijo: req.body.cobertura_fijo,
+      coordenadas: req.body.coordenadas
+    };
+  
+    conexion.query('UPDATE baseTelefonos SET ? WHERE consecutivo = ?', [data, consecutivo], (error, results) => {
+      if (error) {
+        console.error("Error updating:", error);
+        res.status(500).send("Error updating data.");
+      } else {
+        console.log("Updated record consecutivo:", consecutivo);
+        res.redirect('/baseTelefonos');
+      }
+    });
+  });
+
+  router.post('/delete-databaseTelefonos', (req, res) => {
+    const databaseName = 'baseTelefonos'; // set your DB name
+    const sql = `DROP table ??`;
+  
+    conexion.query(sql, [databaseName], (err, result) => {
+      if (err) {
+        console.error('Error deleting database:', err);
+        return res.status(500).send('Database deletion failed');
+      }
+      console.log('Database deleted');
+      res.send('Database deleted successfully');
+    });
+  });
+  
+  router.post('/create-tableTelefonos', (req, res) => {
+    const createTableSQL = `
+      CREATE TABLE IF NOT EXISTS baseTelefonos (
+        consecutivo INT AUTO_INCREMENT PRIMARY KEY,
+        numero INT,
+        cedula VARCHAR(512),
+        nombre VARCHAR(512),
+        asesor VARCHAR(512),
+        detalle VARCHAR(512),
+        dia DATE,
+        hora TIME,
+        comentario VARCHAR(512),
+        pre_post_pago VARCHAR(512),
+        fijo VARCHAR(512),
+        operador_fijo VARCHAR(512),
+        operador_movil VARCHAR(512),
+        genero VARCHAR(512),
+        whatsapp VARCHAR(512),
+        cobertura_fijo VARCHAR(512),
+        coordenadas VARCHAR(512)
+      );
+    `;
+  
+    conexion.query(createTableSQL, (err, result) => {
+      if (err) {
+        console.error('Error creating table:', err);
+        return res.status(500).send('Failed to create table');
+      }
+      res.send('Table baseTelefonos created successfully');
+    });
+  });
 
 
 
