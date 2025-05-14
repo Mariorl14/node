@@ -1,7 +1,7 @@
 const express = require('express');
 const {google} = require("googleapis");
 const router = express.Router()
-
+const moment = require('moment');
 const conexion = require('../database/db');
 
 const authController = require('../controllers/authController')
@@ -218,9 +218,10 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
   router.post('/editBaseFijo', authController.isAuthenticated, (req, res) => {
     const consecutivo = req.body.consecutivo;
   
-    // Parse and format date/time
-    const dia = req.body.dia ? moment(req.body.dia).format('YYYY-MM-DD') : null;
-    const hora = req.body.hora ? moment(req.body.hora, 'HH:mm').format('HH:mm:ss') : null;
+      // Use current date and time
+      const now = moment(); // requires: const moment = require('moment');
+      const dia = now.format('YYYY-MM-DD');
+      const hora = now.format('HH:mm:ss');
   
     const data = {
       numero: req.body.numero,

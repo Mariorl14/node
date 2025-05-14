@@ -92,41 +92,43 @@ router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authControll
   });
 
   router.post('/editBaseITX', authController.isAuthenticated, (req, res) => {
-    const consecutivo = req.body.consecutivo;
-  
-    // Parse and format date/time
-    const dia = req.body.dia ? moment(req.body.dia).format('YYYY-MM-DD') : null;
-    const hora = req.body.hora ? moment(req.body.hora, 'HH:mm').format('HH:mm:ss') : null;
-  
-    const data = {
-      numero: req.body.numero,
-      cedula: req.body.cedula,
-      nombre: req.body.nombre,
-      asesor: req.body.asesor,
-      detalle: req.body.detalle,
-      dia: dia,
-      hora: hora,
-      comentario: req.body.comentario,
-      pre_post_pago: req.body.pre_post_pago,
-      fijo: req.body.fijo,
-      operador_fijo: req.body.operador_fijo,
-      operador_movil: req.body.operador_movil,
-      genero: req.body.genero,
-      whatsapp: req.body.whatsapp,
-      cobertura_fijo: req.body.cobertura_fijo,
-      coordenadas: req.body.coordenadas
-    };
-  
-    conexion.query('UPDATE baseITX SET ? WHERE consecutivo = ?', [data, consecutivo], (error, results) => {
-      if (error) {
-        console.error("Error updating:", error);
-        res.status(500).send("Error updating data.");
-      } else {
-        console.log("Updated record consecutivo:", consecutivo);
-        res.redirect('/baseITX');
-      }
-    });
+  const consecutivo = req.body.consecutivo;
+
+  // Use current date and time
+  const now = moment(); // requires: const moment = require('moment');
+  const dia = now.format('YYYY-MM-DD');
+  const hora = now.format('HH:mm:ss');
+
+  const data = {
+    numero: req.body.numero,
+    cedula: req.body.cedula,
+    nombre: req.body.nombre,
+    asesor: req.body.asesor,
+    detalle: req.body.detalle,
+    dia: dia,      // current date
+    hora: hora,    // current time
+    comentario: req.body.comentario,
+    pre_post_pago: req.body.pre_post_pago,
+    fijo: req.body.fijo,
+    operador_fijo: req.body.operador_fijo,
+    operador_movil: req.body.operador_movil,
+    genero: req.body.genero,
+    whatsapp: req.body.whatsapp,
+    cobertura_fijo: req.body.cobertura_fijo,
+    coordenadas: req.body.coordenadas
+  };
+
+  conexion.query('UPDATE baseITX SET ? WHERE consecutivo = ?', [data, consecutivo], (error, results) => {
+    if (error) {
+      console.error("Error updating:", error);
+      res.status(500).send("Error updating data.");
+    } else {
+      console.log("Updated record consecutivo:", consecutivo);
+      res.redirect('/baseITX');
+    }
   });
+});
+
 
   router.post('/delete-database', (req, res) => {
     const databaseName = 'baseITX'; // set your DB name
