@@ -153,6 +153,51 @@ router.get('/download-excel', async (req, res) => {
     }
   });
 
+  router.get('/download-excelFijo', async (req, res) => {
+    try {
+      // Query your MySQL table
+      const rows = await query('SELECT * FROM baseFijo');
+  
+      // Convert to worksheet
+      const worksheet = xlsx.utils.json_to_sheet(rows);
+      const workbook = xlsx.utils.book_new();
+      xlsx.utils.book_append_sheet(workbook, worksheet, 'Datos');
+  
+      // Write to buffer (no need to save file)
+      const buffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+  
+      // Set headers and send as download
+      res.setHeader('Content-Disposition', 'attachment; filename=baseFijo.xlsx');
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.send(buffer);
+    } catch (err) {
+      console.error('Error generating Excel:', err);
+      res.status(500).send('Error generating Excel file');
+    }
+  });
+
+  router.get('/download-excelTelefonos', async (req, res) => {
+    try {
+      // Query your MySQL table
+      const rows = await query('SELECT * FROM baseTelefonos');
+  
+      // Convert to worksheet
+      const worksheet = xlsx.utils.json_to_sheet(rows);
+      const workbook = xlsx.utils.book_new();
+      xlsx.utils.book_append_sheet(workbook, worksheet, 'Datos');
+  
+      // Write to buffer (no need to save file)
+      const buffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+  
+      // Set headers and send as download
+      res.setHeader('Content-Disposition', 'attachment; filename=baseTelefonos.xlsx');
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.send(buffer);
+    } catch (err) {
+      console.error('Error generating Excel:', err);
+      res.status(500).send('Error generating Excel file');
+    }
+  });
 
 module.exports = router;
 // Serve HTML form
