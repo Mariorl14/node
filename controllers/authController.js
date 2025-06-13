@@ -15,8 +15,17 @@ exports.register = async (req, res)=>{
     const pass = req.body.pass;
     const codigoEmpleado = req.body.codigoEmpleado;
     const salario = req.body.salario;
+    const pais = req.body.pais;
     var fecha_Ingreso = time();
     let passwordHaash = await bcryptjs.hash(pass, 8);
+
+    if (pais === 'Costa Rica') {
+
+        pais === null;
+
+    }else {
+        pais === 'Nicaragua'
+    }
 
     conexion.query('INSERT INTO users SET ?', {user:user,
         nombre:nombre,
@@ -26,12 +35,13 @@ exports.register = async (req, res)=>{
         fecha_Ingreso:fecha_Ingreso,
         pass:passwordHaash,
         codigoEmpleado:codigoEmpleado,
+        pais:pais,
         salario:salario,}, async(error, results)=>{
             if(error){
                 console.log(error);
             }
             console.log("eteas")
-            res.redirect('home')
+            res.redirect('homeTest')
             /*
             res.render('register',{
                 alert: true,

@@ -285,6 +285,29 @@
                       </div>
                       <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
                     </div>
+                     <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <select class="select form-control-lg" style="width: 300px;" id="metodo_pago" name="metodo_pago" class="form-control form-control-lg" >
+                            <option value="<%= SaleId.Metodo_Pago %>"></option>
+                            <option <%= SaleId.Metodo_Pago == "SINPE" ? "selected" : "" %> value="SINPE">SINPE</option>
+                            <option <%= SaleId.Metodo_Pago == "EFECTIVO" ? "selected" : "" %> value="EFECTIVO">EFECTIVO</option>
+                            <option <%= SaleId.Metodo_Pago == "NO PAGO" ? "selected" : "" %>  value="NO PAGO">NO PAGO</option>
+                          </select>
+                        </div>
+                        <label class="form-user" for="tipoLlamada">Metodo de Pago</label>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <select class="select form-control-lg" style="width: 300px;" id="intentos_entrega" name="intentos_entrega" class="form-control form-control-lg" >
+                            <option value="<%= SaleId.Intentos_Entrega %>"></option>
+                            <option <%= SaleId.Intentos_Entrega == "1" ? "selected" : "" %> value="1">1</option>
+                            <option <%= SaleId.Intentos_Entrega == "2" ? "selected" : "" %> value="2">2</option>
+                            <option <%= SaleId.Intentos_Entrega == "3" ? "selected" : "" %>  value="3">3</option>
+                            <option <%= SaleId.Intentos_Entrega == "4" ? "selected" : "" %>  value="4">4</option>
+                          </select>
+                        </div>
+                        <label class="form-user" for="tipoLlamada">Intentos de Entrega</label>
+                      </div>
                     <div class="col-md-4 mb-4">
                       <div class="form-outline">
                           <select class="select form-control-lg" style="width: 300px;" id="column26" name="column26" class="form-control form-control-lg" >

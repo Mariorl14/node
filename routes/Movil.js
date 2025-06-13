@@ -194,16 +194,41 @@ router.post('/editHOME/:rowId', async (req, res) => {
   });
 
   /*HOME BD  No activadas*/
-  router.get('/homeTest', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
-    
-    conexion.query('SELECT * FROM VentasMovil where Activada = "No Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
-      if(error){
-          throw error
-      }else{
-          res.render('homeTest', {results:results, user:req.user})
-      }
-  })
+ router.get('/homeTest', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
+    let query;
 
+    if (req.user.pais === 'Nicaragua') {
+        // Use the JOIN query with pais filter
+        query = `
+            SELECT VentasMovil.* 
+            FROM VentasMovil
+            INNER JOIN Users ON VentasMovil.Nombre_Vendedor = Users.nombre
+            WHERE VentasMovil.Activada = 'No Activada'
+            AND VentasMovil.Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND VentasMovil.Fecha <= CURDATE()
+            AND Users.pais = 'Nicaragua';
+        `;
+    } else if (req.user.pais === null) {
+        // Use the original query
+        query = `
+            SELECT * 
+            FROM VentasMovil 
+            WHERE Activada = 'No Activada' 
+            AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) 
+            AND Fecha <= CURDATE();
+        `;
+    } else {
+        // If user is not from Nicaragua and pais is not null, return empty or handle it accordingly
+        return res.render('homeTest', { results: [], user: req.user });
+    }
+
+    conexion.query(query, (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.render('homeTest', { results: results, user: req.user });
+        }
+    });
 });
 
  /*Ventas Vendedor*/
@@ -224,10 +249,35 @@ router.post('/editHOME/:rowId', async (req, res) => {
 
  /*HOME BD Activadas */
  router.get('/Activadas', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
+let query;
 
+    if (req.user.pais === 'Nicaragua') {
+        // Use the JOIN query with pais filter
+        query = `
+            SELECT VentasMovil.* 
+            FROM VentasMovil
+            INNER JOIN Users ON VentasMovil.Nombre_Vendedor = Users.nombre
+            WHERE VentasMovil.Activada = 'Activada'
+            AND VentasMovil.Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND VentasMovil.Fecha <= CURDATE()
+            AND Users.pais = 'Nicaragua';
+        `;
+    } else if (req.user.pais === null) {
+        // Use the original query
+        query = `
+            SELECT * 
+            FROM VentasMovil 
+            WHERE Activada = 'Activada' 
+            AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) 
+            AND Fecha <= CURDATE();
+        `;
+    } else {
+        // If user is not from Nicaragua and pais is not null, return empty or handle it accordingly
+        return res.render('Activadas', { results: [], user: req.user });
+    }
   /* AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ; */
     
-  conexion.query('SELECT * FROM VentasMovil where Activada = "Activada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
+  conexion.query(query, (error, results)=>{
     if(error){
         throw error
     }else{
@@ -240,8 +290,35 @@ router.post('/editHOME/:rowId', async (req, res) => {
 /*HOME BD Pendientes Activacion */
 router.get('/PendientesActivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
 
+  let query;
+
+    if (req.user.pais === 'Nicaragua') {
+        // Use the JOIN query with pais filter
+        query = `
+            SELECT VentasMovil.* 
+            FROM VentasMovil
+            INNER JOIN Users ON VentasMovil.Nombre_Vendedor = Users.nombre
+            WHERE VentasMovil.Activada = 'Pendiente'
+            AND VentasMovil.Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND VentasMovil.Fecha <= CURDATE()
+            AND Users.pais = 'Nicaragua';
+        `;
+    } else if (req.user.pais === null) {
+        // Use the original query
+        query = `
+            SELECT * 
+            FROM VentasMovil 
+            WHERE Activada = 'Pendiente' 
+            AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) 
+            AND Fecha <= CURDATE();
+        `;
+    } else {
+        // If user is not from Nicaragua and pais is not null, return empty or handle it accordingly
+        return res.render('PendientesActivacion', { results: [], user: req.user });
+    }
+
   /*AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE(); */
-  conexion.query('SELECT * FROM VentasMovil WHERE Activada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results) => {
+  conexion.query(query, (error, results) => {
     if (error) {
       throw error;
     } else {
@@ -254,9 +331,36 @@ router.get('/PendientesActivacion', authController.isAuthenticated, authControll
 /*HOME BD Pendientes Entrega */
 router.get('/PendientesEntrega', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
   
+  let query;
+
+    if (req.user.pais === 'Nicaragua') {
+        // Use the JOIN query with pais filter
+        query = `
+            SELECT VentasMovil.* 
+            FROM VentasMovil
+            INNER JOIN Users ON VentasMovil.Nombre_Vendedor = Users.nombre
+            WHERE VentasMovil.Entregada = 'Pendiente'
+            AND VentasMovil.Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND VentasMovil.Fecha <= CURDATE()
+            AND Users.pais = 'Nicaragua';
+        `;
+    } else if (req.user.pais === null) {
+        // Use the original query
+        query = `
+            SELECT * 
+            FROM VentasMovil 
+            WHERE Entregada = 'Pendiente' 
+            AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) 
+            AND Fecha <= CURDATE();
+        `;
+    } else {
+        // If user is not from Nicaragua and pais is not null, return empty or handle it accordingly
+        return res.render('PendientesEntrega', { results: [], user: req.user });
+    }
+
   /* AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ; */
 
-  conexion.query('SELECT * FROM VentasMovil where Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND Fecha <= CURDATE();', (error, results)=>{
+  conexion.query(query, (error, results)=>{
     if(error){
         throw error
     }else{
@@ -269,8 +373,37 @@ router.get('/PendientesEntrega', authController.isAuthenticated,authController.a
 /*HOME BD Pendientes Activacion */
 router.get('/PendientesEntregaYactivacion', authController.isAuthenticated, authController.authRol, NoCache.nocache, async (req, res) => {
 
+  let query;
+
+    if (req.user.pais === 'Nicaragua') {
+        // Use the JOIN query with pais filter
+        query = `
+            SELECT VentasMovil.* 
+            FROM VentasMovil
+            INNER JOIN Users ON VentasMovil.Nombre_Vendedor = Users.nombre
+            WHERE VentasMovil.Activada = 'Pendiente'
+            AND VentasMovil.Entregada = 'Pendiente'
+            AND VentasMovil.Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND VentasMovil.Fecha <= CURDATE()
+            AND Users.pais = 'Nicaragua';
+        `;
+    } else if (req.user.pais === null) {
+        // Use the original query
+        query = `
+            SELECT * 
+            FROM VentasMovil 
+            WHERE Activada = 'No Activada'
+            AND Entregada = 'Pendiente' 
+            AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) 
+            AND Fecha <= CURDATE();
+        `;
+    } else {
+        // If user is not from Nicaragua and pais is not null, return empty or handle it accordingly
+        return res.render('PendientesEntregaYactivacion', { results: [], user: req.user });
+    }
+
   /*AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE(); */
-  conexion.query('SELECT * FROM VentasMovil WHERE Activada = "Pendiente" AND Entregada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE();', (error, results) => {
+  conexion.query(query, (error, results) => {
     if (error) {
       throw error;
     } else {
@@ -410,7 +543,9 @@ router.post('/editNOActivadas', (req, res) => {
     Correo_Cliente: req.body.Correo,
     Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
     Modelo_Terminal: req.body.Modelo_Terminal,
-    Tipo_Cliente: req.body.tipoCliente
+    Tipo_Cliente: req.body.tipoCliente,
+    Metodo_Pago: req.body.metodo_pago,
+    Intentos_Entrega: req.body.intentos_entrega
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -556,7 +691,9 @@ router.post('/editActivadas', (req, res) => {
     Correo_Cliente: req.body.Correo,
     Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
     Modelo_Terminal: req.body.Modelo_Terminal,
-    Tipo_Cliente: req.body.tipoCliente
+    Tipo_Cliente: req.body.tipoCliente,
+    Metodo_Pago: req.body.metodo_pago,
+    Intentos_Entrega: req.body.intentos_entrega
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -702,7 +839,9 @@ router.post('/editPendientesActivacion', (req, res) => {
     Correo_Cliente: req.body.Correo,
     Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
     Modelo_Terminal: req.body.Modelo_Terminal,
-    Tipo_Cliente: req.body.tipoCliente
+    Tipo_Cliente: req.body.tipoCliente,
+    Metodo_Pago: req.body.metodo_pago,
+    Intentos_Entrega: req.body.intentos_entrega
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
@@ -848,7 +987,9 @@ router.post('/editPendientesEntrega', (req, res) => {
     Correo_Cliente: req.body.Correo,
     Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1,
     Modelo_Terminal: req.body.Modelo_Terminal,
-    Tipo_Cliente: req.body.tipoCliente
+    Tipo_Cliente: req.body.tipoCliente,
+    Metodo_Pago: req.body.metodo_pago,
+    Intentos_Entrega: req.body.intentos_entrega
   };
 console.log(data.Fecha_Activacion)
   conexion.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId], (error, results) => {
