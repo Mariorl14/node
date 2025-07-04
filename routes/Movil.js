@@ -208,7 +208,7 @@ router.post('/editHOME/:rowId', async (req, res) => {
             AND VentasMovil.Fecha <= CURDATE()
             AND Users.pais = 'Nicaragua';
         `;
-    } else if (req.user.pais === null) {
+    } else if (req.user.pais === 'Costa Rica') {
         // Use the original query
         query = `
             SELECT * 
@@ -262,7 +262,7 @@ let query;
             AND VentasMovil.Fecha <= CURDATE()
             AND Users.pais = 'Nicaragua';
         `;
-    } else if (req.user.pais === null) {
+    } else if (req.user.pais === 'Costa Rica') {
         // Use the original query
         query = `
             SELECT * 
@@ -303,7 +303,7 @@ router.get('/PendientesActivacion', authController.isAuthenticated, authControll
             AND VentasMovil.Fecha <= CURDATE()
             AND Users.pais = 'Nicaragua';
         `;
-    } else if (req.user.pais === null) {
+    } else if (req.user.pais === 'Costa Rica') {
         // Use the original query
         query = `
             SELECT * 
@@ -344,7 +344,7 @@ router.get('/PendientesEntrega', authController.isAuthenticated,authController.a
             AND VentasMovil.Fecha <= CURDATE()
             AND Users.pais = 'Nicaragua';
         `;
-    } else if (req.user.pais === null) {
+    } else if (req.user.pais === 'Costa Rica') {
         // Use the original query
         query = `
             SELECT * 
@@ -387,7 +387,7 @@ router.get('/PendientesEntregaYactivacion', authController.isAuthenticated, auth
             AND VentasMovil.Fecha <= CURDATE()
             AND Users.pais = 'Nicaragua';
         `;
-    } else if (req.user.pais === null) {
+    } else if (req.user.pais === 'Costa Rica') {
         // Use the original query
         query = `
             SELECT * 
