@@ -299,4 +299,6 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
     });
   });
 
+  /*test */
+
   module.exports = router;
