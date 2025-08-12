@@ -124,6 +124,7 @@ exports.registrarVenta = async (req, res)=>{
     var Modelo_Terminal = "";
     var Metodo_Pago = "";
     var Intentos_Entrega = "";
+    /*Actualizacion*/
 
     if(idVendedor !=="Ventas Freelance"){
          var Vendedor_Freelance = "";
