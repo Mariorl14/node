@@ -64,20 +64,16 @@ exports.registrarVenta = async (req, res)=>{
 
         var Valor_Plan = "20000";
 
-       }else if(TipoDePlanAContratar=="5CD Plan LY5G @1 Portate Control CT"){
+       }else if(TipoDePlanAContratar=="AB3 Plan 5G @1 Full GB CTRL CT"){
 
-        var Valor_Plan = "11000";
+        var Valor_Plan = "11900";
 
-       }else if(TipoDePlanAContratar=="5CE	Plan LY5G @2 Portate Control CT"){
+       }else if(TipoDePlanAContratar=="AB4 Plan 5G @2 Full GB CTRL CT"){
 
-        var Valor_Plan = "15000";
-
-       }else if(TipoDePlanAContratar=="5CF	Plan LY5G @3 Portate Control CT"){
-
-        var Valor_Plan = "20000";
+        var Valor_Plan = "15900";
 
        }else{
-        var Valor_Plan = "42200";
+        var Valor_Plan = "";
        }
        const today = new Date();
        var Numero_Contrato = 0;
