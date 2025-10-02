@@ -116,9 +116,11 @@
     if (userRol !== "admin") {
       const nombre = "<%= user.nombre %>";
       table.column(4).search(nombre).draw(); // column 4 is Asesor
+      console.log(nombre)
     }
 
   });
+  
 </script>
 
 </body>
