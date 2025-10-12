@@ -8,10 +8,11 @@ const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
+const rolemiddlware = require('../controllers/roleMiddlware')
 
 /* BASE TELEFONOS */
 
-router.get('/bdTelefonos',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF, authController.FavtelNicaraguaKolbi, async  (req, res)=>{
+router.get('/bdTelefonos',authController.isAuthenticated, NoCache.nocache,rolemiddlware.TicocelBDF, rolemiddlware.FavtelNicaraguaKolbi, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -153,22 +154,28 @@ router.get('/bdTelefonos',authController.isAuthenticated, NoCache.nocache,authCo
   });
 
   router.get('/baseTelefonos', authController.isAuthenticated, NoCache.nocache,  async (req, res)=>{
-
+try {
     const userName = req.user.nombre;
-  const userRole = req.user.rol;
+    const userRole = req.user.rol;
 
-  let sql = 'SELECT * FROM baseTelefonos';
-  if (userRole !== 'admin') {
-    sql += ' WHERE asesor = ?';
-  }
+    let sql;
+    let params = [];
 
-  conexion.query(sql, userRole !== 'admin' ? [userName] : [], (error, results) => {
-    if (error) {
-      throw error;
+    // If not admin, show only their own records
+    if (userRole !== 'admin') {
+      sql = 'SELECT * FROM baseTelefonos WHERE asesor = ?';
+      params = [userName];
     } else {
-      res.render('baseTelefonos', { results: results, user: req.user });
+      sql = 'SELECT * FROM baseITX';
     }
-  });
+
+    const [results] = await conexion.query(sql, params);
+
+    res.render('baseTelefonos', { results, user: req.user });
+  } catch (error) {
+    console.error('❌ Error loading baseTelefonos:', error);
+    res.status(500).send('Error loading baseTelefonos');
+  }
   });
 
   /* Editar Ventas Activadas*/

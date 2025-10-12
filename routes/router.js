@@ -20,7 +20,6 @@ const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
-const pdfMaker = require('../controllers/pdfMaker');
 
 /*ROUTER PARA VISTAS */
 router.get('/', (req, res)=>{
@@ -72,98 +71,6 @@ router.get('/UploadFijo', authController.isAuthenticated, authController.authRol
 router.get('/UploadTelefonos', authController.isAuthenticated, authController.authRol,NoCache.nocache,(req, res)=>{
     res.render('UploadTelefonos', {user:req.user})
 })
-router.get('/listarVentasFijo', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,async (req, res)=>{
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "credentials.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets",
-    });
-
-/// client instance for auth
-    const client = await auth.getClient();
-
-    /// Instance of google sheets api 
-    const googleSheets = google.sheets({ version: "v4", auth: client});
-
-
-    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
-    // Get DATA 
-
-
-
-    const metaData = await googleSheets.spreadsheets.get({
-        auth,
-        spreadsheetId
-    });
-
-    /// rows from spreadsheet
-
-   
-
-    const ventas = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: "Registro_Ventas_Fijo!A2:Z",
-    })
-
-    var user = req.user;
-    const rows = ventas.data.values;
-
-
-    res.render('listarVentasFijo', {rows, user:user});
-    
-})
-router.get('/misEstadisticas', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,async (req, res)=>{
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "credentials.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets",
-    });
-
-/// client instance for auth
-    const client = await auth.getClient();
-
-    /// Instance of google sheets api 
-    const googleSheets = google.sheets({ version: "v4", auth: client});
-
-
-    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
-    // Get DATA 
-
-
-
-    const metaData = await googleSheets.spreadsheets.get({
-        auth,
-        spreadsheetId
-    });
-
-    /// rows from spreadsheet
-
-   
-
-    const ventasResponse  = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: "Gerencial!A2:AP",
-    })
-
-    const ventasResponse2  = await googleSheets.spreadsheets.values.get({
-      auth,
-      spreadsheetId,
-      range: "Respuestas_Formulario!A2:AK",
-  })
-    var user = req.user;
-    const userName = req.user.nombre; // Name of the user to filter by
-
-    const ventas = ventasResponse.data.values || [];
-const filteredData = ventas.filter((row) => row[0] === userName);
-
-const rows = filteredData;
-const rows2 = ventasResponse2.data.values;
-
-
-    res.render('misEstadisticas', {rows:rows, rows2,  user:user});
-
-    
-})
 
 router.get('/dashboard', authController.isAuthenticated,authController.authRol, NoCache.nocache,async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
@@ -207,15 +114,6 @@ router.get('/dashboard', authController.isAuthenticated,authController.authRol, 
     
 })
 
-router.get('/generatePayslip',authController.isAuthenticated,authController.authRol, NoCache.nocache, authController.authColillas, function(req, res, next){
-
-    conexion.query('SELECT * FROM users', function (error, data) {
-        res.render('generatePayslip', {user:req.user, data:data} );
-    })
-    /*
-    res.render('generatePayslip', {user:req.user})
-    */
-})
 router.post("/getEmployeeNumberAndEmail", function (req, res) {
     var employeeName = req.body.employeeName;
   
@@ -349,13 +247,11 @@ router.post("/getEmployeeNumberAndEmail", function (req, res) {
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
-router.post('/generatePayslip', pdfMaker.generatePayslip );
 
 /*Router para usuarios */
 router.post('/editarUser', UsuarioController.editarUser)
 /*Registrar Ventas */
 router.post('/registrarVenta', VentasController.registrarVenta)
-router.post('/registrarVenta1', VentasController.registrarVentaGoogle)
 
 router.post('/pruebagoogle',   VentasController.registrarVenta)
 router.post('/pruebagoogle1',  VentasController.registrarVentaFijo)

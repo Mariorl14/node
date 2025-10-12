@@ -1,92 +1,90 @@
 <link rel="stylesheet" href="css/rwd-table.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
+
 <h2>Bienvenido de vuelta: 
-  <% if(user) {%>
-    <span class="badge bg-success"> <%= user.nombre %></span>
-    <%}%>
+  <% if(user) { %>
+    <span class="badge bg-success"><%= user.nombre %></span>
+  <% } %>
 </h2>
 <h2>Su Rol es: 
-  <% if(user) {%>
-    <span class="badge bg-success"> <%= user.rol %></span>
-    <%}%>
+  <% if(user) { %>
+    <span class="badge bg-success"><%= user.rol %></span>
+  <% } %>
 </h2>
 
-<h2>
-    Lista de Ventas Movil 
-</h2>
+<h2>Lista de Ventas Móvil de <%= user.nombre %></h2>
 
-              <div class="container">
+<div class="container mt-4">
+  <table id="example" class="table table-striped nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">NIP</th>
+        <th scope="col">Número Gestión Movicheck</th>
+        <th scope="col">Número Celular Trámite</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Nombre del Cliente</th>
+        <th scope="col">Segundo Nombre</th>
+        <th scope="col">Primer Apellido</th>
+        <th scope="col">Segundo Apellido</th>
+        <th scope="col">Número de Documento</th>
+        <th scope="col">Tipo de Trámite</th>
+        <th scope="col">Detalle de Entrega</th>
+        <th scope="col">Pago Comisión</th>
+        <th scope="col">Número Contrato</th>
+        <th scope="col">Número Abonado</th>
+        <th scope="col">Nombre del Vendedor</th>
+        <th scope="col">Activada / No Activada</th>
+        <th scope="col">Entregada / No Entregada</th>
+        <th scope="col">Rechazada / Cliente no Contesta</th>
+        <th scope="col">Entregador</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% ventas.forEach((sale) => { %>
+        <tr>
+          <td><%= sale.NIP %></td>
+          <td><%= sale.MOVICHECK %></td>
+          <td><%= sale.Celular_Tramite %></td>
+          <td><%= sale.Fecha %></td>
+          <td><%= sale.Nombre_Cliente %></td>
+          <td><%= sale.Segundo_Nombre_Cliente %></td>
+          <td><%= sale.Primer_Apellido_Cliente %></td>
+          <td><%= sale.Segundo_Apellido_Cliente %></td>
+          <td><%= sale.Numero_Documento %></td>
+          <td><%= sale.Tipo_Tramite %></td>
+          <td><%= sale.Detalle_Entrega %></td>
+          <td><%= sale.Pago_Comision %></td>
+          <td><%= sale.Numero_Contrato %></td>
+          <td><%= sale.Numero_Abonado %></td>
+          <td><%= sale.Nombre_Vendedor %></td>
+          <td><%= sale.Activada %></td>
+          <td><%= sale.Entregada %></td>
+          <td><%= sale.Rechazada %></td>
+          <td><%= sale.Entregador %></td>
+          <td><%= sale.Estados %></td>
+          <td><a href="/editActivadas/<%= sale.SaleId %>">Editar</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 
-                <table id="example" class="table table-striped nowrap" style="width:100%">
-                  <thead>
-                    <tr>
-                      <th scope="col">NIP</th>
-                      <th scope="col">Numero Gestion Movicheck</th>
-                      <th scope="col">Numero Celular De Tramite</th>
-                      <th scope="col">Fecha</th>
-                      <th scope="col">Nombre Del Cliente</th>
-                      <th scope="col">Segundo Nombre Del Cliente</th>
-                      <th scope="col">Primer Apellido Del Cliente</th>
-                      <th scope="col">Segundo Apellido Del Cliente</th>
-                      <th scope="col">Numero De Documento</th>
-                      <th scope="col">Tipo De Tramite</th>
-                      <th scope="col">Detalle de entrega</th>
-                      <th scope="col">Pago Comision</th>
-                      <th scope="col">Numero de Contrato</th>
-                      <th scope="col">Numero de Abonado</th>
-                      <th scope="col">Nombre del Vendedor</th>
-                      <th scope="col">Activada / No Activada</th>
-                      <th scope="col">Entregada / No Entregada</th>
-                      <th scope="col">Rechazada / Cliente no Contesta</th>
-                      <th scope="col">Entregador</th>
-                      <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                  <tbody>
-                    <% results.forEach((sale)=> { %>
-                      <tr>
-                        <td><%= sale.NIP %></td>
-                        <td><%= sale.MOVICHECK %></td>
-                        <td><%= sale.Celular_Tramite %></td>
-                        <td><%= sale.Fecha %></td>
-                        <td><%= sale.Nombre_Cliente %></td>
-                        <td><%= sale.Segundo_Nombre_Cliente %></td>
-                        <td><%= sale.Primer_Apellido_Cliente %></td>
-                        <td><%= sale.Segundo_Apellido_Cliente %></td>
-                        <td><%= sale.Numero_Documento %></td>
-                        <td><%= sale.Tipo_Tramite %></td>
-                        <td><%= sale.Detalle_Entrega %></td>
-                        <td><%= sale.Pago_Comision %></td>
-                        <td><%= sale.Numero_Contrato %></td>
-                        <td><%= sale.Numero_Abonado %></td>
-                        <td><%= sale.Nombre_Vendedor %></td>
-                        <td><%= sale.Activada %></td>
-                        <td><%= sale.Entregada %></td>
-                        <td><%= sale.Rechazada %></td>
-                        <td><%= sale.Entregador %></td>
-                        <td><%= sale.Estados%></td>
-                      </tr>
-                    <% }) %>
-                  </tbody>
-              </table>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
 
-              </div>
-
-                
-                <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-                <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
-                <script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap5.js"></script>
-                <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
-                <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
-
-                <script>
-                  new DataTable('#example', {
-                  responsive: true,
-                  order: [[3, 'desc']]
-              });
-                </script>
-
+<script>
+  new DataTable('#example', {
+    responsive: true,
+    order: [[3, 'desc']],
+    language: { url: 'https://cdn.datatables.net/plug-ins/2.1.6/i18n/es-ES.json' }
+  });
+</script>
 
 <script type="text/javascript" src="js/rwd-table.js"></script>

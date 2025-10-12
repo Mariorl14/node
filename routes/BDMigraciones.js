@@ -8,10 +8,11 @@ const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
+const rolemiddlware = require('../controllers/roleMiddlware')
 
 /* BASE MIGRACIONES */
 
-router.get('/bdMigraciones',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF, authController.FavtelNicaraguaKolbi, async  (req, res)=>{
+router.get('/bdMigraciones',authController.isAuthenticated, NoCache.nocache,rolemiddlware.TicocelBDF, rolemiddlware.FavtelNicaraguaKolbi, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",

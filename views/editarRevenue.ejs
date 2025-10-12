@@ -1,0 +1,93 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-12">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Editar Revenue — <%= mes %> <%= anio %></h3>
+
+          <form action="/editRev/<%= mes %>/<%= anio %>" method="POST">
+            <input type="hidden" name="SaleId" value="<%= SaleId.SaleId %>">
+
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.SaleId %>" disabled>
+                  <label class="form-user">Número de Venta</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.Celular_Tramite %>" disabled>
+                  <label class="form-user">Número Celular de Trámite</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.Numero_Abonado %>" disabled>
+                  <label class="form-user">Número de Abonado</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <input type="text" class="form-control form-control-lg" value="<%= SaleId.Nombre_Cliente %>" disabled>
+                <label>Nombre Cliente</label>
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control form-control-lg" value="<%= SaleId.Primer_Apellido_Cliente %>" disabled>
+                <label>Primer Apellido</label>
+              </div>
+              <div class="col-md-4">
+                <input type="date" class="form-control form-control-lg" value="<%= SaleId.formattedFecha_Activacion %>" disabled>
+                <label>Fecha de Activación</label>
+              </div>
+            </div>
+
+            <hr>
+            <h4>Pagos del Cliente</h4>
+
+            <% for (let i = 1; i <= 6; i++) { %>
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <select class="form-select form-select-lg" id="columnF<%= i %>" name="columnF<%= i %>">
+                    <option value="<%= SaleId["Factura_" + i] %>"><%= SaleId["Factura_" + i] %></option>
+                    <option <%= SaleId["Factura_" + i] === 'PAGO' ? "selected" : '' %> value="PAGO">PAGO</option>
+                    <option <%= SaleId["Factura_" + i] === 'SAA' ? "selected" : '' %> value="SAA">SAA</option>
+                    <option <%= SaleId["Factura_" + i] === 'BAA' ? "selected" : '' %> value="BAA">BAA</option>
+                    <option <%= SaleId["Factura_" + i] === 'SIN FACTURAR' ? "selected" : '' %> value="SIN FACTURAR">SIN FACTURAR</option>
+                    <option <%= SaleId["Factura_" + i] === 'NO PAGO' ? "selected" : '' %> value="NO PAGO">NO PAGO</option>
+                  </select>
+                  <label>Factura <%= i %></label>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="number" step="0.01" id="columnM<%= i %>" name="columnM<%= i %>"
+                         class="form-control form-control-lg" placeholder="0.00"
+                         value="<%= SaleId["Monto_" + i] || '' %>">
+                  <label>Monto <%= i %></label>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="date" id="columnFP<%= i %>" name="columnFP<%= i %>"
+                         class="form-control form-control-lg"
+                         value="<%= SaleId["formattedFecha_Pago_" + i] || '' %>">
+                  <label>Fecha de Pago <%= i %></label>
+                </div>
+              </div>
+            <% } %>
+
+            <div class="mt-4 pt-3 text-center">
+              <input class="btn btn-primary btn-lg" type="submit" value="Guardar">
+              <a href="/Revenue/<%= mes %>/<%= anio %>" class="btn btn-secondary btn-lg ms-2">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

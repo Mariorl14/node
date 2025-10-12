@@ -1,119 +1,120 @@
 <link rel="stylesheet" href="css/rwd-table.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
-    <style>
-      div.dt-container {
-        width: 1200px;
-        margin: 0 auto;
-    }
-    </style>
-<h2>Bienvenido de vuelta: 
-  <% if(user) {%>
-    <span class="badge bg-success"> <%= user.nombre %></span>
-    <%}%>
-</h2>
-<h2>Su Rol es: 
-  <% if(user) {%>
-    <span class="badge bg-success"> <%= user.rol %></span>
-    <%}%>
-</h2>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+<style>
+  div.dt-container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+</style>
 
-<h2>
-    Lista de Ventas Movil Pendientes de Entrega
+<h2>Bienvenido de vuelta:
+  <% if (user) { %>
+    <span class="badge bg-success"><%= user.nombre %></span>
+  <% } %>
+</h2>
+<h2>Su Rol es:
+  <% if (user) { %>
+    <span class="badge bg-success"><%= user.rol %></span>
+  <% } %>
 </h2>
 
-              <div class="container">
+<h2>Lista de Ventas Móvil — Pendientes Entrega</h2>
 
-                <table id="example" class="table table-striped nowrap" style="width:100%">
-                  <thead>
-                    <tr>
-                      <th scope="col">Acciones</th>
-                      <th scope="col">Numero de Venta</th>
-                      <th scope="col">Numero Gestion Movicheck</th>
-                      <th scope="col">Numero Celular De Tramite</th>
-                      <th scope="col">Numero De Documento</th>
-                      <th scope="col">Numero Provisional</th>
-                      <th scope="col">Entregada / No Entregada</th>
-                      <th scope="col">Detalle Entrega</th>
-                      <th scope="col">Mes Trabajado</th>
-                      <th scope="col">Fecha</th>
-                      <th scope="col">Fecha de Activacion</th>
-                      <th scope="col">Fecha de Ultima Actualizacion</th>
-                      <th scope="col">Nombre Del Cliente</th>
-                      <th scope="col">Segundo Nombre Del Cliente</th>
-                      <th scope="col">Primer Apellido Del Cliente</th>
-                      <th scope="col">Segundo Apellido Del Cliente</th>
-                      <th scope="col">Tipo De Tramite</th>
-                      <th scope="col">Numero de Contrato</th>
-                      <th scope="col">Numero de Abonado</th>
-                      <th scope="col">Cobra Envio</th>
-                      <th scope="col">Terminal</th>
-                      <th scope="col">Nombre del Vendedor</th>
-                      <th scope="col">Activada / No Activada</th>
-                      <th scope="col">Rechazada / Cliente no Contesta</th>
-                      <th scope="col">Entregador</th>
-                      <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                  <tbody>
-                    <% results.forEach((sale)=> { %>
-                      <tr>
-                        <td>
-                          <a href="/editPendientesEntrega/<%= sale.SaleId %>">Editar</a>
-                        </td>
-                        <td><%= sale.SaleId %></td>
-                        <td><%= sale.MOVICHECK %></td>
-                        <td><%= sale.Celular_Tramite %></td>
-                        <td><%= sale.Numero_Documento %></td>
-                        <td><%= sale.Numero_Provisional %></td>
-                        <td><%= sale.Entregada %></td>
-                        <td><%= sale.Detalle %></td>
-                        <td><%= sale.MES_TRABAJADA %></td>
-                        <td><%= sale.Fecha %></td>
-                        <td><%= sale.Fecha_Activacion %></td>
-                        <td><%= sale.Fecha_Ultima_Actualizacion %></td>
-                        <td><%= sale.Nombre_Cliente %></td>
-                        <td><%= sale.Segundo_Nombre_Cliente %></td>
-                        <td><%= sale.Primer_Apellido_Cliente %></td>
-                        <td><%= sale.Segundo_Apellido_Cliente %></td>
-                        <td><%= sale.Tipo_Tramite %></td>
-                        <td><%= sale.Numero_Contrato %></td>
-                        <td><%= sale.Numero_Abonado %></td>
-                        <td><%= sale.Cobro_Envío %></td>
-                        <td><%= sale.Terminal %></td>
-                        <td><%= sale.Nombre_Vendedor %></td>
-                        <td><%= sale.Activada %></td>
-                        <td><%= sale.Rechazada %></td>
-                        <td><%= sale.Entregador %></td>
-                        <td><%= sale.Estados%></td>
-                      </tr>
-                    <% }) %>
-                  </tbody>
-              </table>
+<div class="container">
+  <table id="example" class="table table-striped nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">Acciones</th>
+        <th scope="col">Numero de Venta</th>
+        <th scope="col">Numero Gestión Movicheck</th>
+        <th scope="col">Número Celular de Trámite</th>
+        <th scope="col">Número de Documento</th>
+        <th scope="col">Número Provisional</th>
+        <th scope="col">Entregada / No Entregada</th>
+        <th scope="col">Detalle Entrega</th>
+        <th scope="col">Mes Trabajado</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Fecha de Activación</th>
+        <th scope="col">Fecha de Última Actualización</th>
+        <th scope="col">Nombre del Cliente</th>
+        <th scope="col">Segundo Nombre del Cliente</th>
+        <th scope="col">Primer Apellido del Cliente</th>
+        <th scope="col">Segundo Apellido del Cliente</th>
+        <th scope="col">Tipo de Trámite</th>
+        <th scope="col">Número de Contrato</th>
+        <th scope="col">Número de Abonado</th>
+        <th scope="col">Cobra Envío</th>
+        <th scope="col">Terminal</th>
+        <th scope="col">Nombre del Vendedor</th>
+        <th scope="col">Activada / No Activada</th>
+        <th scope="col">Rechazada / Cliente no Contesta</th>
+        <th scope="col">Entregador</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
 
-              </div>
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
 
-                
-                <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-                <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
-                <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
-                <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-                <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
-                <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
-
-                <script>
-                  new DataTable('#example', {
-                    scrollX: true,
-                       layout: {
-                           topStart: {
-                                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-                                     }
-                               }
-                        });
-                </script>
-
+<script>
+  new DataTable('#example', {
+    ajax: {
+      url: '/api/pendientes-entrega',
+      dataSrc: 'data'   // our API returns { success, count, data }
+    },
+    columns: [
+      {
+        data: null,
+        orderable: false,
+        searchable: false,
+        render: (data, type, row) => {
+          return `<a href="/editPendientesEntrega/${row.SaleId}">Editar</a>`;
+        }
+      },
+      { data: 'SaleId' },
+      { data: 'MOVICHECK' },
+      { data: 'Celular_Tramite' },
+      { data: 'Numero_Documento' },
+      { data: 'Numero_Provisional' },
+      { data: 'Entregada' },
+      { data: 'Detalle' },
+      { data: 'MES_TRABAJADA' },
+      { data: 'Fecha' },
+      { data: 'Fecha_Activacion' },
+      { data: 'Fecha_Ultima_Actualizacion' },
+      { data: 'Nombre_Cliente' },
+      { data: 'Segundo_Nombre_Cliente' },
+      { data: 'Primer_Apellido_Cliente' },
+      { data: 'Segundo_Apellido_Cliente' },
+      { data: 'Tipo_Tramite' },
+      { data: 'Numero_Contrato' },
+      { data: 'Numero_Abonado' },
+      { data: 'Cobro_Envío' },
+      { data: 'Terminal' },
+      { data: 'Nombre_Vendedor' },
+      { data: 'Activada' },
+      { data: 'Rechazada' },
+      { data: 'Entregador' },
+      { data: 'Estados' }
+    ],
+    scrollX: true,
+    layout: {
+      topStart: { buttons: ['copy', 'csv', 'excel', 'pdf', 'print'] }
+    },
+    language: { url: "https://cdn.datatables.net/plug-ins/2.1.6/i18n/es-ES.json" }
+  });
+</script>
 
 <script type="text/javascript" src="js/rwd-table.js"></script>

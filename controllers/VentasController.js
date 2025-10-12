@@ -128,384 +128,99 @@ exports.registrarVenta = async (req, res)=>{
         Vendedor_Freelance = Vendedor_Freelance1;
     }
 
-    conexion.query('INSERT INTO VentasMovil SET ?',
-     {Nombre_Cliente:NombreDelCliente,
-        Segundo_Nombre_Cliente:SegundoNombreDelCliente,
-        Primer_Apellido_Cliente:PrimerApellidoDelCliente,
-        Segundo_Apellido_Cliente:SegundoApellidoDelCliente,
-        Documento_Identidad:TipoDeDocumentoDeIdentidad,
-        Numero_Documento:NumeroDeDocumento,
-        Nacionalidad:Nacionalidad,
-        Celular_Tramite:NumeroCelularDeTramite,
-        Tipo_Tramite:TipoDeTramite,
-        Numero_Contrato,
-        Numero_Abonado,
-        Numero_Contacto_1:NumeroDeContacto1,
-        Numero_Contacto_2:NumeroDeContacto2,
-        Portabilidad:EnCasoDePortabilidad,
-        Plan_Contratar:TipoDePlanAContratar,
-        Valor_Plan,
-        Direccion_Exacta:DireccionExacta,
-        Provincia:Provincia,
-        Canton:Canton,
-        Distrito:Distrito,
-        Tipo_Llamada:Tipo_Llamada,
-        Nombre_Vendedor:idVendedor,
-        Fecha:today.toISOString().slice(0, 10).replace(/-/g, '/'),
-        Vendedor_Freelance,
-        Cobro_Envío:Cobro_Envío,
-        Activada,
-        Entregada,
-        Rechazada,
-        Detalle:Detalle, 
-        Entregador,
-        Estados, 
-        Llamada_Activacion, 
-        Fecha_Activacion,NIP,Detalle_Activacion,Primera_Revision,Segunda_Revision,MOVICHECK,Fecha_Entrega,Bloqueo_Desbloqueo,Activadora,MES_TRABAJADA,Terminal:Terminal,Pago_Comision,Numero_Provisional,Genero:Genero,Correo_Cliente:correo,Fecha_Ultima_Actualizacion,Modelo_Terminal,Tipo_Cliente:tipoCliente,Metodo_Pago:Metodo_Pago,Intentos_Entrega:Intentos_Entrega}, async(error, results)=>{
+    try {
+  const [results] = await conexion.query('INSERT INTO VentasMovil SET ?', [{
+    Nombre_Cliente: NombreDelCliente,
+    Segundo_Nombre_Cliente: SegundoNombreDelCliente,
+    Primer_Apellido_Cliente: PrimerApellidoDelCliente,
+    Segundo_Apellido_Cliente: SegundoApellidoDelCliente,
+    Documento_Identidad: TipoDeDocumentoDeIdentidad,
+    Numero_Documento: NumeroDeDocumento,
+    Nacionalidad,
+    Celular_Tramite: NumeroCelularDeTramite,
+    Tipo_Tramite: TipoDeTramite,
+    Numero_Contrato,
+    Numero_Abonado,
+    Numero_Contacto_1: NumeroDeContacto1,
+    Numero_Contacto_2: NumeroDeContacto2,
+    Portabilidad: EnCasoDePortabilidad,
+    Plan_Contratar: TipoDePlanAContratar,
+    Valor_Plan,
+    Direccion_Exacta: DireccionExacta,
+    Provincia,
+    Canton,
+    Distrito,
+    Tipo_Llamada,
+    Nombre_Vendedor: idVendedor,
+    Fecha: today.toISOString().slice(0, 10).replace(/-/g, '/'),
+    Vendedor_Freelance,
+    Cobro_Envío,
+    Activada,
+    Entregada,
+    Rechazada,
+    Detalle,
+    Entregador,
+    Estados,
+    Llamada_Activacion,
+    Fecha_Activacion,
+    NIP,
+    Detalle_Activacion,
+    Primera_Revision,
+    Segunda_Revision,
+    MOVICHECK,
+    Fecha_Entrega,
+    Bloqueo_Desbloqueo,
+    Activadora,
+    MES_TRABAJADA,
+    Terminal,
+    Pago_Comision,
+    Numero_Provisional,
+    Genero,
+    Correo_Cliente: correo,
+    Fecha_Ultima_Actualizacion,
+    Modelo_Terminal,
+    Tipo_Cliente: tipoCliente,
+    Metodo_Pago,
+    Intentos_Entrega
+  }]);
 
-            if(error){
-                console.log(error);
-            }
-            console.log("Venta Movil registrada")
-            res.render('plantilla', {
-                Nombre_Vendedor:idVendedor,
-                Nombre_Cliente:NombreDelCliente,
-                Segundo_Nombre_Cliente:SegundoNombreDelCliente,
-                Primer_Apellido_Cliente:PrimerApellidoDelCliente,
-                Segundo_Apellido_Cliente:SegundoApellidoDelCliente,
-                Numero_Documento:NumeroDeDocumento,
-                Celular_Tramite:NumeroCelularDeTramite,
-                Portabilidad:EnCasoDePortabilidad,
-                Numero_Contacto_1:NumeroDeContacto1,
-                Numero_Contacto_2:NumeroDeContacto2,
-                Tipo_Tramite:TipoDeTramite,
-                Provincia:Provincia,
-                Canton:Canton,
-                Distrito:Distrito,
-                Direccion_Exacta:DireccionExacta,
-                Plan_Contratar:TipoDePlanAContratar,
-                codigoLiberty,
-                Cobro_Envío:Cobro_Envío,
-                    correo:correo,
-                    comentario:comentario,
-                    tipoDePlanAContratar1,
-                    Tipo_Cliente:tipoCliente
-              });
-        })
+  console.log("✅ Venta Movil registrada:", results.insertId);
+
+  return res.render('plantilla', {
+    Nombre_Vendedor: idVendedor,
+    Nombre_Cliente: NombreDelCliente,
+    Segundo_Nombre_Cliente: SegundoNombreDelCliente,
+    Primer_Apellido_Cliente: PrimerApellidoDelCliente,
+    Segundo_Apellido_Cliente: SegundoApellidoDelCliente,
+    Numero_Documento: NumeroDeDocumento,
+    Celular_Tramite: NumeroCelularDeTramite,
+    Portabilidad: EnCasoDePortabilidad,
+    Numero_Contacto_1: NumeroDeContacto1,
+    Numero_Contacto_2: NumeroDeContacto2,
+    Tipo_Tramite: TipoDeTramite,
+    Provincia,
+    Canton,
+    Distrito,
+    Direccion_Exacta: DireccionExacta,
+    Plan_Contratar: TipoDePlanAContratar,
+    codigoLiberty,
+    Cobro_Envío,
+    correo,
+    comentario,
+    tipoDePlanAContratar1,
+    Tipo_Cliente: tipoCliente
+  });
+} catch (error) {
+  console.error('❌ Error inserting sale:', error);
+  return res.status(500).send('Error registering sale');
+}
+
 
     } catch (error) {
         console.log(error)
     }
 }
 
-exports.registrarVentaGoogle = async (req, res) => {
-
-    const {nombreDelCliente, 
-        segundoNombreDelCliente,
-        primerApellidoDelCliente,
-        segundoApellidoDelCliente, 
-        genero,
-        tipoDeDocumentoDeIdentidad, 
-        numeroDeDocumento, 
-        nacionalidad, 
-        numeroCelularDeTramite, 
-        tipoDeTramite,
-        numeroDeContacto1, 
-        numeroDeContacto2, 
-        enCasoDePortabilidad, 
-        tipoDePlanAContratar, 
-        direccionExacta, 
-        provincia, 
-        canton, 
-        distritp,
-        tipoLlamada,
-        correo,
-        comentario,
-        cobro_de_envio,
-        nombreVendedor,
-        codigoLiberty,
-        nombreVendedorFreelance,
-        terminal} = req.body;
-
-        //const {fecha} = req.date;
-
-        var today = new Date();
-        var year = today.getFullYear();
-        var mes = today.getMonth()+1;
-        var dia = today.getDate();
-        var fecha =dia+"-"+mes+"-"+year;
-
-       /// const {idVendedor} = req.idVendedor;
-       
-       if(tipoDePlanAContratar=="@1Plus"){
-        var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
-        var ValorDelPlan = "13200";
-
-       }else if(tipoDePlanAContratar=="@1"){
-        var tipoDePlanAContratar1 = "(CGS) Plan Con Dep @1 LTE PRO ST";
-        var ValorDelPlan = "10700";
-
-       }
-       else if(tipoDePlanAContratar=="@2"){
-        var tipoDePlanAContratar1 = "(CHS) Plan Con Dep @2 LTE PRO ST";
-        var ValorDelPlan = "16000";
-
-       }
-       else if(tipoDePlanAContratar=="@3"){
-
-        var ValorDelPlan = "22000";
-
-       }
-       else if(tipoDePlanAContratar=="@4"){
-
-        var ValorDelPlan = "27200";
-
-       }
-       else if(tipoDePlanAContratar=="@5"){
-
-        var ValorDelPlan = "33200";
-
-       }else{
-        var ValorDelPlan = "42200";
-       }
-
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "credentials.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets",
-    });
-
-/// client instance for auth
-    const client = await auth.getClient();
-
-    /// Instance of google sheets api 
-    const googleSheets = google.sheets({ version: "v4", auth: client});
-
-
-    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
-    // Get DATA 
-
-
-
-    const metaData = await googleSheets.spreadsheets.get({
-        auth,
-        spreadsheetId
-    });
-
-    /// rows from spreadsheet
-
-    const getRows = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: "Respuestas_Formulario",
-    })
-
-    var numeroContrato = "";
-    var numeroAbonado = "";
-    var activada = "Pendiente";
-    var entregada = "Pendiente";
-    var Rech = "";
-    var Detalle = "";
-    var Entregador = "";
-    var Estados = "";
-    var LActivacion = "";
-    var FActivacion = "";
-    var NIP = "";
-    var DetalleA = "";
-    var PR = "";
-    var SR = "";
-    var NumeroActivacion = "";
-    var FechaE = "";
-    var Bloqueo = "Bloqueada";
-    var MesTrabajada = "OCTUBRE 2025";
-    var Activadora = "";
-    var Comision = "";
-    var NumeroProvisional = "";
-    var FechaUltimaActulizacion = "";
-
-    if(nombreVendedor!=="Ventas Freelance"){
-        var nombreVendedorFreelance1 = "";
-    }else{
-        var nombreVendedorFreelance1 = nombreVendedorFreelance;
-    }
-    /// Write rows 
-    await googleSheets.spreadsheets.values.append({
-        auth,
-        spreadsheetId,
-        range: "Respuestas_Formulario",
-        valueInputOption: "USER_ENTERED",
-        resource: {
-         values: [[nombreDelCliente, 
-            segundoNombreDelCliente,
-            primerApellidoDelCliente,
-            segundoApellidoDelCliente, 
-            tipoDeDocumentoDeIdentidad, 
-            numeroDeDocumento, 
-            nacionalidad, 
-            numeroCelularDeTramite, 
-            tipoDeTramite,
-            numeroContrato,
-            numeroAbonado,
-            numeroDeContacto1, 
-            numeroDeContacto2, 
-            enCasoDePortabilidad, 
-            tipoDePlanAContratar, 
-            ValorDelPlan, 
-            direccionExacta, 
-            provincia, 
-            canton, 
-            distritp,
-            tipoLlamada,
-            nombreVendedor,
-            fecha,
-            nombreVendedorFreelance1,
-            cobro_de_envio,
-            activada,
-            entregada,
-            Rech,
-            Detalle,
-            Entregador,
-            Estados,
-            LActivacion,
-            FActivacion,
-            NIP,
-            DetalleA,
-            PR,
-            SR,
-            NumeroActivacion,
-            FechaE,
-            Bloqueo,
-            Activadora,
-            MesTrabajada,
-            terminal,
-            Comision,
-            NumeroProvisional,
-            genero,
-            correo,
-            FechaUltimaActulizacion]]
-        }, 
-    })
-    /*
-
-    try {
-        var date = new Date();
-     const NombreDelCliente = req.body.nombreDelCliente;
-     const SegundoNombreDelCliente = req.body.segundoNombreDelCliente;
-     const PrimerApellidoDelCliente = req.body.primerApellidoDelCliente;
-     const SegundoApellidoDelCliente = req.body.segundoApellidoDelCliente;
-     const TipoDeDocumentoDeIdentidad = req.body.tipoDeDocumentoDeIdentidad;
-     const NumeroDeDocumento = req.body.numeroDeDocumento;
-     const Nacionalidad = req.body.nacionalidad;
-     const NumeroCelularDeTramite = req.body.numeroCelularDeTramite;
-     const TipoDeTramite = req.body.tipoDeTramite;
-     const NumeroDeContacto1 = req.body.numeroDeContacto1;
-     const NumeroDeContacto2 = req.body.numeroDeContacto2;
-     const EnCasoDePortabilidad = req.body.enCasoDePortabilidad;
-     const TipoDePlanAContratar = req.body.tipoDePlanAContratar;
-     const ValorDelPlan = req.body.ValorDelPlan;
-     const DireccionExacta = req.body.direccionExacta;
-     const Provincia = req.body.provincia;
-     const Canton = req.body.canton;
-     const Distrito = req.body.distritp;
-     const Fecha = date;
-     const idVendedor = req.body.nombreVendedor;
- 
-     conexion.query('INSERT INTO Ventas SET ?',
-      {NombreDelCliente:NombreDelCliente,
-         SegundoNombreDelCliente:SegundoNombreDelCliente,
-         PrimerApellidoDelCliente:PrimerApellidoDelCliente,
-         SegundoApellidoDelCliente:SegundoApellidoDelCliente,
-         TipoDeDocumentoDeIdentidad:TipoDeDocumentoDeIdentidad,
-         NumeroDeDocumento:NumeroDeDocumento,
-         Nacionalidad:Nacionalidad,
-         NumeroCelularDeTramite:NumeroCelularDeTramite,
-         TipoDeTramite:TipoDeTramite,
-         NumeroDeContacto1:NumeroDeContacto1,
-         NumeroDeContacto2:NumeroDeContacto2,
-         EnCasoDePortabilidad:EnCasoDePortabilidad,
-         TipoDePlanAContratar:TipoDePlanAContratar,
-         ValorDelPlan:ValorDelPlan,
-         DireccionExacta:DireccionExacta,
-         Provincia:Provincia,
-         Canton:Canton,
-         Distrito:Distrito,
-         Fecha:Fecha,
-         idVendedor:idVendedor}, async(error, results)=>{
- 
-             if(error){
-                 console.log(error);
-             }
-             console.log("eteas")
-             //res.redirect('home')
-             /*
-             res.render('register',{
-                 alert: true,
-                 alertTitle: "Registro",
-                 alertMessage: "!Registro exitoso¡",
-                 alertIcon: 'success',
-                 showConfirmButton: false,
-                 timer: 1500,
-                 ruta: 'home'
-             })*/
-             /*
-         })
- 
-     } catch (error) {
-         console.log(error)
-     }
-     */
-
-     /*
-    res.redirect("misEstadisticas");
-    */
-    res.render('plantilla', {
-        nombreVendedor,
-        nombreDelCliente, 
-            segundoNombreDelCliente,
-            primerApellidoDelCliente,
-            segundoApellidoDelCliente,
-            numeroDeDocumento,
-            numeroCelularDeTramite,
-            enCasoDePortabilidad,
-            numeroDeContacto1,
-            numeroDeContacto2,
-            tipoDeTramite,
-            provincia, 
-            canton, 
-            distritp,
-            direccionExacta,
-            tipoDePlanAContratar,
-            codigoLiberty,
-            cobro_de_envio,
-            correo,
-            comentario,
-            tipoDePlanAContratar1
-      });
-
-      /*
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'mariorl040301@gmail.com',
-          pass: 'zhpixgqlgyoussrx'
-        }
-      });
-
-      const mailOptions = {
-        from: 'mariorl040301@gmail.com',
-        to: 'mariorl040301@gmail.com',
-        subject: 'Venta Generada',
-        text: 'Venta generada por: ' + nombreVendedor + tipoDePlanAContratar
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-      */
-}
 exports.registrarVentaFijo = async (req, res) => {
     
           
@@ -913,39 +628,4 @@ exports.registrarVentaFijoTicocel = async (req, res) => {
               console.log('Email sent: ' + info.response);
             }
           });
-}
-
-exports.listarVentaGoogle = async (req, res) => {
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "credentials.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets",
-    });
-
-/// client instance for auth
-    const client = await auth.getClient();
-
-    /// Instance of google sheets api 
-    const googleSheets = google.sheets({ version: "v4", auth: client});
-
-
-    const spreadsheetId = "1vhWdDiGNYWnQp9WbHzZflejPzMM-5g08UGmvNu8B5SY";
-    // Get DATA 
-
-
-
-    const metaData = await googleSheets.spreadsheets.get({
-        auth,
-        spreadsheetId
-    });
-
-    /// rows from spreadsheet
-
-    const ventas = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: "Respuestas_Formulario",
-    })
-
-    res.render('listarVentasGoogle', {ventas});
-
 }

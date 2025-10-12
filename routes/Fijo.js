@@ -5,6 +5,7 @@ const router = express.Router()
 const conexion = require('../database/db');
 
 const authController = require('../controllers/authController')
+const rolemiddlware = require('../controllers/roleMiddlware')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
@@ -115,7 +116,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
   });
 
   /*Fijo BD  No Instaladas*/
-  router.get('/FijoNoInstalada', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
+  router.get('/FijoNoInstalada', authController.isAuthenticated,authController.authRol,  async (req, res)=>{
     
     conexion.query('SELECT * FROM VentasFijo where Instalada = "No Instalada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
       if(error){
@@ -127,7 +128,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
 
 });
  /*Fijo BD  Instaladas*/
- router.get('/FijoInstalada', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
+ router.get('/FijoInstalada', authController.isAuthenticated,authController.authRol,  async (req, res)=>{
     
   conexion.query('SELECT * FROM VentasFijo where Instalada = "Instalada" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
     if(error){
@@ -140,7 +141,7 @@ router.get('/editBDFijo/:rowId', async  (req, res) => {
 });
 
 /*Fijo BD  Instaladas*/
-router.get('/FijoPendiente', authController.isAuthenticated,authController.authRol, NoCache.nocache,  async (req, res)=>{
+router.get('/FijoPendiente', authController.isAuthenticated,authController.authRol,  async (req, res)=>{
     
   conexion.query('SELECT * FROM VentasFijo where Instalada = "Pendiente" AND Fecha >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND Fecha <= CURDATE() ;', (error, results)=>{
     if(error){
@@ -153,7 +154,7 @@ router.get('/FijoPendiente', authController.isAuthenticated,authController.authR
 });
 
 /*Ventas Vendedor*/
-router.get('/FijoVendedor', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,  async (req, res)=>{
+router.get('/FijoVendedor', authController.isAuthenticated, rolemiddlware.TicocelLVFTIC,  async (req, res)=>{
 
   const user = req.user;
   
@@ -575,7 +576,7 @@ router.post('/editFijoPendiente', (req, res) => {
 
 
   /*Lista Vendedores */
-  router.get('/listarVentasGoogleFijo', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,async (req, res)=>{
+  router.get('/listarVentasGoogleFijo', authController.isAuthenticated, NoCache.nocache, rolemiddlware.TicocelLVFTIC,async (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -604,7 +605,7 @@ router.post('/editFijoPendiente', (req, res) => {
   })
 
   /* Register */
-  router.get('/registrarVentaFijo', authController.isAuthenticated,NoCache.nocache, authController.TicocelRVF, (req, res)=>{
+  router.get('/registrarVentaFijo', authController.isAuthenticated,NoCache.nocache, rolemiddlware.TicocelRVF, (req, res)=>{
     let query1 = 'SELECT * FROM users';
     let query2 = 'SELECT nombre FROM users WHERE rol = "freelance"';
     let results = {};
@@ -738,7 +739,7 @@ router.post('/editPostVentaFijo/:rowId', async (req, res) => {
 });
 
 /* POSTVENTA FIJO */
-router.get('/PostVentaFijo', authController.isAuthenticated, NoCache.nocache, authController.TicocelLVFTIC,async (req, res)=>{
+router.get('/PostVentaFijo', authController.isAuthenticated, rolemiddlware.TicocelLVFTIC,async (req, res)=>{
   const auth = new google.auth.GoogleAuth({
       keyFile: "credentials.json",
       scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -886,7 +887,7 @@ router.get('/colillaFijo',  (req, res)=>{
   });
 
   /* BASE DE DATS FIJO FAVTEL NIC */
-router.get('/BDFijoNICFAV',authController.isAuthenticated, NoCache.nocache,  async  (req, res)=>{
+router.get('/BDFijoNICFAV',authController.isAuthenticated,  async  (req, res)=>{
   const auth = new google.auth.GoogleAuth({
       keyFile: "credentials.json",
       scopes: "https://www.googleapis.com/auth/spreadsheets",

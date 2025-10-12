@@ -8,10 +8,11 @@ const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
+const rolemiddlware = require('../controllers/roleMiddlware')
 
 
 /* Visualizacion */
-router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authController.TicocelBDF, authController.authRolFavtelNIC,  async  (req, res)=>{
+router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, rolemiddlware.TicocelBDF, rolemiddlware.authRolFavtelNIC,  async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -176,22 +177,28 @@ router.get('/bdFijo',authController.isAuthenticated, NoCache.nocache, authContro
   });
 
   router.get('/baseFijo', authController.isAuthenticated, NoCache.nocache,  async (req, res)=>{
-
+try {
     const userName = req.user.nombre;
-  const userRole = req.user.rol;
+    const userRole = req.user.rol;
 
-  let sql = 'SELECT * FROM baseFijo';
-  if (userRole !== 'admin') {
-    sql += ' WHERE asesor = ?';
-  }
+    let sql;
+    let params = [];
 
-  conexion.query(sql, userRole !== 'admin' ? [userName] : [], (error, results) => {
-    if (error) {
-      throw error;
+    // If not admin, show only their own records
+    if (userRole !== 'admin') {
+      sql = 'SELECT * FROM baseFijo WHERE asesor = ?';
+      params = [userName];
     } else {
-      res.render('baseFijo', { results: results, user: req.user });
+      sql = 'SELECT * FROM baseFijo';
     }
-  });
+
+    const [results] = await conexion.query(sql, params);
+
+    res.render('baseFijo', { results, user: req.user });
+  } catch (error) {
+    console.error('❌ Error loading baseFijo:', error);
+    res.status(500).send('Error loading baseFijo');
+  }
   });
 
   /* Editar Ventas Activadas*/

@@ -1,429 +1,130 @@
+// controllers/authController.js
 const jwt = require('jsonwebtoken');
-const bcryptjs = require('bcryptjs');
-const conexion = require('../database/db');
-const {promisify} = require('util');
-const { time } = require('console');
+const bcrypt = require('bcryptjs');
+const pool = require('../database/db'); // <-- mysql2/promise pool exported from database/db.js
 
+// Helper to render invalid login
+function invalidLogin(res) {
+  return res.render('login', {
+    alert: true,
+    alertTitle: "Error",
+    alertMessage: "Información Incorrecta",
+    alertIcon: 'error',
+    showConfirmButton: false,
+    timer: 800,
+    ruta: ''
+  });
+}
 
-exports.register = async (req, res)=>{
-    try {
-    const user = req.body.user;
-    const nombre = req.body.nombre;
-    const rol = req.body.rol;
-    const cedula = req.body.cedula;
-    const telefono = req.body.telefono;
-    const pass = req.body.pass;
-    const codigoEmpleado = req.body.codigoEmpleado;
-    const salario = req.body.salario;
-    const pais = req.body.pais;
-    var fecha_Ingreso = time();
-    let passwordHaash = await bcryptjs.hash(pass, 8);
+// REGISTER USER
+exports.register = async (req, res) => {
+  try {
+    const { user, nombre, rol, cedula, telefono, pass, codigoEmpleado, salario, pais } = req.body;
+    const fecha_Ingreso = new Date();
 
-    if (pais === 'Costa Rica') {
+    const passwordHash = await bcrypt.hash(pass, 10);
 
-        pais === null;
+    // Normalize pais
+    let finalPais = null;
+    if (pais === 'Nicaragua') finalPais = 'Nicaragua';
+    // if 'Costa Rica' or anything else, leave as null (your original behavior)
 
-    }else {
-        pais === 'Nicaragua'
+    const sql = `INSERT INTO users 
+      (user, nombre, rol, cedula, telefono, fecha_Ingreso, pass, codigoEmpleado, pais, salario)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    await pool.execute(sql, [
+      user, nombre, rol, cedula, telefono, fecha_Ingreso,
+      passwordHash, codigoEmpleado, finalPais, salario
+    ]);
+
+    res.redirect('homeTest');
+  } catch (error) {
+    console.error('Register error:', error);
+    res.status(500).send('Error registering user');
+  }
+};
+
+// LOGIN USER
+exports.login = async (req, res) => {
+  try {
+    const { user, pass } = req.body;
+
+    if (!user || !pass) return invalidLogin(res);
+
+    const [rows] = await pool.execute('SELECT * FROM users WHERE user = ?', [user]);
+    if (!rows.length) return invalidLogin(res);
+
+    const dbUser = rows[0];
+    const isMatch = await bcrypt.compare(pass, dbUser.pass);
+    if (!isMatch) return invalidLogin(res);
+
+    const token = jwt.sign(
+      { id: dbUser.id },
+      process.env.JWT_SECRETO,
+      { expiresIn: process.env.JWT_TIEMPO_EXTRA || '1d' }
+    );
+
+    const cookieDays = Number(process.env.JWT_COOKIE_EXPIRES || 1);
+    const cookieOptions = {
+      expires: new Date(Date.now() + cookieDays * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+      // secure: true,            // <-- uncomment in production (HTTPS)
+      // sameSite: 'lax'          // or 'strict'/'none' (if cross-site + HTTPS)
+    };
+
+    res.cookie('jwt', token, cookieOptions);
+
+    return res.render('login', {
+      alert: true,
+      alertTitle: "Conectado",
+      alertMessage: "Conexión exitosa",
+      alertIcon: 'success',
+      showConfirmButton: false,
+      timer: 800,
+      ruta: 'homeTest'
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).send('Error logging in');
+  }
+};
+
+// CHECK JWT
+exports.isAuthenticated = async (req, res, next) => {
+  try {
+    const token = req.cookies?.jwt;
+    if (!token) return res.redirect('/');
+
+    // jwt.verify throws on invalid/expired token; no promisify needed
+    const decoded = jwt.verify(token, process.env.JWT_SECRETO);
+
+    const [rows] = await pool.execute('SELECT * FROM users WHERE id = ?', [decoded.id]);
+    if (!rows.length) return res.redirect('/');
+
+    req.user = rows[0];
+    next();
+  } catch (error) {
+    console.error('Auth check failed:', error.message || error);
+    return res.redirect('/');
+  }
+};
+
+// ROLE VALIDATION
+exports.authRol = async (req, res, next) => {
+  try {
+    if (!req.user || req.user.rol !== 'admin') {
+      return res.redirect('/MovilVendedor');
     }
+    next();
+  } catch (e) {
+    console.error('authRol error:', e);
+    return res.redirect('/');
+  }
+};
 
-    conexion.query('INSERT INTO users SET ?', {user:user,
-        nombre:nombre,
-        rol:rol,
-        cedula:cedula,
-        telefono:telefono,
-        fecha_Ingreso:fecha_Ingreso,
-        pass:passwordHaash,
-        codigoEmpleado:codigoEmpleado,
-        pais:pais,
-        salario:salario,}, async(error, results)=>{
-            if(error){
-                console.log(error);
-            }
-            console.log("eteas")
-            res.redirect('homeTest')
-            /*
-            res.render('register',{
-                alert: true,
-                alertTitle: "Registro",
-                alertMessage: "!Registro exitoso¡",
-                alertIcon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                ruta: 'home'
-            })*/
-        })
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-exports.login = async (req, res)=>{
-    try {
-    const user = req.body.user;
-    const pass = req.body.pass;
-    let passwordHaash = await bcryptjs.hash(pass, 8);
-
-    if(!user || !pass){
-        res.render('login', {
-            alert: true,
-                    alertTitle: "Error",
-                    alertMessage: "Informacion Incorrecta",
-                    alertIcon: 'error',
-                    showConfirmButton: true,
-                    timer: false,
-                    ruta: ''
-        })
-    }else{
-        conexion.query('SELECT * FROM users WHERE user = ?', [user], async (error, results)=>{
-            if(results.length == 0 || ! (await bcryptjs.compare(pass, results[0].pass)) ){
-                res.render('login', {
-                    alert: true,
-                            alertTitle: "Error",
-                            alertMessage: "Informacion Incorrecta",
-                            alertIcon: 'error',
-                            showConfirmButton: false,
-                            timer: 800,
-                            ruta: ''
-                })
-            }else{
-                console.log('Entramos al else')
-                const id = results[0].id
-                const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
-                    expiresIn: process.env.JWT_TIEMPO_EXTRA 
-                })
-
-                const cookiesOptions = {
-                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000 ),
-                    httpOnly: true
-                }
-                res.cookie('jwt', token, cookiesOptions)
-                
-                res.render('login', {
-                    alert: true,
-                    alertTitle: "Conectado",
-                    alertMessage: "Coneccion exitosa",
-                    alertIcon: 'success',
-                    showConfirmButton: false,
-                    timer: 800,
-                    ruta: 'homeTest',
-                })
-                
-               /*Swal.fire({
-                    icon: 'success',
-                    title: 'Conectado',
-                    text: 'Conexion exitosa'
-                    kljvnbf
-                  }) */
-               ///res.redirect('/home', );
-            }
-        })
-    }
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-exports.isAuthenticated = async (req, res, next)=>{
-    
-if(req.cookies.jwt){
-try {
-    const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-    conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id], (error, results)=>{
-        if(!results){return next()}
-        req.user = results[0]
-        return next()
-    })
-} catch (error) {
-    console.log(error)
-    return next()
-}
-}else{
-    res.redirect('/')
-}
-
-
-/*
-const token = req.cookies.jwt;
-
-if(token){
-    
-    jwt.verify(token, process.env.JWT_SECRETO, (err, decodedToken) => {
-        if(err){
-            console.log(err.message);
-            res.redirect('/');
-        }else{
-            console.log(decodedToken);
-            next();
-        }
-    })
-}else{
-    res.redirect('/');
-}
-*/
-
-}
-
-exports.authRol = async (req, res, next)=>{
-
-    if(req.user.rol !== 'admin'){
-        try {
-            res.status(401)
-            return res.redirect('/MovilVendedor')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.authRolTicocel = async (req, res, next)=>{
-
-    if(req.user.rol !== 'admin' && req.user.empresa == 'Ticocel'){
-        try {
-            res.status(401)
-            return res.redirect('/listarVentasGoogleFijoTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.authRolFavtelNIC = async (req, res, next)=>{
-
-    if(req.user.rol !== 'admin' && req.user.empresa == 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/BDFijoNICFAV')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.authRolNICFAVFijo = async (req, res, next)=>{
-
-    if(req.user.rol !== 'admin' && req.user.empresa == 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/listarVentasGoogleFijo')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-
-/** }
-exports.TicocelRVM = async (req, res, next)=>{
-
-    if(req.user.empresa !== 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/registrarVentaTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.TicocelRVF = async (req, res, next)=>{
-
-    if(req.user.empresa !== 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/registrarVentaTicocelFijo')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.TicocelBDK = async (req, res, next)=>{
-
-    if(req.user.empresa !== 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/BDKolbiTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.TicocelBDC = async (req, res, next)=>{
-
-    if(req.user.empresa !== 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/BDClaroTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.TicocelBDF = async (req, res, next)=>{
-
-    if(req.user.empresa !== 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/BDFijoTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-*/
-
-exports.TicocelBDF = async (req, res, next)=>{
-
-    if(req.user.empresa == 'Ticocel'){
-        try {
-            res.status(401)
-            return res.redirect('/BDFijoTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-
-exports.FavtelNicaraguaKolbi = async (req, res, next)=>{
-
-    if(req.user.rol == 'vendedor' && req.user.empresa == 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/bdKolbiNicaragua')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-
-exports.FavtelNicaraguaClaro = async (req, res, next)=>{
-
-    if(req.user.rol == 'vendedor' && req.user.empresa == 'Favtel'){
-        try {
-            res.status(401)
-            return res.redirect('/bdClaroNicaragua')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-
-exports.TicocelRVF = async (req, res, next)=>{
-
-    if(req.user.empresa == 'Ticocel'){
-        try {
-            res.status(401)
-            return res.redirect('/registrarVentaTicocelFijo')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-exports.TicocelLVFTIC = async (req, res, next)=>{
-
-    if(req.user.empresa == 'Ticocel'){
-        try {
-            res.status(401)
-            return res.redirect('/listarVentasGoogleFijoTicocel')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-
-exports.logout = async (req, res)=>{
-    res.clearCookie('jwt');
-    /*
-    return res.redirect('/')
-    */
-   res.redirect('/');
-}
-exports.authColillas = async (req, res, next)=>{
-
-    if(req.user.nombre !== 'Mario Enrique Rodriguez Loria' && 
-    'Monserrat Rodríguez Fernández' &&
-     'Javier Andrés Vargas Vega'){
-        try {
-            res.status(401)
-            return res.redirect('/listarVentasGoogle')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-/*PRUEBA MARIOOOOO */
-/*
-exports.bdFijo = async (req, res, next)=>{
-
-    if(req.user.rol !== 'admin' || req.user.rol !== 'ventasFijo'){
-        try {
-            res.status(401)
-            return res.redirect('/bdClaro')
-        } catch (error) {
-            console.log(error)
-             return next()
-        }
-    }else{
-        next()
-    }
-
-}
-*/
+// LOGOUT
+exports.logout = async (req, res) => {
+  res.clearCookie('jwt');
+  res.redirect('/');
+};

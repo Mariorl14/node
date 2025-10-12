@@ -8,67 +8,35 @@ const authController = require('../controllers/authController')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
+const rolemiddlware = require('../controllers/roleMiddlware')
 
 
 /* base ITX */
-router.get('/bdITX',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF, authController.FavtelNicaraguaKolbi, async  (req, res)=>{
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "credentials.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets",
-    });
-  
-  /// client instance for auth
-    const client = await auth.getClient();
-  
-    /// Instance of google sheets api 
-    const googleSheets = google.sheets({ version: "v4", auth: client});
-  
-  
-    const spreadsheetId = "1aLHA7UdBSUrxC9k-cOL5CG650hoP8WesvpktDs-PRAg";
-    // Get DATA 
-  
-  
-  
-    const metaData = await googleSheets.spreadsheets.get({
-        auth,
-        spreadsheetId
-    });
-  
-    /// rows from spreadsheet
-  
-   
-  
-    const ventas = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: "Base Madre!A2:Q",
-    })
-  
-    var user = req.user;
-    const rows = ventas.data.values;
-  
-  
-    res.render('bdITX', {rows, user:user});
-  })
-
-  router.get('/baseITX', authController.isAuthenticated, NoCache.nocache,  async (req, res)=>{
-
+  router.get('/baseITX', authController.isAuthenticated, NoCache.nocache, async (req, res) => {
+  try {
     const userName = req.user.nombre;
-  const userRole = req.user.rol;
+    const userRole = req.user.rol;
 
-  let sql = 'SELECT * FROM baseITX';
-  if (userRole !== 'admin') {
-    sql += ' WHERE asesor = ?';
-  }
+    let sql;
+    let params = [];
 
-  conexion.query(sql, userRole !== 'admin' ? [userName] : [], (error, results) => {
-    if (error) {
-      throw error;
+    // If not admin, show only their own records
+    if (userRole !== 'admin') {
+      sql = 'SELECT * FROM baseITX WHERE asesor = ?';
+      params = [userName];
     } else {
-      res.render('baseITX', { results: results, user: req.user });
+      sql = 'SELECT * FROM baseITX';
     }
-  });
-  });
+
+    const [results] = await conexion.query(sql, params);
+
+    res.render('baseITX', { results, user: req.user });
+  } catch (error) {
+    console.error('❌ Error loading baseITX:', error);
+    res.status(500).send('Error loading baseITX');
+  }
+});
+
 
   /* Editar Ventas Activadas*/
   router.get('/editBaseITX/:consecutivo', authController.isAuthenticated, (req, res) => {

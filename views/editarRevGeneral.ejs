@@ -1,0 +1,225 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-12">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">
+            Editar Form — <%= mes %> <%= anio %>
+          </h3>
+
+          <!-- ✅ Use dynamic month/year route -->
+          <form action="/editRev/<%= mes %>/<%= anio %>" method="POST">
+            <input type="hidden" id="SaleId" name="SaleId" value="<%= SaleId.SaleId %>">
+
+            <!-- Row 1: Basic Info -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.SaleId %>" disabled />
+                  <label class="form-user">Numero de Venta</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.Celular_Tramite %>" disabled />
+                  <label class="form-user">Numero Celular de Tramite</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.Numero_Abonado %>" disabled />
+                  <label class="form-user">Numero de Abonado</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Fecha Activacion + Cliente -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="date" class="form-control form-control-lg" name="column33" value="<%= SaleId.formatted_Fecha_Activacion %>" />
+                  <label class="form-user">Fecha Activacion</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.Nombre_Cliente %>" disabled />
+                  <label class="form-user">Nombre Cliente</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" class="form-control form-control-lg" value="<%= SaleId.Primer_Apellido_Cliente %>" disabled />
+                  <label class="form-user">Primer Apellido Cliente</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- FACTURAS 1 -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <select class="select form-control-lg" name="columnF1" style="width:300px;">
+                  <option value="<%= SaleId.Factura_1 %>"><%= SaleId.Factura_1 %></option>
+                  <option value="PAGO">PAGO</option>
+                  <option value="SAA">SAA</option>
+                  <option value="BAA">BAA</option>
+                  <option value="SIN FACTURAR">SIN FACTURAR</option>
+                  <option value="NO PAGO">NO PAGO</option>
+                </select>
+                <label class="form-user">Factura 1</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="columnM1" value="<%= SaleId.Monto_1 %>" placeholder="0.00" />
+                <label class="form-label">Monto 1</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="date" class="form-control form-control-lg" name="columnFP1" value="<%= SaleId.formatted_Fecha_Pago_1 %>" />
+                <label class="form-user">Fecha de Pago 1</label>
+              </div>
+            </div>
+
+            <!-- FACTURA 2 -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <select class="select form-control-lg" name="columnF2" style="width:300px;">
+                  <option value="<%= SaleId.Factura_2 %>"><%= SaleId.Factura_2 %></option>
+                  <option value="PAGO">PAGO</option>
+                  <option value="SAA">SAA</option>
+                  <option value="BAA">BAA</option>
+                  <option value="SIN FACTURAR">SIN FACTURAR</option>
+                  <option value="NO PAGO">NO PAGO</option>
+                </select>
+                <label class="form-user">Factura 2</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="columnM2" value="<%= SaleId.Monto_2 %>" placeholder="0.00" />
+                <label class="form-label">Monto 2</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="date" class="form-control form-control-lg" name="columnFP2" value="<%= SaleId.formatted_Fecha_Pago_2 %>" />
+                <label class="form-user">Fecha de Pago 2</label>
+              </div>
+            </div>
+
+            <!-- FACTURA 3 -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <select class="select form-control-lg" name="columnF3" style="width:300px;">
+                  <option value="<%= SaleId.Factura_3 %>"><%= SaleId.Factura_3 %></option>
+                  <option value="PAGO">PAGO</option>
+                  <option value="SAA">SAA</option>
+                  <option value="BAA">BAA</option>
+                  <option value="SIN FACTURAR">SIN FACTURAR</option>
+                  <option value="NO PAGO">NO PAGO</option>
+                </select>
+                <label class="form-user">Factura 3</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="columnM3" value="<%= SaleId.Monto_3 %>" placeholder="0.00" />
+                <label class="form-label">Monto 3</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="date" class="form-control form-control-lg" name="columnFP3" value="<%= SaleId.formatted_Fecha_Pago_3 %>" />
+                <label class="form-user">Fecha de Pago 3</label>
+              </div>
+            </div>
+
+            <!-- FACTURA 4 -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <select class="select form-control-lg" name="columnF4" style="width:300px;">
+                  <option value="<%= SaleId.Factura_4 %>"><%= SaleId.Factura_4 %></option>
+                  <option value="PAGO">PAGO</option>
+                  <option value="SAA">SAA</option>
+                  <option value="BAA">BAA</option>
+                  <option value="SIN FACTURAR">SIN FACTURAR</option>
+                  <option value="NO PAGO">NO PAGO</option>
+                </select>
+                <label class="form-user">Factura 4</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="columnM4" value="<%= SaleId.Monto_4 %>" placeholder="0.00" />
+                <label class="form-label">Monto 4</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="date" class="form-control form-control-lg" name="columnFP4" value="<%= SaleId.formatted_Fecha_Pago_4 %>" />
+                <label class="form-user">Fecha de Pago 4</label>
+              </div>
+            </div>
+
+            <!-- FACTURA 5 -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <select class="select form-control-lg" name="columnF5" style="width:300px;">
+                  <option value="<%= SaleId.Factura_5 %>"><%= SaleId.Factura_5 %></option>
+                  <option value="PAGO">PAGO</option>
+                  <option value="SAA">SAA</option>
+                  <option value="BAA">BAA</option>
+                  <option value="SIN FACTURAR">SIN FACTURAR</option>
+                  <option value="NO PAGO">NO PAGO</option>
+                </select>
+                <label class="form-user">Factura 5</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="columnM5" value="<%= SaleId.Monto_5 %>" placeholder="0.00" />
+                <label class="form-label">Monto 5</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="date" class="form-control form-control-lg" name="columnFP5" value="<%= SaleId.formatted_Fecha_Pago_5 %>" />
+                <label class="form-user">Fecha de Pago 5</label>
+              </div>
+            </div>
+
+            <!-- FACTURA 6 -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <select class="select form-control-lg" name="columnF6" style="width:300px;">
+                  <option value="<%= SaleId.Factura_6 %>"><%= SaleId.Factura_6 %></option>
+                  <option value="PAGO">PAGO</option>
+                  <option value="SAA">SAA</option>
+                  <option value="BAA">BAA</option>
+                  <option value="SIN FACTURAR">SIN FACTURAR</option>
+                  <option value="NO PAGO">NO PAGO</option>
+                </select>
+                <label class="form-user">Factura 6</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="number" step="0.01" class="form-control form-control-lg" name="columnM6" value="<%= SaleId.Monto_6 %>" placeholder="0.00" />
+                <label class="form-label">Monto 6</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="date" class="form-control form-control-lg" name="columnFP6" value="<%= SaleId.formatted_Fecha_Pago_6 %>" />
+                <label class="form-user">Fecha de Pago 6</label>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="mt-4 pt-2">
+              <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
+              <a href="/Revenue/<%= mes %>/<%= anio %>" class="btn btn-secondary btn-lg ms-3">Volver</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

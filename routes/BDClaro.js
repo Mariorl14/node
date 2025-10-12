@@ -5,13 +5,14 @@ const router = express.Router()
 const conexion = require('../database/db');
 
 const authController = require('../controllers/authController')
+const rolemiddlware = require('../controllers/roleMiddlware')
 const UsuarioController = require('../controllers/UsuarioController')
 const VentasController = require('../controllers/VentasController');
 const NoCache = require('../controllers/noCache');
 
 
 /* Visualizacion */
-router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF,authController.FavtelNicaraguaClaro, async  (req, res)=>{
+router.get('/bdClaro',authController.isAuthenticated, NoCache.nocache,rolemiddlware.TicocelBDF,rolemiddlware.FavtelNicaraguaClaro, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -153,7 +154,7 @@ router.get('/edit/:rowId', async  (req, res) => {
 
   /*NIC Favtel */
 
-  router.get('/bdClaroNicaragua',authController.isAuthenticated, NoCache.nocache,authController.TicocelBDF, async  (req, res)=>{
+  router.get('/bdClaroNicaragua',authController.isAuthenticated, NoCache.nocache,rolemiddlware.TicocelBDF, async  (req, res)=>{
     const auth = new google.auth.GoogleAuth({
         keyFile: "credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets",
