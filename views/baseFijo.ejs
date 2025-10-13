@@ -2,124 +2,120 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>BD Clientes fIJO</title>
+  <title>Base Fijo - Favtel CRM</title>
 
-  <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+
+  <style>
+    h1, h2 { text-align: center; margin-top: 1rem; }
+    .table-container { padding: 2rem; }
+    #position { text-align: center; margin: 1rem 0; }
+    .btn-edit { color: #fff; background: #0d6efd; border: none; padding: 4px 8px; border-radius: 5px; }
+  </style>
 </head>
+
 <body>
+  <div class="container-fluid table-container">
+    <h1>BD Clientes</h1>
+    <h2>Usuario:
+      <% if (user) { %>
+        <span class="badge bg-success"><%= user.nombre %></span>
+      <% } %>
+    </h2>
 
-<h1>BD Clientes Fijo</h1>
+    <div id="position" style="font-size: 18px;">
+      <label><input type="checkbox" name="pos1" value="No Localizado 1"> No Localizado 1</label>
+      <label><input type="checkbox" name="pos1" value="No Localizado 2"> No Localizado 2</label>
+      <label><input type="checkbox" name="pos1" value="No Localizado 3"> No Localizado 3</label>
+      <label><input type="checkbox" name="pos1" value="Venta Efectiva"> Venta Efectiva</label>
+      <label><input type="checkbox" name="pos1" value="Seguimiento"> Seguimiento</label>
+      <label><input type="checkbox" name="pos1" value="-" checked> Vacío</label>
+    </div>
 
-<h2>Usuario: 
-  <% if(user) { %>
-    <span class="badge bg-success"><%= user.nombre %></span>
-  <% } %>
-</h2>
+    <hr>
 
-<h2>Registro de Ventas Movil</h2> 
-
-<div id="position" style="font-size: 16px; margin-bottom: 10px;">
-  <label><input type="checkbox" name="pos" value="No Localizado 1"> No localizado 1</label>
-  <label><input type="checkbox" name="pos" value="No Localizado 2"> No localizado 2</label>
-  <label><input type="checkbox" name="pos" value="No Localizado 3"> No localizado 3</label>
-  <label><input type="checkbox" name="pos" value="Seguimiento"> Seguimiento</label>
-  <label><input type="checkbox" name="pos" value="Llamar Luego/ Interesado"> Llamar Luego/ Interesado</label>
-  <label><input type="checkbox" name="pos" value="-" checked> Vacío</label>
-</div>
-
-<hr>
-
-<div class="table-responsive">
-  <table id="ventas" class="display nowrap" style="width:100%">
-    <thead>
-      <tr>
-        <th>Consecutivo</th>
-        <th>Numero</th>
-        <th>Cedula</th>
-        <th>Nombre</th>
-        <th>Asesor</th>
-        <th>Detalle</th>
-        <th>Comentario</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% results.forEach((sale)=> { %>
+    <div class="table-responsive">
+      <table id="ventas" class="table table-striped table-bordered nowrap" style="width:100%">
+        <thead class="table-dark">
           <tr>
-            <td><%= sale.consecutivo %></td>
-            <td><%= sale.numero %></td>
-            <td><%= sale.cedula %></td>
-            <td><%= sale.nombre %></td>
-            <td><%= sale.asesor %></td>
-            <td><%= sale.detalle %></td>
-            <td><%= sale.comentario %></td>
-            <td>
-                <a href="/editBaseFijo/<%= sale.consecutivo %>">Editar</a>
-              </td>
+            <th>Acciones</th>
+            <th>Consecutivo</th>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>WhatsApp</th>
+            <th>Asesor</th>
+            <th>Detalle</th>
+            <th>Comentario</th>
+            <th>Provincia</th>
           </tr>
-        <% }) %>
-      </tbody>
-  </table>
-</div>
+        </thead>
+        <tbody>
+          <% results.forEach(row => { %>
+            <tr>
+              <td><a href="/editBaseFijo/<%= row.consecutivo %>" class="btn btn-sm btn-primary">Editar</a></td>
+              <td><%= row.consecutivo %></td>
+              <td><%= row.cedula %></td>
+              <td><%= row.nombre %></td>
+              <td><%= row.numero %></td>
+              <td><%= row.whatsapp %></td>
+              <td><%= row.asesor %></td>
+              <td><%= row.detalle %></td>
+              <td><%= row.comentario %></td>
+              <td><%= row.provincia %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
 
-<br>
-<a href="registrarVenta.ejs" class="btn btn-outline-success">Registrar</a>
+    <div class="text-center mt-4">
+      <a href="/registrarVenta" class="btn btn-success">Registrar Nuevo</a>
+    </div>
+  </div>
 
-<!-- jQuery and DataTables Scripts -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
-<script>
-  $(document).ready(function () {
+  <script>
+    $(document).ready(function () {
+      const table = new DataTable('#ventas', {
+        scrollX: true,
+        layout: {
+          topStart: { buttons: ['copy', 'csv', 'excel', 'pdf', 'print'] }
+        },
+        language: { url: "https://cdn.datatables.net/plug-ins/2.1.6/i18n/es-ES.json" }
+      });
 
-    // Filter by checkbox
-    $.fn.dataTable.ext.search.push(function (settings, data) {
-      const selected = $('input[name="pos"]:checked').map(function () {
-        return this.value;
-      }).get();
+      // Checkbox filters
+      $.fn.dataTable.ext.search.push(function (settings, searchData) {
+        const positions = $('input:checkbox[name="pos1"]:checked').map(function() {
+          return this.value;
+        }).get();
+        if (positions.length === 0) return true;
+        return positions.includes(searchData[7]); // detalle column index
+      });
 
-      const detalle = data[5]; // index of 'Detalle' column
+      $('input:checkbox').on('change', function () {
+        table.draw();
+      });
 
-      if (selected.length === 0 || selected.includes(detalle)) {
-        return true;
+      // Auto-filter by user (non-admin)
+      const userRol = "<%= user.rol %>";
+      if (userRol !== "admin") {
+        const nombre = "<%= user.nombre %>";
+        table.column(6).search(nombre).draw(); // filter by Asesor column
       }
-      return false;
     });
-
-    const table = $('#ventas').DataTable({
-      dom: 'Bfrtip',
-      scrollX: true,
-      fixedHeader: true,
-      buttons: ['copy', 'excel', 'csv', 'pdf', 'print'],
-      language: {
-        url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
-      }
-    });
-
-    // Redraw on checkbox change
-    $('input:checkbox').on('change', function () {
-      table.draw();
-    });
-
-    // Role-based filtering
-    const userRol = "<%= user.rol %>";
-    if (userRol !== "admin") {
-      const nombre = "<%= user.nombre %>";
-      table.column(4).search(nombre).draw(); // column 4 is Asesor
-    }
-
-  });
-</script>
-
+  </script>
 </body>
 </html>

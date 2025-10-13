@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %> - Favtel CRM</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .btn-back {
+      margin-bottom: 1rem;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    .btn-back:hover {
+      background-color: #5a6268;
+    }
+    h3 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-4">
+    <a href="<%= backPath %>" class="btn-back">⬅ Volver</a>
+
+    <div class="card">
+      <div class="card-body">
+        <h3><%= title %></h3>
+
+        <form action="<%= postPath %>" method="POST" class="row g-3">
+          <!-- Hidden input for ID -->
+          <input type="hidden" name="consecutivo" value="<%= SaleId.consecutivo %>">
+
+          <!-- Cliente info -->
+          <div class="col-md-6">
+            <label class="form-label">Número</label>
+            <input type="number" name="numero" class="form-control" value="<%= SaleId.numero %>" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Cédula</label>
+            <input type="text" name="cedula" class="form-control" value="<%= SaleId.cedula %>">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="<%= SaleId.nombre %>">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Asesor</label>
+            <input type="text" name="asesor" class="form-control" value="<%= SaleId.asesor %>">
+          </div>
+
+          <!-- Detalle -->
+          <div class="col-md-12">
+            <label class="form-label">Detalle</label>
+            <select name="detalle" class="form-select" required>
+              <option value="<%= SaleId.detalle %>"><%= SaleId.detalle %></option>
+              <option disabled>────────────</option>
+              <option value="Consulta Lista Negra">Consulta Lista Negra</option>
+              <option value="-">-</option>
+              <option value="Mensaje en visto">Mensaje en visto</option>
+              <option value="Estudio Pendiente Documentos">Estudio Pendiente Documentos</option>
+              <option value="Llamar Luego/ Interesado">Llamar Luego/ Interesado</option>
+              <option value="Llamar Luego/ No se le dio la informacion">Llamar Luego/ No se le dio la informacion</option>
+              <option value="Mensaje Con Tercero">Mensaje Con Tercero</option>
+              <option value="No Aplica / Cobertura">No Aplica / Cobertura</option>
+              <option value="No Aplica / Documentos">No Aplica / Documentos</option>
+              <option value="No aplica / Gestiono otro DTS">No aplica / Gestiono otro DTS</option>
+              <option value="No Aplica / Lista Negra">No Aplica / Lista Negra</option>
+              <option value="No Aplica / Plan Empresarial">No Aplica / Plan Empresarial</option>
+              <option value="No Aplica / Rural">No Aplica / Rural</option>
+              <option value="No Aplica / Tiene Contrato Permanencia">No Aplica / Tiene Contrato Permanencia</option>
+              <option value="No Aplica / mancha">No Aplica / mancha</option>
+              <option value="No Aplica/ Alquila con el servicio">No Aplica/ Alquila con el servicio</option>
+              <option value="No Aplica/ Hogares conectados">No Aplica/ Hogares conectados</option>
+              <option value="No Aplica/ Menor de edad">No Aplica/ Menor de edad</option>
+              <option value="No Aplica/ Tiene Plan con Liberty">No Aplica/ Tiene Plan con Liberty</option>
+              <option value="No interesa / Desea Prepago">No interesa / Desea Prepago</option>
+              <option value="No Interesa / Motivos Economicos">No Interesa / Motivos Economicos</option>
+              <option value="No Interesa / Sin Equipo">No Interesa / Sin Equipo</option>
+              <option value="No Interesa /Cliente desea Terminal">No Interesa /Cliente desea Terminal</option>
+              <option value="No Interesa /Desea Renovacion">No Interesa /Desea Renovacion</option>
+              <option value="No Interesa/ Cliente Desconfiado">No Interesa/ Cliente Desconfiado</option>
+              <option value="No Interesa/ Cliente Molesto">No Interesa/ Cliente Molesto</option>
+              <option value="No Interesa/ Conforme con Operador Actual">No Interesa/ Conforme con Operador Actual</option>
+              <option value="No Interesa/ Corta Llamada">No Interesa/ Corta Llamada</option>
+              <option value="No Interesa/ Fibra optica">No Interesa/ Fibra optica</option>
+              <option value="No Interesa/ Mala Experiencia">No Interesa/ Mala Experiencia</option>
+              <option value="No interesado / No Detalla">No interesado / No Detalla</option>
+              <option value="No Localizado 1">No Localizado 1</option>
+              <option value="No Localizado 2">No Localizado 2</option>
+              <option value="No Localizado 3">No Localizado 3</option>
+              <option value="Numero Equivocado">Numero Equivocado</option>
+              <option value="Numero no existe">Numero no existe</option>
+              <option value="Numero Suspendido">Numero Suspendido</option>
+              <option value="Seguimiento">Seguimiento</option>
+              <option value="Seguimiento / Pendiente Terminal">Seguimiento / Pendiente Terminal</option>
+              <option value="Solicitud Estudio">Solicitud Estudio</option>
+              <option value="Venta Efectiva">Venta Efectiva</option>
+            </select>
+          </div>
+
+          <!-- Comentario -->
+          <div class="col-md-12">
+            <label class="form-label">Comentario</label>
+            <textarea name="comentario" class="form-control" rows="3"><%= SaleId.comentario %></textarea>
+          </div>
+
+          <!-- Data info -->
+          <div class="col-md-6">
+            <label class="form-label">PRE/POST PAGO</label>
+            <input type="text" name="pre_post_pago" class="form-control" value="<%= SaleId.pre_post_pago %>">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Fijo</label>
+            <input type="text" name="fijo" class="form-control" value="<%= SaleId.fijo %>">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Operador Fijo</label>
+            <input type="text" name="operador_fijo" class="form-control" value="<%= SaleId.operador_fijo %>">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Operador Móvil</label>
+            <input type="text" name="operador_movil" class="form-control" value="<%= SaleId.operador_movil %>">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Género</label>
+            <select name="genero" class="form-select">
+              <option value="Masculino" <%= SaleId.genero === "Masculino" ? "selected" : "" %>>Masculino</option>
+              <option value="Femenino" <%= SaleId.genero === "Femenino" ? "selected" : "" %>>Femenino</option>
+              <option value="Otro" <%= SaleId.genero === "Otro" ? "selected" : "" %>>Otro</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Whatsapp</label>
+            <input type="text" name="whatsapp" class="form-control" value="<%= SaleId.whatsapp %>">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Cobertura Fijo</label>
+            <input type="text" name="cobertura_fijo" class="form-control" value="<%= SaleId.cobertura_fijo %>">
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Coordenadas</label>
+            <input type="text" name="coordenadas" class="form-control" value="<%= SaleId.coordenadas %>">
+          </div>
+
+          <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Guardar Cambios</button>
+            <a href="<%= backPath %>" class="btn btn-secondary btn-lg">Cancelar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
