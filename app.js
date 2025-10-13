@@ -79,15 +79,14 @@ app.use('/', require('./routes/Movil'));
 app.use('/', require('./routes/Revenues'));
 app.use('/', require('./routes/Fijo'));
 app.use('/', require('./routes/BDClaro'));
-app.use('/', require('./routes/BDKolbi'));
 app.use('/', require('./routes/BDFijo'));
 app.use('/', require('./routes/UploadExcel'));
 app.use('/', require('./routes/BDITX'));
-app.use('/', require('./routes/BDMigraciones'));
 app.use('/', require('./routes/BDTelefonos'));
 app.use('/', require('./routes/EditRevenues2024'));
 app.use('/', require('./routes/VISRevenues2024'));
 app.use('/', require('./routes/Ticocel'));
+app.use('/', require('./routes/baseGeneral'));
 
 /* ---- Centralized error handler (prevents crashes) ---- */
 app.use((err, req, res, next) => {

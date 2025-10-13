@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Registro - <%= table %></title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body { background-color: #f3f4f6; font-family: 'Segoe UI', sans-serif; }
+    .edit-container { max-width: 800px; margin: 3rem auto; }
+    .card { border-radius: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .form-label { font-weight: 600; color: #333; }
+    .btn-custom { background-color: #007bff; border: none; border-radius: 0.5rem; padding: 0.75rem 2rem; font-weight: 600; }
+    .btn-custom:hover { background-color: #0056b3; transform: scale(1.02); }
+    .header-icon { color: #007bff; font-size: 2.5rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container edit-container">
+    <div class="card p-4">
+      <div class="text-center mb-4">
+        <i class="bi bi-pencil-square header-icon"></i>
+        <h3 class="mt-2 text-capitalize">Editar Registro - <%= table.replace('base', 'Base ') %></h3>
+        <p class="text-muted">Actualiza la información de este cliente</p>
+      </div>
+
+      <form action="/edit/<%= table %>" method="POST">
+        <input type="hidden" name="consecutivo" value="<%= record.consecutivo %>">
+
+        <div class="row g-3">
+          <% for (let key in record) {
+               if (key === 'consecutivo' || key === 'dia' || key === 'hora') continue; %>
+            <div class="col-md-6">
+              <label class="form-label text-capitalize"><%= key.replace(/_/g, ' ') %></label>
+              <input type="text" class="form-control" name="<%= key %>" value="<%= record[key] || '' %>">
+            </div>
+          <% } %>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-custom me-2">
+            <i class="bi bi-check-circle"></i> Guardar Cambios
+          </button>
+          <a href="/<%= table %>" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
