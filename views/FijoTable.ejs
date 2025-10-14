@@ -1,150 +1,141 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title><%= title %> - Favtel CRM</title>
+<!-- ✅ UNIVERSAL FIJO TABLE VIEW -->
+<link rel="stylesheet" href="css/rwd-table.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
 
-  <!-- ✅ DataTables CSS -->
-  <link rel="stylesheet" href="css/rwd-table.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+<style>
+  div.dt-container {
+    width: 1200px;
+    margin: 0 auto;
+  }
 
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: 'Segoe UI', sans-serif;
-      padding: 2rem;
-    }
-    div.dt-container {
-      width: 1200px;
-      margin: 0 auto;
-    }
-    h2 {
-      font-weight: 600;
-    }
-    .badge {
-      font-size: 1rem;
-      padding: 0.4rem 0.8rem;
-    }
-    a.btn-edit {
-      background-color: #0d6efd;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    a.btn-edit:hover {
-      background-color: #0b5ed7;
-    }
-  </style>
-</head>
+  h2 {
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 600;
+  }
 
-<body>
-  <h2>Bienvenido de vuelta:
-    <% if (user) { %>
-      <span class="badge bg-success"><%= user.nombre %></span>
-    <% } %>
-  </h2>
-  <h2>Su Rol es:
-    <% if (user) { %>
-      <span class="badge bg-success"><%= user.rol %></span>
-    <% } %>
-  </h2>
+  .badge {
+    font-size: 1rem;
+    padding: 0.4rem 0.7rem;
+  }
 
-  <h2><%= title %></h2>
+  a.btn-edit {
+    background-color: #0d6efd;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
 
-  <div class="container">
-    <table id="example" class="table table-striped nowrap" style="width:100%">
-      <thead>
+  a.btn-edit:hover {
+    background-color: #0b5ed7;
+  }
+</style>
+
+<h2>Bienvenido de vuelta:
+  <% if (user) { %>
+    <span class="badge bg-success"><%= user.nombre %></span>
+  <% } %>
+</h2>
+
+<h2>Su Rol es:
+  <% if (user) { %>
+    <span class="badge bg-success"><%= user.rol %></span>
+  <% } %>
+</h2>
+
+<h2><%= title %></h2>
+
+<div class="container">
+  <table id="example" class="table table-striped nowrap" style="width:100%">
+    <thead>
+      <tr>
+        <th>Acciones</th>
+        <th>Numero Celular De Tramite</th>
+        <th>Numero de Orden</th>
+        <th>Detalle Entrega</th>
+        <th>Fecha de Instalacion</th>
+        <th>Fecha de Activacion</th>
+        <th>Fecha de Ultima Actualizacion</th>
+        <th>Nombre Vendedor</th>
+        <th>Numero de Documento</th>
+        <th>Nombre Del Cliente</th>
+        <th>Segundo Nombre Del Cliente</th>
+        <th>Primer Apellido Del Cliente</th>
+        <th>Segundo Apellido Del Cliente</th>
+        <th>Nacionalidad</th>
+        <th>Tipo De Tramite</th>
+        <th>Pago Comision</th>
+        <th>Numero de Contrato</th>
+        <th>Numero de Abonado</th>
+        <th>Fecha</th>
+        <th>Plan a Contratar</th>
+        <th>Financiamiento</th>
+        <th>Valor del Plan</th>
+        <th>Instalada</th>
+        <th>Rechazada</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% results.forEach((sale) => { %>
         <tr>
-          <th>Acciones</th>
-          <th>Numero Celular De Tramite</th>
-          <th>Numero de Orden</th>
-          <th>Detalle Entrega</th>
-          <th>Fecha de Instalacion</th>
-          <th>Fecha de Activacion</th>
-          <th>Fecha de Ultima Actualizacion</th>
-          <th>Nombre Vendedor</th>
-          <th>Numero de Documento</th>
-          <th>Nombre Del Cliente</th>
-          <th>Segundo Nombre Del Cliente</th>
-          <th>Primer Apellido Del Cliente</th>
-          <th>Segundo Apellido Del Cliente</th>
-          <th>Nacionalidad</th>
-          <th>Tipo De Tramite</th>
-          <th>Pago Comision</th>
-          <th>Numero de Contrato</th>
-          <th>Numero de Abonado</th>
-          <th>Fecha</th>
-          <th>Plan a Contratar</th>
-          <th>Financiamiento</th>
-          <th>Valor del Plan</th>
-          <th>Instalada</th>
-          <th>Rechazada</th>
+          <td>
+            <a href="/<%= editPath %>/<%= sale.SaleId %>" class="btn-edit">Editar</a>
+          </td>
+          <td><%= sale.Celular_Tramite %></td>
+          <td><%= sale.Numero_Orden %></td>
+          <td><%= sale.Detalle %></td>
+          <td><%= sale.Fecha_Instalacion %></td>
+          <td><%= sale.Fecha_Activacion %></td>
+          <td><%= sale.Fecha_Ultima_Actualizacion %></td>
+          <td><%= sale.Nombre_Vendedor %></td>
+          <td><%= sale.Numero_Documento %></td>
+          <td><%= sale.Nombre_Cliente %></td>
+          <td><%= sale.Segundo_Nombre_Cliente %></td>
+          <td><%= sale.Primer_Apellido_Cliente %></td>
+          <td><%= sale.Segundo_Apellido_Cliente %></td>
+          <td><%= sale.Nacionalidad %></td>
+          <td><%= sale.Tipo_Tramite %></td>
+          <td><%= sale.Pago_Comision %></td>
+          <td><%= sale.Numero_Contrato %></td>
+          <td><%= sale.Numero_Abonado %></td>
+          <td><%= sale.Fecha %></td>
+          <td><%= sale.Plan_Contratar %></td>
+          <td><%= sale.Financiamiento %></td>
+          <td><%= sale.Valor_Plan_Diferente || sale.Valor_Plan %></td>
+          <td><%= sale.Instalada %></td>
+          <td><%= sale.Rechazada %></td>
         </tr>
-      </thead>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 
-      <tbody>
-        <% results.forEach((sale) => { %>
-          <tr>
-            <td>
-              <a href="/<%= editPath %>/<%= sale.SaleId %>" class="btn-edit">Editar</a>
-            </td>
-            <td><%= sale.Celular_Tramite %></td>
-            <td><%= sale.Numero_Orden %></td>
-            <td><%= sale.Detalle %></td>
-            <td><%= sale.Fecha_Instalacion %></td>
-            <td><%= sale.Fecha_Activacion %></td>
-            <td><%= sale.Fecha_Ultima_Actualizacion %></td>
-            <td><%= sale.Nombre_Vendedor %></td>
-            <td><%= sale.Numero_Documento %></td>
-            <td><%= sale.Nombre_Cliente %></td>
-            <td><%= sale.Segundo_Nombre_Cliente %></td>
-            <td><%= sale.Primer_Apellido_Cliente %></td>
-            <td><%= sale.Segundo_Apellido_Cliente %></td>
-            <td><%= sale.Nacionalidad %></td>
-            <td><%= sale.Tipo_Tramite %></td>
-            <td><%= sale.Pago_Comision %></td>
-            <td><%= sale.Numero_Contrato %></td>
-            <td><%= sale.Numero_Abonado %></td>
-            <td><%= sale.Fecha %></td>
-            <td><%= sale.Plan_Contratar %></td>
-            <td><%= sale.Financiamiento %></td>
-            <td><%= sale.Valor_Plan_Diferente || sale.Valor_Plan %></td>
-            <td><%= sale.Instalada %></td>
-            <td><%= sale.Rechazada %></td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
+<!-- ✅ Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
 
-  <!-- ✅ Scripts -->
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
-
-  <script>
-    new DataTable('#example', {
-      scrollX: true,
-      layout: {
-        topStart: {
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-        }
-      },
-      language: {
-        url: "https://cdn.datatables.net/plug-ins/2.1.6/i18n/es-ES.json"
+<script>
+  new DataTable('#example', {
+    scrollX: true,
+    layout: {
+      topStart: {
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
       }
-    });
-  </script>
+    },
+    language: {
+      url: "https://cdn.datatables.net/plug-ins/2.1.6/i18n/es-ES.json"
+    }
+  });
+</script>
 
-  <script type="text/javascript" src="js/rwd-table.js"></script>
-</body>
-</html>
+<script type="text/javascript" src="js/rwd-table.js"></script>

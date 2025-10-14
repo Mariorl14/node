@@ -221,144 +221,149 @@ exports.registrarVenta = async (req, res)=>{
 }
 
 exports.registrarVentaFijo = async (req, res) => {
-    
-          
- /* BD CODE */
-   
-    try {
-    const NombreDelCliente = req.body.nombreDelCliente;
-    const SegundoNombreDelCliente = req.body.segundoNombreDelCliente;
-    const PrimerApellidoDelCliente = req.body.primerApellidoDelCliente;
-    const SegundoApellidoDelCliente = req.body.segundoApellidoDelCliente;
-    const TipoDeDocumentoDeIdentidad = req.body.tipoDeDocumentoDeIdentidad;
-    const NumeroDeDocumento = req.body.numeroDeDocumento;
-    const Nacionalidad = req.body.nacionalidad;
-    const NumeroCelularDeTramite = req.body.numeroCelularDeTramite;
-    const TipoDeTramite = req.body.tipoDeTramite;
-    const NumeroDeContacto1 = req.body.numeroDeContacto1;
-    const NumeroDeContacto2 = req.body.numeroDeContacto2;
-    const TipoDePlanAContratar = req.body.tipoDePlanAContratar;
-    const ValorPlan = req.body.valorPlanDiferente;
-    const Financiamiento = req.body.Financiamiento;
-    const Direccion = req.body.direccionExacta;
-    const Provincia = req.body.provincia;
-    const Canton = req.body.canton;
-    const Distrito = req.body.distritp;
-    const TipoLlamada = req.body.tipoLlamada;
-    const Coordenadas = req.body.coordenadas;
-    const Correo = req.body.correo;
-    const Red = req.body.red;
-    const NombreVendedor = req.body.nombreVendedor;
-    const VendedorFreelance1 = req.body.nombreVendedorFreelance;
-    const Genero = req.body.genero;
-        var today = new Date();
-        var year = today.getFullYear();
-        var mes = today.getMonth()+1;
-        var dia = today.getDate();
-        var fecha =year+"/"+mes+"/"+dia;
-    
-        var Numero_Contrato = "";
-        var Numero_Abonado = "";
-        var Activada = "Pendiente";
-        var Instalada = "Pendiente";
+  try {
+    const {
+      nombreDelCliente: NombreDelCliente,
+      segundoNombreDelCliente: SegundoNombreDelCliente,
+      primerApellidoDelCliente: PrimerApellidoDelCliente,
+      segundoApellidoDelCliente: SegundoApellidoDelCliente,
+      tipoDeDocumentoDeIdentidad: TipoDeDocumentoDeIdentidad,
+      numeroDeDocumento: NumeroDeDocumento,
+      nacionalidad: Nacionalidad,
+      numeroCelularDeTramite: NumeroCelularDeTramite,
+      tipoDeTramite: TipoDeTramite,
+      numeroDeContacto1: NumeroDeContacto1,
+      numeroDeContacto2: NumeroDeContacto2,
+      tipoDePlanAContratar: TipoDePlanAContratar,
+      valorPlanDiferente: ValorPlan,
+      Financiamiento,
+      direccionExacta: Direccion,
+      provincia: Provincia,
+      canton: Canton,
+      distritp: Distrito,
+      tipoLlamada: TipoLlamada,
+      coordenadas: Coordenadas,
+      correo: Correo,
+      red: Red,
+      nombreVendedor: NombreVendedor,
+      nombreVendedorFreelance: VendedorFreelance1,
+      genero: Genero,
+      nombrePromocion,
+      barrio,
+      codigoLiberty,
+      comentario,
+      UsuarioLiberty
+    } = req.body;
 
-        if(NombreVendedor!=="Ventas Freelance"){
-            var Vendedor_Freelance = "";
-        }else{
-            var Vendedor_Freelance = VendedorFreelance1;
-        }
+    // Generate base data
+    const today = new Date();
+    const fecha = today.toISOString().slice(0, 10).replace(/-/g, '/');
 
-        var Rechazada = "";
-    var Detalle = "";
-    var Entregador = "";
-    var Estados = "";
-    var Llamada_Activacion = "";
-    var Fecha_Activacion = "";
-    var Numero_Orden = "";
-    var MES_TRABAJADA = "OCTUBRE 2025";
-    var Fecha_Instalacion = "";
-    var Fecha_Ultima_Actualizacion = "";
-    var Pago_Comision = "";
-    var Activadora = "";
-    var nombrePromocion = req.body.nombrePromocion
-    var barrio = req.body.barrio
-    var codigoLiberty = req.body.codigoLiberty
-    const comentario = req.body.comentario
-    var UsuarioLiberty = req.body.UsuarioLiberty
+    const Activada = "Pendiente";
+    const Instalada = "Pendiente";
+    const Rechazada = "";
+    const Detalle = "";
+    const Entregador = "";
+    const Estados = "";
+    const Llamada_Activacion = "";
+    const Fecha_Activacion = "";
+    const Numero_Orden = "";
+    const MES_TRABAJADA = "OCTUBRE 2025";
+    const Fecha_Instalacion = "";
+    const Fecha_Ultima_Actualizacion = "";
+    const Pago_Comision = "";
+    const Activadora = "";
+    const Numero_Contrato = "";
+    const Numero_Abonado = "";
 
-    
-    conexion.query('INSERT INTO VentasFijo SET ?',
-        {Nombre_Cliente:NombreDelCliente,
-           Segundo_Nombre_Cliente:SegundoNombreDelCliente,
-           Primer_Apellido_Cliente:PrimerApellidoDelCliente,
-           Segundo_Apellido_Cliente:SegundoApellidoDelCliente,
-           Documento_Identidad:TipoDeDocumentoDeIdentidad,
-           Numero_Documento:NumeroDeDocumento,
-           Nacionalidad:Nacionalidad,
-           Celular_Tramite:NumeroCelularDeTramite,
-           Tipo_Tramite:TipoDeTramite,
-           Numero_Contrato,
-           Numero_Abonado,
-           Numero_Contacto_1:NumeroDeContacto1,
-           Numero_Contacto_2:NumeroDeContacto2,
-           Plan_Contratar:TipoDePlanAContratar,
-           Financiamiento:Financiamiento,
-           Valor_Plan:ValorPlan,
-           Coordenadas:Coordenadas,
-           Direccion_Exacta:Direccion,
-           Provincia:Provincia,
-           Canton:Canton,
-           Distrito:Distrito,
-           Tipo_Llamada:TipoLlamada,
-           Nombre_Vendedor:NombreVendedor,
-           Fecha:today.toISOString().slice(0, 10).replace(/-/g, '/'),
-           Vendedor_Freelance,
-           Activada,
-           Instalada,
-           Rechazada,
-           Detalle, 
-           Entregador,
-           Estados, 
-           Llamada_Activacion, 
-           Fecha_Activacion,Numero_Orden,MES_TRABAJADA,Fecha_Instalacion,Red:Red,Pago_Comision,Genero:Genero,Activadora,Correo_Cliente:Correo,Fecha_Ultima_Actualizacion}, async(error, results)=>{
-   
-               if(error){
-                   console.log(error);
-               }
-               console.log("Venta Fijo registrada")
-               res.render('colillaFijo', {
-                Nombre_Vendedor:NombreVendedor,
-                Nombre_Cliente:NombreDelCliente, 
-                Segundo_Nombre_Cliente:SegundoNombreDelCliente,
-                Primer_Apellido_Cliente:PrimerApellidoDelCliente,
-                Segundo_Apellido_Cliente:SegundoApellidoDelCliente,
-                Numero_Documento:NumeroDeDocumento,
-                Tipo_Tramite:TipoDeTramite,
-                    nombrePromocion,
-                Valor_Plan:ValorPlan,
-                Numero_Contacto_1:NumeroDeContacto1,
-                Numero_Contacto_2:NumeroDeContacto2,
-                Financiamiento:Financiamiento,
-                Provincia:Provincia,
-                Canton:Canton,
-                Distrito:Distrito,
-                    barrio,
-                Direccion_Exacta:Direccion,
-                Plan_Contratar:TipoDePlanAContratar,
-                    codigoLiberty,
-                Correo_Cliente:Correo,
-                    comentario:comentario,
-                Coordenadas:Coordenadas,
-                Red:Red,
-                    UsuarioLiberty
-              });
-           })
-   
-       } catch (error) {
-           console.log(error)
-       }
+    const Vendedor_Freelance = (NombreVendedor !== "Ventas Freelance") ? "" : VendedorFreelance1;
 
-}
+    // ✅ Await the insert (no callback)
+    await conexion.query(
+  `INSERT INTO VentasFijo SET ?`,
+  {
+    Nombre_Cliente: NombreDelCliente,
+    Segundo_Nombre_Cliente: SegundoNombreDelCliente,
+    Primer_Apellido_Cliente: PrimerApellidoDelCliente,
+    Segundo_Apellido_Cliente: SegundoApellidoDelCliente,
+    Documento_Identidad: TipoDeDocumentoDeIdentidad,
+    Numero_Documento: NumeroDeDocumento, // ✅ FIXED
+    Nacionalidad,
+    Celular_Tramite: NumeroCelularDeTramite,
+    Tipo_Tramite: TipoDeTramite,
+    Numero_Contrato,
+    Numero_Abonado,
+    Numero_Contacto_1: NumeroDeContacto1,
+    Numero_Contacto_2: NumeroDeContacto2,
+    Plan_Contratar: TipoDePlanAContratar,
+    Financiamiento,
+    Valor_Plan: ValorPlan,
+    Coordenadas,
+    Direccion_Exacta: Direccion,
+    Provincia,
+    Canton,
+    Distrito,
+    Tipo_Llamada: TipoLlamada,
+    Nombre_Vendedor: NombreVendedor,
+    Fecha: fecha,
+    Vendedor_Freelance,
+    Activada,
+    Instalada,
+    Rechazada,
+    Detalle,
+    Entregador,
+    Estados,
+    Llamada_Activacion,
+    Fecha_Activacion,
+    Numero_Orden,
+    MES_TRABAJADA,
+    Fecha_Instalacion,
+    Red,
+    Pago_Comision,
+    Genero,
+    Activadora,
+    Correo_Cliente: Correo,
+    Fecha_Ultima_Actualizacion
+  }
+);
+
+
+    console.log("✅ Venta Fijo registrada correctamente");
+
+    res.render("colillaFijo", {
+  Nombre_Vendedor: NombreVendedor,
+  Nombre_Cliente: NombreDelCliente,
+  Segundo_Nombre_Cliente: SegundoNombreDelCliente,
+  Primer_Apellido_Cliente: PrimerApellidoDelCliente,
+  Segundo_Apellido_Cliente: SegundoApellidoDelCliente,
+  Numero_Documento: NumeroDeDocumento, // ✅ FIXED HERE
+  Tipo_Tramite: TipoDeTramite,
+  nombrePromocion,
+  Valor_Plan: ValorPlan,
+  Numero_Contacto_1: NumeroDeContacto1,
+  Numero_Contacto_2: NumeroDeContacto2,
+  Financiamiento,
+  Provincia,
+  Canton,
+  Distrito,
+  barrio,
+  Direccion_Exacta: Direccion,
+  Plan_Contratar: TipoDePlanAContratar,
+  codigoLiberty,
+  Correo_Cliente: Correo,
+  comentario,
+  Coordenadas,
+  Red,
+  UsuarioLiberty
+});
+
+
+  } catch (error) {
+    console.error("❌ Error registrando venta fijo:", error);
+    res.status(500).send("Error interno al registrar la venta.");
+  }
+};
+
 /*REGISTRO DE VENTAS TICOCEL */
 exports.registrarVentaFijoTicocel = async (req, res) => {
     const {nombreDelCliente, 

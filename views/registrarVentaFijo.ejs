@@ -1,409 +1,365 @@
 <style>
-  div.prueba12,div.PruebaDvi{
+  div.prueba12, div.PruebaDvi {
     display: none;
   }
 </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <h2>Vendedor: 
-      <% if(user) {%>
-          <span class="badge bg-success"> <%= user.nombre %></span>
-          <%}%>
-    </h2>
-  
-  <div class="container py-5 h-100">
-      <div class="row justify-content-center align-items-center h-100">
-        <div class="col-12 col-lg-9 col-xl-12">
-          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-            <div class="card-body p-4 p-md-5">
-              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrar Ventas Fijo</h3>
-              <form action="/pruebagoogle1" method="POST">
-    
-                <div class="row">
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="nombreDelCliente" name="nombreDelCliente" class="form-control form-control-lg" />
-                      <label class="form-user" for="nombreDelCliente">Nombre del Cliente</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="segundoNombreDelCliente" name="segundoNombreDelCliente" class="form-control form-control-lg"/>
-                      <label class="form-user" for="segundoNombreDelCliente">Segundo Nombre del Cliente</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="primerApellidoDelCliente" name="primerApellidoDelCliente" class="form-control form-control-lg"/>
-                      <label class="form-user" for="primerApellidoDelCliente">Primer Apellido del Cliente</label>
-                    </div>
-    
-                  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<h2>Vendedor: 
+  <% if (user) { %>
+    <span class="badge bg-success"><%= user.nombre %></span>
+  <% } %>
+</h2>
+
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-12">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrar Ventas Fijo</h3>
+
+          <!-- ✅ FORM ACTION -->
+          <form action="/pruebagoogle1" method="POST">
+            
+            <!-- CLIENTE INFO -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="nombreDelCliente" name="nombreDelCliente" class="form-control form-control-lg" required />
+                  <label class="form-user" for="nombreDelCliente">Nombre del Cliente</label>
                 </div>
-    
-                <div class="row">
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="segundoApellidoDelCliente" name="segundoApellidoDelCliente" class="form-control form-control-lg"/>
-                      <label class="form-user" for="segundoApellidoDelCliente">Segundo Apellido del Cliente</label>
-                    </div>
-    
-                  </div>
+              </div>
 
-                  <div class="col-md-4 mb-4">
-  
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="genero" name="genero" required>
-                         <option value="Masculino">Masculino</option>
-                         <option value="Femenino">Femenino</option>
-                      </select>
-                      <label class="form-label" for="nombre">Genero</label>
-                   </div>
-                      
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="tipoDeDocumentoDeIdentidad" name="tipoDeDocumentoDeIdentidad" >
-                         <option value="Identidad">Identidad</option>
-                         <option value="DIMEX">DIMEX</option>
-                         <option value="Pasaporte">Pasaporte</option>
-                         <option value="Carnet_de_Refugio">Carnet de Refugio</option>
-                         <option value="Permiso_Laboral">Permiso Laboral</option>
-                      </select>
-                      <label class="form-label" for="nombre">Tipo De Documento De Identidad</label>
-                   </div>
-                      
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="number" id="numeroDeDocumento" name="numeroDeDocumento" class="form-control form-control-lg"required/>
-                      <label class="form-user" for="numeroDeDocumento">Numero De Documento</label>
-                    </div>
-    
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="nacionalidad" name="nacionalidad" >
-                         <option value="Costarricense">Costarricense</option>
-                         <option value="Nicaraguense">Nicaraguense</option>
-                         <option value="Venezolano">Venezolano</option>
-                         <option value="Colombiano">Colombiano</option>
-                         <option value="Otro">Otro</option>
-                      </select>
-                      <label class="form-label" for="nacionalidad">Nacionalidad </label>
-                   </div>
-                      
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="number" id="numeroCelularDeTramite" name="numeroCelularDeTramite" class="form-control form-control-lg"required/>
-                      <label class="form-user" for="numeroCelularDeTramite">Numero Celular De Tramite</label>
-                    </div>
-    
-                  </div>
-    
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="number" id="numeroDeContacto1" name="numeroDeContacto1" class="form-control form-control-lg" required/>
-                      <label class="form-user" for="numeroDeContacto1">Numero De Contacto 1</label>
-                    </div>
-    
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="number" id="numeroDeContacto2" name="numeroDeContacto2" class="form-control form-control-lg" required/>
-                      <label class="form-user" for="numeroDeContacto2">Numero De Contacto 2</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="tipoDeTramite" name="tipoDeTramite" >
-                        <option value="">Seleccionar Tipo de Tramite</option>
-                      </select>
-                      <label class="form-label" for="nombre">Tipo De Tramite</label>
-                   </div>
-                      
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <div id="StandaloneSelect">
-
-                        <select class="form-select form-select-lg" id="tipoDePlanAContratar" name="tipoDePlanAContratar" >
-                        
-                       </select>
-                       <label class="form-label" for="nombre">Tipo De Plan A Contratar</label>
-
-                      </div>
-                   </div>
-                      
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="number" id="valorPlanDiferente" name="valorPlanDiferente" class="form-control form-control-lg" />
-                      <label class="form-user" for="valorPlanDiferente">Valor Del Plan</label>
-                    </div>
-    
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-  
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="Financiamiento" name="Financiamiento" required>
-                        <option value="Con Financiamiento">Con Financiamiento</option>
-                     </select>
-                      <label class="form-user" for="tipoLlamada">Financiamiento</label>
-                    </div>
-    
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="nombrePromocion" name="nombrePromocion" required>
-                        <option value="Pago en Tractos">Pago en Tractos</option>
-                     </select>
-                      <label class="form-user" for="nombrePromocion">Nombre de la Promocion</label>
-                    </div>
-    
-                  </div>
-    
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="direccionExacta" name="direccionExacta" class="form-control form-control-lg" />
-                      <label class="form-user" for="direccionExacta">Direccion Exacta</label>
-                    </div>
-    
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="provincia" name="provincia" >
-                         <option value="San_Jose">San Jose</option>
-                         <option value="Heredia">Heredia</option>
-                         <option value="Alajuela">Alajuela</option>
-                         <option value="Cartago">Cartago</option>
-                         <option value="Limon">Limon</option>
-                         <option value="Guanacaste">Guanacaste</option>
-                         <option value="Puntarenas">Puntarenas</option>
-                      </select>
-                      <label class="form-label" for="nombre">Provincia</label>
-                   </div>
-                      
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="canton" name="canton" class="form-control form-control-lg" />
-                      <label class="form-user" for="canton">Canton</label>
-                    </div>
-    
-                  </div>
-    
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="distritp" name="distritp" class="form-control form-control-lg" />
-                      <label class="form-user" for="distritp">Distrito</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="barrio" name="barrio" class="form-control form-control-lg" />
-                      <label class="form-user" for="barrio">Barrio</label>
-                    </div>
-    
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-  
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="tipoLlamada" name="tipoLlamada" required>
-                        <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
-                        <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
-                        <option value="WhatsApp">WhatsApp</option>
-                        <option value="Redes Sociales (Inbound)">Redes Sociales (Inbound)</option>
-                      <option value="Redes Sociales (Outbound)">Redes Sociales (Outbound)</option>
-                      <option value="WhatsApp">WhatsApp</option>
-                      <option value="Referido">Referido</option>
-                      <option value="Familiar">Familiar</option>
-                      <option value="Presencial">Presencial</option>
-                     </select>
-                      <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
-                    </div>
-    
-                  </div>
-
-
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="coordenadas" name="coordenadas" class="form-control form-control-lg" />
-                      <label class="form-user" for="coordenadas">Coordenadas</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="correo" name="correo" class="form-control form-control-lg" required/>
-                      <label class="form-user" for="correo">Correo del Cliente</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="comentario" name="comentario" class="form-control form-control-lg"/>
-                      <label class="form-user" for="comentario">Comentario</label>
-                    </div>
-
-    
-                  </div>
-  
-                  <div class="col-md-4 mb-4">
-
-                    <div class="form-outline">
-                      <select class="form-select form-select-lg" id="red" name="red" required>
-                        <option value="FTTH">FTTH</option>
-                        <option value="HFC">HFC</option>
-                        <option value="JASEC">JASEC</option>
-                     </select>
-                      <label class="form-user" for="red">red</label>
-                    </div>
-    
-                      <div class="form-outline">
-                        <div class="prueba">
-                        <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
-                        <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
-                        </div>
-                      </div>
-      
-                    </div>
-
-                    <div class="form-outline">
-                      <div class="prueba12">
-                      <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
-                      <label class="form-user" for="codigoLiberty" >Nombre Vendedor</label>
-                      </div>
-                    </div>
-
-                    <div class="form-outline">
-                      <div class="prueba12">
-                      <input type="text" id="codigoLiberty" name="UsuarioLiberty" value="<%= user.UsuarioLiberty %>" readonly class="form-control form-control-lg" />
-                      <label class="form-user" for="UsuarioLiberty" >Usuario Liberty</label>
-                      </div>
-                    </div>
-
-                    <div class="form-outline" id="freelance">
-                      <div class="PruebaDvi">
-                      <select class="select form-control-lg" id="nombreVendedorFreelance" name="nombreVendedorFreelance" required>
-                        <option value="" disabled>Vendedor</option>
-                        <% for(var count = 0; count < data.freelancers.length; count++) { %>
-                          <option value="<%= data.freelancers[count].nombre %>"><%= data.freelancers[count].nombre %></option>
-                        <% } %>
-                      </select>
-                      <label class="form-user" for="nombreVendedorFreelance" >Nombre Vendedor Freelance</label>
-                      </div>
-                    </div>
-    
-    
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="segundoNombreDelCliente" name="segundoNombreDelCliente" class="form-control form-control-lg" />
+                  <label class="form-user" for="segundoNombreDelCliente">Segundo Nombre del Cliente</label>
                 </div>
-    
-               
-    
-                <div class="mt-4 pt-2">
-                  <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="primerApellidoDelCliente" name="primerApellidoDelCliente" class="form-control form-control-lg" />
+                  <label class="form-user" for="primerApellidoDelCliente">Primer Apellido del Cliente</label>
                 </div>
-    
-              </form>
+              </div>
             </div>
-          </div>
+
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="segundoApellidoDelCliente" name="segundoApellidoDelCliente" class="form-control form-control-lg" />
+                  <label class="form-user" for="segundoApellidoDelCliente">Segundo Apellido del Cliente</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="genero" name="genero" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                  </select>
+                  <label class="form-label">Género</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="tipoDeDocumentoDeIdentidad" name="tipoDeDocumentoDeIdentidad">
+                    <option value="Identidad">Identidad</option>
+                    <option value="DIMEX">DIMEX</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                    <option value="Carnet_de_Refugio">Carnet de Refugio</option>
+                    <option value="Permiso_Laboral">Permiso Laboral</option>
+                  </select>
+                  <label class="form-label">Tipo de Documento</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- DOCUMENT & CONTACT INFO -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="number" id="numeroDeDocumento" name="numeroDeDocumento" class="form-control form-control-lg" required />
+                  <label class="form-user" for="numeroDeDocumento">Número de Documento</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="nacionalidad" name="nacionalidad">
+                    <option value="Costarricense">Costarricense</option>
+                    <option value="Nicaraguense">Nicaragüense</option>
+                    <option value="Venezolano">Venezolano</option>
+                    <option value="Colombiano">Colombiano</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                  <label class="form-label">Nacionalidad</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="number" id="numeroCelularDeTramite" name="numeroCelularDeTramite" class="form-control form-control-lg" required />
+                  <label class="form-user" for="numeroCelularDeTramite">Número Celular de Trámite</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ADDITIONAL CONTACTS -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="number" id="numeroDeContacto1" name="numeroDeContacto1" class="form-control form-control-lg" required />
+                  <label class="form-user" for="numeroDeContacto1">Número de Contacto 1</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="number" id="numeroDeContacto2" name="numeroDeContacto2" class="form-control form-control-lg" />
+                  <label class="form-user" for="numeroDeContacto2">Número de Contacto 2</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- TRÁMITE / PLANES -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="tipoDeTramite" name="tipoDeTramite"></select>
+                  <label class="form-label">Tipo de Trámite</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="tipoDePlanAContratar" name="tipoDePlanAContratar"></select>
+                  <label class="form-label">Tipo de Plan a Contratar</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="number" id="valorPlanDiferente" name="valorPlanDiferente" class="form-control form-control-lg" />
+                  <label class="form-user">Valor del Plan</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- FINANCIAMIENTO / PROMO -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="Financiamiento" name="Financiamiento" required>
+                    <option value="Con Financiamiento">Con Financiamiento</option>
+                  </select>
+                  <label class="form-user">Financiamiento</label>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="nombrePromocion" name="nombrePromocion" required>
+                    <option value="Pago en Tractos">Pago en Tractos</option>
+                  </select>
+                  <label class="form-user">Nombre de la Promoción</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- DIRECCIÓN -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <input type="text" id="direccionExacta" name="direccionExacta" class="form-control form-control-lg" />
+                <label class="form-user">Dirección Exacta</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <select class="form-select form-select-lg" id="provincia" name="provincia">
+                  <option value="San_Jose">San José</option>
+                  <option value="Heredia">Heredia</option>
+                  <option value="Alajuela">Alajuela</option>
+                  <option value="Cartago">Cartago</option>
+                  <option value="Limon">Limón</option>
+                  <option value="Guanacaste">Guanacaste</option>
+                  <option value="Puntarenas">Puntarenas</option>
+                </select>
+                <label class="form-label">Provincia</label>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <input type="text" id="canton" name="canton" class="form-control form-control-lg" />
+                <label class="form-user">Cantón</label>
+              </div>
+
+                            <!-- ✅ Distrito -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="distrito" name="distrito" class="form-control form-control-lg" />
+                  <label class="form-user" for="distrito">Distrito</label>
+                </div>
+              </div>
+
+              <!-- ✅ Barrio -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="barrio" name="barrio" class="form-control form-control-lg" />
+                  <label class="form-user" for="barrio">Barrio</label>
+                </div>
+              </div>
+
+              <!-- ✅ Tipo de Llamada -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="tipoLlamada" name="tipoLlamada" required>
+                    <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
+                    <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Redes Sociales (Inbound)">Redes Sociales (Inbound)</option>
+                    <option value="Redes Sociales (Outbound)">Redes Sociales (Outbound)</option>
+                    <option value="Referido">Referido</option>
+                    <option value="Familiar">Familiar</option>
+                    <option value="Presencial">Presencial</option>
+                  </select>
+                  <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
+                </div>
+              </div>
+
+              <!-- ✅ Coordenadas -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="coordenadas" name="coordenadas" class="form-control form-control-lg" />
+                  <label class="form-user" for="coordenadas">Coordenadas</label>
+                </div>
+              </div>
+
+              <!-- ✅ Correo -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="email" id="correo" name="correo" class="form-control form-control-lg" required />
+                  <label class="form-user" for="correo">Correo del Cliente</label>
+                </div>
+              </div>
+
+              <!-- ✅ Comentario -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="comentario" name="comentario" class="form-control form-control-lg" />
+                  <label class="form-user" for="comentario">Comentario</label>
+                </div>
+              </div>
+
+
+            </div>
+
+                          <!-- ✅ Red -->
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <select class="form-select form-select-lg" id="red" name="red" required>
+                    <option value="FTTH">FTTH</option>
+                    <option value="HFC">HFC</option>
+                    <option value="JASEC">JASEC</option>
+                  </select>
+                  <label class="form-user" for="red">Red</label>
+                </div>
+
+                <!-- ✅ Nombre Vendedor (auto-filled for internal agents) -->
+                <div class="form-outline">
+                  <div class="prueba">
+                    <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
+                    <label class="form-user" for="nombreVendedor">Nombre Vendedor</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ✅ Hidden backend fields -->
+              <div class="form-outline">
+                <div class="prueba12">
+                  <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
+                  <label class="form-user" for="codigoLiberty">Código Liberty</label>
+                </div>
+              </div>
+
+              <div class="form-outline">
+                <div class="prueba12">
+                  <input type="text" id="UsuarioLiberty" name="UsuarioLiberty" value="<%= user.UsuarioLiberty %>" readonly class="form-control form-control-lg" />
+                  <label class="form-user" for="UsuarioLiberty">Usuario Liberty</label>
+                </div>
+              </div>
+
+              <!-- ✅ Freelance logic -->
+              <div class="form-outline" id="freelance">
+                <div class="PruebaDvi">
+                  <select class="select form-control-lg" id="nombreVendedorFreelance" name="nombreVendedorFreelance" required>
+                    <option value="" disabled>Vendedor</option>
+                    <% for (var count = 0; count < data.freelancers.length; count++) { %>
+                      <option value="<%= data.freelancers[count].nombre %>"><%= data.freelancers[count].nombre %></option>
+                    <% } %>
+                  </select>
+                  <label class="form-user" for="nombreVendedorFreelance">Nombre Vendedor Freelance</label>
+                </div>
+              </div>
+
+
+            <div class="mt-4 pt-2">
+              <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
+            </div>
+
+          </form>
         </div>
       </div>
-    </div> 
+    </div>
+  </div>
+</div>
 
-    <script>
-      let StandaloneOptions = ["120 Mbps","200 Mbps", "300 Mbps","500 Mbps", "1000 Mbps"];
-      let TriplePlayOptions = ["120 Mbps","200 Mbps", "300 Mbps","500 Mbps", "1000 Mbps"];
-      let DoblePlayOptions = ["120 Mbps","200 Mbps", "300 Mbps","500 Mbps", "1000 Mbps"];
-      let LibertyTotalSINTV = ["CONECTATE 150 Mbps + 22 SIN TV", "CONECTATE 150 Mbps + 30 GB SIN TV", "CONECTATE 150 Mbps + 45 GB SIN TV", "LIBERATE 300 Mbps + 25 GB SIN TV", "LIBERATE 300 Mbps + 35 GB SIN TV", "LIBERATE 300 Mbps + ILIMITADO GB SIN TV", "EXPRESATE 500 Mbps + 25 GB SIN TV", "EXPRESATE 500 Mbps + 35 GB SIN TV", "EXPRESATE 500 Mbps + ILIMITADO GB SIN TV", "VOLA 1000 Mbps + 25 GB SIN TV", "VOLA 1000 Mbps + 35 GB SIN TV", "VOLA 1000 Mbps + ILIMITADO GB SIN TV"];
-      let LibertyTotalCONTV = ["CONECTATE 150 Mbps + 22 GB CON TV", "CONECTATE 150 Mbps + 30 GB CON TV", "CONECTATE 150 Mbps + 45 GB CON TV", "LIBERATE 300 Mbps + 25 GB CON TV", "LIBERATE 300 Mbps + 35 GB CON TV", "LIBERATE 300 Mbps + ILIMITADO GB CON TV", "EXPRESATE 500 Mbps + 25 GB CON TV", "EXPRESATE 500 Mbps + 35 GB CON TV", "EXPRESATE 500 Mbps + ILIMITADO GB CON TV", "VOLA 1000 Mbps + 25 GB CON TV", "VOLA 1000 Mbps + 35 GB CON TV", "VOLA 1000 Mbps + ILIMITADO GB CON TV"];
-      let TipodeTramiteOptions = ["Standalone", "Doble Play", "Triple Play", "Liberty Total (Con television)", "Liberty Total (Sin television)"];
+<!-- ✅ Logic for plans and roles -->
+<script>
+  const TipodeTramiteOptions = [
+    "Standalone",
+    "Doble Play",
+    "Triple Play",
+    "Liberty Total (Con television)",
+    "Liberty Total (Sin television)"
+  ];
 
+  const Planes = {
+    "Standalone": ["120 Mbps", "200 Mbps", "300 Mbps", "500 Mbps", "1000 Mbps"],
+    "Doble Play": ["120 Mbps", "200 Mbps", "300 Mbps", "500 Mbps", "1000 Mbps"],
+    "Triple Play": ["120 Mbps", "200 Mbps", "300 Mbps", "500 Mbps", "1000 Mbps"],
+    "Liberty Total (Con television)": [
+      "CONECTATE 150 Mbps + 22 GB CON TV",
+      "LIBERATE 300 Mbps + 35 GB CON TV",
+      "VOLA 1000 Mbps + ILIMITADO GB CON TV"
+    ],
+    "Liberty Total (Sin television)": [
+      "CONECTATE 150 Mbps + 22 GB SIN TV",
+      "LIBERATE 300 Mbps + 35 GB SIN TV",
+      "VOLA 1000 Mbps + ILIMITADO GB SIN TV"
+    ]
+  };
 
-      let tipoDeTramite = document.getElementById("tipoDeTramite");
-      let tipoDePlanAContratar = document.getElementById("tipoDePlanAContratar");
+  const tramiteSelect = document.getElementById("tipoDeTramite");
+  const planSelect = document.getElementById("tipoDePlanAContratar");
 
-      TipodeTramiteOptions.forEach(function addElements(item){
-        let option = document.createElement("option");
-        option.text = item;
-        option.value = item;
-        tipoDeTramite.appendChild(option);
-      });
+  TipodeTramiteOptions.forEach(opt => {
+    const option = new Option(opt, opt);
+    tramiteSelect.add(option);
+  });
 
-      tipoDeTramite.onchange = function () {
-        tipoDePlanAContratar.innerHTML = "<option></option>";
-        if (this.value == "Standalone"){
-          addTotipoDePlanAContratar(StandaloneOptions);
-        }else if(this.value == "Triple Play"){
-          addTotipoDePlanAContratar(TriplePlayOptions);
-        }else if(this.value == "Doble Play"){
-          addTotipoDePlanAContratar(DoblePlayOptions);
-        }else if(this.value == "Liberty Total (Con television)"){
-          addTotipoDePlanAContratar(LibertyTotalCONTV);
-        }else if(this.value == "Liberty Total (Sin television)"){
-          addTotipoDePlanAContratar(LibertyTotalSINTV);
-        }else{
-          console.log("error");
-        }
-      }
-
-      function addTotipoDePlanAContratar(arr) {
-        arr.forEach(function (item) {
-          let option = document.createElement("option");
-        option.text = item;
-        option.value = item;
-        tipoDePlanAContratar.appendChild(option);
-        })
-      }
-
-      var userRol = "<%= user.rol %>";
-    console.log(userRol);
-    if(userRol=="freelance"){
-      console.log("Si")
-      $("div.PruebaDvi").show();
-      $("div.prueba").hide();
-    }else{
-      console.log("No");
+  tramiteSelect.addEventListener("change", () => {
+    planSelect.innerHTML = "";
+    const selected = tramiteSelect.value;
+    if (Planes[selected]) {
+      Planes[selected].forEach(p => planSelect.add(new Option(p, p)));
     }
+  });
 
-    </script>
+  const userRol = "<%= user.rol %>";
+  if (userRol === "freelance") {
+    $("div.PruebaDvi").show();
+    $("div.prueba").hide();
+  }
+</script>

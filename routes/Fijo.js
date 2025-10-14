@@ -223,36 +223,32 @@ router.post(`/editFijo${path}`, async (req, res) => {
 });
 
 }
-  /* Register */
-  router.get('/registrarVentaFijo', authController.isAuthenticated,NoCache.nocache, rolemiddlware.TicocelRVF, (req, res)=>{
-    let query1 = 'SELECT * FROM users';
-    let query2 = 'SELECT nombre FROM users WHERE rol = "freelance"';
-    let results = {};
+router.get(
+  '/registrarVentaFijo',
+  authController.isAuthenticated,
+  NoCache.nocache,
+  rolemiddlware.TicocelRVF,
+  async (req, res) => {
+    try {
+      const query1 = 'SELECT * FROM users';
+      const query2 = 'SELECT nombre FROM users WHERE rol = "freelance"';
 
-    conexion.query(query1, (error, data) => {
-        if (error) {
-            throw error;
-        } else {
-            results.users = data;
-            // check if the second query has also been executed
-            if (results.hasOwnProperty('freelancers')) {
-                res.render('registrarVentaFijo', { data: results, user: req.user });
-            }
-        }
-    });
+      const [users, freelancers] = await Promise.all([
+        conexion.query(query1).then(([rows]) => rows),
+        conexion.query(query2).then(([rows]) => rows),
+      ]);
 
-    conexion.query(query2, (error, data) => {
-        if (error) {
-            throw error;
-        } else {
-            results.freelancers = data;
-            // check if the first query has also been executed
-            if (results.hasOwnProperty('users')) {
-                res.render('registrarVentaFijo', { data: results, user: req.user });
-            }
-        }
-    });
-})
+      res.render('registrarVentaFijo', {
+        data: { users, freelancers },
+        user: req.user,
+      });
+    } catch (error) {
+      console.error('❌ Error loading registrarVentaFijo:', error);
+      res.status(500).send('Error loading data.');
+    }
+  }
+);
+
 
 /*Colilla Fijo */
 
