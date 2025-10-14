@@ -21,7 +21,7 @@ router.get('/:table', authController.isAuthenticated, NoCache.nocache, async (re
     const userRole = req.user.rol;
 
     // Simple validation to avoid SQL injection
-    const allowedTables = ['baseITX', 'baseMigraciones','baseTelefonos', 'baseKolbi', 'baseClaro'];
+    const allowedTables = ['baseITX', 'baseMigraciones','baseTelefonos', 'baseKolbi', 'baseClaro','baseFijo'];
     if (!allowedTables.includes(table)) {
       return res.status(400).send('Invalid table');
     }
@@ -44,7 +44,7 @@ router.get('/:table', authController.isAuthenticated, NoCache.nocache, async (re
 ============================== */
 router.get('/edit/:table/:id', authController.isAuthenticated, async (req, res) => {
   const { table, id } = req.params;
-  const allowedTables = ['baseITX', 'baseMigraciones','baseTelefonos', 'baseKolbi', 'baseClaro']; // ✅ include baseTelefonos here
+  const allowedTables = ['baseITX', 'baseMigraciones','baseTelefonos', 'baseKolbi', 'baseClaro','baseFijo'];; // ✅ include baseTelefonos here
   if (!allowedTables.includes(table)) return res.status(400).send('Invalid table');
 
   const [results] = await pool.query(`SELECT * FROM ${table} WHERE consecutivo = ?`, [id]);
@@ -63,7 +63,7 @@ router.get('/edit/:table/:id', authController.isAuthenticated, async (req, res) 
 router.post('/edit/:table', authController.isAuthenticated, async (req, res) => {
   try {
     const { table } = req.params;
-    const allowedTables = ['baseITX', 'baseMigraciones','baseTelefonos', 'baseKolbi', 'baseClaro'];
+    const allowedTables = ['baseITX', 'baseMigraciones','baseTelefonos', 'baseKolbi', 'baseClaro','baseFijo'];;
     if (!allowedTables.includes(table)) return res.status(400).send('Invalid table');
 
     const consecutivo = req.body.consecutivo;

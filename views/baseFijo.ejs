@@ -4,34 +4,32 @@
   <meta charset="UTF-8">
   <title>Base Fijo - Favtel CRM</title>
 
+  <!-- ✅ DataTables CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
 
   <style>
     h1, h2 { text-align: center; margin-top: 1rem; }
     .table-container { padding: 2rem; }
-    #position { text-align: center; margin: 1rem 0; }
-    .btn-edit { color: #fff; background: #0d6efd; border: none; padding: 4px 8px; border-radius: 5px; }
+    .btn-edit {
+      color: #fff;
+      background: #0d6efd;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 
 <body>
   <div class="container-fluid table-container">
-    <h1>BD Clientes</h1>
+    <h1>Base Fijo</h1>
+
     <h2>Usuario:
       <% if (user) { %>
         <span class="badge bg-success"><%= user.nombre %></span>
       <% } %>
     </h2>
-
-    <div id="position" style="font-size: 18px;">
-      <label><input type="checkbox" name="pos1" value="No Localizado 1"> No Localizado 1</label>
-      <label><input type="checkbox" name="pos1" value="No Localizado 2"> No Localizado 2</label>
-      <label><input type="checkbox" name="pos1" value="No Localizado 3"> No Localizado 3</label>
-      <label><input type="checkbox" name="pos1" value="Venta Efectiva"> Venta Efectiva</label>
-      <label><input type="checkbox" name="pos1" value="Seguimiento"> Seguimiento</label>
-      <label><input type="checkbox" name="pos1" value="-" checked> Vacío</label>
-    </div>
 
     <hr>
 
@@ -41,29 +39,44 @@
           <tr>
             <th>Acciones</th>
             <th>Consecutivo</th>
+            <th>Número</th>
             <th>Cédula</th>
             <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>WhatsApp</th>
             <th>Asesor</th>
             <th>Detalle</th>
             <th>Comentario</th>
-            <th>Provincia</th>
+            <th>Pre/Post Pago</th>
+            <th>Fijo</th>
+            <th>Operador Fijo</th>
+            <th>Operador Móvil</th>
+            <th>Género</th>
+            <th>WhatsApp</th>
+            <th>Cobertura Fijo</th>
+            <th>Coordenadas</th>
           </tr>
         </thead>
+
         <tbody>
           <% results.forEach(row => { %>
             <tr>
-              <td><a href="/editBaseFijo/<%= row.consecutivo %>" class="btn btn-sm btn-primary">Editar</a></td>
-              <td><%= row.consecutivo %></td>
-              <td><%= row.cedula %></td>
-              <td><%= row.nombre %></td>
-              <td><%= row.numero %></td>
-              <td><%= row.whatsapp %></td>
-              <td><%= row.asesor %></td>
-              <td><%= row.detalle %></td>
-              <td><%= row.comentario %></td>
-              <td><%= row.provincia %></td>
+              <td>
+                <a href="/editBaseFijo/<%= row.consecutivo %>" class="btn btn-sm btn-primary">Editar</a>
+              </td>
+              <td><%= row.consecutivo || '' %></td>
+              <td><%= row.numero || '' %></td>
+              <td><%= row.cedula || '' %></td>
+              <td><%= row.nombre || '' %></td>
+              <td><%= row.asesor || '' %></td>
+              <td><%= row.detalle || '' %></td>
+              <td><%= row.comentario || '' %></td>
+              <td><%= row.pre_post_pago || '' %></td>
+              <td><%= row.fijo || '' %></td>
+              <td><%= row.operador_fijo || '' %></td>
+              <td><%= row.operador_movil || '' %></td>
+              <td><%= row.genero || '' %></td>
+              <td><%= row.whatsapp || '' %></td>
+              <td><%= row.cobertura_fijo || '' %></td>
+              <td><%= row.coordenadas || '' %></td>
             </tr>
           <% }) %>
         </tbody>
@@ -71,11 +84,11 @@
     </div>
 
     <div class="text-center mt-4">
-      <a href="/registrarVenta" class="btn btn-success">Registrar Nuevo</a>
+      <a href="/registrarVentaFijo" class="btn btn-success">Registrar Nueva Venta</a>
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- ✅ Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
@@ -95,24 +108,11 @@
         language: { url: "https://cdn.datatables.net/plug-ins/2.1.6/i18n/es-ES.json" }
       });
 
-      // Checkbox filters
-      $.fn.dataTable.ext.search.push(function (settings, searchData) {
-        const positions = $('input:checkbox[name="pos1"]:checked').map(function() {
-          return this.value;
-        }).get();
-        if (positions.length === 0) return true;
-        return positions.includes(searchData[7]); // detalle column index
-      });
-
-      $('input:checkbox').on('change', function () {
-        table.draw();
-      });
-
-      // Auto-filter by user (non-admin)
+      // 🔒 Auto-filter by user (if not admin)
       const userRol = "<%= user.rol %>";
       if (userRol !== "admin") {
         const nombre = "<%= user.nombre %>";
-        table.column(6).search(nombre).draw(); // filter by Asesor column
+        table.column(5).search(nombre).draw(); // 6th column = "Asesor"
       }
     });
   </script>
