@@ -398,6 +398,23 @@
                       <label class="form-user" for="Pago Comision">Pago Comision</label>
                     </div>
                     </div>
+
+                    <!-- 📄 Extra fields -->
+                    <div class="col-md-4">
+                      <label class="form-label">Número de Abonado</label>
+                      <input type="text" name="numero_abonado" class="form-control" value="<%= SaleId.numero_abonado || '' %>">
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label">Número de Contrato</label>
+                      <input type="text" name="numero_contrato" class="form-control" value="<%= SaleId.numero_contrato || '' %>">
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label">Fecha de Instalación</label>
+                      <input type="date" name="fecha_instalacion" class="form-control" value="<%= SaleId.fecha_instalacion ? SaleId.fecha_instalacion.toISOString().split('T')[0] : '' %>">
+                    </div>
+
                     <div class="col-md-4 mb-4">
                       <div class="form-outline">
                         <select class="select form-control-lg" style="width: 300px;" id="column40" name="column40" class="form-control form-control-lg" >

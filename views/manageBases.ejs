@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Bases - Favtel CRM</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .card {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .card-title {
+      text-transform: capitalize;
+    }
+    .btn-group button {
+      min-width: 110px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gestión de Bases de Datos</h1>
+
+    <div class="row">
+      <% const bases = ['baseFijo', 'baseITX', 'baseTelefonos']; %>
+
+      <% bases.forEach(table => { %>
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <h4 class="card-title"><%= table.replace('base', 'Base ') %></h4>
+              <hr>
+
+              <!-- Create DB -->
+              <form action="/create/<%= table %>" method="POST" class="d-inline">
+                <button class="btn btn-outline-primary mb-2" type="submit">🧱 Crear Base</button>
+              </form>
+
+              <!-- Upload Excel -->
+              <form action="/upload/<%= table %>" method="POST" enctype="multipart/form-data" class="mb-2">
+                <input type="file" name="excelFile" class="form-control mb-2" required>
+                <button class="btn btn-success" type="submit">📤 Subir Excel</button>
+              </form>
+
+              <!-- Download Excel -->
+              <form action="/download/<%= table %>" method="GET" class="d-inline">
+                <button class="btn btn-warning mb-2" type="submit">📥 Descargar</button>
+              </form>
+
+              <!-- Delete Base -->
+              <form action="/truncate/<%= table %>" method="POST" class="d-inline" 
+                    onsubmit="return confirm('⚠️ Esto eliminará todos los registros de <%= table %>. ¿Continuar?')">
+                <button class="btn btn-danger mb-2" type="submit">🗑️ Vaciar Base</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+</body>
+</html>
