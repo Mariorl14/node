@@ -245,7 +245,7 @@ exports.registrarVentaFijo = async (req, res) => {
       coordenadas: Coordenadas,
       correo: Correo,
       red: Red,
-      nombreVendedor: NombreVendedor,
+      nombreVendedor: nombreVendedor,
       nombreVendedorFreelance: VendedorFreelance1,
       genero: Genero,
       nombrePromocion,
@@ -276,7 +276,7 @@ exports.registrarVentaFijo = async (req, res) => {
     const Numero_Contrato = "";
     const Numero_Abonado = "";
 
-    const Vendedor_Freelance = (NombreVendedor !== "Ventas Freelance") ? "" : VendedorFreelance1;
+    const Vendedor_Freelance = (nombreVendedor !== "Ventas Freelance") ? "" : VendedorFreelance1;
 
     // ✅ Await the insert (no callback)
     await conexion.query(
@@ -304,7 +304,7 @@ exports.registrarVentaFijo = async (req, res) => {
     Canton,
     Distrito,
     Tipo_Llamada: TipoLlamada,
-    Nombre_Vendedor: NombreVendedor,
+    Nombre_Vendedor: nombreVendedor,
     Fecha: fecha,
     Vendedor_Freelance,
     Activada,
@@ -331,7 +331,7 @@ exports.registrarVentaFijo = async (req, res) => {
     console.log("✅ Venta Fijo registrada correctamente");
 
     res.render("colillaFijo", {
-  Nombre_Vendedor: NombreVendedor,
+  Nombre_Vendedor: nombreVendedor,
   Nombre_Cliente: NombreDelCliente,
   Segundo_Nombre_Cliente: SegundoNombreDelCliente,
   Primer_Apellido_Cliente: PrimerApellidoDelCliente,
