@@ -87,6 +87,9 @@ app.use('/', require('./routes/EditRevenues2024'));
 app.use('/', require('./routes/VISRevenues2024'));
 app.use('/', require('./routes/Ticocel'));
 app.use('/', require('./routes/baseGeneral'));
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 /* ---- Centralized error handler (prevents crashes) ---- */
 app.use((err, req, res, next) => {
