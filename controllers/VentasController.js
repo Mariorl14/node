@@ -22,6 +22,9 @@ exports.registrarVenta = async (req, res)=>{
     const Vendedor_Freelance1 = req.body.nombreVendedorFreelance;
     const comentario = req.body.comentario;
     const tipoCliente = req.body.tipoCliente;
+    const marca_telefono = req.body.marca_telefono;
+    const modelo_telefono = req.body.modelo_telefono;
+    const promocion_aplicar = req.body.promocion_aplicar;
 
     if(TipoDePlanAContratar=="@1Plus"){
         var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
@@ -180,7 +183,10 @@ exports.registrarVenta = async (req, res)=>{
     Modelo_Terminal,
     Tipo_Cliente: tipoCliente,
     Metodo_Pago,
-    Intentos_Entrega
+    Intentos_Entrega,
+    Marca_Telefono: marca_telefono,
+    Modelo_Telefono: modelo_telefono,
+    Promocion_Aplicar: promocion_aplicar,
   }]);
 
   console.log("✅ Venta Movil registrada:", results.insertId);
@@ -203,6 +209,9 @@ exports.registrarVenta = async (req, res)=>{
     Direccion_Exacta: DireccionExacta,
     Plan_Contratar: TipoDePlanAContratar,
     codigoLiberty,
+    Marca_Telefono: marca_telefono,
+    Modelo_Telefono: modelo_telefono,
+    Promocion_Aplicar: promocion_aplicar,
     Cobro_Envío,
     correo,
     comentario,

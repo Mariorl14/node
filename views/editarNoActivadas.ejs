@@ -194,6 +194,50 @@
                    </div>
                       
                   </div>
+
+                  <div class="col-md-4 mb-4">
+  
+                  <div class="form-outline">
+                      <div class="form-outline">
+                    <select class="select form-control-lg" style="width: 300px;" id="marca_telefono" name="marca_telefono" class="form-control form-control-lg" >
+                      <option value="<%= SaleId.Marca_Telefono %>"></option>
+                      <option <%= SaleId.Marca_Telefono == "Honor" ? "selected" : "" %> value="Honor">Honor</option>
+                      <option <%= SaleId.Marca_Telefono == "Xiaomi" ? "selected" : "" %> value="Xiaomi">Xiaomi</option>
+                      <option <%= SaleId.Marca_Telefono == "Samsung" ? "selected" : "" %> value="Samsung">Samsung</option>
+                      <option <%= SaleId.Marca_Telefono == "Motorola" ? "selected" : "" %> value="Motorola">Motorola</option>
+                      <option <%= SaleId.Marca_Telefono == "Apple" ? "selected" : "" %> value="Apple">Apple</option>
+                      <option <%= SaleId.Marca_Telefono == "Redmi" ? "selected" : "" %> value="Redmi">Redmi</option>
+                    </select>
+                  </div>
+                    <label class="form-label" for="marca_telefono">Marca del Telefono</label>
+                 </div>
+                    
+                </div>
+
+                <div class="col-md-4 mb-4">
+  
+                  <div class="form-outline">
+                      <input type="text" id="modelo_telefono" name="modelo_telefono" class="form-control form-control-lg" value="<%= SaleId.Modelo_Telefono%>" />
+                    <label class="form-label" for="modelo_telefono">Modelo del Telefono</label>
+                 </div>
+                    
+                </div>
+
+                <div class="col-md-4 mb-4">
+  
+                  <div class="form-outline">
+                      <div class="form-outline">
+                    <select class="select form-control-lg" style="width: 300px;" id="promocion_aplicar" name="promocion_aplicar" class="form-control form-control-lg" >
+                      <option value="<%= SaleId.Promocion_Aplicar %>"></option>
+                      <option <%= SaleId.Promocion_Aplicar == "10% descuento en renta" ? "selected" : "" %> value="10% descuento en renta">10% descuento en renta</option>
+                      <option <%= SaleId.Promocion_Aplicar == "25% descuento en renta" ? "selected" : "" %> value="25% descuento en renta">25% descuento en renta</option>
+                      <option <%= SaleId.Promocion_Aplicar == "35% descuento en renta" ? "selected" : "" %> value="35% descuento en renta">35% descuento en renta</option>
+                    </select>
+                  </div>
+                    <label class="form-label" for="promocion_aplicar">Promocion a Aplicar</label>
+                 </div>
+                    
+                </div>
     
                   <div class="col-md-4 mb-4">
     

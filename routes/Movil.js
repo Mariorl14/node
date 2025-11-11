@@ -324,7 +324,10 @@ router.post('/editActivadas', async (req, res) => {
       Modelo_Terminal: req.body.Modelo_Terminal,
       Tipo_Cliente: req.body.tipoCliente,
       Metodo_Pago: req.body.metodo_pago,
-      Intentos_Entrega: req.body.intentos_entrega
+      Intentos_Entrega: req.body.intentos_entrega,
+      Marca_Telefono: req.body.marca_telefono,
+      Modelo_Telefono: req.body.modelo_telefono,
+      Promocion_Aplicar: req.body.promocion_aplicar
     };
 
     // build SET list safely (mysql2/promise doesn’t support SET ? with object)
@@ -442,7 +445,10 @@ router.post('/editNoActivadas', async (req, res) => {
       Terminal: req.body.column43,
       Modelo_Terminal: req.body.Modelo_Terminal,
       Pago_Comision: req.body.column44,
-      Numero_Provisional: req.body.column45
+      Numero_Provisional: req.body.column45,
+      Marca_Telefono: req.body.marca_telefono,
+      Modelo_Telefono: req.body.modelo_telefono,
+      Promocion_Aplicar: req.body.promocion_aplicar
     };
 
     await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);
@@ -546,7 +552,10 @@ router.post('/editPendientesActivacion', async (req, res) => {
       Terminal: req.body.column43,
       Modelo_Terminal: req.body.Modelo_Terminal,
       Pago_Comision: req.body.column44,
-      Numero_Provisional: req.body.column45
+      Numero_Provisional: req.body.column45,
+      Marca_Telefono: req.body.marca_telefono,
+      Modelo_Telefono: req.body.modelo_telefono,
+      Promocion_Aplicar: req.body.promocion_aplicar
     };
 
     await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);
@@ -649,7 +658,10 @@ router.post('/editPendientesEntrega', async (req, res) => {
       Terminal: req.body.column43,
       Modelo_Terminal: req.body.Modelo_Terminal,
       Pago_Comision: req.body.column44,
-      Numero_Provisional: req.body.column45
+      Numero_Provisional: req.body.column45,
+      Marca_Telefono: req.body.marca_telefono,
+      Modelo_Telefono: req.body.modelo_telefono,
+      Promocion_Aplicar: req.body.promocion_aplicar
     };
 
     await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);
