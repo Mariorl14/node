@@ -30,47 +30,30 @@ exports.registrarVenta = async (req, res)=>{
         var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
         var Valor_Plan = "13200";
 
-       }else if(TipoDePlanAContratar=="@1"){
-        var tipoDePlanAContratar1 = "(CGS) Plan Con Dep @1 LTE PRO ST";
-        var Valor_Plan = "10700";
-
        }
-       else if(TipoDePlanAContratar=="@2"){
-        var tipoDePlanAContratar1 = "(CHS) Plan Con Dep @2 LTE PRO ST";
-        var Valor_Plan = "16000";
-
-       }
-       else if(TipoDePlanAContratar=="@3"){
-
-        var Valor_Plan = "22000";
-
-       }
-       else if(TipoDePlanAContratar=="@4"){
-
-        var Valor_Plan = "27200";
-
-       }
-       else if(TipoDePlanAContratar=="@5"){
-
-        var Valor_Plan = "33200";
-
-       }else if(TipoDePlanAContratar=="5CA	 Plan LY5G @1 Portate Control ST"){
+       else if(TipoDePlanAContratar=="(AE5) Plan 5G @1 Ultra CTRL ST"){
 
         var Valor_Plan = "11000";
 
-       }else if(TipoDePlanAContratar=="5CB	 Plan LY5G @2 Portate Control ST"){
+       }
+       else if(TipoDePlanAContratar=="(AE6) Plan 5G @2 Ultra CTRL ST"){
 
         var Valor_Plan = "15000";
 
-       }else if(TipoDePlanAContratar=="5CC Plan LY5G @3 Portate Control ST"){
+       }
+       else if(TipoDePlanAContratar=="(AE7) Plan 5G @3 Ultra CTRL ST"){
 
         var Valor_Plan = "20000";
 
-       }else if(TipoDePlanAContratar=="AB3 Plan 5G @1 Full GB CTRL CT"){
+       }else if(TipoDePlanAContratar=="(LAU) Plan Libre Ultra @1 Ctrl ST"){
+
+        var Valor_Plan = "11000";
+
+       }else if(TipoDePlanAContratar=="AB3 Plan 5G 1@ Full GB CTRL CT"){
 
         var Valor_Plan = "11900";
 
-       }else if(TipoDePlanAContratar=="AB4 Plan 5G @2 Full GB CTRL CT"){
+       }else if(TipoDePlanAContratar=="AB4  Plan 5G @2 Full GB CTRL CT"){
 
         var Valor_Plan = "15900";
 
