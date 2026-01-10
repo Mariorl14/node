@@ -127,6 +127,8 @@ router.get(`/editFijo${path}/:SaleId`, async (req, res) => {
     const [results] = await conexion.query('SELECT * FROM VentasFijo WHERE SaleId = ?', [SaleId]);
     if (results.length === 0) return res.status(404).send('Sale not found');
 
+    console.log(results)
+
     const saleData = results[0];
     saleData.formattedFechaActivacion = processDate(saleData.Fecha_Activacion);
     saleData.formattedFechaInstalacion = processDate(saleData.Fecha_Instalacion);
@@ -159,10 +161,21 @@ router.post(`/editFijo${path}`, async (req, res) => {
   try {
     const SaleId = req.body.SaleId;
 
-    const Fecha = moment(req.body.column24).format('YYYY/MM/DD');
-    const FechaActivacion1 = moment(req.body.column33).isValid() ? moment(req.body.column33).format('YYYY/MM/DD') : null;
-    const FechaInstalacion1 = moment(req.body.column36).isValid() ? moment(req.body.column36).format('YYYY/MM/DD') : null;
-    const FechaUltimaActualizacion1 = moment(req.body.FechaUA).isValid() ? moment(req.body.FechaUA).format('YYYY/MM/DD') : null;
+    const Fecha = moment(req.body.column24).isValid()
+      ? moment(req.body.column24).format('YYYY/MM/DD')
+      : null;
+
+    const FechaActivacion1 = moment(req.body.column33).isValid()
+      ? moment(req.body.column33).format('YYYY/MM/DD')
+      : null;
+
+    const FechaInstalacion1 = moment(req.body.column36).isValid()
+      ? moment(req.body.column36).format('YYYY/MM/DD')
+      : null;
+
+    const FechaUltimaActualizacion1 = moment(req.body.FechaUA).isValid()
+      ? moment(req.body.FechaUA).format('YYYY/MM/DD')
+      : null;
 
     const data = {
       Nombre_Cliente: req.body.column1,
@@ -209,18 +222,27 @@ router.post(`/editFijo${path}`, async (req, res) => {
       Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
     };
 
-    await conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [data, SaleId]);
-    console.log(`✅ Updated SaleId ${SaleId}`);
+    // ✅ Remove undefined (and optionally empty string) so DB values are preserved
+    const clean = {};
+    for (const [k, v] of Object.entries(data)) {
+      if (v === undefined) continue;          // don't overwrite with NULL
+      // if you also want to ignore blanks, uncomment:
+      // if (v === '') continue;
+      clean[k] = v;
+    }
 
-    // ✅ Fix: redirect dynamically using same path reference
-    const redirectTo = `/Fijo${path}`;
-    res.redirect(redirectTo);
+    console.log('Incoming keys:', Object.keys(req.body));
+    console.log('Updating fields:', Object.keys(clean));
 
+    await conexion.query('UPDATE VentasFijo SET ? WHERE SaleId = ?', [clean, SaleId]);
+
+    res.redirect(`/Fijo${path}`);
   } catch (error) {
     console.error(`Error updating ${path}:`, error);
     res.status(500).send('An error occurred while updating the database.');
   }
 });
+
 
 }
 router.get(
