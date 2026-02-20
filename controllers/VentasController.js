@@ -101,7 +101,7 @@ exports.registrarVenta = async (req, res)=>{
     var Fecha_Ultima_Actualizacion = "";
     var Bloqueo_Desbloqueo = "Bloqueada";
     var Activadora = "";
-    var MES_TRABAJADA = "ENERO 2026";
+    var MES_TRABAJADA = "FEBRERO 2026";
     const Terminal = req.body.terminal;
     const correo = req.body.correo;
     const Genero = req.body.genero;
@@ -265,7 +265,7 @@ exports.registrarVentaFijo = async (req, res) => {
     const Llamada_Activacion = "";
     const Fecha_Activacion = "";
     const Numero_Orden = "";
-    const MES_TRABAJADA = "ENERO 2026";
+    const MES_TRABAJADA = "FEBRERO 2026";
     const Fecha_Instalacion = "";
     const Fecha_Ultima_Actualizacion = "";
     const Pago_Comision = "";
