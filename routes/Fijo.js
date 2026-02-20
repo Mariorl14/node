@@ -130,6 +130,7 @@ router.get(`/editFijo${path}/:SaleId`, async (req, res) => {
     console.log(results)
 
     const saleData = results[0];
+    saleData.formattedFecha = processDate(saleData.Fecha);
     saleData.formattedFechaActivacion = processDate(saleData.Fecha_Activacion);
     saleData.formattedFechaInstalacion = processDate(saleData.Fecha_Instalacion);
     saleData.formattedFechaUltimaActualizacion = processDate(saleData.Fecha_Ultima_Actualizacion);
@@ -160,10 +161,6 @@ router.get(`/editFijo${path}/:SaleId`, async (req, res) => {
 router.post(`/editFijo${path}`, async (req, res) => {
   try {
     const SaleId = req.body.SaleId;
-
-    const Fecha = moment(req.body.column24).isValid()
-      ? moment(req.body.column24).format('YYYY/MM/DD')
-      : null;
 
     const FechaActivacion1 = moment(req.body.column33).isValid()
       ? moment(req.body.column33).format('YYYY/MM/DD')
@@ -201,7 +198,6 @@ router.post(`/editFijo${path}`, async (req, res) => {
       Distrito: req.body.column21,
       Tipo_Llamada: req.body.column22,
       Nombre_Vendedor: req.body.column23,
-      Fecha: Fecha,
       Vendedor_Freelance: req.body.column25,
       Activada: req.body.column26,
       Instalada: req.body.column27,
