@@ -5,19 +5,45 @@ const authController = require('../controllers/authController');
 const NoCache = require('../controllers/noCache');
 const moment = require('moment');
 
-
 // ===============================
-// 📅 REVENUE MENU (month selector)
+// 📅 REVENUE MENU (last 7 months)
 // ===============================
-router.get('/revenueMenu', authController.isAuthenticated, NoCache.nocache, (req, res) => {
-  const meses = [
-    'ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO',
-    'JULIO', 'AGOSTO', 'SETIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'
-  ];
-  const currentYear = new Date().getFullYear();
+router.get(
+  '/revenueMenu',
+  authController.isAuthenticated,
+  NoCache.nocache,
+  (req, res) => {
+    const meses = [
+      'ENERO',
+      'FEBRERO',
+      'MARZO',
+      'ABRIL',
+      'MAYO',
+      'JUNIO',
+      'JULIO',
+      'AGOSTO',
+      'SETIEMBRE',
+      'OCTUBRE',
+      'NOVIEMBRE',
+      'DICIEMBRE'
+    ];
 
-  res.render('revenueMenu', { meses, anio: currentYear, user: req.user });
-});
+    const revenueMonths = [];
+    const today = new Date();
+
+    for (let i = 0; i < 9; i++) {
+      const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+
+      revenueMonths.push({
+        mes: meses[d.getMonth()],
+        anio: d.getFullYear(),
+        label: `${meses[d.getMonth()]} ${d.getFullYear()}`
+      });
+    }
+
+    res.render('revenueMenu', { revenueMonths, user: req.user });
+  }
+);
 
 // ===============================
 // 📊 DYNAMIC MONTHLY REVENUE
@@ -33,12 +59,11 @@ router.get(
       const mesDb = `${mes.toUpperCase()} ${anio}`;
 
       const [results] = await pool.query(
-        `SELECT * FROM VentasMovil 
-         WHERE MES_TRABAJADA = ? 
-         AND Activada = 'Activada' 
-         AND YEAR(Fecha) = ?`,
-        [mesDb, anio]
-      );
+          `SELECT * FROM VentasMovil 
+          WHERE MES_TRABAJADA = ? 
+          AND Activada = 'Activada'`,
+          [mesDb]
+        );
 
       res.render('RevenueGeneral', { results, mes, anio, user: req.user });
     } catch (error) {
@@ -64,18 +89,30 @@ router.get(
                 Fecha_Activacion, Factura_1, Monto_1, Fecha_Pago_1, Factura_2, Monto_2, Fecha_Pago_2,
                 Factura_3, Monto_3, Fecha_Pago_3, Factura_4, Monto_4, Fecha_Pago_4,
                 Factura_5, Monto_5, Fecha_Pago_5, Factura_6, Monto_6, Fecha_Pago_6
-         FROM VentasMovil WHERE SaleId = ?`,
+         FROM VentasMovil 
+         WHERE SaleId = ?`,
         [SaleId]
       );
 
-      if (!results.length) return res.status(404).send('Registro no encontrado');
-      const saleData = results[0];
-      const formatDate = (d) => (d ? moment(d, 'YYYY/MM/DD').format('YYYY-MM-DD') : '');
+      if (!results.length) {
+        return res.status(404).send('Registro no encontrado');
+      }
 
-      // Format dates
+      const saleData = results[0];
+
+      const formatDate = (d) => {
+        if (!d) return '';
+        return moment(d).isValid() ? moment(d).format('YYYY-MM-DD') : '';
+      };
+
       [
-        'Fecha_Activacion', 'Fecha_Pago_1', 'Fecha_Pago_2', 'Fecha_Pago_3',
-        'Fecha_Pago_4', 'Fecha_Pago_5', 'Fecha_Pago_6'
+        'Fecha_Activacion',
+        'Fecha_Pago_1',
+        'Fecha_Pago_2',
+        'Fecha_Pago_3',
+        'Fecha_Pago_4',
+        'Fecha_Pago_5',
+        'Fecha_Pago_6'
       ].forEach(field => {
         saleData[`formatted_${field}`] = formatDate(saleData[field]);
       });
@@ -101,16 +138,20 @@ router.post(
       const { SaleId } = req.body;
 
       const parseDate = (input) => {
-        const d = moment(input, 'YYYY/MM/DD');
+        if (!input) return null;
+
+        const d = moment(input, ['YYYY-MM-DD', 'YYYY/MM/DD'], true);
         return d.isValid() ? d.format('YYYY/MM/DD') : null;
       };
 
       const data = {};
+
       for (let i = 1; i <= 6; i++) {
         data[`Factura_${i}`] = req.body[`columnF${i}`] || null;
         data[`Monto_${i}`] = req.body[`columnM${i}`] || null;
         data[`Fecha_Pago_${i}`] = parseDate(req.body[`columnFP${i}`]);
       }
+
       data.Fecha_Activacion = parseDate(req.body.column33);
 
       await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);
