@@ -54,14 +54,6 @@ exports.registrarVenta = async (req, res)=>{
 
         var Valor_Plan = "11000";
 
-       }else if(TipoDePlanAContratar=="AB3 Plan 5G 1@ Full GB CTRL CT"){
-
-        var Valor_Plan = "11900";
-
-       }else if(TipoDePlanAContratar=="AB4  Plan 5G @2 Full GB CTRL CT"){
-
-        var Valor_Plan = "15900";
-
        }else{
         var Valor_Plan = "";
        }
