@@ -99,7 +99,7 @@ exports.registrarVenta = async (req, res)=>{
     const Genero = req.body.genero;
     var Pago_Comision = "No Actualizado";
     var Numero_Provisional = "";
-    var Modelo_Terminal = "";
+    var Ciclo_Facturacion = "";
     var Metodo_Pago = "";
     var Intentos_Entrega = "";
     /*Actualizacion*/
@@ -160,7 +160,7 @@ exports.registrarVenta = async (req, res)=>{
     Genero,
     Correo_Cliente: correo,
     Fecha_Ultima_Actualizacion,
-    Modelo_Terminal,
+    Ciclo_Facturacion,
     Tipo_Cliente: tipoCliente,
     Metodo_Pago,
     Intentos_Entrega,

@@ -538,13 +538,15 @@
                   </div>
                   <label class="form-user" for="tipoLlamada">Terminal </label>
                 </div>
-                 <div class="PruebaDvi">
-                  <div class="col-md-4 mb-4">
+                 <div class="col-md-4 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="Modelo_Terminal" name="Modelo_Terminal" class="form-control form-control-lg" value="<%= SaleId.Modelo_Terminal%>" />
-                    <label class="form-user" for="tipoLlamada"> Modelo Terminal </label>
+                    <select class="select form-control-lg" style="width: 300px;" id="columnCiclo" name="columnCiclo" class="form-control form-control-lg" >
+                        <option value="<%= SaleId.Ciclo_Facturacion %>"></option>
+                          <option <%= SaleId.Ciclo_Facturacion == "Ciclo I" ? "selected" : "" %> value="Ciclo I">Ciclo I</option> 
+                          <option <%= SaleId.Ciclo_Facturacion == "Ciclo II" ? "selected" : "" %> value="Ciclo II">Ciclo II</option>
+                        </select>
                   </div>
-                </div>
+                  <label class="form-user" for="tipoLlamada">Ciclo de Facturacion </label>
                 </div>
               <div class="col-md-4 mb-4">
                 <div class="form-outline">
