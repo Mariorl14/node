@@ -169,6 +169,7 @@
                 <div class="col-md-4 mb-4">
                   <label class="form-label">Pago Comisión</label>
                   <select name="column38" class="form-select">
+                    <option <%= SaleId.Pago_Comision == '' ? 'selected' : '' %>></option>
                     <option <%= SaleId.Pago_Comision == 'PAGO' ? 'selected' : '' %>>PAGO</option>
                     <option <%= SaleId.Pago_Comision == 'NO PAGO' ? 'selected' : '' %>>NO PAGO</option>
                   </select>
@@ -184,7 +185,7 @@
                   <input type="text" name="column29" class="form-control" value="<%= SaleId.Detalle %>">
                 </div>
                 <div class="col-md-6 mb-4">
-                  <label class="form-label">Entregador</label>
+                  <label class="form-label">Movicheck</label>
                   <input type="text" name="column30" class="form-control" value="<%= SaleId.Entregador %>">
                 </div>
               </div>
@@ -194,7 +195,7 @@
               <!-- ========================= -->
               <div class="row">
                 <div class="col-md-6 mb-4">
-                  <label class="form-label">Número de Abonado</label>
+                  <label class="form-label">Número de Orden</label>
                   <input type="text" name="numero_abonado" class="form-control" value="<%= SaleId.Numero_Abonado %>">
                 </div>
                 <div class="col-md-6 mb-4">

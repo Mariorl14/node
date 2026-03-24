@@ -392,6 +392,7 @@
                       <div class="form-outline">
                         <select class="select form-control-lg" style="width: 300px;" id="column38" name="column38" class="form-control form-control-lg" >
                           <option value="<%= SaleId.Pago_Comision %>"></option>
+                            <option <%= SaleId.Pago_Comision == "-" ? "selected" : "-" %> value="-">-</option>
                             <option <%= SaleId.Pago_Comision == "PAGO" ? "selected" : "" %> value="PAGO">PAGO</option>
                             <option <%= SaleId.Pago_Comision == "NO PAGO" ? "selected" : "" %> value="NO PAGO">NO PAGO</option>
                           </select>
