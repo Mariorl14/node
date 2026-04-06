@@ -1,411 +1,520 @@
 <style>
-  div.prueba12,div.PruebaDvi{
+  div.prueba12,
+  div.PruebaDvi {
     display: none;
   }
+
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.08), transparent 30%),
+      #f8fafc;
+  }
+
+  .crm-wrapper {
+    max-width: 1450px;
+    margin: 0 auto;
+  }
+
+  .crm-card {
+    border: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.10);
+    backdrop-filter: blur(10px);
+  }
+
+  .crm-header {
+    padding: 2rem 2.2rem;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #2563eb 100%);
+    color: #fff;
+  }
+
+  .crm-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.03em;
+  }
+
+  .crm-header p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.98rem;
+  }
+
+  .seller-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(6px);
+  }
+
+  .seller-chip strong {
+    font-weight: 800;
+  }
+
+  .crm-body {
+    padding: 2rem;
+  }
+
+  .section-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    border: 1px solid #eaf0f6;
+    border-radius: 22px;
+    padding: 1.4rem 1.4rem 0.4rem;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .section-title-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
+    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.08);
+  }
+
+  .section-title h5 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+
+  .section-subtitle {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .form-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 0.45rem;
+  }
+
+  .form-control,
+  .form-select {
+    min-height: 52px;
+    border-radius: 16px;
+    border: 1px solid #d9e3ef;
+    background: #fff;
+    color: #0f172a;
+    padding-left: 0.95rem;
+    padding-right: 0.95rem;
+    transition: all 0.18s ease;
+    box-shadow: none !important;
+  }
+
+  .form-control:hover,
+  .form-select:hover {
+    border-color: #bfd1e5;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #60a5fa;
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 0.22rem rgba(37, 99, 235, 0.12) !important;
+  }
+
+  .sticky-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    background: linear-gradient(to top, rgba(255,255,255,0.96), rgba(255,255,255,0.7), transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn-save {
+    border: 0;
+    border-radius: 16px;
+    padding: 0.95rem 2.2rem;
+    font-size: 0.98rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow: 0 16px 30px rgba(37, 99, 235, 0.22);
+  }
+
+  .btn-save:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 20px 36px rgba(37, 99, 235, 0.28);
+  }
+
+  @media (max-width: 768px) {
+    .crm-header {
+      padding: 1.4rem;
+    }
+
+    .crm-header h2 {
+      font-size: 1.55rem;
+    }
+
+    .crm-body {
+      padding: 1rem;
+    }
+
+    .section-card {
+      padding: 1rem 1rem 0.25rem;
+      border-radius: 18px;
+    }
+  }
 </style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<h2>Vendedor: 
-    <% if(user) {%>
-        <span class="badge bg-success"> <%= user.nombre %></span>
-        <%}%>
-  </h2>
 
-<div class="container py-5 h-100">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-12 col-lg-9 col-xl-12">
-        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-          <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form action="/pruebagoogle" method="POST">
-  
-              <div class="row">
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="nombreDelCliente" name="nombreDelCliente" class="form-control form-control-lg" required/>
-                    <label class="form-user" for="nombreDelCliente">Nombre del Cliente</label>
-                  </div>
-  
-                </div>
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="segundoNombreDelCliente" name="segundoNombreDelCliente" class="form-control form-control-lg"/>
-                    <label class="form-user" for="segundoNombreDelCliente">Segundo Nombre del Cliente</label>
-                  </div>
-  
-                </div>
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="primerApellidoDelCliente" name="primerApellidoDelCliente" class="form-control form-control-lg"required/>
-                    <label class="form-user" for="primerApellidoDelCliente">Primer Apellido del Cliente</label>
-                  </div>
-  
-                </div>
-              </div>
-  
-              <div class="row">
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="segundoApellidoDelCliente" name="segundoApellidoDelCliente" class="form-control form-control-lg"required/>
-                    <label class="form-user" for="segundoApellidoDelCliente">Segundo Apellido del Cliente</label>
-                  </div>
-  
-                </div>
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="genero" name="genero" required>
-                       <option value="Masculino">Masculino</option>
-                       <option value="Femenino">Femenino</option>
-                    </select>
-                    <label class="form-label" for="nombre">Genero</label>
-                 </div>
-                    
-                </div>
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="tipoDeDocumentoDeIdentidad" name="tipoDeDocumentoDeIdentidad" required>
-                       <option value="Identidad">Identidad</option>
-                       <option value="Juridica">Juridica</option>
-                       <option value="DIMEX">DIMEX</option>
-                       <option value="Pasaporte">Pasaporte</option>
-                       <option value="Carnet_de_Refugio">Carnet de Refugio</option>
-                       <option value="Permiso_Laboral">Permiso Laboral</option>
-                    </select>
-                    <label class="form-label" for="nombre">Tipo De Documento De Identidad</label>
-                 </div>
-                    
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="numeroDeDocumento" name="numeroDeDocumento" class="form-control form-control-lg"required/>
-                    <label class="form-user" for="numeroDeDocumento">Numero De Documento</label>
-                  </div>
-  
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="nacionalidad" name="nacionalidad" required>
-                       <option value="Costarricense">Costarricense</option>
-                       <option value="Nicaraguense">Nicaraguense</option>
-                       <option value="Venezolano">Venezolano</option>
-                       <option value="Colombiano">Colombiano</option>
-                       <option value="Otro">Otro</option>
-                    </select>
-                    <label class="form-label" for="nombre">Tipo De Documento De Identidad</label>
-                 </div>
-                    
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="number" id="numeroCelularDeTramite" name="numeroCelularDeTramite" class="form-control form-control-lg"required/>
-                    <label class="form-user" for="numeroCelularDeTramite">Numero Celular De Tramite</label>
-                  </div>
-  
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="tipoDeTramite" name="tipoDeTramite" required>
-                       <option value="Portabilidad">Portabilidad</option>
-                       <option value="Linea_Nueva">Linea Nueva</option>
-                       <option value="Migracion">Migracion</option>
-                       <option value="Linea_Regalia">Linea Regalia (LT)</option>
-                       <option value="Linea_Principal">Linea Principal (LT)</option>
-                       <option value="Portabilidad LDS">Portabilidad LDS</option>
-                       <option value="Linea nueva LDS">Linea nueva LDS</option>
-                       <option value="Portabilidad Plan Libre">Portabilidad Plan Libre</option>
-                       <option value="Linea_Nueva Plan Libre">Linea Nueva Plan Libre</option>
-                    </select>
-                    <label class="form-label" for="nombre">Tipo De Tramite</label>
-                 </div>
-                    
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="number" id="numeroDeContacto1" name="numeroDeContacto1" class="form-control form-control-lg" required/>
-                    <label class="form-user" for="numeroDeContacto1">Numero De Contacto 1</label>
-                  </div>
-  
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="number" id="numeroDeContacto2" name="numeroDeContacto2" class="form-control form-control-lg" required/>
-                    <label class="form-user" for="numeroDeContacto2">Numero De Contacto 2</label>
-                  </div>
-  
-                </div>
-                
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="enCasoDePortabilidad" name="enCasoDePortabilidad" >
-                       <option value="Kolbi">Kolbi</option>
-                       <option value="Claro">Claro</option>
-                       <option value="No Aplica">No Aplica</option>
-                       <option value="Otro">Otro</option>
-                    </select>
-                    <label class="form-label" for="nombre">En Caso De Portabilidad</label>
-                 </div>
-                    
-                </div>
-
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="tipoCliente" name="tipoCliente" required>
-                       <option value="0 - Linea Nueva/Migracion">0 - Linea Nueva/Migracion</option>
-                       <option value="1 - Prepago">1 - Prepago</option>
-                       <option value="2 - Pospago">2 - Pospago</option>
-                       <option value="3 - Pospago/Terminal">3 - Pospago/Terminal</option>
-                    </select>
-                    <label class="form-label" for="nombre">Tipo De Cliente</label>
-                 </div>
-                    
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="tipoDePlanAContratar" name="tipoDePlanAContratar" required>
-                       <option value="(AE5) Plan 5G @1 Ultra CTRL ST">(AE5) Plan 5G @1 Ultra CTRL ST</option>
-                       <option value="(AE6) Plan 5G @2 Ultra CTRL ST">(AE6) Plan 5G @2 Ultra CTRL ST</option>
-                       <option value="(AE7) Plan 5G @3 Ultra CTRL ST">(AE7) Plan 5G @3 Ultra CTRL ST</option>
-                       <option value="(AE8) Plan Postpago Ultra @1 Ctrl St">(AE8) Plan Postpago Ultra @1 Ctrl St</option>
-                       <option value="(LAU) Plan Libre Ultra @1 Ctrl ST">(LAU) Plan Libre Ultra @1 Ctrl ST</option>
-                       <option value="Regalia">Regalia</option>
-                    </select>
-                    <label class="form-label" for="nombre">Tipo De Plan A Contratar</label>
-                 </div>
-                    
-                </div>
-
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="marca_telefono" name="marca_telefono" >
-                      <option value="No Aplica">No Aplica</option> 
-                      <option value="Honor">Honor</option> 
-                      <option value="Xiaomi">Xiaomi</option>
-                       <option value="Samsung">Samsung</option>
-                       <option value="Motorola">Motorola</option>
-                       <option value="Apple">Apple</option>
-                       <option value="Redmi">Redmi</option>
-                    </select>
-                    <label class="form-label" for="nombre">Marca del Telefono</label>
-                 </div>
-                    
-                </div>
-
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="modelo_telefono" name="modelo_telefono" class="form-control form-control-lg" />
-                    <label class="form-user" for="modelo_telefono">Modelo del Telefono</label>
-                  </div>
-  
-                </div>
-
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="promocion_aplicar" name="promocion_aplicar" >
-                      <option value="No Aplica">No Aplica</option>
-                      <option value="10% descuento en renta">10% descuento en renta</option> 
-                      <option value="25% descuento en renta">25% descuento en renta</option>
-                       <option value="35% descuento en renta">35% descuento en renta</option>
-                    </select>
-                    <label class="form-label" for="promocion_aplicar">Promocion a Aplicar</label>
-                 </div>
-                    
-                </div>
-  
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="direccionExacta" name="direccionExacta" class="form-control form-control-lg" required/>
-                    <label class="form-user" for="direccionExacta">Direccion Exacta</label>
-                  </div>
-  
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="provincia" name="provincia" required>
-                       <option value="San_Jose">San Jose</option>
-                       <option value="Heredia">Heredia</option>
-                       <option value="Alajuela">Alajuela</option>
-                       <option value="Cartago">Cartago</option>
-                       <option value="Limon">Limon</option>
-                       <option value="Guanacaste">Guanacaste</option>
-                       <option value="Puntarenas">Puntarenas</option>
-                    </select>
-                    <label class="form-label" for="nombre">Provincia</label>
-                 </div>
-                    
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="canton" name="canton" class="form-control form-control-lg" required/>
-                    <label class="form-user" for="canton">Canton</label>
-                  </div>
-  
-                </div>
-  
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <input type="text" id="distritp" name="distritp" class="form-control form-control-lg" required/>
-                    <label class="form-user" for="distritp">Distrito</label>
-                  </div>
-
-                  
-  
-                </div>
-
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="tipoLlamada" name="tipoLlamada" required>
-                      <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
-                      <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
-                      <option value="WhatsApp">WhatsApp</option>
-                      <option value="Referido">Referido</option>
-                      <option value="Familiar">Familiar</option>
-                      <option value="Presencial">Presencial</option>
-                      <option value="Redes Sociales (Inbound)">Redes Sociales (Inbound)</option>
-                      <option value="Redes Sociales (Outbound)">Redes Sociales (Outbound)</option>
-                   </select>
-                    <label class="form-user" for="tipoLlamada">Tipo de Llamada</label>
-                  </div>
-  
-                </div>
-                <div class="col-md-4 mb-4">
-  
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="rgu" name="rgu" required>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                   </select>
-                    <label class="form-user" for="rfu">RGU</label>
-                  </div>
-  
-                </div>
-                <div class="row">
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="correo" name="correo" class="form-control form-control-lg" required/>
-                      <label class="form-user" for="correo">Correo del Cliente</label>
-                    </div>
-    
-                  </div>
-                  <div class="col-md-4 mb-4">
-    
-                    <div class="form-outline">
-                      <input type="text" id="comentario" name="comentario" class="form-control form-control-lg"/>
-                      <label class="form-user" for="comentario">Comentario</label>
-                    </div>
-
-    
-                  </div>
-
-                  <div class="col-md-4 mb-4">
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="cobro_de_envio" name="cobro_de_envio" required>
-                      <option value="SI - 2000">Si - 2000</option>
-                      <option value="NO">NO</option>
-                   </select>
-                    <label class="form-user" for="tipoLlamada">¿Cobra Envío?</label>
-                  </div>
-                </div>
-                </div>
-       
-                <div class="col-md-4 mb-4">
-  
-
-                  <br>
-                  <div class="form-outline">
-                    <select class="form-select form-select-lg" id="terminal" name="terminal" required>
-                      <option value="SIN terminal">SIN terminal</option> 
-                      <option value="CON terminal">CON terminal</option>
-                    </select>
-                    <label class="form-label" for="terminal">Terminal</label>
-                 </div>
-
-                    <div class="form-outline">
-                      <div class="prueba">
-                      <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
-                      <label class="form-user" for="nombreVendedor" >Nombre Vendedor</label>
-                      </div>
-                    </div>
-                    <div class="form-outline">
-                      <div class="prueba12">
-                      <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
-                      <label class="form-user" for="codigoLiberty" >Nombre Vendedor</label>
-                      </div>
-                    </div>
-
-                    <div class="form-outline" id="freelance">
-                      <div class="PruebaDvi">
-                      <select class="select form-control-lg" id="nombreVendedorFreelance" name="nombreVendedorFreelance" required>
-                        <option value="" disabled>Vendedor</option>
-                        <% for(var count = 0; count < data.freelancers.length; count++) { %>
-                          <option value="<%= data.freelancers[count].nombre %>"><%= data.freelancers[count].nombre %></option>
-                        <% } %>
-                      </select>
-                      <label class="form-user" for="nombreVendedorFreelance" >Nombre Vendedor Freelance</label>
-                      </div>
-                    </div>
-    
-                  </div>
-  
-              </div>
-
-
-          </div>
-  
-             
-  
-              <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg" type="submit" value="Guardar" />
-              </div>
-  
-            </form>
-          </div>
+<div class="container py-4 py-lg-5 crm-wrapper">
+  <div class="crm-card">
+    <div class="crm-header">
+      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+        <div>
+          <h2>Registrar Venta Móvil</h2>
+          <p>Un formulario más limpio, elegante y profesional para el equipo comercial.</p>
         </div>
+
+        <% if (user) { %>
+          <div class="seller-chip">
+            <span>Vendedor</span>
+            <strong><%= user.nombre %></strong>
+          </div>
+        <% } %>
       </div>
     </div>
-  </div> 
-  <script>
-    var userRol = "<%= user.rol %>";
-    console.log(userRol);
-    if(userRol=="freelance"){
-      console.log("Si")
-      $("div.PruebaDvi").show();
-      $("div.prueba").hide();
-    }else{
-      console.log("No");
-    }
-  </script>
+
+    <div class="crm-body">
+      <form action="/pruebagoogle" method="POST">
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Información del cliente</h5>
+          </div>
+          <div class="section-subtitle">Datos personales e identificación.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="nombreDelCliente">Nombre del Cliente</label>
+              <input type="text" id="nombreDelCliente" name="nombreDelCliente" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="segundoNombreDelCliente">Segundo Nombre</label>
+              <input type="text" id="segundoNombreDelCliente" name="segundoNombreDelCliente" class="form-control form-control-lg" />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="primerApellidoDelCliente">Primer Apellido</label>
+              <input type="text" id="primerApellidoDelCliente" name="primerApellidoDelCliente" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="segundoApellidoDelCliente">Segundo Apellido</label>
+              <input type="text" id="segundoApellidoDelCliente" name="segundoApellidoDelCliente" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="genero">Género</label>
+              <select class="form-select form-select-lg" id="genero" name="genero" required>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="tipoDeDocumentoDeIdentidad">Tipo de Documento</label>
+              <select class="form-select form-select-lg" id="tipoDeDocumentoDeIdentidad" name="tipoDeDocumentoDeIdentidad" required>
+                <option value="Identidad">Identidad</option>
+                <option value="Juridica">Jurídica</option>
+                <option value="DIMEX">DIMEX</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Carnet_de_Refugio">Carnet de Refugio</option>
+                <option value="Permiso_Laboral">Permiso Laboral</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="numeroDeDocumento">Número de Documento</label>
+              <input type="text" id="numeroDeDocumento" name="numeroDeDocumento" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="nacionalidad">Nacionalidad</label>
+              <select class="form-select form-select-lg" id="nacionalidad" name="nacionalidad" required>
+                <option value="Costarricense">Costarricense</option>
+                <option value="Nicaraguense">Nicaragüense</option>
+                <option value="Venezolano">Venezolano</option>
+                <option value="Colombiano">Colombiano</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Contacto y ubicación</h5>
+          </div>
+          <div class="section-subtitle">Teléfonos, correo y dirección del cliente.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="numeroCelularDeTramite">Número Celular de Trámite</label>
+              <input type="number" id="numeroCelularDeTramite" name="numeroCelularDeTramite" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="numeroDeContacto1">Número de Contacto 1</label>
+              <input type="number" id="numeroDeContacto1" name="numeroDeContacto1" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="numeroDeContacto2">Número de Contacto 2</label>
+              <input type="number" id="numeroDeContacto2" name="numeroDeContacto2" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="correo">Correo del Cliente</label>
+              <input type="text" id="correo" name="correo" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="direccionExacta">Dirección Exacta</label>
+              <input type="text" id="direccionExacta" name="direccionExacta" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="provincia">Provincia</label>
+              <select class="form-select form-select-lg" id="provincia" name="provincia" required>
+                <option value="San_Jose">San José</option>
+                <option value="Heredia">Heredia</option>
+                <option value="Alajuela">Alajuela</option>
+                <option value="Cartago">Cartago</option>
+                <option value="Limon">Limón</option>
+                <option value="Guanacaste">Guanacaste</option>
+                <option value="Puntarenas">Puntarenas</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="canton">Cantón</label>
+              <input type="text" id="canton" name="canton" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="distritp">Distrito</label>
+              <input type="text" id="distritp" name="distritp" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="tipoLlamada">Tipo de Llamada</label>
+              <select class="form-select form-select-lg" id="tipoLlamada" name="tipoLlamada" required>
+                <option value="Llamada Saliente (Outbound)">Llamada Saliente (Outbound)</option>
+                <option value="Llamada Entrante (Inbound)">Llamada Entrante (Inbound)</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Referido">Referido</option>
+                <option value="Familiar">Familiar</option>
+                <option value="Presencial">Presencial</option>
+                <option value="Redes Sociales (Inbound)">Redes Sociales (Inbound)</option>
+                <option value="Redes Sociales (Outbound)">Redes Sociales (Outbound)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Trámite y plan</h5>
+          </div>
+          <div class="section-subtitle">Información comercial del servicio contratado.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="tipoDeTramite">Tipo de Trámite</label>
+              <select class="form-select form-select-lg" id="tipoDeTramite" name="tipoDeTramite" required>
+                <option value="Portabilidad">Portabilidad</option>
+                <option value="Linea_Nueva">Línea Nueva</option>
+                <option value="Migracion">Migración</option>
+                <option value="Linea_Regalia">Línea Regalia (LT)</option>
+                <option value="Linea_Principal">Línea Principal (LT)</option>
+                <option value="Portabilidad LDS">Portabilidad LDS</option>
+                <option value="Linea nueva LDS">Línea nueva LDS</option>
+                <option value="Portabilidad Plan Libre">Portabilidad Plan Libre</option>
+                <option value="Linea_Nueva Plan Libre">Línea Nueva Plan Libre</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="enCasoDePortabilidad">En Caso de Portabilidad</label>
+              <select class="form-select form-select-lg" id="enCasoDePortabilidad" name="enCasoDePortabilidad">
+                <option value="Kolbi">Kolbi</option>
+                <option value="Claro">Claro</option>
+                <option value="No Aplica">No Aplica</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="tipoCliente">Tipo de Cliente</label>
+              <select class="form-select form-select-lg" id="tipoCliente" name="tipoCliente" required>
+                <option value="0 - Linea Nueva/Migracion">0 - Línea Nueva/Migración</option>
+                <option value="1 - Prepago">1 - Prepago</option>
+                <option value="2 - Pospago">2 - Pospago</option>
+                <option value="3 - Pospago/Terminal">3 - Pospago/Terminal</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <label class="form-label" for="tipoDePlanAContratar">Tipo de Plan a Contratar</label>
+              <select class="form-select form-select-lg" id="tipoDePlanAContratar" name="tipoDePlanAContratar" required>
+                <option value="(AE5) Plan 5G @1 Ultra CTRL ST">(AE5) Plan 5G @1 Ultra CTRL ST</option>
+                <option value="(AE6) Plan 5G @2 Ultra CTRL ST">(AE6) Plan 5G @2 Ultra CTRL ST</option>
+                <option value="(AE7) Plan 5G @3 Ultra CTRL ST">(AE7) Plan 5G @3 Ultra CTRL ST</option>
+                <option value="(AE8) Plan Postpago Ultra @1 Ctrl St">(AE8) Plan Postpago Ultra @1 Ctrl St</option>
+                <option value="(LAU) Plan Libre Ultra @1 Ctrl ST">(LAU) Plan Libre Ultra @1 Ctrl ST</option>
+                <option value="Regalia">Regalia</option>
+              </select>
+            </div>
+
+            <div class="col-md-3 mb-4">
+              <label class="form-label" for="rgu">RGU</label>
+              <select class="form-select form-select-lg" id="rgu" name="rgu" >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+
+            <div class="col-md-3 mb-4">
+              <label class="form-label" for="promocion_aplicar">Promoción a Aplicar</label>
+              <select class="form-select form-select-lg" id="promocion_aplicar" name="promocion_aplicar">
+                <option value="No Aplica">No Aplica</option>
+                <option value="10% descuento en renta">10% descuento en renta</option>
+                <option value="25% descuento en renta">25% descuento en renta</option>
+                <option value="35% descuento en renta">35% descuento en renta</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Terminal y extras</h5>
+          </div>
+          <div class="section-subtitle">Equipo, envío y observaciones adicionales.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="terminal">Terminal</label>
+              <select class="form-select form-select-lg" id="terminal" name="terminal" required>
+                <option value="SIN terminal">SIN terminal</option>
+                <option value="CON terminal">CON terminal</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="marca_telefono">Marca del Teléfono</label>
+              <select class="form-select form-select-lg" id="marca_telefono" name="marca_telefono">
+                <option value="No Aplica">No Aplica</option>
+                <option value="Honor">Honor</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Motorola">Motorola</option>
+                <option value="Apple">Apple</option>
+                <option value="Redmi">Redmi</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="modelo_telefono">Modelo del Teléfono</label>
+              <input type="text" id="modelo_telefono" name="modelo_telefono" class="form-control form-control-lg" />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="cobro_de_envio">¿Cobra Envío?</label>
+              <select class="form-select form-select-lg" id="cobro_de_envio" name="cobro_de_envio" required>
+                <option value="SI - 2000">Sí - 2000</option>
+                <option value="NO">No</option>
+              </select>
+            </div>
+
+            <div class="col-md-8 mb-4">
+              <label class="form-label" for="comentario">Comentario</label>
+              <input type="text" id="comentario" name="comentario" class="form-control form-control-lg" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Datos del vendedor</h5>
+          </div>
+          <div class="section-subtitle">Identificación del asesor que registra la venta.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4 prueba">
+              <label class="form-label" for="nombreVendedor">Nombre Vendedor</label>
+              <input type="text" id="nombreVendedor" name="nombreVendedor" value="<%= user.nombre %>" readonly class="form-control form-control-lg" />
+            </div>
+
+            <div class="col-md-4 mb-4 PruebaDvi">
+              <label class="form-label" for="nombreVendedorFreelance">Nombre Vendedor Freelance</label>
+              <select class="form-select form-select-lg" id="nombreVendedorFreelance" name="nombreVendedorFreelance">
+                <option value="" selected disabled>Vendedor</option>
+                <% for(var count = 0; count < data.freelancers.length; count++) { %>
+                  <option value="<%= data.freelancers[count].nombre %>"><%= data.freelancers[count].nombre %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="prueba12">
+          <input type="text" id="codigoLiberty" name="codigoLiberty" value="<%= user.codigoLiberty %>" readonly class="form-control form-control-lg" />
+        </div>
+
+        <div class="sticky-actions d-flex justify-content-end">
+          <button class="btn btn-primary btn-lg btn-save" type="submit">Guardar venta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  var userRol = "<%= user.rol %>";
+  const freelanceSelect = document.getElementById("nombreVendedorFreelance");
+
+  if (userRol === "freelance") {
+    $("div.PruebaDvi").show();
+    $("div.prueba").hide();
+    freelanceSelect.required = true;
+  } else {
+    $("div.PruebaDvi").hide();
+    $("div.prueba").show();
+    freelanceSelect.required = false;
+  }
+</script>
