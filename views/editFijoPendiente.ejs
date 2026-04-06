@@ -192,6 +192,17 @@
   
                 </div>
 
+
+                <div class="col-md-4 mb-4">
+                  <label class="form-label">RGU</label>
+                  <select name="rgu" class="form-select">
+                    <option value="<%= SaleId.RGU %>"></option>
+                    <option <%= SaleId.RGU == '1' ? 'selected' : '1' %>>1</option>
+                    <option <%= SaleId.RGU == '2' ? 'selected' : '2' %>>2</option>
+                    <option <%= SaleId.RGU == '3' ? 'selected' : '3' %>>3</option>
+                  </select>
+                </div>
+
                 <div class="col-md-4 mb-4">
   
                   <div class="form-outline">

@@ -188,6 +188,15 @@
                   <label class="form-label">Movicheck</label>
                   <input type="text" name="column30" class="form-control" value="<%= SaleId.Entregador %>">
                 </div>
+                <div class="col-md-4 mb-4">
+                  <label class="form-label">RGU</label>
+                  <select name="rgu" class="form-select">
+                    <option <%= SaleId.RGU == '' ? 'selected' : '' %>></option>
+                    <option <%= SaleId.RGU == '1' ? 'selected' : '1' %>>1</option>
+                    <option <%= SaleId.RGU == '2' ? 'selected' : '2' %>>2</option>
+                    <option <%= SaleId.RGU == '3' ? 'selected' : '3' %>>3</option>
+                  </select>
+                </div>
               </div>
 
               <!-- ========================= -->

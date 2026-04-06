@@ -236,6 +236,7 @@ exports.registrarVentaFijo = async (req, res) => {
       coordenadas: Coordenadas,
       correo: Correo,
       red: Red,
+      RGU: rgu,
       nombreVendedor: nombreVendedor,
       nombreVendedorFreelance: VendedorFreelance1,
       genero: Genero,
@@ -243,7 +244,7 @@ exports.registrarVentaFijo = async (req, res) => {
       barrio,
       codigoLiberty,
       comentario,
-      UsuarioLiberty
+      UsuarioLiberty,
     } = req.body;
 
     // Generate base data
@@ -314,7 +315,8 @@ exports.registrarVentaFijo = async (req, res) => {
     Genero,
     Activadora,
     Correo_Cliente: Correo,
-    Fecha_Ultima_Actualizacion
+    Fecha_Ultima_Actualizacion,
+    rgu
   }
 );
 

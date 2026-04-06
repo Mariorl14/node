@@ -215,7 +215,7 @@ router.post(`/editFijo${path}`, async (req, res) => {
       Genero: req.body.column39,
       Activadora: req.body.column40,
       Correo_Cliente: req.body.columnC,
-      Fecha_Ultima_Actualizacion: FechaUltimaActualizacion1
+      RGU: req.body.rgu,
     };
 
     // ✅ Remove undefined (and optionally empty string) so DB values are preserved
