@@ -558,6 +558,17 @@
                   </div>
               </div>
               <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <select class="select form-control-lg" style="width: 300px;" id="rgu" name="rgu" class="form-control form-control-lg" >
+                              <option value="<%= SaleId.RGU %>"></option>
+                                <option <%= SaleId.RGU == "1" ? "selected" : "" %> value="1">1</option>
+                                <option <%= SaleId.RGU == "2" ? "selected" : "" %> value="2">2</option>
+                                <option <%= SaleId.RGU == "3" ? "selected" : "" %> value="3">3</option>
+                              </select>
+                        </div>
+                        <label class="form-user" for="tipoLlamada"> RGU </label>
+                      </div>
+              <div class="col-md-4 mb-4">
                 <div class="form-outline">
                   <input type="text" id="column45" name="column45" class="form-control form-control-lg" value="<%= SaleId.Numero_Provisional%>" />
                   <label class="form-user" for="tipoLlamada">Numero Provisional </label>

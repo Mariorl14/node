@@ -327,7 +327,8 @@ router.post('/editActivadas', async (req, res) => {
       Intentos_Entrega: req.body.intentos_entrega,
       Marca_Telefono: req.body.marca_telefono,
       Modelo_Telefono: req.body.modelo_telefono,
-      Promocion_Aplicar: req.body.promocion_aplicar
+      Promocion_Aplicar: req.body.promocion_aplicar,
+      RGU: req.body.rgu
     };
 
     // build SET list safely (mysql2/promise doesn’t support SET ? with object)
@@ -448,7 +449,8 @@ router.post('/editNoActivadas', async (req, res) => {
       Numero_Provisional: req.body.column45,
       Marca_Telefono: req.body.marca_telefono,
       Modelo_Telefono: req.body.modelo_telefono,
-      Promocion_Aplicar: req.body.promocion_aplicar
+      Promocion_Aplicar: req.body.promocion_aplicar,
+      RGU: req.body.rgu
     };
 
     await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);
@@ -555,7 +557,8 @@ router.post('/editPendientesActivacion', async (req, res) => {
       Numero_Provisional: req.body.column45,
       Marca_Telefono: req.body.marca_telefono,
       Modelo_Telefono: req.body.modelo_telefono,
-      Promocion_Aplicar: req.body.promocion_aplicar
+      Promocion_Aplicar: req.body.promocion_aplicar,
+      RGU: req.body.rgu
     };
 
     await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);
@@ -661,7 +664,8 @@ router.post('/editPendientesEntrega', async (req, res) => {
       Numero_Provisional: req.body.column45,
       Marca_Telefono: req.body.marca_telefono,
       Modelo_Telefono: req.body.modelo_telefono,
-      Promocion_Aplicar: req.body.promocion_aplicar
+      Promocion_Aplicar: req.body.promocion_aplicar,
+      RGU: req.body.rgu
     };
 
     await pool.query('UPDATE VentasMovil SET ? WHERE SaleId = ?', [data, SaleId]);

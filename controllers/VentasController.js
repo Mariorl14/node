@@ -25,6 +25,7 @@ exports.registrarVenta = async (req, res)=>{
     const marca_telefono = req.body.marca_telefono;
     const modelo_telefono = req.body.modelo_telefono;
     const promocion_aplicar = req.body.promocion_aplicar;
+    const rgu = req.body.rgu;
 
     if(TipoDePlanAContratar=="@1Plus"){
         var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
@@ -167,6 +168,7 @@ exports.registrarVenta = async (req, res)=>{
     Marca_Telefono: marca_telefono,
     Modelo_Telefono: modelo_telefono,
     Promocion_Aplicar: promocion_aplicar,
+    rgu: rgu,
   }]);
 
   console.log("✅ Venta Movil registrada:", results.insertId);
