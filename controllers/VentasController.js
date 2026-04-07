@@ -42,6 +42,11 @@ exports.registrarVenta = async (req, res)=>{
         var Valor_Plan = "15000";
 
        }
+       else if(TipoDePlanAContratar=="(AG3) Plan Post Ultra @1 Ctl St 5g"){
+
+        var Valor_Plan = "12000";
+
+       }
        else if(TipoDePlanAContratar=="(AE7) Plan 5G @3 Ultra CTRL ST"){
 
         var Valor_Plan = "20000";
