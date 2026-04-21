@@ -1,0 +1,16 @@
+<% 
+  var v = (typeof value !== 'undefined' && value !== null) ? String(value).trim() : '';
+  var cls = 'badge revenue-factura-pill ';
+  if (!v) { 
+%>
+  <span class="text-muted">—</span>
+<% } else {
+  if (v === 'PAGO') cls += 'text-bg-success';
+  else if (v === 'NO PAGO') cls += 'text-bg-danger';
+  else if (v === 'SIN FACTURAR') cls += 'text-bg-secondary';
+  else if (v === 'SAA') cls += 'text-bg-info';
+  else if (v === 'BAA') cls += 'text-bg-warning text-dark';
+  else cls += 'text-bg-light text-dark border';
+%>
+  <span class="<%= cls %>"><%= v %></span>
+<% } %>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Revenue Fijo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="text-center mb-4">Gestor de Revenue — Fijo</h1>
+
+    <h3 class="text-center mb-5">
+      Bienvenido,
+      <span class="badge bg-success"><%= user.nombre %></span>
+      (<%= user.rol %>)
+    </h3>
+
+    <div class="card shadow-sm p-4">
+      <h4 class="mb-4">
+        <i class="fa-solid fa-calendar"></i> Selecciona el mes (ventas fijas instaladas)
+      </h4>
+
+      <div class="row g-3">
+        <% revenueMonths.forEach(item => { %>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="/RevenueFijo/<%= item.mes %>/<%= item.anio %>"
+               class="btn btn-outline-primary w-100 py-3 shadow-sm">
+              <i class="fa-solid fa-chart-line"></i> <%= item.label %>
+            </a>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="/FijoInstalada" class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Volver a Fijo instaladas
+      </a>
+    </div>
+  </div>
+</body>
+</html>

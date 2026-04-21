@@ -77,6 +77,7 @@ app.use('/', require('./routes/router'));
 app.use('/', require('./routes/Users'));
 app.use('/', require('./routes/Movil'));
 app.use('/', require('./routes/Revenues'));
+app.use('/', require('./routes/RevenuesFijo'));
 app.use('/', require('./routes/Fijo'));
 app.use('/', require('./routes/BDClaro'));
 app.use('/', require('./routes/BDFijo'));

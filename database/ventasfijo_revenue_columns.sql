@@ -1,0 +1,22 @@
+-- Optional: run on `favtel` if VentasFijo does not yet have the same billing columns as VentasMovil.
+-- Remove any line that errors because the column already exists.
+
+ALTER TABLE VentasFijo ADD COLUMN Ciclo_Facturacion VARCHAR(64) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Factura_1 VARCHAR(32) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Monto_1 DECIMAL(12,2) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Fecha_Pago_1 DATE NULL;
+ALTER TABLE VentasFijo ADD COLUMN Factura_2 VARCHAR(32) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Monto_2 DECIMAL(12,2) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Fecha_Pago_2 DATE NULL;
+ALTER TABLE VentasFijo ADD COLUMN Factura_3 VARCHAR(32) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Monto_3 DECIMAL(12,2) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Fecha_Pago_3 DATE NULL;
+ALTER TABLE VentasFijo ADD COLUMN Factura_4 VARCHAR(32) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Monto_4 DECIMAL(12,2) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Fecha_Pago_4 DATE NULL;
+ALTER TABLE VentasFijo ADD COLUMN Factura_5 VARCHAR(32) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Monto_5 DECIMAL(12,2) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Fecha_Pago_5 DATE NULL;
+ALTER TABLE VentasFijo ADD COLUMN Factura_6 VARCHAR(32) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Monto_6 DECIMAL(12,2) NULL;
+ALTER TABLE VentasFijo ADD COLUMN Fecha_Pago_6 DATE NULL;

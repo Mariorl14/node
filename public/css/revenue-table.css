@@ -1,0 +1,164 @@
+/* Revenue list (móvil + fijo) — complements Bootstrap 5 + DataTables */
+
+.revenue-page {
+  --revenue-accent: #5b68c0;
+  --revenue-accent-2: #6c54cc;
+  --revenue-surface: #ffffff;
+  --revenue-muted: #6c757d;
+}
+
+.revenue-hero {
+  background: linear-gradient(135deg, var(--revenue-accent) 0%, var(--revenue-accent-2) 100%);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 28px rgba(91, 104, 192, 0.35);
+}
+
+.revenue-hero-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+.revenue-hero h1,
+.revenue-hero .h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.revenue-hero .btn-light {
+  font-weight: 600;
+  border: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.revenue-hero .btn-light:hover {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+.revenue-table-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  background: var(--revenue-surface);
+}
+
+.revenue-table-card .dt-layout-row:not(.dt-layout-table),
+.revenue-dt-wrap .dt-layout-row:not(.dt-layout-table) {
+  padding: 0.75rem 1rem;
+  background: linear-gradient(180deg, #fafbfc 0%, #f4f5f7 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.revenue-table-card .dt-layout-table,
+.revenue-dt-wrap .dt-layout-table {
+  padding: 0;
+}
+
+.revenue-table-card table.dataTable,
+.revenue-dt-wrap table.dataTable {
+  margin: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
+.revenue-table-card table.dataTable thead th,
+.revenue-dt-wrap table.dataTable thead th {
+  background: linear-gradient(180deg, #3d4a7a 0%, #2f365c 100%);
+  color: #f0f2ff !important;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: none !important;
+  padding: 0.85rem 0.65rem !important;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.revenue-table-card table.dataTable thead th:first-child,
+.revenue-dt-wrap table.dataTable thead th:first-child {
+  border-radius: 0;
+}
+
+.revenue-table-card table.dataTable tbody td,
+.revenue-dt-wrap table.dataTable tbody td {
+  padding: 0.55rem 0.65rem !important;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.revenue-table-card table.dataTable tbody tr:nth-child(even),
+.revenue-dt-wrap table.dataTable tbody tr:nth-child(even) {
+  background-color: rgba(91, 104, 192, 0.04);
+}
+
+.revenue-table-card table.dataTable tbody tr:hover,
+.revenue-dt-wrap table.dataTable tbody tr:hover {
+  background-color: rgba(108, 84, 204, 0.09) !important;
+}
+
+.revenue-table-card table.dataTable tbody td:first-child,
+.revenue-dt-wrap table.dataTable tbody td:first-child {
+  box-shadow: 4px 0 12px -6px rgba(0, 0, 0, 0.15);
+}
+
+.revenue-table-card .dt-buttons .dt-button,
+.revenue-dt-wrap .dt-buttons .dt-button {
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  padding: 0.4rem 0.75rem !important;
+  margin-right: 0.35rem !important;
+  margin-bottom: 0.25rem !important;
+  border: 1px solid rgba(91, 104, 192, 0.35) !important;
+  background: #fff !important;
+  color: var(--revenue-accent) !important;
+}
+
+.revenue-table-card .dt-buttons .dt-button:hover,
+.revenue-dt-wrap .dt-buttons .dt-button:hover {
+  background: linear-gradient(135deg, var(--revenue-accent) 0%, var(--revenue-accent-2) 100%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.revenue-table-card .dt-search input,
+.revenue-dt-wrap .dt-search input {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.4rem 0.75rem;
+  min-width: 12rem;
+}
+
+.revenue-table-card .dt-length select,
+.revenue-dt-wrap .dt-length select {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.35rem 2rem 0.35rem 0.5rem;
+}
+
+.revenue-factura-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.35em 0.65em;
+}
+
+.revenue-id {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #2f365c;
+}
+
+.revenue-btn-edit {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+}

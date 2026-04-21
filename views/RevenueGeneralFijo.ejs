@@ -7,14 +7,14 @@
   <div class="revenue-hero">
     <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
       <div>
-        <p class="revenue-hero-eyebrow mb-1">Revenue · Móvil</p>
+        <p class="revenue-hero-eyebrow mb-1">Revenue · Fijo</p>
         <h1 class="h3 mb-1">Mes trabajado: <%= mes %> <%= anio %></h1>
         <% if (user) { %>
           <span class="badge bg-light text-dark"><i class="bi bi-person-check me-1"></i><%= user.nombre %></span>
         <% } %>
       </div>
-      <a href="/revenueMenu" class="btn btn-light btn-lg">
-        <i class="bi bi-arrow-left-short"></i> Menú revenue
+      <a href="/revenueMenuFijo" class="btn btn-light btn-lg">
+        <i class="bi bi-arrow-left-short"></i> Menú revenue fijo
       </a>
     </div>
   </div>
@@ -36,7 +36,7 @@
             <th>F5</th>
             <th>F6</th>
             <th>Vendedor</th>
-            <th>Activada</th>
+            <th>Instalada</th>
             <th>Estado</th>
           </tr>
         </thead>
@@ -44,7 +44,7 @@
           <% results.forEach((sale)=> { %>
             <tr>
               <td>
-                <a href="/editRev/<%= mes %>/<%= anio %>/<%= sale.SaleId %>" class="btn btn-primary btn-sm revenue-btn-edit">
+                <a href="/editRevFijo/<%= mes %>/<%= anio %>/<%= sale.SaleId %>" class="btn btn-primary btn-sm revenue-btn-edit">
                   <i class="bi bi-pencil-square"></i> Editar
                 </a>
               </td>
@@ -67,12 +67,12 @@
               <td><%- include('partials/revenueFacturaValue', { value: sale.Factura_6 }) %></td>
               <td><small><%= sale.Nombre_Vendedor %></small></td>
               <td>
-                <% if (sale.Activada === 'Activada') { %>
-                  <span class="badge text-bg-success rounded-pill"><%= sale.Activada %></span>
-                <% } else if (sale.Activada === 'No Activada') { %>
-                  <span class="badge text-bg-warning text-dark rounded-pill"><%= sale.Activada %></span>
+                <% if (sale.Instalada === 'Instalada') { %>
+                  <span class="badge text-bg-success rounded-pill"><%= sale.Instalada %></span>
+                <% } else if (sale.Instalada === 'No Instalada') { %>
+                  <span class="badge text-bg-warning text-dark rounded-pill"><%= sale.Instalada %></span>
                 <% } else { %>
-                  <span class="badge text-bg-secondary rounded-pill"><%= sale.Activada %></span>
+                  <span class="badge text-bg-secondary rounded-pill"><%= sale.Instalada %></span>
                 <% } %>
               </td>
               <td><small class="text-secondary"><%= sale.Estados %></small></td>
