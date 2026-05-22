@@ -28,37 +28,33 @@ exports.registrarVenta = async (req, res)=>{
     const rgu = req.body.rgu;
 
     if(TipoDePlanAContratar=="@1Plus"){
-        var tipoDePlanAContratar1 = "(CQS) Plan CTRL @1Plus 2 LTE ST";
+        var tipoDePlanAContratar1 = "(AG2) Plan @1 Ultra CTL ST 5G PortabilidadT";
         var Valor_Plan = "13200";
 
        }
-       else if(TipoDePlanAContratar=="(AE5) Plan 5G @1 Ultra CTRL ST"){
+       else if(TipoDePlanAContratar=="(AG6) Plan @2 Ultra CTL ST 5G Portabilidad"){
 
         var Valor_Plan = "11000";
 
        }
-       else if(TipoDePlanAContratar=="(AE6) Plan 5G @2 Ultra CTRL ST"){
+       else if(TipoDePlanAContratar=="(AG7) Plan @3 Ultra CTL ST 5G Portabilidad"){
 
         var Valor_Plan = "15000";
 
        }
-       else if(TipoDePlanAContratar=="(AG3) Plan Post Ultra @1 Ctl St 5g"){
+       else if(TipoDePlanAContratar=="(AG3) Plan Post Ultra Sin Deposito @1 CTL St 5G"){
 
         var Valor_Plan = "12000";
 
        }
-       else if(TipoDePlanAContratar=="(AE7) Plan 5G @3 Ultra CTRL ST"){
+       else if(TipoDePlanAContratar=="(LG4)Plan Ultra LY @1 CTL ST 5G"){
 
         var Valor_Plan = "20000";
 
       }
-       else if(TipoDePlanAContratar=="(AE8) Plan Postpago Ultra @1 Ctrl St"){
+       else if(TipoDePlanAContratar=="Regalia"){
 
-        var Valor_Plan = "11200";
-
-       }else if(TipoDePlanAContratar=="(LAU) Plan Libre Ultra @1 Ctrl ST"){
-
-        var Valor_Plan = "11000";
+        var Valor_Plan = "0";
 
        }else{
         var Valor_Plan = "";
@@ -203,7 +199,8 @@ exports.registrarVenta = async (req, res)=>{
     correo,
     comentario,
     tipoDePlanAContratar1,
-    Tipo_Cliente: tipoCliente
+    Tipo_Cliente: tipoCliente,
+    Tipo_SIM: rgu
   });
 } catch (error) {
   console.error('❌ Error inserting sale:', error);
