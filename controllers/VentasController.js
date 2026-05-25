@@ -27,8 +27,13 @@ exports.registrarVenta = async (req, res)=>{
     const promocion_aplicar = req.body.promocion_aplicar;
     const rgu = req.body.rgu;
 
-    if(TipoDePlanAContratar=="@1Plus"){
-        var tipoDePlanAContratar1 = "(AG2) Plan @1 Ultra CTL ST 5G PortabilidadT";
+    if(TipoDePlanAContratar=="@1 Plus"){
+        var tipoDePlanAContratar1 = "(AG2) Plan @1 Ultra CTL ST 5G Portabilidad";
+        var Valor_Plan = "13200";
+
+       }
+       else if(TipoDePlanAContratar=="(AG2) Plan @1 Ultra CTL ST 5G Portabilidad"){
+
         var Valor_Plan = "13200";
 
        }
