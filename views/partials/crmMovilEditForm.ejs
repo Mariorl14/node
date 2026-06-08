@@ -1,0 +1,456 @@
+<link rel="stylesheet" href="/css/crm-form.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<% const _cicloVariant = typeof cicloVariant !== 'undefined' ? cicloVariant : 'roman'; %>
+
+<% if (SaleId) { %>
+<div class="container py-4 py-lg-5 crm-wrapper">
+  <div class="crm-card">
+    <div class="crm-header">
+      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+        <div>
+          <h2><%= pageTitle %></h2>
+          <p><%= pageSubtitle %></p>
+        </div>
+        <div class="crm-chip">
+          <span>ID Venta</span>
+          <strong><%= SaleId.SaleId %></strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="crm-body">
+      <form action="<%= formAction %>" method="POST">
+        <input id="SaleId" name="SaleId" value="<%= SaleId.SaleId %>" hidden>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Información del cliente</h5>
+          </div>
+          <div class="section-subtitle">Datos personales, documento y contactos del cliente.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column1">Nombre del Cliente</label>
+              <input type="text" id="column1" name="column1" class="form-control form-control-lg" value="<%= SaleId.Nombre_Cliente %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column2">Segundo Nombre del Cliente</label>
+              <input type="text" id="column2" name="column2" class="form-control form-control-lg" value="<%= SaleId.Segundo_Nombre_Cliente %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column3">Primer Apellido del Cliente</label>
+              <input type="text" id="column3" name="column3" class="form-control form-control-lg" value="<%= SaleId.Primer_Apellido_Cliente %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column4">Segundo Apellido del Cliente</label>
+              <input type="text" id="column4" name="column4" class="form-control form-control-lg" value="<%= SaleId.Segundo_Apellido_Cliente %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="Correo">Correo del Cliente</label>
+              <input type="text" id="Correo" name="Correo" class="form-control form-control-lg" value="<%= SaleId.Correo_Cliente %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="Genero">Genero</label>
+              <select class="form-select form-select-lg" id="Genero" name="Genero">
+                <option value="<%= SaleId.Tipo_Tramite %>"></option>
+                <option <%= SaleId.Genero == 'Masculino' ? "selected" : '' %> value="Masculino">Masculino</option>
+                <option <%= SaleId.Genero == 'Femenino' ? "selected" : '' %> value="Femenino">Femenino</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column5">Tipo De Documento De Identidad</label>
+              <input type="text" id="column5" name="column5" class="form-control form-control-lg" value="<%= SaleId.Documento_Identidad %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column6">Numero De Documento</label>
+              <input type="text" id="column6" name="column6" class="form-control form-control-lg" value="<%= SaleId.Numero_Documento %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column7">Nacionalidad</label>
+              <input type="text" id="column7" name="column7" class="form-control form-control-lg" value="<%= SaleId.Nacionalidad %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column12">Numero de Contacto 1</label>
+              <input type="text" id="column12" name="column12" class="form-control form-control-lg" value="<%= SaleId.Numero_Contacto_1 %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column13">Numero de Contacto 2</label>
+              <input type="text" id="column13" name="column13" class="form-control form-control-lg" value="<%= SaleId.Numero_Contacto_2 %>" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Trámite y plan</h5>
+          </div>
+          <div class="section-subtitle">Tipo de trámite, plan contratado, terminal y promociones.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column9">Tramite</label>
+              <select class="form-select form-select-lg" id="column9" name="column9">
+                <option value="<%= SaleId.Tipo_Tramite %>"></option>
+                <option <%= SaleId.Tipo_Tramite == 'Portabilidad' ? "selected" : '' %> value="Portabilidad">Portabilidad</option>
+                <option <%= SaleId.Tipo_Tramite == 'Linea_Nueva' ? "selected" : '' %> value="Linea_Nueva">Linea Nueva</option>
+                <option <%= SaleId.Tipo_Tramite == 'Migracion' ? "selected" : '' %> value="Migracion">Migracion</option>
+                <option <%= SaleId.Tipo_Tramite == 'Linea_Regalia' ? "selected" : '' %> value="Linea_Regalia">Linea Regalia (LT)</option>
+                <option <%= SaleId.Tipo_Tramite == 'Linea_Principal' ? "selected" : '' %> value="Linea_Principal">Linea Principal (LT)</option>
+                <option <%= SaleId.Tipo_Tramite == 'Portabilidad AG3' ? "selected" : '' %> value="Portabilidad AG3">Portabilidad AG3</option>
+                <option <%= SaleId.Tipo_Tramite == 'Linea_Nueva AG3' ? "selected" : '' %> value="Linea_Nueva AG3">Linea Nueva AG3</option>
+                <option <%= SaleId.Tipo_Tramite == 'Renovacion' ? "selected" : '' %> value="Renovacion">Renovacion</option>
+                <option <%= SaleId.Tipo_Tramite == 'Plan_Libre LN' ? "selected" : '' %> value="Plan_Libre LN">Plan Libre LN</option>
+                <option <%= SaleId.Tipo_Tramite == 'Plan_Libre Port' ? "selected" : '' %> value="Plan_Libre Port">Plan Libre Port</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column10">Numero de Contrato</label>
+              <input type="text" id="column10" name="column10" class="form-control form-control-lg" value="<%= SaleId.Numero_Contrato %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column11">Numero de Abonado</label>
+              <input type="text" id="column11" name="column11" class="form-control form-control-lg" value="<%= SaleId.Numero_Abonado %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column14">En caso de Portabilidad</label>
+              <input type="text" id="column14" name="column14" class="form-control form-control-lg" value="<%= SaleId.Portabilidad %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="tipoCliente">Tipo de Cliente</label>
+              <select class="form-select form-select-lg" id="tipoCliente" name="tipoCliente">
+                <option value="<%= SaleId.Tipo_Cliente %>"></option>
+                <option <%= SaleId.Tipo_Cliente == "0 - Linea Nueva/Migracion" ? "selected" : "" %> value="0 - Linea Nueva/Migracion">0 - Linea Nueva/Migracion</option>
+                <option <%= SaleId.Tipo_Cliente == "1 - Prepago" ? "selected" : "" %> value="1 - Prepago">1 - Prepago</option>
+                <option <%= SaleId.Tipo_Cliente == "2 - Pospago" ? "selected" : "" %> value="2 - Pospago">2 - Pospago</option>
+                <option <%= SaleId.Tipo_Cliente == "3 - Pospago/Terminal" ? "selected" : "" %> value="3 - Pospago/Terminal">3 - Pospago/Terminal</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column15">Tipo de Plan a Contratar</label>
+              <input type="text" id="column15" name="column15" class="form-control form-control-lg" value="<%= SaleId.Plan_Contratar %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="marca_telefono">Marca del Telefono</label>
+              <select class="form-select form-select-lg" id="marca_telefono" name="marca_telefono">
+                <option value="<%= SaleId.Marca_Telefono %>"></option>
+                <option <%= SaleId.Marca_Telefono == "No Aplica" ? "selected" : "" %> value="No Aplica">No Aplica</option>
+                <option <%= SaleId.Marca_Telefono == "Honor" ? "selected" : "" %> value="Honor">Honor</option>
+                <option <%= SaleId.Marca_Telefono == "Xiaomi" ? "selected" : "" %> value="Xiaomi">Xiaomi</option>
+                <option <%= SaleId.Marca_Telefono == "Samsung" ? "selected" : "" %> value="Samsung">Samsung</option>
+                <option <%= SaleId.Marca_Telefono == "Motorola" ? "selected" : "" %> value="Motorola">Motorola</option>
+                <option <%= SaleId.Marca_Telefono == "Apple" ? "selected" : "" %> value="Apple">Apple</option>
+                <option <%= SaleId.Marca_Telefono == "Redmi" ? "selected" : "" %> value="Redmi">Redmi</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="modelo_telefono">Modelo del Telefono</label>
+              <input type="text" id="modelo_telefono" name="modelo_telefono" class="form-control form-control-lg" value="<%= SaleId.Modelo_Telefono %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column8">Numero Celular De Tramite</label>
+              <input type="text" id="column8" name="column8" class="form-control form-control-lg" value="<%= SaleId.Celular_Tramite %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="promocion_aplicar">Promocion a Aplicar</label>
+              <select class="form-select form-select-lg" id="promocion_aplicar" name="promocion_aplicar">
+                <option value="<%= SaleId.Promocion_Aplicar %>"></option>
+                <option <%= SaleId.Promocion_Aplicar == "No Aplica" ? "selected" : "" %> value="No Aplica">No Aplica</option>
+                <option <%= SaleId.Promocion_Aplicar == "10% descuento en renta" ? "selected" : "" %> value="10% descuento en renta">10% descuento en renta</option>
+                <option <%= SaleId.Promocion_Aplicar == "25% descuento en renta" ? "selected" : "" %> value="25% descuento en renta">25% descuento en renta</option>
+                <option <%= SaleId.Promocion_Aplicar == "35% descuento en renta" ? "selected" : "" %> value="35% descuento en renta">35% descuento en renta</option>
+                <option <%= SaleId.Promocion_Aplicar == "50% descuento (3, 4, 5)" ? "selected" : "" %> value="50% descuento (3, 4, 5)">50% descuento (3, 4, 5)</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column16">Valor del Plan</label>
+              <input type="text" id="column16" name="column16" class="form-control form-control-lg" value="<%= SaleId.Valor_Plan %>" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Contacto y ubicación</h5>
+          </div>
+          <div class="section-subtitle">Dirección de entrega y tipo de llamada.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column17">Direccion Exacta</label>
+              <input type="text" id="column17" name="column17" class="form-control form-control-lg" value="<%= SaleId.Direccion_Exacta %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column18">Provincia</label>
+              <input type="text" id="column18" name="column18" class="form-control form-control-lg" value="<%= SaleId.Provincia %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column19">Canton</label>
+              <input type="text" id="column19" name="column19" class="form-control form-control-lg" value="<%= SaleId.Canton %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column20">Distrito</label>
+              <input type="text" id="column20" name="column20" class="form-control form-control-lg" value="<%= SaleId.Distrito %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column21">Tipo de Llamada</label>
+              <input type="text" id="column21" name="column21" class="form-control form-control-lg" value="<%= SaleId.Tipo_Llamada %>" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Vendedor y envío</h5>
+          </div>
+          <div class="section-subtitle">Datos del vendedor, cobro de envío y método de pago.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="prueba">
+                <label class="form-label" for="column22">Nombre Vendedor</label>
+                <input type="text" id="column22" name="column22" class="form-control form-control-lg" value="<%= SaleId.Nombre_Vendedor %>" />
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="prueba12">
+                <label class="form-label" for="column23">Fecha</label>
+                <input type="text" id="column23" name="column23" class="form-control form-control-lg" value="<%= SaleId.Fecha %>" />
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="PruebaDvi">
+                <label class="form-label" for="column24">Vendedor Freelance</label>
+                <input type="text" id="column24" name="column24" class="form-control form-control-lg" value="<%= SaleId.Vendedor_Freelance %>" />
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column25">¿Cobra Envío?</label>
+              <select class="form-select form-select-lg" id="column25" name="column25">
+                <option value="<%= SaleId.Cobro_Envío %>"></option>
+                <option <%= SaleId.Cobro_Envío == "SI - 2000" ? "selected" : "" %> value="SI - 2000">Si - 2000</option>
+                <option <%= SaleId.Cobro_Envío == "NO" ? "selected" : "" %> value="NO">NO</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="metodo_pago">Metodo de Pago</label>
+              <select class="form-select form-select-lg" id="metodo_pago" name="metodo_pago">
+                <option value="<%= SaleId.Metodo_Pago %>"></option>
+                <option <%= SaleId.Metodo_Pago == "SINPE" ? "selected" : "" %> value="SINPE">SINPE</option>
+                <option <%= SaleId.Metodo_Pago == "EFECTIVO" ? "selected" : "" %> value="EFECTIVO">EFECTIVO</option>
+                <option <%= SaleId.Metodo_Pago == "NO PAGO" ? "selected" : "" %> value="NO PAGO">NO PAGO</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="intentos_entrega">Intentos de Entrega</label>
+              <select class="form-select form-select-lg" id="intentos_entrega" name="intentos_entrega">
+                <option value="<%= SaleId.Intentos_Entrega %>"></option>
+                <option <%= SaleId.Intentos_Entrega == "1" ? "selected" : "" %> value="1">1</option>
+                <option <%= SaleId.Intentos_Entrega == "2" ? "selected" : "" %> value="2">2</option>
+                <option <%= SaleId.Intentos_Entrega == "3" ? "selected" : "" %> value="3">3</option>
+                <option <%= SaleId.Intentos_Entrega == "4" ? "selected" : "" %> value="4">4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            <h5>Estado de entrega y activación</h5>
+          </div>
+          <div class="section-subtitle">Seguimiento de entrega, activación, revisiones y comisiones.</div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column26">Activada / No Activada</label>
+              <select class="form-select form-select-lg" id="column26" name="column26">
+                <option value="<%= SaleId.Activada %>"></option>
+                <option <%= SaleId.Activada == "Activada" ? "selected" : "" %> value="Activada">Activada</option>
+                <option <%= SaleId.Activada == "No Activada" ? "selected" : "" %> value="No Activada">No Activada</option>
+                <option <%= SaleId.Activada == "Pendiente" ? "selected" : "" %> value="Pendiente">Pendiente</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column27">Entregada / No Entregada</label>
+              <select class="form-select form-select-lg" id="column27" name="column27">
+                <option value="<%= SaleId.Entregada %>"></option>
+                <option <%= SaleId.Entregada == "No Entregada" ? "selected" : "" %> value="No Entregada">No Entregada</option>
+                <option <%= SaleId.Entregada == "Entregada" ? "selected" : "" %> value="Entregada">Entregada</option>
+                <option <%= SaleId.Entregada == "Pendiente" ? "selected" : "" %> value="Pendiente">Pendiente</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column28">Rechazada / Cliente no Contesta</label>
+              <select class="form-select form-select-lg" id="column28" name="column28">
+                <option value="<%= SaleId.Rechazada %>"></option>
+                <option <%= SaleId.Rechazada == "Cliente no Contesta" ? "selected" : "" %> value="Cliente no Contesta">Cliente no Contesta</option>
+                <option <%= SaleId.Rechazada == "Rechazada" ? "selected" : "" %> value="Rechazada">Rechazada</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column29">Detalle de Entrega</label>
+              <input type="text" id="column29" name="column29" class="form-control form-control-lg" value="<%= SaleId.Detalle %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column30">Entregador</label>
+              <select class="form-select form-select-lg" id="column30" name="column30">
+                <option value="<%= SaleId.Entregador %>"></option>
+                <option <%= SaleId.Entregador == "Agiliza" ? "selected" : "" %> value="Agiliza">Agiliza</option>
+                <option <%= SaleId.Entregador == "Almatelecom" ? "selected" : "" %> value="Almatelecom">Almatelecom</option>
+                <option <%= SaleId.Entregador == "Ronal SJ" ? "selected" : "" %> value="Ronal SJ">Ronal SJ</option>
+                <option <%= SaleId.Entregador == "Jose Guanacaste" ? "selected" : "" %> value="Jose Guanacaste">Jose Guanacaste</option>
+                <option <%= SaleId.Entregador == "Correos" ? "selected" : "" %> value="Correos">Correos</option>
+                <option <%= SaleId.Entregador == "Ventas Oficina" ? "selected" : "" %> value="Ventas Oficina">Ventas Oficina </option>
+                <option <%= SaleId.Entregador == "Allan Porras" ? "selected" : "" %> value="Allan Porras">Allan Porras</option>
+                <option <%= SaleId.Entregador == "Diego Mendoza" ? "selected" : "" %> value="Diego Mendoza">Diego Mendoza</option>
+                <option <%= SaleId.Entregador == "Harold Barrido" ? "selected" : "" %> value="Harold Barrido">Harold Barrido</option>
+                <option <%= SaleId.Entregador == "ILG" ? "selected" : "" %> value="ILG">ILG</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column31">Estados</label>
+              <select class="form-select form-select-lg" id="column31" name="column31">
+                <option value="<%= SaleId.Estados %>"></option>
+                <option <%= SaleId.Estados == "AAA" ? "selected" : "" %> value="AAA">AAA</option>
+                <option <%= SaleId.Estados == "BAA" ? "selected" : "" %> value="BAA">BAA</option>
+                <option <%= SaleId.Estados == "ATP" ? "selected" : "" %> value="ATP">ATP</option>
+                <option <%= SaleId.Estados == "SUSP" ? "selected" : "" %> value="SUSP">SUSP</option>
+                <option <%= SaleId.Estados == "PP" ? "selected" : "" %> value="PP">PP</option>
+                <option <%= SaleId.Estados == "NA" ? "selected" : "" %> value="NA">NA</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column32">Llamada de Activacion</label>
+              <select class="form-select form-select-lg" id="column32" name="column32">
+                <option value="<%= SaleId.Llamada_Activacion %>"></option>
+                <option <%= SaleId.Llamada_Activacion == 'SI' ? "selected" : '' %> value="SI">SI</option>
+                <option <%= SaleId.Llamada_Activacion == 'NO' ? "selected" : '' %> value="NO">NO</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column33">Fecha de Activacion</label>
+              <input type="date" id="column33" name="column33" class="form-control form-control-lg" value="<%= SaleId.formattedFechaActivacion %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column34">Fecha de Entrega</label>
+              <input type="date" id="column34" name="column34" class="form-control form-control-lg" value="<%= SaleId.formattedFechaEntrega %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="FechaUA">Fecha Ultima Actualizacion</label>
+              <input type="date" id="FechaUA" name="FechaUA" class="form-control form-control-lg" value="<%= SaleId.formattedFechaUltimaActualizacion %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column35">Primera Revision</label>
+              <select class="form-select form-select-lg" id="column35" name="column35">
+                <option value="<%= SaleId.Primera_Revision %>"></option>
+                <option <%= SaleId.Primera_Revision == "Alta" ? "selected" : "" %> value="Alta">Alta</option>
+                <option <%= SaleId.Primera_Revision == "Baja" ? "selected" : "" %> value="Baja">Baja</option>
+                <option <%= SaleId.Primera_Revision == "No Portada" ? "selected" : "" %> value="No Portada">No Portada</option>
+                <option <%= SaleId.Primera_Revision == "Suspendida" ? "selected" : "" %> value="Suspendida">Suspendida</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column36">Segunda Revision</label>
+              <select class="form-select form-select-lg" id="column36" name="column36">
+                <option value="<%= SaleId.Segunda_Revision %>"></option>
+                <option <%= SaleId.Segunda_Revision == "Alta" ? "selected" : "" %> value="Alta">Alta</option>
+                <option <%= SaleId.Segunda_Revision == "Baja" ? "selected" : "" %> value="Baja">Baja</option>
+                <option <%= SaleId.Segunda_Revision == "No Portada" ? "selected" : "" %> value="No Portada">No Portada</option>
+                <option <%= SaleId.Segunda_Revision == "Suspendida" ? "selected" : "" %> value="Suspendida">Suspendida</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column37">NIP</label>
+              <input type="text" id="column37" name="column37" class="form-control form-control-lg" value="<%= SaleId.NIP %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column38">Detalle de Activacion</label>
+              <input type="text" id="column38" name="column38" class="form-control form-control-lg" value="<%= SaleId.Detalle_Activacion %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column39">Numero de GESTION MOVICHECK</label>
+              <input type="text" id="column39" name="column39" class="form-control form-control-lg" value="<%= SaleId.MOVICHECK %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column40">Bloqueada / Desbloqueada</label>
+              <select class="form-select form-select-lg" id="column40" name="column40">
+                <option value="<%= SaleId.Bloqueo_Desbloqueo %>"></option>
+                <option <%= SaleId.Bloqueo_Desbloqueo == "Bloqueada" ? "selected" : "" %> value="Bloqueada">Bloqueada</option>
+                <option <%= SaleId.Bloqueo_Desbloqueo == "Desbloqueada" ? "selected" : "" %> value="Desbloqueada">Desbloqueada</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column41">Activadora</label>
+              <select class="form-select form-select-lg" id="column41" name="column41">
+                <option value="<%= SaleId.Activadora %>"></option>
+                <option <%= SaleId.Activadora == "Daniela Mora Arias" ? "selected" : "" %> value="Daniela Mora Arias">Daniela Mora Arias</option>
+                <option <%= SaleId.Activadora == "Monserrath García Castro" ? "selected" : "" %> value="Monserrath García Castro">Monserrath García Castro</option>
+                <option <%= SaleId.Activadora == "Arianna Montenegro Yanicelly" ? "selected" : "" %> value="Arianna Montenegro Yanicelly">Arianna Montenegro Yanicelly</option>
+                <option <%= SaleId.Activadora == "Erika Lucia Aguilar Canales" ? "selected" : "" %> value="Erika Lucia Aguilar Canales">Erika Lucia Aguilar Canales</option>
+                <option <%= SaleId.Activadora == "Jefferson Alonso Guevara Soto" ? "selected" : "" %> value="Jefferson Alonso Guevara Soto">Jefferson Alonso Guevara Soto</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4" id="prueba12">
+              <label class="form-label" for="column42">Mes</label>
+              <input type="text" id="column42" name="column42" class="form-control form-control-lg" value="<%= SaleId.MES_TRABAJADA %>" />
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column43">Terminal</label>
+              <select class="form-select form-select-lg" id="column43" name="column43">
+                <option value="<%= SaleId.Terminal %>"></option>
+                <option <%= SaleId.Terminal == "SIN terminal" ? "selected" : "" %> value="SIN terminal">SIN terminal</option>
+                <option <%= SaleId.Terminal == "CON terminal" ? "selected" : "" %> value="CON terminal">CON terminal</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="columnCiclo">Ciclo de Facturacion</label>
+              <select class="form-select form-select-lg" id="columnCiclo" name="columnCiclo">
+                <option value="<%= SaleId.Ciclo_Facturacion %>"></option>
+                <% if (_cicloVariant === 'numeric') { %>
+                  <option <%= SaleId.Ciclo_Facturacion == "Ciclo 1" ? "selected" : "" %> value="Ciclo 1">Ciclo 1</option>
+                  <option <%= SaleId.Ciclo_Facturacion == "Ciclo 11" ? "selected" : "" %> value="Ciclo 11">Ciclo 11</option>
+                <% } else { %>
+                  <option <%= SaleId.Ciclo_Facturacion == "Ciclo I" ? "selected" : "" %> value="Ciclo I">Ciclo I</option>
+                  <option <%= SaleId.Ciclo_Facturacion == "Ciclo II" ? "selected" : "" %> value="Ciclo II">Ciclo II</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column44">Pago Comision</label>
+              <select class="form-select form-select-lg" id="column44" name="column44">
+                <option value="<%= SaleId.Pago_Comision %>"></option>
+                <option <%= SaleId.Pago_Comision == "PAGO" ? "selected" : "" %> value="PAGO">PAGO</option>
+                <option <%= SaleId.Pago_Comision == "NO PAGO" ? "selected" : "" %> value="NO PAGO">NO PAGO</option>
+                <option <%= SaleId.Pago_Comision == "SIN FACTURAR" ? "selected" : "" %> value="SIN FACTURAR">SIN FACTURAR</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="rgu">RGU</label>
+              <select class="form-select form-select-lg" id="rgu" name="rgu">
+                <option value="<%= SaleId.RGU %>"></option>
+                <option <%= SaleId.RGU == "1" ? "selected" : "" %> value="1">1</option>
+                <option <%= SaleId.RGU == "2" ? "selected" : "" %> value="2">2</option>
+                <option <%= SaleId.RGU == "3" ? "selected" : "" %> value="3">3</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-4">
+              <label class="form-label" for="column45">Numero Provisional</label>
+              <input type="text" id="column45" name="column45" class="form-control form-control-lg" value="<%= SaleId.Numero_Provisional %>" />
+            </div>
+          </div>
+        </div>
+
+        <div class="sticky-actions d-flex justify-content-end gap-2">
+          <a href="<%= cancelUrl %>" class="btn btn-lg btn-cancel">Cancelar</a>
+          <button class="btn btn-primary btn-lg btn-save" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<% } %>

@@ -2,6 +2,7 @@ const conexion = require('../database/db');
 const { userInfo } = require('os');
 const {promisify} = require('util');
 const nodemailer = require('nodemailer');
+const { getMesTrabajada } = require('../utils/mesTrabajada');
 
     
 exports.registrarVenta = async (req, res)=>{
@@ -100,7 +101,7 @@ exports.registrarVenta = async (req, res)=>{
     var Fecha_Ultima_Actualizacion = "";
     var Bloqueo_Desbloqueo = "Bloqueada";
     var Activadora = "";
-    var MES_TRABAJADA = "MAYO 2026";
+    const MES_TRABAJADA = getMesTrabajada();
     const Terminal = req.body.terminal;
     const correo = req.body.correo;
     const Genero = req.body.genero;
@@ -267,7 +268,7 @@ exports.registrarVentaFijo = async (req, res) => {
     const Llamada_Activacion = "";
     const Fecha_Activacion = "";
     const Numero_Orden = "";
-    const MES_TRABAJADA = "MAYO 2026";
+    const MES_TRABAJADA = getMesTrabajada();
     const Fecha_Instalacion = "";
     const Fecha_Ultima_Actualizacion = "";
     const Pago_Comision = "";
