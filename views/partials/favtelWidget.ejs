@@ -1,0 +1,12 @@
+<% const _wUser = typeof widgetUser !== 'undefined' ? widgetUser : null; %>
+<% const _wApi = typeof favtelWidgetApi !== 'undefined' ? favtelWidgetApi : ''; %>
+<% const _wScript = typeof favtelWidgetScript !== 'undefined' ? favtelWidgetScript : '/widget/favtel-marcaje.js'; %>
+<% if (_wUser && _wApi) { %>
+<script
+  src="<%= _wScript %>"
+  data-api="<%= _wApi %>"
+  <% if (_wUser.codigoEmpleado && String(_wUser.codigoEmpleado).trim()) { %>
+  data-codigo="<%= String(_wUser.codigoEmpleado).trim().toUpperCase() %>"
+  <% } %>
+></script>
+<% } %>

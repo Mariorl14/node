@@ -51,6 +51,10 @@ app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: process.env.NODE_ENV === 'production' ? '1d' : 0,
   etag: true,
 }));
+app.use('/widget', express.static(path.join(__dirname, 'widget'), {
+  maxAge: process.env.NODE_ENV === 'production' ? '1d' : 0,
+  etag: true,
+}));
 
 /* ---- Body parsing with SAFE LIMITS ---- */
 app.use(express.urlencoded({ extended: false, limit: '1mb' }));
@@ -58,6 +62,28 @@ app.use(express.json({ limit: '1mb' }));
 
 /* ---- Cookies ---- */
 app.use(cookieParser());
+
+/* ---- Widget: expose config + authenticated user to layouts ---- */
+const jwt = require('jsonwebtoken');
+const pool = require('./database/db');
+
+app.use(async (req, res, next) => {
+  res.locals.favtelWidgetApi = (process.env.FAVTEL_WIDGET_API || '').replace(/\/$/, '');
+  res.locals.favtelWidgetScript = process.env.FAVTEL_WIDGET_SCRIPT_URL || '/widget/favtel-marcaje.js';
+  res.locals.widgetUser = null;
+
+  const token = req.cookies?.jwt;
+  if (token && process.env.JWT_SECRETO) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRETO);
+      const [rows] = await pool.execute('SELECT * FROM users WHERE id = ?', [decoded.id]);
+      if (rows.length) res.locals.widgetUser = rows[0];
+    } catch (_) {
+      // Invalid or expired token — widget stays hidden
+    }
+  }
+  next();
+});
 
 /* ---- (Optional) Low-overhead request log for debugging ---- */
 // Toggle with REQ_LOG=1 env var to avoid production overhead
